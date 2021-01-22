@@ -26,4 +26,20 @@ public class ControladorPanelOperatividad {
 	public void accionadoBottonVolverPanelOperatividad() {
 		this.controlador.navegarPanelBienvenida();
 	}
+	
+	public void accionadoBottonMostrarPanelPedidos() {
+		this.controlador.navegarPanelPedidos();
+	}
+	
+	public void accionadoBottonMostrarPanelComandas() {
+		this.controlador.navegarPanelComandas();
+	}
+	
+	public void accionadoBottonMostrarPanelAprovisionamiento() {
+		this.controlador.navegarPanelAprovisionamiento();
+	}
+	
+	public void accionadoBottonMostrarPanelTicketFactura() {
+		this.controlador.navegarPanelTicketFactura();
+	}
 }

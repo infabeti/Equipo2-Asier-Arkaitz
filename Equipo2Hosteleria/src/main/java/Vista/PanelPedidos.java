@@ -6,12 +6,16 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JRadioButton;
@@ -27,6 +31,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JComboBox comboBox_Productos;
 	private JComboBox comboBox_Cantidad;
 	private JLabel lblDireccin;
+	private JPanel contentPane;
 	private JRadioButton rdbtnRecogerEnEstablecimiento;
 	private JRadioButton rdbtnEntregaADomicilio;
 	private ButtonGroup grupoBotones;
@@ -96,7 +101,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		lblDireccin.setEnabled(false);
 		lblDireccin.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDireccin.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDireccin.setBounds(56, 196, 139, 23);
+		lblDireccin.setBounds(38, 196, 157, 23);
 		add(lblDireccin);
 		
 		btnListaCompra = new JButton("Ver lista de la compra");
@@ -137,7 +142,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		if (rdbtnEntregaADomicilio.isSelected()) {
 			lblDireccin.setEnabled(true);
 			textPane_Direccion.setEnabled(true);
-			btnPasarACaja.setEnabled(false);
+			btnPasarACaja.setEnabled(true);
 		}
 	}
 	
@@ -162,8 +167,22 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Pasar A Caja");
-				controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
+				contentPane = new JPanel();
+				contentPane.setBackground(new Color(0, 153, 255));
+				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+				setContentPane(contentPane);
+				contentPane.setLayout(null);
+				if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
+					System.out.println("Ejecutando evento Boton Pasar A Caja");
+					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
+				}else {
+					JOptionPane.showMessageDialog(contentPane,"Añade una dirección.");
+				}
+			}
+
+			private void setContentPane(JPanel contentPane) {
+				// TODO Auto-generated method stub
+				
 			}
 		};
 	}

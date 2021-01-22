@@ -19,12 +19,28 @@ public class ControladorPanelPedidos {
 		this.controlador = controlador;	
 	}
 	
-	public void mostrarPanelOperatividad() {
+	public void mostrarPanelPedidos() {
 		this.panelPedidos = new PanelPedidos(this);
 		this.vista.mostrarPanel(this.panelPedidos);
 	}
 	
 	public void accionadoBottonVolverPanelPedidos() {
+		this.controlador.navegarPanelOperatividad();
+	}
+	
+	public void accionadoBottonDesconectarsePanelPedidos() {
 		this.controlador.navegarPanelBienvenida();
+	}
+	
+	public void accionadoBottonPasarACajaPanelPedidos() {
+		//this.controlador.navegarPanelTicket();
+	}
+	
+	public void accionadoBottonAadirAlCarroPanelPedidos() {
+		//this.controlador.anadirAListaCompra();
+	}
+	
+	public void accionadoBottonListaCompraPanelPedidos() {
+		//this.controlador.navegarPanelListaCompra();
 	}
 }

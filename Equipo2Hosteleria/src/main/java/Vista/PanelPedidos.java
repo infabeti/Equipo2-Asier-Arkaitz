@@ -17,7 +17,14 @@ import javax.swing.JRadioButton;
 public class PanelPedidos extends JPanel {
 
 	private JButton btnVolver;
-	private JLabel lblPedidos;
+	private JButton btnDesconectarse;
+	private JButton btnPasarACaja;
+	private JButton btnAadirAlCarro;
+	private JButton btnListaCompra;
+	private JComboBox comboBox_Productos;
+	private JComboBox comboBox_Cantidad;
+	private JRadioButton rdbtnRecogerEnEstablecimiento;
+	private JRadioButton rdbtnEntregaADomicilio;
 	private ControladorPanelPedidos controladorPanelPedidos;
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
@@ -26,7 +33,7 @@ public class PanelPedidos extends JPanel {
 		
 		setLayout(null);
 		
-		lblPedidos = new JLabel("Pedidos");
+		JLabel lblPedidos = new JLabel("Pedidos");
 		lblPedidos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPedidos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPedidos.setBounds(58, 35, 328, 14);
@@ -36,7 +43,7 @@ public class PanelPedidos extends JPanel {
 		btnVolver.setBounds(58, 246, 89, 23);
 		add(btnVolver);
 		
-		JComboBox comboBox_Productos = new JComboBox();
+		comboBox_Productos = new JComboBox();
 		comboBox_Productos.setBounds(58, 95, 173, 22);
 		add(comboBox_Productos);
 		
@@ -51,11 +58,11 @@ public class PanelPedidos extends JPanel {
 		lblCantidad.setBounds(271, 60, 115, 14);
 		add(lblCantidad);
 		
-		JRadioButton rdbtnRecogerEnEstablecimiento = new JRadioButton("Recoger en establecimiento");
+		rdbtnRecogerEnEstablecimiento = new JRadioButton("Recoger en establecimiento");
 		rdbtnRecogerEnEstablecimiento.setBounds(58, 177, 173, 23);
 		add(rdbtnRecogerEnEstablecimiento);
 		
-		JRadioButton rdbtnEntregaADomicilio = new JRadioButton("Entrega a domicilio");
+		rdbtnEntregaADomicilio = new JRadioButton("Entrega a domicilio");
 		rdbtnEntregaADomicilio.setHorizontalAlignment(SwingConstants.RIGHT);
 		rdbtnEntregaADomicilio.setBounds(247, 177, 139, 23);
 		add(rdbtnEntregaADomicilio);
@@ -64,11 +71,11 @@ public class PanelPedidos extends JPanel {
 		textPane_Direccion.setBounds(213, 207, 173, 22);
 		add(textPane_Direccion);
 		
-		JComboBox comboBox_Cantidad = new JComboBox();
+		comboBox_Cantidad = new JComboBox();
 		comboBox_Cantidad.setBounds(326, 95, 60, 22);
 		add(comboBox_Cantidad);
 		
-		JButton btnAadirAlCarro = new JButton("A\u00F1adir al carro");
+		btnAadirAlCarro = new JButton("A\u00F1adir al carro");
 		btnAadirAlCarro.setBounds(58, 147, 173, 23);
 		add(btnAadirAlCarro);
 		
@@ -78,7 +85,7 @@ public class PanelPedidos extends JPanel {
 		lblDireccin.setBounds(58, 207, 139, 23);
 		add(lblDireccin);
 		
-		JButton btnListaCompra = new JButton("Ver lista de la compra");
+		btnListaCompra = new JButton("Ver lista de la compra");
 		btnListaCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -86,15 +93,11 @@ public class PanelPedidos extends JPanel {
 		btnListaCompra.setBounds(247, 147, 139, 23);
 		add(btnListaCompra);
 		
-		JButton btnDesconectarse = new JButton("Desconectarse");
+		btnDesconectarse = new JButton("Desconectarse");
 		btnDesconectarse.setBounds(170, 246, 103, 23);
 		add(btnDesconectarse);
 		
-		JButton btnPasarACaja = new JButton("Pasar a caja");
-		btnPasarACaja.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnPasarACaja = new JButton("Pasar a caja");
 		btnPasarACaja.setBounds(295, 246, 91, 23);
 		add(btnPasarACaja);
 		
@@ -103,6 +106,10 @@ public class PanelPedidos extends JPanel {
 	
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelPedidos));
+		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelPedidos));
+		this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
+		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
+		this.btnListaCompra.addActionListener(listenerBotonListaCompra(this.controladorPanelPedidos));
 	}
 	
 	private ActionListener listenerBotonVolver(ControladorPanelPedidos controladorPanelPedidos) {
@@ -110,6 +117,42 @@ public class PanelPedidos extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
 				controladorPanelPedidos.accionadoBottonVolverPanelPedidos();
+			}
+		};
+	}
+	
+	private ActionListener listenerBotonDesconectarse(ControladorPanelPedidos controladorPanelPedidos) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Desconectarse");
+				controladorPanelPedidos.accionadoBottonDesconectarsePanelPedidos();
+			}
+		};
+	}
+	
+	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Pasar A Caja");
+				controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
+			}
+		};
+	}
+	
+	private ActionListener listenerBotonAadirAlCarro(ControladorPanelPedidos controladorPanelPedidos) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Añadir Al Carro");
+				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos();
+			}
+		};
+	}
+	
+	private ActionListener listenerBotonListaCompra(ControladorPanelPedidos controladorPanelPedidos) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Ver Lista De La Compra");
+				controladorPanelPedidos.accionadoBottonListaCompraPanelPedidos();
 			}
 		};
 	}

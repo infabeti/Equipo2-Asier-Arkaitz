@@ -12,6 +12,9 @@ public class ControladorPanelBienvenida {
 	private Controlador controlador;
 	private PanelBienvenida panelBienvenida;
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public ControladorPanelBienvenida(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;

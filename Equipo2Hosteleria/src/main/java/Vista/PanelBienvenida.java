@@ -19,7 +19,7 @@ public class PanelBienvenida extends JPanel{
 		setLayout(null);
 		
 		lblBienvenida = new JLabel("\u00A1Bienvenido a la aplicaci\u00F3n de hosteleria definitiva!");
-		lblBienvenida.setBounds(58, 35, 268, 14);
+		lblBienvenida.setBounds(58, 35, 315, 14);
 		add(lblBienvenida);
 		
 		btnOperatividad = new JButton("Operatividad");

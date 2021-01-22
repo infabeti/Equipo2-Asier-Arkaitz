@@ -25,10 +25,11 @@ public class ControladorPanelAprovisionamiento {
 	}
 	
 	public void accionadoBottonVolverPanelAprovisionamiento() {
+		this.controlador.navegarPanelOperatividad();
+	}
+	
+	public void accionadoBottonDesconectarsePanelAprovisionamiento() {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonMostrarPanelPedidos() {
-		this.controlador.navegarPanelPedidos();
-	}
 }

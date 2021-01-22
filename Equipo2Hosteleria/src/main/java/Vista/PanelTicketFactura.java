@@ -73,10 +73,6 @@ public class PanelTicketFactura extends JPanel{
 		lblProductos.setBounds(10, 152, 89, 14);
 		add(lblProductos);
 		
-		JTextPane textPane_3 = new JTextPane();
-		textPane_3.setBounds(10, 169, 168, 51);
-		add(textPane_3);
-		
 		JRadioButton rdbtnTicket = new JRadioButton("Ticket");
 		rdbtnTicket.setBounds(246, 38, 71, 23);
 		add(rdbtnTicket);
@@ -111,19 +107,19 @@ public class PanelTicketFactura extends JPanel{
 		add(textPane_6);
 		
 		JLabel lblTotal = new JLabel("Total");
-		lblTotal.setBounds(194, 185, 89, 14);
+		lblTotal.setBounds(311, 239, 45, 14);
 		add(lblTotal);
 		
 		JTextPane textPane_6_1 = new JTextPane();
-		textPane_6_1.setBounds(239, 185, 129, 20);
+		textPane_6_1.setBounds(343, 238, 63, 20);
 		add(textPane_6_1);
 		
-		JTextArea txtrSadsad = new JTextArea();
-		txtrSadsad.setLineWrap(true);
-		txtrSadsad.setText("sadsadasdasdasdasdasd");
-		txtrSadsad.setTabSize(10);
-		txtrSadsad.setBounds(293, 221, 92, 22);
-		add(txtrSadsad);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 177, 408, 47);
+		add(scrollPane);
+		
+		JTextPane textPane_2_1 = new JTextPane();
+		scrollPane.setViewportView(textPane_2_1);
 		
 		initializeEvents();
 	}

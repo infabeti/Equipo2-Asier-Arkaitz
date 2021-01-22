@@ -33,7 +33,7 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonPasarACajaPanelPedidos() {
-		//this.controlador.navegarPanelTicket();
+		this.controlador.navegarPanelTicketFactura();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos() {

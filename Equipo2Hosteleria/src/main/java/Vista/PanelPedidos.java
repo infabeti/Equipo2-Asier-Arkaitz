@@ -175,6 +175,9 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
+				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
+					System.out.println("Ejecutando evento Boton Pasar A Caja");
+					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else {
 					JOptionPane.showMessageDialog(contentPane,"Añade una dirección.");
 				}

@@ -25,10 +25,10 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public void accionadoBottonVolverPanelTicketFactura() {
-		this.controlador.navegarPanelBienvenida();
+		this.controlador.navegarPanelOperatividad();
 	}
 	
-	public void accionadoBottonMostrarPanelPedidos() {
-		this.controlador.navegarPanelPedidos();
+	public void accionadoBottonDesconectarsePanelTicketFactura() {
+		this.controlador.navegarPanelBienvenida();
 	}
 }

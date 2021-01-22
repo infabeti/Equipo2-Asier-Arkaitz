@@ -25,10 +25,10 @@ public class ControladorPanelComandas {
 	}
 	
 	public void accionadoBottonVolverPanelComandas() {
-		this.controlador.navegarPanelBienvenida();
+		this.controlador.navegarPanelOperatividad();
 	}
 	
-	public void accionadoBottonMostrarPanelPedidos() {
-		this.controlador.navegarPanelPedidos();
+	public void accionadoBottonDesconectarsePanelComandas() {
+		this.controlador.navegarPanelBienvenida();
 	}
 }

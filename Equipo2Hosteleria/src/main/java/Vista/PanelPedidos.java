@@ -156,6 +156,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
 				controladorPanelPedidos.accionadoBottonVolverPanelPedidos();
+				//Debe borrar la lista de la compra.
 			}
 		};
 	}
@@ -200,6 +201,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
 				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos();
+				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
+				System.out.println(comboBox_Cantidad.getSelectedItem());
 			}
 		};
 	}

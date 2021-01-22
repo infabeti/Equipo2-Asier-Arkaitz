@@ -93,6 +93,11 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		comboBox_Cantidad.setBounds(340, 84, 60, 22);
 		add(comboBox_Cantidad);
 		
+		int numbers_to_add_max = 99;
+		for (int i = 1; i <= numbers_to_add_max; i++) {
+			comboBox_Cantidad.addItem(new Integer(i));
+		}
+		
 		btnAadirAlCarro = new JButton("A\u00F1adir al carro");
 		btnAadirAlCarro.setBounds(38, 136, 146, 23);
 		add(btnAadirAlCarro);

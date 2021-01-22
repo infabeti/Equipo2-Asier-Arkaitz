@@ -126,6 +126,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnPasarACaja.setBounds(293, 235, 107, 23);
 		add(btnPasarACaja);
 		
+		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
+		lblNewLabel.setBounds(0, 0, 450, 330);
+		add(lblNewLabel);
+		
 		initializeEvents();
 	}
 	

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import Controlador.ControladorPanelGeneros;
+import Controlador.ControladorPanelPedidos;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
@@ -18,11 +18,11 @@ public class PanelPedidos extends JPanel {
 
 	private JButton btnVolver;
 	private JLabel lblGeneros;
-	private ControladorPanelGeneros controladorPanelGeneros;
+	private ControladorPanelPedidos controladorPanelPedidos;
 	
-	public PanelPedidos(ControladorPanelGeneros controladorPanelGeneros)
+	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
-		this.controladorPanelGeneros = controladorPanelGeneros;
+		this.controladorPanelPedidos = controladorPanelPedidos;
 		
 		setLayout(null);
 		
@@ -76,14 +76,14 @@ public class PanelPedidos extends JPanel {
 	}
 	
 	private void initializeEvents() {
-		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelGeneros));
+		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelPedidos));
 	}
 	
-	private ActionListener listenerBotonVolver(ControladorPanelGeneros controladorPanelGeneros) {
+	private ActionListener listenerBotonVolver(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
-				controladorPanelGeneros.accionadoBottonVolverPanelGeneros();
+				controladorPanelPedidos.accionadoBottonVolverPanelGeneros();
 			}
 		};
 	}

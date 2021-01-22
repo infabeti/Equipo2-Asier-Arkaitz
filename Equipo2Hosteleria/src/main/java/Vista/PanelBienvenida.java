@@ -10,7 +10,7 @@ import Controlador.ControladorPanelBienvenida;
 @SuppressWarnings("serial")
 public class PanelBienvenida extends JPanel{
 
-	private JButton btnGeneros;
+	private JButton btnOperatividad;
 	private JLabel lblBienvenida;
 	private ControladorPanelBienvenida controladorPanelBienvenida;
 	
@@ -22,22 +22,22 @@ public class PanelBienvenida extends JPanel{
 		lblBienvenida.setBounds(58, 35, 268, 14);
 		add(lblBienvenida);
 		
-		btnGeneros = new JButton("Generos");
-		btnGeneros.setBounds(58, 116, 120, 23);
-		add(btnGeneros);
+		btnOperatividad = new JButton("Operatividad");
+		btnOperatividad.setBounds(58, 116, 120, 23);
+		add(btnOperatividad);
 		
 		initializeEvents();
 	}
 	
 	private void initializeEvents() {
-		this.btnGeneros.addActionListener(listenerBotonGeneros(this.controladorPanelBienvenida));
+		this.btnOperatividad.addActionListener(listenerBotonOperatividad(this.controladorPanelBienvenida));
 	}
 	
-	private ActionListener listenerBotonGeneros(ControladorPanelBienvenida controladorPanelBienvenida) {
+	private ActionListener listenerBotonOperatividad(ControladorPanelBienvenida controladorPanelBienvenida) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Generos");
-				controladorPanelBienvenida.accionadoBottonMostrarPanelGeneros();
+				System.out.println("Ejecutando evento Boton Operatividad");
+				controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
 			}
 		};
 	}

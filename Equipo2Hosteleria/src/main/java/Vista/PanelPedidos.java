@@ -17,7 +17,7 @@ import javax.swing.JRadioButton;
 public class PanelPedidos extends JPanel {
 
 	private JButton btnVolver;
-	private JLabel lblGeneros;
+	private JLabel lblPedidos;
 	private ControladorPanelPedidos controladorPanelPedidos;
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
@@ -26,19 +26,19 @@ public class PanelPedidos extends JPanel {
 		
 		setLayout(null);
 		
-		lblGeneros = new JLabel("Pedidos");
-		lblGeneros.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGeneros.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblGeneros.setBounds(58, 35, 328, 14);
-		add(lblGeneros);
+		lblPedidos = new JLabel("Pedidos");
+		lblPedidos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPedidos.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPedidos.setBounds(58, 35, 328, 14);
+		add(lblPedidos);
 		
 		btnVolver = new JButton("Volver");
 		btnVolver.setBounds(58, 246, 89, 23);
 		add(btnVolver);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(58, 95, 173, 22);
-		add(comboBox);
+		JComboBox comboBox_Productos = new JComboBox();
+		comboBox_Productos.setBounds(58, 95, 173, 22);
+		add(comboBox_Productos);
 		
 		JLabel lblProductos = new JLabel("Productos:");
 		lblProductos.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -51,22 +51,22 @@ public class PanelPedidos extends JPanel {
 		lblCantidad.setBounds(271, 60, 115, 14);
 		add(lblCantidad);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Recoger en establecimiento");
-		rdbtnNewRadioButton.setBounds(58, 177, 173, 23);
-		add(rdbtnNewRadioButton);
+		JRadioButton rdbtnRecogerEnEstablecimiento = new JRadioButton("Recoger en establecimiento");
+		rdbtnRecogerEnEstablecimiento.setBounds(58, 177, 173, 23);
+		add(rdbtnRecogerEnEstablecimiento);
 		
 		JRadioButton rdbtnEntregaADomicilio = new JRadioButton("Entrega a domicilio");
 		rdbtnEntregaADomicilio.setHorizontalAlignment(SwingConstants.RIGHT);
 		rdbtnEntregaADomicilio.setBounds(247, 177, 139, 23);
 		add(rdbtnEntregaADomicilio);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setBounds(213, 207, 173, 22);
-		add(textPane_1);
+		JTextPane textPane_Direccion = new JTextPane();
+		textPane_Direccion.setBounds(213, 207, 173, 22);
+		add(textPane_Direccion);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(326, 95, 60, 22);
-		add(comboBox_1);
+		JComboBox comboBox_Cantidad = new JComboBox();
+		comboBox_Cantidad.setBounds(326, 95, 60, 22);
+		add(comboBox_Cantidad);
 		
 		JButton btnAadirAlCarro = new JButton("A\u00F1adir al carro");
 		btnAadirAlCarro.setBounds(58, 147, 173, 23);
@@ -78,13 +78,13 @@ public class PanelPedidos extends JPanel {
 		lblDireccin.setBounds(58, 207, 139, 23);
 		add(lblDireccin);
 		
-		JButton btnVerListaDe = new JButton("Ver lista de la compra");
-		btnVerListaDe.addActionListener(new ActionListener() {
+		JButton btnListaCompra = new JButton("Ver lista de la compra");
+		btnListaCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnVerListaDe.setBounds(247, 147, 139, 23);
-		add(btnVerListaDe);
+		btnListaCompra.setBounds(247, 147, 139, 23);
+		add(btnListaCompra);
 		
 		JButton btnDesconectarse = new JButton("Desconectarse");
 		btnDesconectarse.setBounds(170, 246, 103, 23);

@@ -16,11 +16,10 @@ public class PanelBienvenida extends JPanel{
 	
 	public PanelBienvenida(ControladorPanelBienvenida controladorPanelBienvenida) {
 		this.controladorPanelBienvenida = controladorPanelBienvenida;
-		
 		setLayout(null);
 		
-		lblBienvenida = new JLabel("Panel Bienvenida");
-		lblBienvenida.setBounds(58, 35, 115, 14);
+		lblBienvenida = new JLabel("\u00A1Bienvenido a la aplicaci\u00F3n de hosteleria definitiva!");
+		lblBienvenida.setBounds(58, 35, 268, 14);
 		add(lblBienvenida);
 		
 		btnGeneros = new JButton("Generos");

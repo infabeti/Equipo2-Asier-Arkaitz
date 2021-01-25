@@ -31,4 +31,9 @@ public class ControladorPanelComandas {
 	public void accionadoBottonDesconectarsePanelComandas() {
 		this.controlador.navegarPanelBienvenida();
 	}
+	
+	public void accionadoBottonPagarPanelComandas() {
+		this.controlador.navegarPanelOperatividad();
+		//Reducir Stock de productos vendidos (de haberlos)
+	}
 }

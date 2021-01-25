@@ -71,7 +71,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		comboBox_Productos.addItem(Producto4);
 		comboBox_Productos.addItem(Producto5);
 		
-		
 		JLabel lblProductos = new JLabel("Productos:");
 		lblProductos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblProductos.setBounds(38, 49, 115, 14);
@@ -220,7 +219,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
 				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos();
 				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-				System.out.println(comboBox_Cantidad.getSelectedItem());
+				System.out.println("Has elegido "+comboBox_Productos.getSelectedItem()+" - Cantidad: "+comboBox_Cantidad.getSelectedItem());
 			}
 		};
 	}

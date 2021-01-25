@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.Modelo;
 import Vista.PanelBienvenida;
 import Vista.PanelOperatividad;
+import Vista.PanelListaCompra;
 import Vista.PanelPedidos;
 import Vista.Vista;
 
@@ -41,6 +42,6 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonListaCompraPanelPedidos() {
-		//this.controlador.navegarPanelListaCompra();
+		this.controlador.navegarPanelListaCompra();
 	}
 }

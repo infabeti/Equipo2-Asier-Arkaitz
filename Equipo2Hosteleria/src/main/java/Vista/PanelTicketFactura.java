@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import Controlador.ControladorPanelBienvenida;
 import Controlador.ControladorPanelComandas;
@@ -24,10 +25,11 @@ import javax.swing.JList;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
-public class PanelTicketFactura extends JPanel{
+public class PanelTicketFactura extends JPanel implements ChangeListener {
 
 	private JButton btnVolver;
 	private JButton btnDesconectarse;
+	private JButton btnPagar;
 	private JRadioButton rdbtnTicket;
 	private JRadioButton rdbtnFactura;
 	private JLabel lblTicketFactura;
@@ -59,7 +61,7 @@ public class PanelTicketFactura extends JPanel{
 		lblTicketFactura = new JLabel("Ticket o Factura");
 		lblTicketFactura.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTicketFactura.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTicketFactura.setBounds(38, 11, 362, 14);
+		lblTicketFactura.setBounds(38, 11, 368, 14);
 		add(lblTicketFactura);
 		
 		btnDesconectarse = new JButton("Desconectarse");
@@ -70,33 +72,40 @@ public class PanelTicketFactura extends JPanel{
 		btnVolver.setBounds(38, 235, 89, 23);
 		add(btnVolver);
 		
+		btnPagar = new JButton("Pagar");
+		btnPagar.setEnabled(false);
+		btnPagar.setBounds(293, 235, 107, 23);
+		add(btnPagar);
+		
 		lblTransaccion = new JLabel("N\u00BATransaccion");
-		lblTransaccion.setBounds(10, 42, 89, 14);
+		lblTransaccion.setBounds(38, 48, 89, 20);
 		add(lblTransaccion);
 		
 		textPane_Fecha = new JTextPane();
-		textPane_Fecha.setBounds(49, 76, 129, 20);
+		textPane_Fecha.setBounds(92, 101, 119, 20);
 		add(textPane_Fecha);
 		
 		lblFecha = new JLabel("Fecha");
-		lblFecha.setBounds(10, 76, 89, 14);
+		lblFecha.setBounds(38, 101, 62, 20);
 		add(lblFecha);
 		
 		lblLocal = new JLabel("Local");
-		lblLocal.setBounds(10, 110, 89, 14);
+		lblLocal.setBounds(38, 126, 51, 20);
 		add(lblLocal);
 		
 		textPane_NºTransaccion = new JTextPane();
-		textPane_NºTransaccion.setBounds(101, 36, 129, 20);
+		textPane_NºTransaccion.setBounds(38, 70, 173, 20);
 		add(textPane_NºTransaccion);
 		
 		textPane_Local = new JTextPane();
-		textPane_Local.setBounds(49, 107, 129, 20);
+		textPane_Local.setBounds(92, 126, 119, 20);
 		add(textPane_Local);
 		
 		lblProductos = new JLabel("Productos");
-		lblProductos.setBounds(10, 152, 89, 14);
+		lblProductos.setBounds(38, 153, 89, 19);
 		add(lblProductos);
+		
+		grupoBotones = new ButtonGroup();
 		
 		rdbtnTicket = new JRadioButton("Ticket");
 		rdbtnTicket.setBounds(246, 38, 71, 23);
@@ -105,50 +114,52 @@ public class PanelTicketFactura extends JPanel{
 		
 		rdbtnFactura = new JRadioButton("Factura");
 		rdbtnFactura.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnFactura.setBounds(319, 38, 81, 23);
+		rdbtnFactura.setBounds(325, 38, 81, 23);
 		add(rdbtnFactura);
 		grupoBotones.add(rdbtnFactura);
 		
 		lblNif = new JLabel("NIF");
-		lblNif.setBounds(202, 76, 89, 14);
+		lblNif.setBounds(221, 76, 62, 20);
 		add(lblNif);
 		
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(202, 101, 63, 14);
+		lblNombre.setBounds(221, 101, 62, 20);
 		add(lblNombre);
 		
 		lblApellidos = new JLabel("Apellidos");
-		lblApellidos.setBounds(202, 126, 89, 14);
+		lblApellidos.setBounds(221, 126, 62, 20);
 		add(lblApellidos);
 		
 		textPane_NIF = new JTextPane();
-		textPane_NIF.setBounds(227, 76, 129, 20);
+		textPane_NIF.setBounds(287, 76, 119, 20);
 		add(textPane_NIF);
 		
 		textPane_Nombre = new JTextPane();
-		textPane_Nombre.setBounds(256, 101, 129, 20);
+		textPane_Nombre.setBounds(287, 101, 119, 20);
 		add(textPane_Nombre);
 		
 		textPane_Apellidos = new JTextPane();
-		textPane_Apellidos.setBounds(266, 126, 129, 20);
+		textPane_Apellidos.setBounds(287, 126, 119, 20);
 		add(textPane_Apellidos);
 		
 		lblTotal = new JLabel("Total");
-		lblTotal.setBounds(311, 239, 45, 14);
+		lblTotal.setBounds(303, 153, 45, 19);
 		add(lblTotal);
 		
 		textPane_Total = new JTextPane();
-		textPane_Total.setBounds(343, 238, 63, 20);
+		textPane_Total.setBounds(343, 152, 63, 20);
 		add(textPane_Total);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 177, 408, 47);
+		scrollPane.setBounds(38, 177, 368, 47);
 		add(scrollPane);
 		
 		textPane_Productos = new JTextPane();
 		scrollPane.setViewportView(textPane_Productos);
 		
-		grupoBotones = new ButtonGroup();
+		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
+		lblNewLabel.setBounds(0, 0, 450, 330);
+		add(lblNewLabel);
 		
 		initializeEvents();
 	}

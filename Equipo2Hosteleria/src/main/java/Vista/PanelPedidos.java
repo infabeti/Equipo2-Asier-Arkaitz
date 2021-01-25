@@ -72,14 +72,14 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		grupoBotones = new ButtonGroup();
 		
 		rdbtnRecogerEnEstablecimiento = new JRadioButton("Recoger en establecimiento");
-		rdbtnRecogerEnEstablecimiento.setBounds(38, 166, 197, 23);
+		rdbtnRecogerEnEstablecimiento.setBounds(38, 166, 189, 23);
 		rdbtnRecogerEnEstablecimiento.addChangeListener(this);
 		add(rdbtnRecogerEnEstablecimiento);
 		grupoBotones.add(rdbtnRecogerEnEstablecimiento);
 		
 		rdbtnEntregaADomicilio = new JRadioButton("Entrega a domicilio");
 		rdbtnEntregaADomicilio.setHorizontalAlignment(SwingConstants.RIGHT);
-		rdbtnEntregaADomicilio.setBounds(254, 166, 146, 23);
+		rdbtnEntregaADomicilio.setBounds(263, 166, 137, 23);
 		rdbtnEntregaADomicilio.addChangeListener(this);
 		add(rdbtnEntregaADomicilio);
 		grupoBotones.add(rdbtnEntregaADomicilio);

@@ -31,4 +31,9 @@ public class ControladorPanelTicketFactura {
 	public void accionadoBottonDesconectarsePanelTicketFactura() {
 		this.controlador.navegarPanelBienvenida();
 	}
+	
+	public void accionadoBottonPagarPanelTicketFactura() {
+		this.controlador.navegarPanelOperatividad();
+		//Reducir Stock de productos vendidos (de haberlos)
+	}
 }

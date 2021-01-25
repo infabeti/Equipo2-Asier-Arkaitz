@@ -26,7 +26,7 @@ public class ControladorPanelListaCompra {
 	}
 	
 	public void accionadoBottonVolverPanelListaCompra() {
-		this.controlador.navegarPanelOperatividad();
+		this.controlador.navegarPanelPedidos();
 	}
 	
 	public void accionadoBottonDesconectarsePanelListaCompra() {

@@ -79,5 +79,9 @@ public class Producto {
 	
 	//METODOS
 	
+	 public String toString() {
+	      return nombre;
+	   }
+	
 }
 

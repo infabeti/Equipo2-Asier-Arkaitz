@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
+import POO.Producto;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -57,6 +58,19 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		comboBox_Productos = new JComboBox();
 		comboBox_Productos.setBounds(38, 84, 173, 22);
 		add(comboBox_Productos);
+		
+		Producto Producto1 = new Producto("Garbanzos","Comida","30-01-2021",5,5);	
+		Producto Producto2 = new Producto("Paella","Comida","31-01-2021",5,5);	
+		Producto Producto3 = new Producto("Bacalao","Comida","02-02-2021",5,5);	
+		Producto Producto4 = new Producto("Hamburguesa","Comida","30-01-2021",5,5);	
+		Producto Producto5 = new Producto("Cerveza","Bebida","01-02-2021",5,5);	
+
+		comboBox_Productos.addItem(Producto1);
+		comboBox_Productos.addItem(Producto2);
+		comboBox_Productos.addItem(Producto3);
+		comboBox_Productos.addItem(Producto4);
+		comboBox_Productos.addItem(Producto5);
+		
 		
 		JLabel lblProductos = new JLabel("Productos:");
 		lblProductos.setFont(new Font("Tahoma", Font.BOLD, 15));

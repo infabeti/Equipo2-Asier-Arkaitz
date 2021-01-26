@@ -223,11 +223,15 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				String Producto = (comboBox_Productos.getSelectedItem().toString());
 				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
 				double Total = PrecioVenta*Cantidad;
+				
 				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-			
+				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				
+				
 				TotalProducto=TotalProducto+Total;
 				
-				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(TotalProducto);
+				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(TotalProducto+"€");
+				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(TotalProducto+"€");
 				
 				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
 		

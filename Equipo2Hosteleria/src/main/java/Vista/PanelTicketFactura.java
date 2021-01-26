@@ -19,6 +19,7 @@ import Controlador.ControladorPanelComandas;
 import Controlador.ControladorPanelOperatividad;
 import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelTicketFactura;
+import Controlador.ControladorPanelListaCompra;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -58,6 +59,11 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ButtonGroup grupoBotones;
 	
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
+	
+	static String ListaCompra="";
+	static String ListaCompraTotal="";
+	static int NºTransaccion=0;
+	static String LocalP="El plato caliente";
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		this.controladorPanelTicketFactura = controladorPanelTicketFactura;
@@ -100,10 +106,13 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		textPane_NºTransaccion = new JTextPane();
 		textPane_NºTransaccion.setBounds(38, 70, 173, 20);
 		add(textPane_NºTransaccion);
+		textPane_NºTransaccion.setText(""+NºTransaccion);
 		
 		textPane_Local = new JTextPane();
 		textPane_Local.setBounds(92, 126, 119, 20);
 		add(textPane_Local);
+		textPane_Local.setText(LocalP);
+		
 		
 		lblProductos = new JLabel("Productos:");
 		lblProductos.setBounds(38, 153, 89, 19);
@@ -160,8 +169,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		add(lblTotal);
 		
 		textPane_Total = new JTextPane();
+		textPane_Total.setEditable(false);
 		textPane_Total.setBounds(343, 152, 63, 20);
 		add(textPane_Total);
+		textPane_Total.setText(ListaCompraTotal);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(38, 177, 368, 47);
@@ -169,6 +180,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		
 		textPane_Productos = new JTextPane();
 		scrollPane.setViewportView(textPane_Productos);
+		textPane_Productos.setText(ListaCompra);
 		
 		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
 		lblNewLabel.setBounds(0, 0, 450, 330);

@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import Controlador.ControladorPanelBienvenida;
 import Controlador.ControladorPanelOperatividad;
 import Controlador.ControladorPanelPedidos;
-import POO.Producto;
+import Modelo.Producto;
 import Controlador.ControladorPanelAprovisionamiento;
 
 @SuppressWarnings("serial")

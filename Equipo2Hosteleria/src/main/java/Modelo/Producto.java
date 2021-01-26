@@ -1,11 +1,11 @@
-package POO;
+package Modelo;
 
 public class Producto {
 
 	protected String nombre;
 	protected String tipo;
 	protected String fechaCaducidad;
-	protected double  precioCompra;
+	protected double precioCompra;
 	protected double precioVenta;
 	
 	//Constructor por defecto

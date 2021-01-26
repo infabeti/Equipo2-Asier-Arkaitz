@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
-import POO.Producto;
+import Modelo.Producto;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -1,8 +1,6 @@
 package App;
 import Controlador.Controlador;
 import Modelo.*;
-import Modelo.Modelo;
-import POO.Producto;
 import Vista.Vista;
 
 public class Main {

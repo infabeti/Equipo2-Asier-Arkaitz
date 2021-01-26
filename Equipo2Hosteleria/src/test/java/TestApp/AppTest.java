@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Controlador.Controlador;
-import POO.Producto;
+import Modelo.Producto;
 
 public class AppTest {
 

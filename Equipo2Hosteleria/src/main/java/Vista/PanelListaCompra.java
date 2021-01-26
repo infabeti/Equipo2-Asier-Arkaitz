@@ -45,6 +45,9 @@ public class PanelListaCompra extends JPanel {
 	
 	private ControladorPanelListaCompra controladorPanelListaCompra;
 	
+	static String ListaCompra="";
+	static String ListaCompraTotal="";
+	
 	public PanelListaCompra(ControladorPanelListaCompra controladorPanelListaCompra) {
 		this.controladorPanelListaCompra = controladorPanelListaCompra;
 		setLayout(null);
@@ -76,6 +79,7 @@ public class PanelListaCompra extends JPanel {
 		textPane_Total = new JTextPane();
 		textPane_Total.setBounds(343, 238, 63, 20);
 		add(textPane_Total);
+		//textPane_Productos.setText(ListaCompra);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(38, 61, 368, 163);
@@ -83,6 +87,8 @@ public class PanelListaCompra extends JPanel {
 		
 		textPane_Productos = new JTextPane();
 		scrollPane.setViewportView(textPane_Productos);
+		textPane_Productos.setText(ListaCompra);
+		
 		
 		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
 		lblNewLabel.setBounds(0, 0, 450, 330);
@@ -114,5 +120,4 @@ public class PanelListaCompra extends JPanel {
 			}
 		};
 	}
-
 }

@@ -218,8 +218,16 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
 				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos();
-				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-				System.out.println("Has elegido "+comboBox_Productos.getSelectedItem()+" - Cantidad: "+comboBox_Cantidad.getSelectedItem());
+				int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
+				String Producto = (comboBox_Productos.getSelectedItem().toString());
+				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
+				double Total = PrecioVenta*Cantidad;
+				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				//PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompra.concat(""+Total);
+				
+				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
+				//System.out.println("Has elegido "+Producto);
+				
 			}
 		};
 	}
@@ -232,4 +240,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			}
 		};
 	}
+	
+	
 }

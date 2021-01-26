@@ -38,6 +38,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ButtonGroup grupoBotones;
 	private JTextPane textPane_Direccion;
 	private ControladorPanelPedidos controladorPanelPedidos;
+	private static double TotalProducto=0;
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
@@ -223,10 +224,13 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
 				double Total = PrecioVenta*Cantidad;
 				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-				//PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompra.concat(""+Total);
+			
+				TotalProducto=TotalProducto+Total;
+				
+				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(TotalProducto);
 				
 				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
-				//System.out.println("Has elegido "+Producto);
+		
 				
 			}
 		};

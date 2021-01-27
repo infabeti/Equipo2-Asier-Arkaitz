@@ -175,7 +175,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
 				controladorPanelPedidos.accionadoBottonVolverPanelPedidos();
-				//Debe borrar la lista de la compra.
 			}
 		};
 	}

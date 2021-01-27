@@ -40,8 +40,6 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public int MostrarNumeroTransaccion() {
-		//Modelo.MostrarNumeroTransaccion();
 		return Modelo.MostrarNumeroTransaccion();
-		//Reducir Stock de productos vendidos (de haberlos)
 	}
 }

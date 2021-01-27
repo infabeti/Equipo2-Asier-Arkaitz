@@ -23,6 +23,7 @@ public class PanelOperatividad extends JPanel {
 	private JButton btnComandas;
 	private JButton btnAprovisionamiento;
 	private JButton btnTicketfactura;
+	private JButton btnPruebaConexion;
 	private JLabel lblOperatividad;
 	private ControladorPanelOperatividad controladorPanelOperatividad;
 	
@@ -63,6 +64,11 @@ public class PanelOperatividad extends JPanel {
 		btnTicketfactura.setBounds(21, 139, 174, 43);
 		add(btnTicketfactura);
 		
+		btnPruebaConexion = new JButton("Conexi\u00F3n MySQL");
+		btnPruebaConexion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnPruebaConexion.setBounds(264, 244, 157, 29);
+		add(btnPruebaConexion);
+		
 		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
 		lblNewLabel.setBounds(0, 0, 450, 330);
 		add(lblNewLabel);
@@ -77,6 +83,7 @@ public class PanelOperatividad extends JPanel {
 		this.btnComandas.addActionListener(listenerBotonComandas(this.controladorPanelOperatividad));
 		this.btnAprovisionamiento.addActionListener(listenerBotonAprovisionamiento(this.controladorPanelOperatividad));
 		this.btnTicketfactura.addActionListener(listenerBotonTicketfactura(this.controladorPanelOperatividad));
+		this.btnPruebaConexion.addActionListener(listenerBotonPruebaConexion(this.controladorPanelOperatividad));
 	}
 	
 	private ActionListener listenerBotonDesconectarse(ControladorPanelOperatividad controladorPanelOperatividad) {
@@ -84,6 +91,15 @@ public class PanelOperatividad extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectarse");
 				controladorPanelOperatividad.accionadoBottonVolverPanelOperatividad();
+			}
+		};
+	}
+	
+	private ActionListener listenerBotonPruebaConexion(ControladorPanelOperatividad controladorPanelOperatividad) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Prueba Conexion");
+				controladorPanelOperatividad.accionadoBottonPruebaConexionPanelOperatividad();
 			}
 		};
 	}

@@ -20,6 +20,7 @@ import Controlador.ControladorPanelOperatividad;
 import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelTicketFactura;
 import Controlador.ControladorPanelListaCompra;
+import Modelo.Modelo;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -48,7 +49,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JLabel lblTotal;
 	private JPanel contentPane;
 	private JTextPane textPane_Fecha;
-	private JTextPane textPane_NºTransaccion;
+	private JTextPane textPane_NTransaccion;
 	private JTextPane textPane_Local;
 	private JTextPane textPane_NIF;
 	private JTextPane textPane_Nombre;
@@ -62,8 +63,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	public static String ListaCompra="";
 	public static String ListaCompraTotal="";
-	
-	static int NºTransaccion=1;
+
 	static String LocalP="El plato caliente";
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
@@ -104,10 +104,11 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		lblLocal.setBounds(38, 126, 51, 20);
 		add(lblLocal);
 		
-		textPane_NºTransaccion = new JTextPane();
-		textPane_NºTransaccion.setBounds(38, 70, 173, 20);
-		add(textPane_NºTransaccion);
-		textPane_NºTransaccion.setText(""+NºTransaccion);
+		textPane_NTransaccion = new JTextPane();
+		textPane_NTransaccion.setBounds(38, 70, 173, 20);
+		add(textPane_NTransaccion);
+		int a=controladorPanelTicketFactura.MostrarNumeroTransaccion();
+		textPane_NTransaccion.setText("");
 		
 		textPane_Local = new JTextPane();
 		textPane_Local.setBounds(92, 126, 119, 20);
@@ -242,14 +243,12 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 				setContentPane(contentPane);
 				contentPane.setLayout(null);
-				if (rdbtnTicket.isSelected() && !textPane_NºTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
+				if (rdbtnTicket.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
-					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();
-					NºTransaccion++;
-				}else if (rdbtnFactura.isSelected() && !textPane_NºTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
+					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
+				}else if (rdbtnFactura.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
-					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();
-					NºTransaccion++;
+					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
 				}else {
 					JOptionPane.showMessageDialog(contentPane,"Rellene todos los campos pertinentes.");
 				}

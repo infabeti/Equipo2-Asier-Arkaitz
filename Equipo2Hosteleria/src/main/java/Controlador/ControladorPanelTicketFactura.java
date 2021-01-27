@@ -34,7 +34,14 @@ public class ControladorPanelTicketFactura {
 	
 	public void accionadoBottonPagarPanelTicketFactura() {
 		Modelo.BorrarListaCompra();
+		Modelo.AumentarNumeroTransaccion();
 		this.controlador.navegarPanelOperatividad();
+		//Reducir Stock de productos vendidos (de haberlos)
+	}
+	
+	public int MostrarNumeroTransaccion() {
+		//Modelo.MostrarNumeroTransaccion();
+		return Modelo.MostrarNumeroTransaccion();
 		//Reducir Stock de productos vendidos (de haberlos)
 	}
 }

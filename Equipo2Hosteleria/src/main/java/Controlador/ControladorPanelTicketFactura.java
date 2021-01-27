@@ -33,6 +33,7 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public void accionadoBottonPagarPanelTicketFactura() {
+		Modelo.BorrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 		//Reducir Stock de productos vendidos (de haberlos)
 	}

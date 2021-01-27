@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
 import Modelo.Producto;
+import Modelo.Modelo;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -38,7 +39,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ButtonGroup grupoBotones;
 	private JTextPane textPane_Direccion;
 	private ControladorPanelPedidos controladorPanelPedidos;
-	private static double TotalProducto=0;
+
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
@@ -227,11 +228,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
 				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
 				
+				Modelo.TotalProducto=Modelo.TotalProducto+Total;
 				
-				TotalProducto=TotalProducto+Total;
-				
-				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(TotalProducto+"€");
-				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(TotalProducto+"€");
+				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
+				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
 				
 				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
 		

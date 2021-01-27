@@ -34,6 +34,7 @@ public class PanelListaCompra extends JPanel {
 
 	private JButton btnVolver;
 	private JButton btnDesconectarse;
+	private JButton btnBorrarLista;
 	private JLabel lblTicketFactura;
 	private JLabel lblProductos;
 	private JLabel lblTotal;
@@ -45,12 +46,16 @@ public class PanelListaCompra extends JPanel {
 	
 	private ControladorPanelListaCompra controladorPanelListaCompra;
 	
-	static String ListaCompra="";
-	static String ListaCompraTotal="";
+	public static String ListaCompra="";
+	public static String ListaCompraTotal="";
 	
 	public PanelListaCompra(ControladorPanelListaCompra controladorPanelListaCompra) {
 		this.controladorPanelListaCompra = controladorPanelListaCompra;
 		setLayout(null);
+		
+		btnBorrarLista = new JButton("Borrar lista");
+		btnBorrarLista.setBounds(293, 235, 113, 23);
+		add(btnBorrarLista);
 		
 		lblTicketFactura = new JLabel("Lista de la compra");
 		lblTicketFactura.setHorizontalAlignment(SwingConstants.CENTER);
@@ -73,11 +78,11 @@ public class PanelListaCompra extends JPanel {
 		grupoBotones = new ButtonGroup();
 		
 		lblTotal = new JLabel("Total:");
-		lblTotal.setBounds(305, 237, 45, 19);
+		lblTotal.setBounds(306, 207, 45, 19);
 		add(lblTotal);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(38, 61, 368, 163);
+		scrollPane.setBounds(38, 61, 368, 135);
 		add(scrollPane);
 		
 		textPane_Productos = new JTextPane();
@@ -86,7 +91,7 @@ public class PanelListaCompra extends JPanel {
 		
 		textPane_Total = new JTextPane();
 		textPane_Total.setEditable(false);
-		textPane_Total.setBounds(343, 238, 63, 20);
+		textPane_Total.setBounds(343, 207, 63, 20);
 		add(textPane_Total);
 		textPane_Total.setText(""+ListaCompraTotal);
 		
@@ -101,6 +106,7 @@ public class PanelListaCompra extends JPanel {
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelListaCompra));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelListaCompra));
+		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelListaCompra));
 	}
 	
 	
@@ -118,6 +124,15 @@ public class PanelListaCompra extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectarse");
 				controladorPanelListaCompra.accionadoBottonDesconectarsePanelListaCompra();
+			}
+		};
+	}
+	
+	private ActionListener listenerBotonBorrarLista(ControladorPanelListaCompra controladorPanelListaCompra) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Borrar");
+				controladorPanelListaCompra.accionadoBottonBorrarListaPanelListaCompra();
 			}
 		};
 	}

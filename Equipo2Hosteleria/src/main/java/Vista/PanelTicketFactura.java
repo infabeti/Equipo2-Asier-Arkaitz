@@ -60,9 +60,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
 	
-	static String ListaCompra="";
-	static String ListaCompraTotal="";
-	static int NºTransaccion=0;
+	public static String ListaCompra="";
+	public static String ListaCompraTotal="";
+	
+	static int NºTransaccion=1;
 	static String LocalP="El plato caliente";
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
@@ -244,9 +245,11 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 				if (rdbtnTicket.isSelected() && !textPane_NºTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();
+					NºTransaccion++;
 				}else if (rdbtnFactura.isSelected() && !textPane_NºTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();
+					NºTransaccion++;
 				}else {
 					JOptionPane.showMessageDialog(contentPane,"Rellene todos los campos pertinentes.");
 				}

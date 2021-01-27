@@ -25,7 +25,8 @@ public class ConexionMySQL {
 
        }catch(Exception ex){
 
-           JOptionPane.showMessageDialog(null, ex);
+           //JOptionPane.showMessageDialog(null, ex);
+           JOptionPane.showMessageDialog(null, "Error al conectar");
 
        }
 
@@ -34,7 +35,7 @@ public class ConexionMySQL {
 
    }
    
-   private void btnProbarconexionActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+   public static void btnProbarconexionActionPerformed(/*java.awt.event.ActionEvent evt*/) {                                                  
 
 
        ConexionMySQL mysql = new ConexionMySQL();
@@ -52,14 +53,16 @@ public class ConexionMySQL {
 
                }catch(SQLException ex){
 
-                   System.out.println("Error al desconectar "+ex);
+            	   //JOptionPane.showMessageDialog(null, "Error al desconectar "+ex);
+            	   JOptionPane.showMessageDialog(null, "Error al desconectar");
+            	   System.out.println("Error al desconectar "+ex);
 
                }
 
        }
        
 
-   }                                                 
+   }
 
 
 }

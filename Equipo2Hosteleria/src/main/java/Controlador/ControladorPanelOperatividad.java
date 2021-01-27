@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.ConexionMySQL;
 import Modelo.Modelo;
 import Vista.PanelBienvenida;
 import Vista.PanelOperatividad;
@@ -25,6 +26,10 @@ public class ControladorPanelOperatividad {
 	
 	public void accionadoBottonVolverPanelOperatividad() {
 		this.controlador.navegarPanelBienvenida();
+	}
+	
+	public void accionadoBottonPruebaConexionPanelOperatividad() {
+		ConexionMySQL.btnProbarconexionActionPerformed();
 	}
 	
 	public void accionadoBottonMostrarPanelPedidos() {

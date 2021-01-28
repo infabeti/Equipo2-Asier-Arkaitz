@@ -43,4 +43,13 @@ public class ControladorPanelTicketFactura {
 	public int MostrarNumeroTransaccion() {
 		return Modelo.MostrarNumeroTransaccion();
 	}
+	
+	public void accionadoBottonAadirAlCarroPanelTicketFactura() {
+		this.controlador.navegarPanelTicketFactura();
+	}
+	
+	public void accionadoBottonBorrarListaPanelTicketFactura() {
+		this.modelo.BorrarListaCompra();
+		this.controlador.navegarPanelTicketFactura();
+	}
 }

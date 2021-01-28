@@ -21,6 +21,8 @@ import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelTicketFactura;
 import Controlador.ControladorPanelListaCompra;
 import Modelo.Modelo;
+import Modelo.Producto;
+
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -29,6 +31,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class PanelTicketFactura extends JPanel implements ChangeListener {
@@ -64,10 +67,60 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	public static String ListaCompraTotal="";
 
 	static String LocalP="El plato caliente";
+	private JLabel lblProductos_1;
+	private JComboBox comboBox_Productos;
+	private JLabel lblCantidad;
+	private JComboBox comboBox_Cantidad;
+	private JButton btnBorrarLista;
+	private JButton btnAadirAlCarro;
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		this.controladorPanelTicketFactura = controladorPanelTicketFactura;
 		setLayout(null);
+		
+		btnAadirAlCarro = new JButton("A\u00F1adir al carro");
+		btnAadirAlCarro.setBounds(434, 149, 146, 23);
+		add(btnAadirAlCarro);
+		
+		btnBorrarLista = new JButton("Borrar lista");
+		btnBorrarLista.setBounds(443, 235, 158, 23);
+		add(btnBorrarLista);
+		
+		comboBox_Cantidad = new JComboBox();
+		comboBox_Cantidad.setBounds(522, 110, 60, 22);
+		add(comboBox_Cantidad);
+		
+		int numbers_to_add_max = 99;
+		for (int i = 1; i <= numbers_to_add_max; i++) {
+			comboBox_Cantidad.addItem(new Integer(i));
+		}
+		
+		lblCantidad = new JLabel("Cantidad:");
+		lblCantidad.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCantidad.setBounds(391, 114, 115, 14);
+		add(lblCantidad);
+		
+		comboBox_Productos = new JComboBox();
+		comboBox_Productos.setBounds(429, 76, 173, 22);
+		add(comboBox_Productos);
+		
+		Producto Producto1 = new Producto("Garbanzos","Comida","30-01-2021",5,5);	
+		Producto Producto2 = new Producto("Paella","Comida","31-01-2021",5,5);	
+		Producto Producto3 = new Producto("Bacalao","Comida","02-02-2021",5,5);	
+		Producto Producto4 = new Producto("Hamburguesa","Comida","30-01-2021",5,5);	
+		Producto Producto5 = new Producto("Cerveza","Bebida","01-02-2021",5,5);	
+
+		comboBox_Productos.addItem(Producto1);
+		comboBox_Productos.addItem(Producto2);
+		comboBox_Productos.addItem(Producto3);
+		comboBox_Productos.addItem(Producto4);
+		comboBox_Productos.addItem(Producto5);
+		
+		lblProductos_1 = new JLabel("Productos:");
+		lblProductos_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblProductos_1.setBounds(431, 44, 115, 14);
+		add(lblProductos_1);
 		
 		lblTicketFactura = new JLabel("Ticket o Factura");
 		lblTicketFactura.setHorizontalAlignment(SwingConstants.CENTER);
@@ -84,7 +137,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		add(btnVolver);
 		
 		btnPagar = new JButton("Pagar");
-		btnPagar.setBounds(293, 235, 113, 23);
+		btnPagar.setBounds(293, 235, 139, 23);
 		add(btnPagar);
 		
 		lblTransaccion = new JLabel("N\u00BA Transaccion:");
@@ -175,7 +228,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		textPane_Total.setText(ListaCompraTotal);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(38, 177, 368, 47);
+		scrollPane.setBounds(38, 177, 573, 47);
 		add(scrollPane);
 		
 		textPane_Productos = new JTextPane();
@@ -183,7 +236,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		textPane_Productos.setText(ListaCompra);
 		
 		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
-		lblNewLabel.setBounds(0, 0, 450, 330);
+		lblNewLabel.setBounds(0, 0, 700, 330);
 		add(lblNewLabel);
 		
 		initializeEvents();
@@ -193,6 +246,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelTicketFactura));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelTicketFactura));
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
+		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelTicketFactura));
+		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelTicketFactura));
 	}
 	
 	public void stateChanged(ChangeEvent e){
@@ -248,4 +303,38 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			}
 		};
 	}
+	
+	private ActionListener listenerBotonBorrarLista(ControladorPanelTicketFactura controladorPanelTicketFactura) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Borrar");
+				controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
+			}
+		};
+	}
+	
+	private ActionListener listenerBotonAadirAlCarro(ControladorPanelTicketFactura controladorPanelTicketFactura) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Añadir Al Carro");
+				int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
+				String Producto = (comboBox_Productos.getSelectedItem().toString());
+				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
+				double Total = PrecioVenta*Cantidad;
+				
+				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				
+				Modelo.TotalProducto=Modelo.TotalProducto+Total;
+				
+				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
+				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
+				
+				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
+				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura();
+				
+			}
+		};
+	}
+	
 }

@@ -8,7 +8,7 @@ public class Vista extends JFrame{
 
 	public Vista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 200, 450, 330);
+		setBounds(100, 200, 700, 330);
 		setResizable(false);
 	}
 	

@@ -15,14 +15,15 @@ public class ModeloTest {
 	
 	@Test
 	public void testMostrarNumeroTransaccion() {
-		resultadoEsperado = 1;
+		NTransaccion=Modelo.NTransaccion;
+		resultadoEsperado = NTransaccion;
 		resultado = funciones.MostrarNumeroTransaccion();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
-	
+	@Test
 	public void testAumentarNumeroTransaccion() {
-		NTransaccion = funciones.MostrarNumeroTransaccion();
-		resultadoEsperado = 2;
+		NTransaccion=Modelo.NTransaccion;
+		resultadoEsperado = NTransaccion++;
 		resultado = funciones.AumentarNumeroTransaccion();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}

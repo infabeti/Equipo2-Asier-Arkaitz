@@ -220,11 +220,6 @@ public class PanelComandas extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelComandas controladorPanelComandas) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				contentPane = new JPanel();
-				contentPane.setBackground(new Color(0, 153, 255));
-				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-				setContentPane(contentPane);
-				contentPane.setLayout(null);
 				if (rdbtnTicket.isSelected() && !textPane_NºTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					controladorPanelComandas.accionadoBottonPagarPanelComandas();
@@ -234,11 +229,6 @@ public class PanelComandas extends JPanel implements ChangeListener {
 				}else {
 					JOptionPane.showMessageDialog(contentPane,"Rellene todos los campos pertinentes.");
 				}
-			}
-
-			private void setContentPane(JPanel contentPane) {
-				// TODO Auto-generated method stub
-				
 			}
 		};
 	}

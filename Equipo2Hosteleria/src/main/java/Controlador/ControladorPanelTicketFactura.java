@@ -25,10 +25,12 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public void accionadoBottonVolverPanelTicketFactura() {
+		Modelo.BorrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelTicketFactura() {
+		Modelo.BorrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	

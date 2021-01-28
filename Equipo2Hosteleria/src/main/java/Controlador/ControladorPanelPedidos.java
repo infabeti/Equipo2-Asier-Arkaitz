@@ -26,10 +26,12 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonVolverPanelPedidos() {
+		Modelo.BorrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelPedidos() {
+		Modelo.BorrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	

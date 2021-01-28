@@ -25,6 +25,7 @@ public class ControladorPanelOperatividad {
 	}
 	
 	public void accionadoBottonVolverPanelOperatividad() {
+		Modelo.BorrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	

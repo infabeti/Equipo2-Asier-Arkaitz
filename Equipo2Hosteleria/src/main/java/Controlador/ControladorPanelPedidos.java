@@ -26,12 +26,12 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonVolverPanelPedidos() {
-		Modelo.BorrarListaCompra();
+		this.modelo.BorrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelPedidos() {
-		Modelo.BorrarListaCompra();
+		this.modelo.BorrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
@@ -40,7 +40,7 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos() {
-		//this.controlador.anadirAListaCompra();
+		
 	}
 	
 	public void accionadoBottonListaCompraPanelPedidos() {

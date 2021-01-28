@@ -30,7 +30,7 @@ public class ControladorPanelListaCompra {
 	}
 	
 	public void accionadoBottonDesconectarsePanelListaCompra() {
-		Modelo.BorrarListaCompra();
+		this.modelo.BorrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	

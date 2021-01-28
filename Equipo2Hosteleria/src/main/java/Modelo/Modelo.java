@@ -1,9 +1,7 @@
 package Modelo;
 
 import Vista.PanelListaCompra;
-import Vista.PanelPedidos;
 import Vista.PanelTicketFactura;
-import Controlador.ControladorPanelListaCompra;
 
 
 public class Modelo {
@@ -11,7 +9,7 @@ public class Modelo {
 	public static double TotalProducto=0;
 	public static int NTransaccion=1;
 	
-	public static String BorrarListaCompra() {
+	public String BorrarListaCompra() {
 
 	String ListaCompra="";
 	String ListaCompraTotal="";

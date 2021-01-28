@@ -8,10 +8,10 @@ import javax.swing.JOptionPane;
 
 public class ConexionMySQL {
 
-    public String db = "equipo2hosteleria_dam";
-    public String url = "jdbc:mysql://localhost:33060/"+db;
-    public String user = "root";
-    public String pass = "elorrieta";
+    public static String DB = "equipo2hosteleria_dam";
+    public static String URL = "jdbc:mysql://localhost:33060/"+DB;
+    public static String USER = "root";
+    public static String PASS = "elorrieta";
 
 
    public Connection Conectar(){
@@ -20,14 +20,12 @@ public class ConexionMySQL {
 
        try{
 
-           //Class.forName("com.mysql.jdbc.Driver");
            Class.forName("com.mysql.cj.jdbc.Driver");
 
-           link = DriverManager.getConnection(this.url, this.user, this.pass);
+           link = DriverManager.getConnection(this.URL, this.USER, this.PASS);
 
        }catch(Exception ex){
 
-           //JOptionPane.showMessageDialog(null, ex);
            JOptionPane.showMessageDialog(null, "Error al conectar: "+ex);
            ex.printStackTrace();
            System.exit(0);
@@ -57,7 +55,6 @@ public class ConexionMySQL {
 
                }catch(SQLException ex){
 
-            	   //JOptionPane.showMessageDialog(null, "Error al desconectar "+ex);
             	   JOptionPane.showMessageDialog(null, "Error al conectar");
             	   System.out.println("Error al desconectar "+ex);
             	   System.exit(0);

@@ -25,20 +25,19 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public void accionadoBottonVolverPanelTicketFactura() {
-		Modelo.BorrarListaCompra();
+		this.modelo.BorrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelTicketFactura() {
-		Modelo.BorrarListaCompra();
+		this.modelo.BorrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
 	public void accionadoBottonPagarPanelTicketFactura() {
-		Modelo.BorrarListaCompra();
-		Modelo.AumentarNumeroTransaccion();
+		this.modelo.BorrarListaCompra();
+		this.modelo.AumentarNumeroTransaccion();
 		this.controlador.navegarPanelOperatividad();
-		//Reducir Stock de productos vendidos (de haberlos)
 	}
 	
 	public int MostrarNumeroTransaccion() {

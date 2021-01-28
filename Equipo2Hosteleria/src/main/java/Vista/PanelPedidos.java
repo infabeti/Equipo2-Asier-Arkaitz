@@ -39,7 +39,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ButtonGroup grupoBotones;
 	private JTextPane textPane_Direccion;
 	private ControladorPanelPedidos controladorPanelPedidos;
-
+	
+	public static int ControlarCaja=0;
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
@@ -174,6 +175,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
+				ControlarCaja=0;
 				controladorPanelPedidos.accionadoBottonVolverPanelPedidos();
 			}
 		};
@@ -183,6 +185,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectarse");
+				ControlarCaja=0;
 				controladorPanelPedidos.accionadoBottonDesconectarsePanelPedidos();
 			}
 		};
@@ -196,11 +199,15 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 				setContentPane(contentPane);
 				contentPane.setLayout(null);
-				if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
+				if(ControlarCaja==0) {
+					JOptionPane.showMessageDialog(contentPane,"Añade productos.");
+				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
+					ControlarCaja=0;
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
+					ControlarCaja=0;
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else {
 					JOptionPane.showMessageDialog(contentPane,"Añade una dirección.");
@@ -223,6 +230,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				String Producto = (comboBox_Productos.getSelectedItem().toString());
 				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
 				double Total = PrecioVenta*Cantidad;
+				
+				ControlarCaja=1;
 				
 				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
 				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
@@ -247,6 +256,4 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			}
 		};
 	}
-	
-	
 }

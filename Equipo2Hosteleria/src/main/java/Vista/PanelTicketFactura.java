@@ -47,7 +47,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
 	private JLabel lblTotal;
-	private JPanel contentPane;
 	private JTextPane textPane_Fecha;
 	private JTextPane textPane_NTransaccion;
 	private JTextPane textPane_Local;
@@ -237,11 +236,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				contentPane = new JPanel();
-				contentPane.setBackground(new Color(0, 153, 255));
-				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-				setContentPane(contentPane);
-				contentPane.setLayout(null);
 				if (rdbtnTicket.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
@@ -249,13 +243,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					System.out.println("Ejecutando evento Boton Pagar");
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
 				}else {
-					JOptionPane.showMessageDialog(contentPane,"Rellene todos los campos pertinentes.");
+					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
 				}
-			}
-
-			private void setContentPane(JPanel contentPane) {
-				// TODO Auto-generated method stub
-				
 			}
 		};
 	}

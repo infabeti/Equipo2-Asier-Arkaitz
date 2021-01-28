@@ -33,7 +33,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JComboBox comboBox_Productos;
 	private JComboBox comboBox_Cantidad;
 	private JLabel lblDireccin;
-	private JPanel contentPane;
 	private JRadioButton rdbtnRecogerEnEstablecimiento;
 	private JRadioButton rdbtnEntregaADomicilio;
 	private ButtonGroup grupoBotones;
@@ -194,13 +193,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				contentPane = new JPanel();
-				contentPane.setBackground(new Color(0, 153, 255));
-				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-				setContentPane(contentPane);
-				contentPane.setLayout(null);
 				if(ControlarCaja==0) {
-					JOptionPane.showMessageDialog(contentPane,"Añade productos.");
+					JOptionPane.showMessageDialog(null, "Añade productos.");
 				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
@@ -210,13 +204,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ControlarCaja=0;
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else {
-					JOptionPane.showMessageDialog(contentPane,"Añade una dirección.");
+					JOptionPane.showMessageDialog(null,"Añade una dirección.");
 				}
-			}
-
-			private void setContentPane(JPanel contentPane) {
-				// TODO Auto-generated method stub
-				
 			}
 		};
 	}

@@ -34,6 +34,5 @@ public class ControladorPanelComandas {
 	
 	public void accionadoBottonPagarPanelComandas() {
 		this.controlador.navegarPanelOperatividad();
-		//Reducir Stock de productos vendidos (de haberlos)
 	}
 }

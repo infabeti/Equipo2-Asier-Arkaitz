@@ -121,7 +121,6 @@ public class PanelAprovisionamiento extends JPanel{
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelAprovisionamiento));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelAprovisionamiento));
-		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelAprovisionamiento));
 	}
 	
 	private ActionListener listenerBotonVolver(ControladorPanelAprovisionamiento controladorPanelAprovisionamiento) {
@@ -138,17 +137,6 @@ public class PanelAprovisionamiento extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectarse");
 				controladorPanelAprovisionamiento.accionadoBottonDesconectarsePanelAprovisionamiento();
-			}
-		};
-	}
-	
-	private ActionListener listenerBotonAadirAlCarro(ControladorPanelAprovisionamiento controladorPanelAprovisionamiento) {
-		return new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Añadir Al Carro");
-				controladorPanelAprovisionamiento.accionadoBottonAadirAlCarroPanelAprovisionamiento();
-				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-				System.out.println("Has elegido "+comboBox_Productos.getSelectedItem()+" - Cantidad: "+comboBox_Cantidad.getSelectedItem());
 			}
 		};
 	}

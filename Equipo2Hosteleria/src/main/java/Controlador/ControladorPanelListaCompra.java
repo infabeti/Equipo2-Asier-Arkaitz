@@ -40,8 +40,7 @@ public class ControladorPanelListaCompra {
 	}
 	
 	public void accionadoBottonBorrarListaPanelListaCompra() {
-		Modelo.BorrarListaCompra();
+		this.modelo.BorrarListaCompra();
 		this.controlador.navegarPanelListaCompra();
-		//Reducir Stock de productos vendidos (de haberlos)
 	}
 }

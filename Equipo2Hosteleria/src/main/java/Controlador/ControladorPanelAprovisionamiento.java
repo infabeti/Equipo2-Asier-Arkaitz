@@ -32,8 +32,4 @@ public class ControladorPanelAprovisionamiento {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonAadirAlCarroPanelAprovisionamiento() {
-		//this.controlador.anadirAListaCompra();
-	}
-	
 }

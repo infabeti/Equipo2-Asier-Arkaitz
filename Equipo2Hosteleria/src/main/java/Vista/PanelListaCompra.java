@@ -50,6 +50,7 @@ public class PanelListaCompra extends JPanel {
 	public static String ListaCompraTotal="";
 	
 	public PanelListaCompra(ControladorPanelListaCompra controladorPanelListaCompra) {
+		setBackground(new Color(102, 153, 255));
 		this.controladorPanelListaCompra = controladorPanelListaCompra;
 		setLayout(null);
 		
@@ -94,11 +95,6 @@ public class PanelListaCompra extends JPanel {
 		textPane_Total.setBounds(343, 207, 63, 20);
 		add(textPane_Total);
 		textPane_Total.setText(""+ListaCompraTotal);
-		
-		
-		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
-		lblNewLabel.setBounds(0, 0, 700, 330);
-		add(lblNewLabel);
 		
 		initializeEvents();
 	}

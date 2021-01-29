@@ -56,6 +56,7 @@ public class PanelComandas extends JPanel implements ChangeListener {
 	private ControladorPanelComandas controladorPanelComandas;
 	
 	public PanelComandas(ControladorPanelComandas controladorPanelComandas) {
+		setBackground(new Color(102, 153, 255));
 		this.controladorPanelComandas = controladorPanelComandas;
 		setLayout(null);
 		
@@ -165,10 +166,6 @@ public class PanelComandas extends JPanel implements ChangeListener {
 		
 		textPane_Productos = new JTextPane();
 		scrollPane.setViewportView(textPane_Productos);
-		
-		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
-		lblNewLabel.setBounds(0, 0, 700, 330);
-		add(lblNewLabel);
 		
 		initializeEvents();
 	}

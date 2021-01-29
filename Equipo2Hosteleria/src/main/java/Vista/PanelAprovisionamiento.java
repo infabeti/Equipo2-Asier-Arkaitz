@@ -16,6 +16,7 @@ import Controlador.ControladorPanelOperatividad;
 import Controlador.ControladorPanelPedidos;
 import Modelo.Producto;
 import Controlador.ControladorPanelAprovisionamiento;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class PanelAprovisionamiento extends JPanel{
@@ -33,6 +34,7 @@ public class PanelAprovisionamiento extends JPanel{
 	private ControladorPanelAprovisionamiento controladorPanelAprovisionamiento;
 	
 	public PanelAprovisionamiento(ControladorPanelAprovisionamiento controladorPanelAprovisionamiento) {
+		setBackground(new Color(102, 153, 255));
 		this.controladorPanelAprovisionamiento = controladorPanelAprovisionamiento;
 		setLayout(null);
 		
@@ -110,10 +112,6 @@ public class PanelAprovisionamiento extends JPanel{
 		lblProductos = new JLabel("Productos:");
 		lblProductos.setBounds(38, 153, 89, 19);
 		add(lblProductos);
-		
-		JLabel lblNewLabel = new JLabel("<html><body style=\"text-align:center\"><img src=\"https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/patron-geometrico-gratis.jpg?resize=600%2C370&quality=100&strip=all&ssl=1\" width=\"700\"/></body></html>");
-		lblNewLabel.setBounds(0, 0, 700, 330);
-		add(lblNewLabel);
 		
 		initializeEvents();
 	}

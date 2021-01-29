@@ -61,7 +61,7 @@ public class PanelListaCompra extends JPanel {
 		lblTicketFactura = new JLabel("Lista de la compra");
 		lblTicketFactura.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTicketFactura.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTicketFactura.setBounds(38, 11, 368, 14);
+		lblTicketFactura.setBounds(126, 11, 368, 14);
 		add(lblTicketFactura);
 		
 		btnDesconectarse = new JButton("Desconectarse");

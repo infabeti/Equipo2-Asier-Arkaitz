@@ -38,7 +38,7 @@ public class PanelOperatividad extends JPanel {
 		lblOperatividad = new JLabel("Panel Operatividad");
 		lblOperatividad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOperatividad.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblOperatividad.setBounds(66, 11, 296, 27);
+		lblOperatividad.setBounds(162, 11, 296, 27);
 		add(lblOperatividad);
 		
 		btnDesconectarse = new JButton("Desconectarse");

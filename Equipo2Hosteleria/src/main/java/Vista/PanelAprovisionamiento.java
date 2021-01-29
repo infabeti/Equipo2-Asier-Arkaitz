@@ -41,7 +41,7 @@ public class PanelAprovisionamiento extends JPanel{
 		JLabel lblAprovisionamiento = new JLabel("Aprovisionamiento");
 		lblAprovisionamiento.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAprovisionamiento.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblAprovisionamiento.setBounds(38, 24, 362, 23);
+		lblAprovisionamiento.setBounds(129, 24, 362, 23);
 		add(lblAprovisionamiento);
 		
 		btnDesconectarse = new JButton("Desconectarse");

@@ -126,7 +126,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		lblTicketFactura = new JLabel("Ticket o Factura");
 		lblTicketFactura.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTicketFactura.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTicketFactura.setBounds(38, 11, 368, 14);
+		lblTicketFactura.setBounds(126, 11, 368, 14);
 		add(lblTicketFactura);
 		
 		btnDesconectarse = new JButton("Desconectarse");

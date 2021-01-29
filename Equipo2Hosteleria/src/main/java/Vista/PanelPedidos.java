@@ -51,7 +51,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		JLabel lblPedidos = new JLabel("Pedidos");
 		lblPedidos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPedidos.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblPedidos.setBounds(38, 24, 362, 14);
+		lblPedidos.setBounds(129, 24, 362, 14);
 		add(lblPedidos);
 		
 		btnVolver = new JButton("Volver");

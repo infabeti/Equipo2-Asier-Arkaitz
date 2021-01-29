@@ -63,7 +63,7 @@ public class PanelComandas extends JPanel implements ChangeListener {
 		lblTicketFactura = new JLabel("Comandas");
 		lblTicketFactura.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTicketFactura.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTicketFactura.setBounds(38, 11, 368, 14);
+		lblTicketFactura.setBounds(126, 11, 368, 14);
 		add(lblTicketFactura);
 		
 		btnDesconectarse = new JButton("Desconectarse");

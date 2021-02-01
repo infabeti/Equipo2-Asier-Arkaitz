@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelBienvenida;
 import java.awt.Color;
@@ -15,7 +16,12 @@ import javax.swing.JTextPane;
 public class PanelBienvenida extends JPanel{
 
 	private JButton btnIniciarSesion;
+	private JButton btnRegistrarse;
 	private JLabel lblBienvenida;
+	private JLabel lblUsuario;
+	private JLabel lblContrasea;
+	private JTextPane textPane_Usuario;
+	private JTextPane textPane_Contrasea;
 	private ControladorPanelBienvenida controladorPanelBienvenida;
 	
 	public PanelBienvenida(ControladorPanelBienvenida controladorPanelBienvenida) {
@@ -34,29 +40,27 @@ public class PanelBienvenida extends JPanel{
 		btnIniciarSesion.setBounds(183, 337, 126, 32);
 		add(btnIniciarSesion);
 		
-		JTextPane textPane_Usuario = new JTextPane();
-		textPane_Usuario.setEnabled(false);
+		textPane_Usuario = new JTextPane();
 		textPane_Usuario.setBounds(215, 167, 189, 22);
 		add(textPane_Usuario);
 		
-		JLabel lblUsuario = new JLabel("Usuario");
+		lblUsuario = new JLabel("Usuario");
 		lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblUsuario.setBounds(231, 133, 157, 23);
 		add(lblUsuario);
 		
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
+		lblContrasea = new JLabel("Contrase\u00F1a");
 		lblContrasea.setHorizontalAlignment(SwingConstants.CENTER);
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblContrasea.setBounds(231, 226, 157, 23);
 		add(lblContrasea);
 		
-		JTextPane textPane_Contrasea = new JTextPane();
-		textPane_Contrasea.setEnabled(false);
+		textPane_Contrasea = new JTextPane();
 		textPane_Contrasea.setBounds(215, 260, 189, 22);
 		add(textPane_Contrasea);
 		
-		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRegistrarse.setBounds(309, 337, 126, 32);
 		add(btnRegistrarse);
@@ -66,13 +70,34 @@ public class PanelBienvenida extends JPanel{
 	
 	private void initializeEvents() {
 		this.btnIniciarSesion.addActionListener(listenerBotonOperatividad(this.controladorPanelBienvenida));
+		this.btnRegistrarse.addActionListener(listenerBotonRegistrarse(this.controladorPanelBienvenida));
 	}
 	
 	private ActionListener listenerBotonOperatividad(ControladorPanelBienvenida controladorPanelBienvenida) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Operatividad");
-				controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
+				
+				String Usuario=textPane_Usuario.getText();	
+				String Contraseña=textPane_Contrasea.getText();	
+				
+					if(Usuario.equals("usuario") && Contraseña.equals("123")) {
+					System.out.println("Ejecutando evento Boton Logearse");
+					controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
+					}
+					
+					else {
+						JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos.");
+					}
+				
+			}
+		};
+	}
+	
+	private ActionListener listenerBotonRegistrarse(ControladorPanelBienvenida controladorPanelBienvenida) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Registrarse");
+				controladorPanelBienvenida.accionadoBottonMostrarPanelRegistro();
 			}
 		};
 	}

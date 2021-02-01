@@ -64,11 +64,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		
 		String arrayNombresProducto[] = controladorPanelPedidos.obtenerNombresProductos();
 		
-		comboBox_Productos.addItem(arrayNombresProducto[0]);
-		comboBox_Productos.addItem(arrayNombresProducto[1]);
-		comboBox_Productos.addItem(arrayNombresProducto[2]);
-		comboBox_Productos.addItem(arrayNombresProducto[3]);
-		comboBox_Productos.addItem(arrayNombresProducto[4]);
+		for(int i = 0;i<arrayNombresProducto.length;i++)
+		{
+			comboBox_Productos.addItem(arrayNombresProducto[i]);
+		}
 		
 		JLabel lblProductos = new JLabel("Productos:");
 		lblProductos.setFont(new Font("Tahoma", Font.BOLD, 15));

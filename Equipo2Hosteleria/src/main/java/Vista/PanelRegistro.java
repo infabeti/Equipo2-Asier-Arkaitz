@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import Controlador.ControladorPanelBienvenida;
 import Controlador.ControladorPanelOperatividad;
 import Controlador.ControladorPanelPedidos;
+import Controlador.ControladorPanelRegistro;
 import Modelo.Producto;
 import Controlador.ControladorPanelAprovisionamiento;
 import java.awt.Color;
@@ -23,14 +24,21 @@ import javax.swing.DefaultComboBoxModel;
 @SuppressWarnings("serial")
 public class PanelRegistro extends JPanel{
 	private JLabel lblProductos;
-	private ControladorPanelAprovisionamiento controladorPanelAprovisionamiento;
+	
 	private JTextField textUsuario;
 	private JTextField textContraseña1;
 	private JTextField textContraseña2;
+	private JButton btnCrear;
+	private JButton btnVolver;
+
+	private ControladorPanelRegistro controladorPanelRegistro;
 	
-	public PanelRegistro(ControladorPanelAprovisionamiento controladorPanelAprovisionamiento) {
+	
+	
+	
+	public PanelRegistro(ControladorPanelRegistro controladorPanelRegistro) {
 		setBackground(new Color(102, 153, 255));
-		this.controladorPanelAprovisionamiento = controladorPanelAprovisionamiento;
+		this.controladorPanelRegistro = controladorPanelRegistro;
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Registro de Usuario");
@@ -69,13 +77,13 @@ public class PanelRegistro extends JPanel{
 		add(textContraseña2);
 		textContraseña2.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Crear");
-		btnNewButton.setBounds(92, 255, 89, 23);
-		add(btnNewButton);
+		JButton btnCrear = new JButton("Crear");
+		btnCrear.setBounds(92, 255, 89, 23);
+		add(btnCrear);
 		
-		JButton btnNewButton_1 = new JButton("Volver");
-		btnNewButton_1.setBounds(272, 255, 89, 23);
-		add(btnNewButton_1);
+		JButton btnVolver = new JButton("Volver");	
+		btnVolver.setBounds(272, 255, 89, 23);
+		add(btnVolver);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Bar", "Cafeteria"}));
@@ -88,8 +96,31 @@ public class PanelRegistro extends JPanel{
 	
 	private void initializeEvents() {
 	
+		this.btnVolver.addActionListener(listenerbtnVolver(this.controladorPanelRegistro)); 
+		this.btnCrear.addActionListener(listenerbtnCrear(this.controladorPanelRegistro));
+		
+			}
 	
+	private ActionListener listenerbtnCrear(ControladorPanelRegistro controladorPanelRegistro2) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Registrarse");
+				controladorPanelRegistro.mostrarPanelBienvenida();
+			}
+		};
+	}
+	private ActionListener listenerbtnVolver(ControladorPanelRegistro controladorPanelRegistro2) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Registrarse");
+				controladorPanelRegistro.accionadoBottonMostrarPanelAceptar();
+			}
+		};
+	}
+
+
 
 		
-	}
+	
 }
+

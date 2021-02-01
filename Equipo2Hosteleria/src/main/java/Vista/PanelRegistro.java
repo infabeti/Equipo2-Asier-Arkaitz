@@ -23,8 +23,8 @@ import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings("serial")
 public class PanelRegistro extends JPanel{
-	private JLabel lblProductos;
 	
+	private JLabel lblProductos;	
 	private JTextField textUsuario;
 	private JTextField textContraseña1;
 	private JTextField textContraseña2;
@@ -37,8 +37,10 @@ public class PanelRegistro extends JPanel{
 	
 	
 	public PanelRegistro(ControladorPanelRegistro controladorPanelRegistro) {
+		
 		setBackground(new Color(102, 153, 255));
 		this.controladorPanelRegistro = controladorPanelRegistro;
+		
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Registro de Usuario");
@@ -77,11 +79,11 @@ public class PanelRegistro extends JPanel{
 		add(textContraseña2);
 		textContraseña2.setColumns(10);
 		
-		JButton btnCrear = new JButton("Crear");
+		btnCrear = new JButton("Crear");
 		btnCrear.setBounds(92, 255, 89, 23);
 		add(btnCrear);
 		
-		JButton btnVolver = new JButton("Volver");	
+		btnVolver = new JButton("Volver");	
 		btnVolver.setBounds(272, 255, 89, 23);
 		add(btnVolver);
 		
@@ -101,19 +103,20 @@ public class PanelRegistro extends JPanel{
 		
 			}
 	
-	private ActionListener listenerbtnCrear(ControladorPanelRegistro controladorPanelRegistro2) {
+	private ActionListener listenerbtnCrear(ControladorPanelRegistro controladorPanelRegistro) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Registrarse");
-				controladorPanelRegistro.mostrarPanelBienvenida();
+				controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
 			}
 		};
 	}
-	private ActionListener listenerbtnVolver(ControladorPanelRegistro controladorPanelRegistro2) {
+	private ActionListener listenerbtnVolver(ControladorPanelRegistro controladorPanelRegistro) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Registrarse");
-				controladorPanelRegistro.accionadoBottonMostrarPanelAceptar();
+				
+				controladorPanelRegistro.mostrarPanelBienvenida();
 			}
 		};
 	}

@@ -14,6 +14,14 @@ public class ControladorPanelRegistro {
 	private PanelBienvenida panelBienvenida;
 	private PanelRegistro panelRegistro;
 	
+	
+	public void mostrarPanelRegistro() {
+		this.panelRegistro = new PanelRegistro(this);
+		this.vista.mostrarPanel(this.panelRegistro);
+	
+		
+	}
+	
 	public ControladorPanelRegistro(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;
@@ -24,14 +32,8 @@ public class ControladorPanelRegistro {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonMostrarPanelAceptar() {
+	public void accionadoBottonMostrarPanelOperatividad() {
 		this.controlador.navegarPanelOperatividad();
-	}
-
-	public void mostrarPanelRegistro() {
-		this.panelRegistro = new PanelRegistro(this);
-		this.vista.mostrarPanel(this.panelRegistro);
-	
 		
 	}
 	

@@ -25,19 +25,6 @@ public class ObtenerDatos {
 		return arrayNombresProducto;
 	}
 	
-	/*
-	public static double[] precioVentaProductos() {
-		Producto arrayProducto[]=listaProductos();
-		
-		for(int i = 0;i<arrayProducto.length;i++)
-		{
-			arrayVentaProducto[i]=arrayProducto[i].getPrecioVenta();
-		}
-		
-		return arrayVentaProducto;
-	}
-	*/
-	
 	public static double precioVentaProductos(String nombre) {
 		Producto arrayProducto[]=listaProductos();
 		
@@ -52,6 +39,12 @@ public class ObtenerDatos {
 		}
 		
 		return precio;
+	}
+	
+	public static double precioTotalCarro(double precioVenta, int cantidad) {
+		double total = precioVenta*cantidad;
+		
+		return total;
 	}
 	
 }

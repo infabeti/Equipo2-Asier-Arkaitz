@@ -47,8 +47,9 @@ public class ControladorPanelPedidos {
 		this.controlador.navegarPanelTicketFactura();
 	}
 	
-	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre) {
-		this.obtenerPrecioVentaProductos(nombre);
+	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {
+		double precio=this.modelo.getPrecioVentaProductos().precioVentaProductos(nombre);
+		double total=this.modelo.getPrecioTotalCarro().precioTotalCarro(precio, cantidad);
 	}
 	
 	public void accionadoBottonListaCompraPanelPedidos() {

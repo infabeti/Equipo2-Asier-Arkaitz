@@ -10,6 +10,7 @@ public class Modelo {
 	public static int NTransaccion=1;
 	private ObtenerDatos nombresProductos;
 	private ObtenerDatos precioVentaProductos;
+	private ObtenerDatos precioTotalCarro;
 	
 	public ObtenerDatos getNombresProductos() {
 		return this.nombresProductos;
@@ -17,6 +18,10 @@ public class Modelo {
 	
 	public ObtenerDatos getPrecioVentaProductos() {
 		return this.precioVentaProductos;
+	}
+	
+	public ObtenerDatos getPrecioTotalCarro() {
+		return this.precioTotalCarro;
 	}
 	
 	public String BorrarListaCompra() {

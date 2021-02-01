@@ -207,24 +207,24 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
 				
-				int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
+				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
 				String nomProducto = (comboBox_Productos.getSelectedItem().toString());
 				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
-				double Total = PrecioVenta*Cantidad;
+				double Total = PrecioVenta*cantidad;
 				
-				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos(nomProducto);
+				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos(nomProducto, cantidad);
 				
 				ControlarCaja=1;
 				
-				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(nomProducto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(nomProducto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(nomProducto+" - Cantidad: "+cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(nomProducto+" - Cantidad: "+cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
 				
 				Modelo.TotalProducto=Modelo.TotalProducto+Total;
 				
 				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
 				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
 				
-				System.out.println("Has elegido "+nomProducto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
+				System.out.println("Has elegido "+nomProducto+" - Cantidad: "+cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
 		
 				
 			}

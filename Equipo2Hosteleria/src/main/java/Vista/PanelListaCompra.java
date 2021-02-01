@@ -38,7 +38,6 @@ public class PanelListaCompra extends JPanel {
 	private JLabel lblTicketFactura;
 	private JLabel lblProductos;
 	private JLabel lblTotal;
-	private JPanel contentPane;
 	private JTextPane textPane_Total;
 	private JTextPane textPane_Productos;
 	private JScrollPane scrollPane;

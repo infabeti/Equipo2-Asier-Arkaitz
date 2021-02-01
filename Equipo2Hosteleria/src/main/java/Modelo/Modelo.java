@@ -9,9 +9,14 @@ public class Modelo {
 	public static double TotalProducto=0;
 	public static int NTransaccion=1;
 	private ObtenerDatos nombresProductos;
+	private ObtenerDatos precioVentaProductos;
 	
 	public ObtenerDatos getNombresProductos() {
 		return this.nombresProductos;
+	}
+	
+	public ObtenerDatos getPrecioVentaProductos() {
+		return this.precioVentaProductos;
 	}
 	
 	public String BorrarListaCompra() {

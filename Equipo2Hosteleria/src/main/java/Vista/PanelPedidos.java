@@ -206,23 +206,25 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
-				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos();
+				
 				int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-				String Producto = (comboBox_Productos.getSelectedItem().toString());
+				String nomProducto = (comboBox_Productos.getSelectedItem().toString());
 				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
 				double Total = PrecioVenta*Cantidad;
 				
+				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos(nomProducto);
+				
 				ControlarCaja=1;
 				
-				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(nomProducto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(nomProducto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
 				
 				Modelo.TotalProducto=Modelo.TotalProducto+Total;
 				
 				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
 				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
 				
-				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
+				System.out.println("Has elegido "+nomProducto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
 		
 				
 			}

@@ -29,6 +29,10 @@ public class ControladorPanelPedidos {
 		return this.modelo.getNombresProductos().nombresProductos();
 	}
 	
+	public double obtenerPrecioVentaProductos(String nombre) {
+		return this.modelo.getPrecioVentaProductos().precioVentaProductos(nombre);
+	}
+	
 	public void accionadoBottonVolverPanelPedidos() {
 		this.modelo.BorrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
@@ -43,8 +47,8 @@ public class ControladorPanelPedidos {
 		this.controlador.navegarPanelTicketFactura();
 	}
 	
-	public void accionadoBottonAadirAlCarroPanelPedidos() {
-		
+	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre) {
+		this.obtenerPrecioVentaProductos(nombre);
 	}
 	
 	public void accionadoBottonListaCompraPanelPedidos() {

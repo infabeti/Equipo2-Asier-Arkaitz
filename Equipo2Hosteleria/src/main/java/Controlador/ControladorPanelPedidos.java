@@ -25,7 +25,7 @@ public class ControladorPanelPedidos {
 		this.vista.mostrarPanel(this.panelPedidos);
 	}
 	
-	public String[] obtenerNombresProductosPanelPedidos() {
+	public String[] obtenerNombresProductos() {
 		return this.modelo.getNombresProductos().nombresProductos();
 	}
 	

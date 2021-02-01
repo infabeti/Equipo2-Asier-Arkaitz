@@ -25,6 +25,10 @@ public class ControladorPanelPedidos {
 		this.vista.mostrarPanel(this.panelPedidos);
 	}
 	
+	public String[] obtenerNombresProductosPanelPedidos() {
+		return this.modelo.getNombresProductos().nombresProductos();
+	}
+	
 	public void accionadoBottonVolverPanelPedidos() {
 		this.modelo.BorrarListaCompra();
 		this.controlador.navegarPanelOperatividad();

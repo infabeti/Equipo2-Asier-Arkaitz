@@ -8,6 +8,11 @@ public class Modelo {
 
 	public static double TotalProducto=0;
 	public static int NTransaccion=1;
+	private ObtenerDatos nombresProductos;
+	
+	public ObtenerDatos getNombresProductos() {
+		return this.nombresProductos;
+	}
 	
 	public String BorrarListaCompra() {
 

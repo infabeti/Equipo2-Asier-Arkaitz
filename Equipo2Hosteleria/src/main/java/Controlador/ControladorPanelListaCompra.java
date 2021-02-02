@@ -25,21 +25,32 @@ public class ControladorPanelListaCompra {
 		this.vista.mostrarPanel(this.panelListaCompra);
 	}
 	
+	public String obtenerListaCompra() {
+		return this.modelo.getListaCompra().leerLista();
+	}
+	
+	public double obtenerTotalCarro() {
+		return this.modelo.getTotalCarro().leerCoste();
+	}
+	
 	public void accionadoBottonVolverPanelListaCompra() {
 		this.controlador.navegarPanelPedidos();
 	}
 	
 	public void accionadoBottonDesconectarsePanelListaCompra() {
-		this.modelo.BorrarListaCompra();
+		this.modelo.resetCarro().borrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
 	public void accionadoBottonPagarPanelListaCompra() {
+		this.modelo.resetCarro().borrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonBorrarListaPanelListaCompra() {
-		this.modelo.BorrarListaCompra();
+		this.modelo.resetCarro().borrarListaCompra();
 		this.controlador.navegarPanelListaCompra();
 	}
+	
+	
 }

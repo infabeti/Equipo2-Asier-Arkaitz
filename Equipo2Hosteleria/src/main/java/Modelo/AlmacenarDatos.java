@@ -6,7 +6,8 @@ public class AlmacenarDatos {
 	
 	public static void añadirProductos(String nombre, double precio, int cantidad) {
 		double total=precio*cantidad;
-		ListaCompra.concat(nombre+" - Cantidad: "+cantidad+" - Precio: "+precio+"€ - Total: "+total+"€\n");
+		ListaCompra+=nombre+" - Cantidad: "+cantidad+" - Precio: "+precio+"€ - Total: "+total+"€\n";
+		//ListaCompra.concat(nombre+" - Cantidad: "+cantidad+" - Precio: "+precio+"€ - Total: "+total+"€\n");
 	}
 	
 	public static String leerLista() {

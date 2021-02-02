@@ -35,16 +35,17 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonVolverPanelPedidos() {
-		this.modelo.BorrarListaCompra();
+		this.modelo.resetCarro().borrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelPedidos() {
-		this.modelo.BorrarListaCompra();
+		this.modelo.resetCarro().borrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
 	public void accionadoBottonPasarACajaPanelPedidos() {
+		this.modelo.resetCarro().borrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	

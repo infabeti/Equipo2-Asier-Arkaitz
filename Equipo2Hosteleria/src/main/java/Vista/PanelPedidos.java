@@ -214,17 +214,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				
 				ControlarCaja=1;
 				
-				/*
-				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(nomProducto+" - Cantidad: "+cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-				
-				Modelo.TotalProducto=Modelo.TotalProducto+Total;
-				
-				
-				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
-				
-				System.out.println("Has elegido "+nomProducto+" - Cantidad: "+cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
-				*/
-				
 			}
 		};
 	}

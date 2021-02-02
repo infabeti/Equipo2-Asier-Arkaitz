@@ -53,6 +53,9 @@ public class PanelListaCompra extends JPanel {
 		this.controladorPanelListaCompra = controladorPanelListaCompra;
 		setLayout(null);
 		
+		ListaCompra = controladorPanelListaCompra.obtenerListaCompra();
+		ListaCompraTotal = ""+controladorPanelListaCompra.obtenerTotalCarro();
+		
 		btnBorrarLista = new JButton("Borrar lista");
 		btnBorrarLista.setBounds(293, 235, 113, 23);
 		add(btnBorrarLista);
@@ -86,6 +89,7 @@ public class PanelListaCompra extends JPanel {
 		add(scrollPane);
 		
 		textPane_Productos = new JTextPane();
+		textPane_Productos.setEditable(false);
 		scrollPane.setViewportView(textPane_Productos);
 		textPane_Productos.setText(ListaCompra);
 		

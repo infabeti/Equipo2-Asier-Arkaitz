@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -101,7 +102,7 @@ public class PanelRegistro extends JPanel{
 		lblNewLabel_2_1.setBounds(184, 296, 251, 14);
 		add(lblNewLabel_2_1);
 		
-		
+	
 		
 		
 		
@@ -120,7 +121,31 @@ public class PanelRegistro extends JPanel{
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Registrarse");
-				controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
+				
+				
+				
+				
+				
+				if (textUsuario.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null,"Introduce un usuario por favor");
+				} else {
+				
+					// Expresion regular
+					if (textUsuario.getText().matches("[a-z][0-9]+") && textContraseña1.getText().equals(textContraseña2.getText())) {
+						controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
+					} else {
+						
+						
+						JOptionPane.showMessageDialog(null,"La contraseña es incorrecta.");
+					}
+				}
+				
+				
+				
+				
+					
+					
+				
 			}
 		};
 	}

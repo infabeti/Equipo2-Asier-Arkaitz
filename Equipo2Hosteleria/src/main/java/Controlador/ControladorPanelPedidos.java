@@ -5,6 +5,7 @@ import Vista.PanelBienvenida;
 import Vista.PanelOperatividad;
 import Vista.PanelListaCompra;
 import Vista.PanelPedidos;
+import Vista.PanelTicketFactura;
 import Vista.Vista;
 
 public class ControladorPanelPedidos {
@@ -44,12 +45,13 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonPasarACajaPanelPedidos() {
-		this.controlador.navegarPanelTicketFactura();
+		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {
 		double precio=this.modelo.getPrecioVentaProductos().precioVentaProductos(nombre);
-		double total=this.modelo.getPrecioTotalCarro().precioTotalCarro(precio, cantidad);
+		this.modelo.setListaCompra().añadirProductos(nombre, precio, cantidad);
+		this.modelo.setTotalCarro().añadirCoste(precio, cantidad);
 	}
 	
 	public void accionadoBottonListaCompraPanelPedidos() {

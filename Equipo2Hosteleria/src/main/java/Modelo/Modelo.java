@@ -11,7 +11,13 @@ public class Modelo {
 	private ObtenerDatos nombresProductos;
 	private ObtenerDatos precioVentaProductos;
 	private ObtenerDatos precioTotalCarro;
+	private AlmacenarDatos añadirProductos;
+	private AlmacenarDatos leerLista;
+	private AlmacenarDatos añadirCoste;
+	private AlmacenarDatos leerCoste;
+	private AlmacenarDatos borrarListaCompra;
 	
+	//OBTENER DATOS DE PRODUCTOS
 	public ObtenerDatos getNombresProductos() {
 		return this.nombresProductos;
 	}
@@ -20,10 +26,28 @@ public class Modelo {
 		return this.precioVentaProductos;
 	}
 	
-	public ObtenerDatos getPrecioTotalCarro() {
-		return this.precioTotalCarro;
+	//ALMACENAR DATOS CARRO DE LA COMPRA
+	public AlmacenarDatos setListaCompra() {
+		return this.añadirProductos;
 	}
 	
+	public AlmacenarDatos getListaCompra() {
+		return this.leerLista;
+	}
+	
+	public AlmacenarDatos setTotalCarro() {
+		return this.añadirCoste;
+	}
+	
+	public AlmacenarDatos getTotalCarro() {
+		return this.leerCoste;
+	}
+	
+	public AlmacenarDatos resetCarro() {
+		return this.borrarListaCompra;
+	}
+	
+	//PARA ACTUALIZAR
 	public String BorrarListaCompra() {
 
 	String ListaCompra="";

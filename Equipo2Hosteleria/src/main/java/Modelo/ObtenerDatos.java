@@ -41,10 +41,4 @@ public class ObtenerDatos {
 		return precio;
 	}
 	
-	public static double precioTotalCarro(double precioVenta, int cantidad) {
-		double total = precioVenta*cantidad;
-		
-		return total;
-	}
-	
 }

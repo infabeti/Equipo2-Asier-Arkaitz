@@ -132,6 +132,20 @@ public class PanelListaCompra extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Borrar");
 				controladorPanelListaCompra.accionadoBottonBorrarListaPanelListaCompra();
+				
+				ListaCompra = controladorPanelListaCompra.obtenerListaCompra();
+				ListaCompraTotal = ""+controladorPanelListaCompra.obtenerTotalCarro();
+				
+				textPane_Productos = new JTextPane();
+				textPane_Productos.setEditable(false);
+				scrollPane.setViewportView(textPane_Productos);
+				textPane_Productos.setText(ListaCompra);
+				
+				textPane_Total = new JTextPane();
+				textPane_Total.setEditable(false);
+				textPane_Total.setBounds(343, 207, 63, 20);
+				add(textPane_Total);
+				textPane_Total.setText(""+ListaCompraTotal);
 			}
 		};
 	}

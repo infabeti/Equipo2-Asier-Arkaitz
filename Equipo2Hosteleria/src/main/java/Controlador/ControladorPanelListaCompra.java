@@ -49,7 +49,6 @@ public class ControladorPanelListaCompra {
 	
 	public void accionadoBottonBorrarListaPanelListaCompra() {
 		this.modelo.resetCarro().borrarListaCompra();
-		this.controlador.navegarPanelListaCompra();
 	}
 	
 	

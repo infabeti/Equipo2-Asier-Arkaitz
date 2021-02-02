@@ -63,6 +63,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
 	
+	public static int ControlarCaja=0;
 	public static String ListaCompra="";
 	public static String ListaCompraTotal="";
 
@@ -78,6 +79,9 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		setBackground(new Color(102, 153, 255));
 		this.controladorPanelTicketFactura = controladorPanelTicketFactura;
 		setLayout(null);
+		
+		ListaCompra = controladorPanelTicketFactura.obtenerListaCompra();
+		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
 		
 		btnAadirAlCarro = new JButton("A\u00F1adir al carro");
 		btnAadirAlCarro.setBounds(434, 149, 146, 23);
@@ -106,17 +110,12 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		comboBox_Productos.setBounds(429, 76, 173, 22);
 		add(comboBox_Productos);
 		
-		Producto Producto1 = new Producto("Garbanzos","Comida","30-01-2021",5,5);	
-		Producto Producto2 = new Producto("Paella","Comida","31-01-2021",5,5);	
-		Producto Producto3 = new Producto("Bacalao","Comida","02-02-2021",5,5);	
-		Producto Producto4 = new Producto("Hamburguesa","Comida","30-01-2021",5,5);	
-		Producto Producto5 = new Producto("Cerveza","Bebida","01-02-2021",5,5);	
-
-		comboBox_Productos.addItem(Producto1);
-		comboBox_Productos.addItem(Producto2);
-		comboBox_Productos.addItem(Producto3);
-		comboBox_Productos.addItem(Producto4);
-		comboBox_Productos.addItem(Producto5);
+		String arrayNombresProducto[] = controladorPanelTicketFactura.obtenerNombresProductos();
+		
+		for(int i = 0;i<arrayNombresProducto.length;i++)
+		{
+			comboBox_Productos.addItem(arrayNombresProducto[i]);
+		}
 		
 		lblProductos_1 = new JLabel("Productos:");
 		lblProductos_1.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -233,6 +232,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		add(scrollPane);
 		
 		textPane_Productos = new JTextPane();
+		textPane_Productos.setEditable(false);
 		scrollPane.setViewportView(textPane_Productos);
 		textPane_Productos.setText(ListaCompra);
 		
@@ -271,6 +271,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
+				ControlarCaja=0;
 				controladorPanelTicketFactura.accionadoBottonVolverPanelTicketFactura();
 			}
 		};
@@ -280,6 +281,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectarse");
+				ControlarCaja=0;
 				controladorPanelTicketFactura.accionadoBottonDesconectarsePanelTicketFactura();
 			}
 		};
@@ -288,14 +290,20 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (rdbtnTicket.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
-					System.out.println("Ejecutando evento Boton Pagar");
-					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
-				}else if (rdbtnFactura.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
-					System.out.println("Ejecutando evento Boton Pagar");
-					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
+				if(ControlarCaja==1) {
+					if (rdbtnTicket.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
+						System.out.println("Ejecutando evento Boton Pagar");
+						ControlarCaja=0;
+						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
+					}else if (rdbtnFactura.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
+						System.out.println("Ejecutando evento Boton Pagar");
+						ControlarCaja=0;
+						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
+					}else {
+						JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
+					}
 				}else {
-					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
+					JOptionPane.showMessageDialog(null, "Añade productos.");
 				}
 			}
 		};
@@ -306,6 +314,22 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Borrar");
 				controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
+				
+				ControlarCaja=1;
+				
+				ListaCompra = controladorPanelTicketFactura.obtenerListaCompra();
+				ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
+				
+				textPane_Productos = new JTextPane();
+				textPane_Productos.setEditable(false);
+				scrollPane.setViewportView(textPane_Productos);
+				textPane_Productos.setText(ListaCompra);
+				
+				textPane_Total = new JTextPane();
+				textPane_Total.setEditable(false);
+				textPane_Total.setBounds(343, 152, 63, 20);
+				add(textPane_Total);
+				textPane_Total.setText(ListaCompraTotal);
 			}
 		};
 	}
@@ -314,22 +338,27 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
-				int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-				String Producto = (comboBox_Productos.getSelectedItem().toString());
-				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
-				double Total = PrecioVenta*Cantidad;
 				
-				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
+				String nomProducto = (comboBox_Productos.getSelectedItem().toString());
 				
-				Modelo.TotalProducto=Modelo.TotalProducto+Total;
+				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura(nomProducto, cantidad);
 				
-				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
-				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
+				ControlarCaja=1;
 				
-				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
-				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura();
+				ListaCompra = controladorPanelTicketFactura.obtenerListaCompra();
+				ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
 				
+				textPane_Productos = new JTextPane();
+				textPane_Productos.setEditable(false);
+				scrollPane.setViewportView(textPane_Productos);
+				textPane_Productos.setText(ListaCompra);
+				
+				textPane_Total = new JTextPane();
+				textPane_Total.setEditable(false);
+				textPane_Total.setBounds(343, 152, 63, 20);
+				add(textPane_Total);
+				textPane_Total.setText(ListaCompraTotal);
 			}
 		};
 	}

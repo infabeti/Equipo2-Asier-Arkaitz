@@ -44,53 +44,66 @@ public class PanelRegistro extends JPanel{
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Registro de Usuario");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(0, 11, 450, 28);
+		lblNewLabel.setBounds(10, 11, 600, 28);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Introduce un nombre de usuario");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(10, 50, 450, 14);
+		lblNewLabel_1.setBounds(85, 83, 450, 14);
 		add(lblNewLabel_1);
 		
 		textUsuario = new JTextField();
-		textUsuario.setBounds(186, 75, 86, 20);
+		textUsuario.setBounds(230, 108, 159, 20);
 		add(textUsuario);
 		textUsuario.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Introduce tu contrase\u00F1a");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(0, 118, 189, 14);
+		lblNewLabel_2.setBounds(184, 160, 251, 14);
 		add(lblNewLabel_2);
 		
 		textContraseña1 = new JTextField();
-		textContraseña1.setBounds(54, 143, 86, 20);
+		textContraseña1.setBounds(230, 185, 159, 20);
 		add(textContraseña1);
 		textContraseña1.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Repetir contrase\u00F1a");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(281, 118, 159, 14);
+		lblNewLabel_3.setBounds(230, 226, 159, 14);
 		add(lblNewLabel_3);
 		
 		textContraseña2 = new JTextField();
-		textContraseña2.setBounds(312, 143, 86, 20);
+		textContraseña2.setBounds(230, 251, 159, 20);
 		add(textContraseña2);
 		textContraseña2.setColumns(10);
 		
 		btnCrear = new JButton("Crear");
-		btnCrear.setBounds(92, 255, 89, 23);
+		btnCrear.setBounds(54, 354, 89, 23);
 		add(btnCrear);
 		
 		btnVolver = new JButton("Volver");	
-		btnVolver.setBounds(272, 255, 89, 23);
+		btnVolver.setBounds(487, 354, 89, 23);
 		add(btnVolver);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Bar", "Cafeteria"}));
-		comboBox.setBounds(203, 199, 96, 22);
+		comboBox.setBounds(262, 321, 96, 22);
 		add(comboBox);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Selecciona tu tipo de negocio");
+		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_2_1.setBounds(184, 296, 251, 14);
+		add(lblNewLabel_2_1);
+		
+		
+		
+		
 		
 		
 		initializeEvents();
@@ -114,16 +127,11 @@ public class PanelRegistro extends JPanel{
 	private ActionListener listenerbtnVolver(ControladorPanelRegistro controladorPanelRegistro) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Registrarse");
+				System.out.println("Ejecutando evento Boton Volver");
 				
 				controladorPanelRegistro.mostrarPanelBienvenida();
 			}
 		};
 	}
-
-
-
-		
-	
 }
 

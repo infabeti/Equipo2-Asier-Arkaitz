@@ -24,6 +24,16 @@ public class ConexionMySQL {
 
            link = DriverManager.getConnection(this.URL, this.USER, this.PASS);
 
+           Statement s = link.createStatement();
+           ResultSet rs = s.executeQuery ("select * from identificacion");
+           
+           while (rs.next())
+           {
+               System.out.println (rs.getInt (1) + " " + rs.getString(2));
+           }
+           
+           link.close();
+           
        }catch(Exception ex){
 
            JOptionPane.showMessageDialog(null, "Error al conectar: "+ex);
@@ -67,5 +77,6 @@ public class ConexionMySQL {
    }
 
 
+   
 }
    

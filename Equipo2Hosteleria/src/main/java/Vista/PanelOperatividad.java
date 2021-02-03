@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Controlador.ControladorPanelOperatividad;
@@ -93,7 +94,13 @@ public class PanelOperatividad extends JPanel {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Prueba Conexion");
-				controladorPanelOperatividad.accionadoBottonPruebaConexionPanelOperatividad();
+				boolean conexion = controladorPanelOperatividad.accionadoBottonPruebaConexionPanelOperatividad();
+				if(conexion==true) {
+					JOptionPane.showMessageDialog(null, "Conectado");
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al conectar");
+					System.exit(0);
+				}
 			}
 		};
 	}

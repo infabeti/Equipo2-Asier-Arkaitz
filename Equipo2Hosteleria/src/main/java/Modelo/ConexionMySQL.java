@@ -1,10 +1,6 @@
 package Modelo;
 
-
 import java.sql.*;
-import javax.swing.JOptionPane;
-
-
 
 public class ConexionMySQL {
 
@@ -12,6 +8,7 @@ public class ConexionMySQL {
     public static String URL = "jdbc:mysql://localhost:33060/"+DB;
     public static String USER = "root";
     public static String PASS = "elorrieta";
+    static boolean conexion=false;
 
 
    @SuppressWarnings("static-access")
@@ -26,10 +23,9 @@ public class ConexionMySQL {
            link = DriverManager.getConnection(this.URL, this.USER, this.PASS);
 
        }catch(Exception ex){
-
-           JOptionPane.showMessageDialog(null, "Error al conectar: "+ex);
+    	   
+    	   conexion=false;
            ex.printStackTrace();
-           System.exit(0);
 
        }
 
@@ -38,17 +34,18 @@ public class ConexionMySQL {
 
    }
    
-   public static void btnProbarconexionActionPerformed(/*java.awt.event.ActionEvent evt*/) {                                                  
-
-
-       ConexionMySQL mysql = new ConexionMySQL();
+   public static boolean probarConexion() {         
+	   
+	   conexion=false;
+	   
+	   ConexionMySQL mysql = new ConexionMySQL();
 
        java.sql.Connection cn= mysql.Conectar();
 
 
        if(cn!=null){
 
-               JOptionPane.showMessageDialog(null, "Conectado");
+    	   conexion=true;
 
                try{
 
@@ -56,14 +53,14 @@ public class ConexionMySQL {
 
                }catch(SQLException ex){
 
-            	   JOptionPane.showMessageDialog(null, "Error al conectar");
             	   System.out.println("Error al desconectar "+ex);
-            	   System.exit(0);
+            	   conexion=false;
 
                }
 
        }
        
+       return conexion;
 
    }
 

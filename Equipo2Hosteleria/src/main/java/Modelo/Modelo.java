@@ -12,6 +12,7 @@ public class Modelo {
 	private AlmacenarDatos borrarListaCompra;
 	private AlmacenarDatos leerNumTrans;
 	private AlmacenarDatos sumarNumTrans;
+	private ConexionMySQL probarConexion;
 	
 	//OBTENER DATOS DE PRODUCTOS
 	public ObtenerDatos getNombresProductos() {
@@ -49,6 +50,11 @@ public class Modelo {
 	
 	public AlmacenarDatos aumentarNumeroTransaccion() {
 		return this.sumarNumTrans;
+	}
+	
+	//MYSQL
+	public ConexionMySQL pruebaConexion() {
+		return this.probarConexion;
 	}
 	
 }

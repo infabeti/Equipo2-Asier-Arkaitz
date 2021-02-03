@@ -43,7 +43,12 @@ public class ControladorPanelPedidos {
 	
 	public void accionadoBottonPasarACajaPanelPedidos() {
 		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.aumentarNumeroTransaccion().sumarNumTrans();
 		this.controlador.navegarPanelOperatividad();
+	}
+	
+	public int mostrarNumeroTransaccion() {
+		return this.modelo.mostrarNumeroTransaccion().leerNumTrans();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {

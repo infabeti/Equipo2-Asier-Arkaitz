@@ -145,9 +145,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		add(lblLocal);
 		
 		textPane_NTransaccion = new JTextPane();
+		textPane_NTransaccion.setEditable(false);
 		textPane_NTransaccion.setBounds(38, 70, 173, 20);
 		add(textPane_NTransaccion);
-		textPane_NTransaccion.setText(""+ controladorPanelTicketFactura.MostrarNumeroTransaccion());
+		textPane_NTransaccion.setText(""+ controladorPanelTicketFactura.mostrarNumeroTransaccion());
 		
 		textPane_Local = new JTextPane();
 		textPane_Local.setBounds(92, 126, 119, 20);
@@ -279,11 +280,11 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(ControlarCaja==1) {
-					if (rdbtnTicket.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
+					if (rdbtnTicket.isSelected() && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
 						System.out.println("Ejecutando evento Boton Pagar");
 						ControlarCaja=0;
 						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
-					}else if (rdbtnFactura.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
+					}else if (rdbtnFactura.isSelected() && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
 						System.out.println("Ejecutando evento Boton Pagar");
 						ControlarCaja=0;
 						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	

@@ -55,7 +55,7 @@ public class ControladorPanelTicketFactura {
 		this.controlador.navegarPanelOperatividad();
 	}
 	
-	public int MostrarNumeroTransaccion() {
+	public int mostrarNumeroTransaccion() {
 		return this.modelo.mostrarNumeroTransaccion().leerNumTrans();
 	}
 	

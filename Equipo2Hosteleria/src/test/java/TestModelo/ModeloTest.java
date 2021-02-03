@@ -14,7 +14,6 @@ public class ModeloTest {
 	private int resultadoEsperado;
 	private int NTransaccion=1;
 	
-	
 	@Test
 	public void testMostrarNumeroTransaccion() {
 		resultadoEsperado = NTransaccion;

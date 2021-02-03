@@ -34,9 +34,12 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JRadioButton rdbtnEntregaADomicilio;
 	private ButtonGroup grupoBotones;
 	private JTextPane textPane_Direccion;
+	private JTextPane textPane_Fecha;
 	private ControladorPanelPedidos controladorPanelPedidos;
 	
 	public static int ControlarCaja=0;
+	private JLabel lblLocal;
+	private JTextPane textPane_Local;
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
@@ -129,10 +132,37 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnDesconectarse.setBounds(137, 235, 146, 23);
 		add(btnDesconectarse);
 		
-		btnPasarACaja = new JButton("Pasar a caja");
+		btnPasarACaja = new JButton("Pagar");
 		btnPasarACaja.setEnabled(false);
 		btnPasarACaja.setBounds(293, 235, 107, 23);
 		add(btnPasarACaja);
+		
+		JTextPane textPane_NTransaccion = new JTextPane();
+		textPane_NTransaccion.setText(""+ controladorPanelPedidos.mostrarNumeroTransaccion());
+		textPane_NTransaccion.setEditable(false);
+		textPane_NTransaccion.setBounds(420, 136, 173, 20);
+		add(textPane_NTransaccion);
+		
+		JLabel lblTransaccion = new JLabel("N\u00BA Transaccion:");
+		lblTransaccion.setBounds(420, 114, 89, 20);
+		add(lblTransaccion);
+		
+		JLabel lblFecha = new JLabel("Fecha:");
+		lblFecha.setBounds(420, 167, 62, 20);
+		add(lblFecha);
+		
+		textPane_Fecha = new JTextPane();
+		textPane_Fecha.setBounds(474, 167, 119, 20);
+		add(textPane_Fecha);
+		
+		lblLocal = new JLabel("Local:");
+		lblLocal.setBounds(420, 198, 51, 20);
+		add(lblLocal);
+		
+		textPane_Local = new JTextPane();
+		textPane_Local.setText("El plato caliente");
+		textPane_Local.setBounds(474, 198, 119, 20);
+		add(textPane_Local);
 		
 		initializeEvents();
 	}
@@ -184,16 +214,16 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				if(ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
-				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
+				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("") && !textPane_Fecha.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
-				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
+				}else if (rdbtnRecogerEnEstablecimiento.isSelected() && !textPane_Fecha.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else {
-					JOptionPane.showMessageDialog(null,"Añade una dirección.");
+					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
 				}
 			}
 		};

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import Modelo.Modelo;
 
-@SuppressWarnings("static-access")
+@SuppressWarnings({ "static-access", "unused" })
 public class ModeloTest {
 
 	private Modelo funciones = new Modelo();

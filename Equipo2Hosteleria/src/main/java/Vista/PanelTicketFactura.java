@@ -151,6 +151,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		textPane_NTransaccion.setText(""+ controladorPanelTicketFactura.mostrarNumeroTransaccion());
 		
 		textPane_Local = new JTextPane();
+		textPane_Local.setEditable(false);
 		textPane_Local.setBounds(92, 126, 119, 20);
 		add(textPane_Local);
 		textPane_Local.setText(LocalP);

@@ -160,6 +160,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		add(lblLocal);
 		
 		textPane_Local = new JTextPane();
+		textPane_Local.setEditable(false);
 		textPane_Local.setText("El plato caliente");
 		textPane_Local.setBounds(474, 198, 119, 20);
 		add(textPane_Local);

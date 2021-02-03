@@ -7,11 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Controlador.ControladorPanelBienvenida;
 import Controlador.ControladorPanelOperatividad;
-import Controlador.ControladorPanelComandas;
-import Controlador.ControladorPanelAprovisionamiento;
-import Controlador.ControladorPanelTicketFactura;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;

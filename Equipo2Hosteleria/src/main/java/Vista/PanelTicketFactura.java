@@ -10,30 +10,18 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import Controlador.ControladorPanelBienvenida;
-import Controlador.ControladorPanelComandas;
-import Controlador.ControladorPanelOperatividad;
-import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelTicketFactura;
-import Controlador.ControladorPanelListaCompra;
-import Modelo.Modelo;
-import Modelo.Producto;
 
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import javax.swing.JRadioButton;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "rawtypes", "unchecked" , "serial" , "deprecation"})
 public class PanelTicketFactura extends JPanel implements ChangeListener {
 
 	private JButton btnVolver;

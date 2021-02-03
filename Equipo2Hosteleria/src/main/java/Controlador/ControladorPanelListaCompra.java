@@ -1,12 +1,10 @@
 package Controlador;
 
 import Modelo.Modelo;
-import Vista.PanelBienvenida;
-import Vista.PanelOperatividad;
-import Vista.PanelTicketFactura;
 import Vista.PanelListaCompra;
 import Vista.Vista;
 
+@SuppressWarnings("static-access")
 public class ControladorPanelListaCompra {
 
 	private Modelo modelo;

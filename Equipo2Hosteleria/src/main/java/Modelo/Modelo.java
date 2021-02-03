@@ -1,21 +1,17 @@
 package Modelo;
 
-import Vista.PanelListaCompra;
-import Vista.PanelTicketFactura;
-
 
 public class Modelo {
 
-	public static double TotalProducto=0;
-	public static int NTransaccion=1;
 	private ObtenerDatos nombresProductos;
 	private ObtenerDatos precioVentaProductos;
-	private ObtenerDatos precioTotalCarro;
 	private AlmacenarDatos añadirProductos;
 	private AlmacenarDatos leerLista;
 	private AlmacenarDatos añadirCoste;
 	private AlmacenarDatos leerCoste;
 	private AlmacenarDatos borrarListaCompra;
+	private AlmacenarDatos leerNumTrans;
+	private AlmacenarDatos sumarNumTrans;
 	
 	//OBTENER DATOS DE PRODUCTOS
 	public ObtenerDatos getNombresProductos() {
@@ -47,34 +43,12 @@ public class Modelo {
 		return this.borrarListaCompra;
 	}
 	
-	//PARA ACTUALIZAR
-	public String BorrarListaCompra() {
-
-	String ListaCompra="";
-	String ListaCompraTotal="";
-	
-	TotalProducto=0;
-	
-	PanelListaCompra.ListaCompra=ListaCompra;
-	PanelTicketFactura.ListaCompra=ListaCompra;
-	
-	PanelListaCompra.ListaCompraTotal=ListaCompraTotal;
-	PanelTicketFactura.ListaCompraTotal=ListaCompraTotal;
-	
-	return "";
-	      
+	public AlmacenarDatos mostrarNumeroTransaccion() {
+		return this.leerNumTrans;
 	}
 	
-	public static int MostrarNumeroTransaccion() {
-		
-	return NTransaccion;
-	      
-	}
-	
-	public static int AumentarNumeroTransaccion() {
-	
-	return NTransaccion++;
-	      
+	public AlmacenarDatos aumentarNumeroTransaccion() {
+		return this.sumarNumTrans;
 	}
 	
 }

@@ -1,11 +1,10 @@
 package Controlador;
 
 import Modelo.Modelo;
-import Vista.PanelBienvenida;
-import Vista.PanelOperatividad;
 import Vista.PanelTicketFactura;
 import Vista.Vista;
 
+@SuppressWarnings("static-access")
 public class ControladorPanelTicketFactura {
 
 	private Modelo modelo;
@@ -52,12 +51,12 @@ public class ControladorPanelTicketFactura {
 	
 	public void accionadoBottonPagarPanelTicketFactura() {
 		this.modelo.resetCarro().borrarListaCompra();
-		this.modelo.AumentarNumeroTransaccion();
+		this.modelo.aumentarNumeroTransaccion().sumarNumTrans();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public int MostrarNumeroTransaccion() {
-		return this.modelo.MostrarNumeroTransaccion();
+		return this.modelo.mostrarNumeroTransaccion().leerNumTrans();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelTicketFactura(String nombre, int cantidad) {

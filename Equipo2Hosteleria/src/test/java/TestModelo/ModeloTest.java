@@ -6,25 +6,25 @@ import org.junit.Test;
 
 import Modelo.Modelo;
 
+@SuppressWarnings("static-access")
 public class ModeloTest {
 
 	private Modelo funciones = new Modelo();
 	private int resultado;
 	private int resultadoEsperado;
-	private int NTransaccion;
+	private int NTransaccion=1;
+	
 	
 	@Test
 	public void testMostrarNumeroTransaccion() {
-		NTransaccion=Modelo.NTransaccion;
 		resultadoEsperado = NTransaccion;
-		resultado = funciones.MostrarNumeroTransaccion();
+		resultado = funciones.mostrarNumeroTransaccion().leerNumTrans();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
 	public void testAumentarNumeroTransaccion() {
-		NTransaccion=Modelo.NTransaccion;
 		resultadoEsperado = NTransaccion++;
-		resultado = funciones.AumentarNumeroTransaccion();
+		resultado = funciones.aumentarNumeroTransaccion().sumarNumTrans();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	

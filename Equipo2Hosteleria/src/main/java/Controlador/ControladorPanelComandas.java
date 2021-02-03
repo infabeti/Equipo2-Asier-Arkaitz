@@ -1,13 +1,12 @@
 package Controlador;
 
 import Modelo.Modelo;
-import Vista.PanelBienvenida;
-import Vista.PanelOperatividad;
 import Vista.PanelComandas;
 import Vista.Vista;
 
 public class ControladorPanelComandas {
 
+	@SuppressWarnings("unused")
 	private Modelo modelo;
 	private Vista vista;
 	private Controlador controlador;
@@ -30,9 +29,5 @@ public class ControladorPanelComandas {
 	
 	public void accionadoBottonDesconectarsePanelComandas() {
 		this.controlador.navegarPanelBienvenida();
-	}
-	
-	public void accionadoBottonPagarPanelComandas() {
-		this.controlador.navegarPanelOperatividad();
 	}
 }

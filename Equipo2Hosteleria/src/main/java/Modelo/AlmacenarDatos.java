@@ -3,6 +3,7 @@ package Modelo;
 public class AlmacenarDatos {
 	static String ListaCompra="";
 	static double TotalCarro=0;
+	static int NTransaccion=1;
 	
 	public static void añadirProductos(String nombre, double precio, int cantidad) {
 		double total=precio*cantidad;
@@ -23,11 +24,16 @@ public class AlmacenarDatos {
 	}
 	
 	public static void borrarListaCompra() {
-
 		ListaCompra="";
-		
 		TotalCarro=0;
+	}
+	
+	public static int leerNumTrans() {
+		return NTransaccion;
+	}
 		
+	public static int sumarNumTrans() {
+		return NTransaccion++;
 	}
 	
 }

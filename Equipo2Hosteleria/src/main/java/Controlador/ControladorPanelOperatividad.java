@@ -2,10 +2,10 @@ package Controlador;
 
 import Modelo.ConexionMySQL;
 import Modelo.Modelo;
-import Vista.PanelBienvenida;
 import Vista.PanelOperatividad;
 import Vista.Vista;
 
+@SuppressWarnings("static-access")
 public class ControladorPanelOperatividad {
 
 	private Modelo modelo;
@@ -25,7 +25,7 @@ public class ControladorPanelOperatividad {
 	}
 	
 	public void accionadoBottonVolverPanelOperatividad() {
-		this.modelo.BorrarListaCompra();
+		this.modelo.resetCarro().borrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	

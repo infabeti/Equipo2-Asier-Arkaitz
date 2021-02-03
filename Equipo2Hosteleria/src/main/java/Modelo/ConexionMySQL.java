@@ -14,6 +14,7 @@ public class ConexionMySQL {
     public static String PASS = "elorrieta";
 
 
+   @SuppressWarnings("static-access")
    public Connection Conectar(){
 
        Connection link = null;

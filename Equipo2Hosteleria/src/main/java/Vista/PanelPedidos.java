@@ -9,20 +9,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
-import Modelo.Producto;
-import Modelo.Modelo;
 
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JRadioButton;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "rawtypes", "unchecked" , "serial" , "deprecation"})
 public class PanelPedidos extends JPanel implements ChangeListener {
 
 	private JButton btnVolver;

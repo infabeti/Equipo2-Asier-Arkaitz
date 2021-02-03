@@ -10,24 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-import Controlador.ControladorPanelBienvenida;
-import Controlador.ControladorPanelComandas;
-import Controlador.ControladorPanelOperatividad;
-import Controlador.ControladorPanelPedidos;
-import Controlador.ControladorPanelTicketFactura;
 import Controlador.ControladorPanelListaCompra;
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.JRadioButton;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class PanelListaCompra extends JPanel {
@@ -41,6 +27,7 @@ public class PanelListaCompra extends JPanel {
 	private JTextPane textPane_Total;
 	private JTextPane textPane_Productos;
 	private JScrollPane scrollPane;
+	@SuppressWarnings("unused")
 	private ButtonGroup grupoBotones;
 	
 	private ControladorPanelListaCompra controladorPanelListaCompra;

@@ -3,15 +3,8 @@ package Modelo;
 
 public class Modelo {
 
-	private ObtenerDatos nombresProductos;
-	private ObtenerDatos precioVentaProductos;
-	private AlmacenarDatos añadirProductos;
-	private AlmacenarDatos leerLista;
-	private AlmacenarDatos añadirCoste;
-	private AlmacenarDatos leerCoste;
-	private AlmacenarDatos borrarListaCompra;
-	private AlmacenarDatos leerNumTrans;
-	private AlmacenarDatos sumarNumTrans;
+	private ObtenerDatos nombresProductos, precioVentaProductos;
+	private AlmacenarDatos añadirProductos, leerLista, añadirCoste, leerCoste, borrarListaCompra, leerNumTrans, sumarNumTrans;
 	private ConexionMySQL probarConexion;
 	
 	//OBTENER DATOS DE PRODUCTOS

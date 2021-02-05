@@ -1,6 +1,6 @@
 package Modelo;
 
-public class CarroCompra {
+public class ProcesarDatos {
 		String ListaCompra="";
 		double TotalCarro=0;
 		static int NTransaccion=1;

@@ -1,11 +1,11 @@
 package Modelo;
 
 public class ObtenerDatos {
-	static Producto arrayProducto[]=new Producto[5];
-	static String arrayNombresProducto[]=new String[5];
-	static double arrayVentaProducto[]=new double[5];
+		Producto arrayProducto[]=new Producto[5];
+		String arrayNombresProducto[]=new String[5];
+		double arrayVentaProducto[]=new double[5];
 	
-	public static Producto[] listaProductos() {
+	public Producto[] listaProductos() {
 		arrayProducto[0] = new Producto("Garbanzos","Comida","30-01-2021",5,5);
 		arrayProducto[1] = new Producto("Paella","Comida","31-01-2021",5,5);
 		arrayProducto[2] = new Producto("Bacalao","Comida","02-02-2021",5,5);
@@ -14,7 +14,7 @@ public class ObtenerDatos {
 		return arrayProducto;
 	}
 	
-	public static String[] nombresProductos() {
+	public String[] nombresProductos() {
 		Producto arrayProducto[]=listaProductos();
 				
 		for(int i = 0;i<arrayProducto.length;i++)
@@ -25,7 +25,7 @@ public class ObtenerDatos {
 		return arrayNombresProducto;
 	}
 	
-	public static double precioVentaProductos(String nombre) {
+	public double precioVentaProductos(String nombre) {
 		Producto arrayProducto[]=listaProductos();
 		
 		double precio=0;

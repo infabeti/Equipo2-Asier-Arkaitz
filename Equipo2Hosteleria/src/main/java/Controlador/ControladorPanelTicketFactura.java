@@ -61,7 +61,7 @@ public class ControladorPanelTicketFactura {
 	
 	public void accionadoBottonAadirAlCarroPanelTicketFactura(String nombre, int cantidad) {
 		double precio=this.modelo.getPrecioVentaProductos().precioVentaProductos(nombre);
-		this.modelo.setListaCompra().añadirProductos(nombre, precio, cantidad);
+		this.modelo.setListaCompra().anadirProductos(nombre, precio, cantidad);
 		this.modelo.setTotalCarro().añadirCoste(precio, cantidad);
 	}
 	

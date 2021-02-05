@@ -38,7 +38,7 @@ public class ModeloTest {
 	@Test
 	public void testListaCompra() {
 		resultadoEsperadoString = "Hamburguesa - Cantidad: "+2+" - Precio: "+5+"€ - Total: "+10+"€\n";
-		funciones.setListaCompra().añadirProductos("Hamburguesa",5,2);
+		funciones.setListaCompra().anadirProductos("Hamburguesa",5,2);
 		resultadoString = funciones.getListaCompra().leerLista();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}

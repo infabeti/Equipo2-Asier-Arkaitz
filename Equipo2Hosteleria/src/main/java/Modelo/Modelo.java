@@ -3,45 +3,59 @@ package Modelo;
 
 public class Modelo {
 
-	private ObtenerDatos nombresProductos, precioVentaProductos;
-	private AlmacenarDatos añadirProductos, leerLista, añadirCoste, leerCoste, borrarListaCompra, leerNumTrans, sumarNumTrans;
+	private Producto arrayProducto[]=new Producto[5];
+	private String arrayNombresProducto[]=new String[5];
+	private CarroCompra carro;
 	private ConexionMySQL probarConexion;
 	
 	//OBTENER DATOS DE PRODUCTOS
-	public ObtenerDatos getNombresProductos() {
-		return this.nombresProductos;
+	public String[] getNombresProductos() {
+		//arrayNombresProducto = Producto.nombresProductos();
+		
+		return arrayNombresProducto;
 	}
 	
-	public ObtenerDatos getPrecioVentaProductos() {
+	public String[] nombresProductos() {
+		//Producto arrayProducto[]=listaProductos();
+				
+		for(int i = 0;i<arrayProducto.length;i++)
+		{
+			arrayNombresProducto[i]=arrayProducto[i].getNombre();
+		}
+		
+		return arrayNombresProducto;
+	}
+	
+	public Producto getPrecioVentaProductos() {
 		return this.precioVentaProductos;
 	}
 	
 	//ALMACENAR DATOS CARRO DE LA COMPRA
-	public AlmacenarDatos setListaCompra() {
-		return this.añadirProductos;
+	public CarroCompra setListaCompra() {
+		this.anadirProductos;
 	}
 	
-	public AlmacenarDatos getListaCompra() {
+	public CarroCompra getListaCompra() {
 		return this.leerLista;
 	}
 	
-	public AlmacenarDatos setTotalCarro() {
+	public CarroCompra setTotalCarro() {
 		return this.añadirCoste;
 	}
 	
-	public AlmacenarDatos getTotalCarro() {
+	public CarroCompra getTotalCarro() {
 		return this.leerCoste;
 	}
 	
-	public AlmacenarDatos resetCarro() {
+	public CarroCompra resetCarro() {
 		return this.borrarListaCompra;
 	}
 	
-	public AlmacenarDatos mostrarNumeroTransaccion() {
+	public CarroCompra mostrarNumeroTransaccion() {
 		return this.leerNumTrans;
 	}
 	
-	public AlmacenarDatos aumentarNumeroTransaccion() {
+	public CarroCompra aumentarNumeroTransaccion() {
 		return this.sumarNumTrans;
 	}
 	

@@ -35,7 +35,7 @@ public class PanelRegistro extends JPanel{
 	private ControladorPanelRegistro controladorPanelRegistro;
 	private JTextField textNombre;
 	private JTextField textApellidos;
-	private JTextField textField;
+	private JTextField textNombreLocal;
 	
 	
 	
@@ -118,10 +118,10 @@ public class PanelRegistro extends JPanel{
 		lblNewLabel_6.setBounds(287, 213, 250, 14);
 		add(lblNewLabel_6);
 		
-		textField = new JTextField();
-		textField.setBounds(397, 238, 126, 20);
-		add(textField);
-		textField.setColumns(10);
+		textNombreLocal = new JTextField();
+		textNombreLocal.setBounds(397, 238, 126, 20);
+		add(textNombreLocal);
+		textNombreLocal.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Selecciona un tipo de local");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -148,16 +148,33 @@ public class PanelRegistro extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Registrarse");
 				
+
+				String contraseña1=textContraseña1.getText();
+				String contraseña2=textContraseña2.getText();
+				
+
+				if ( textUsuario.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"falta el DNI");
+				}
+				if ( textContraseña1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"falta la primera contraseña");
+				}
+				if ( textContraseña2.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"falta repetir la contraseña");
+				}
+				if ( textNombre.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"falta el Nombre");
+				}
+				if ( textApellidos.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"falta el Apellido");	
+				}
+				if ( textNombreLocal.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"falta el nombre del local");	
+				}
+				else {
 				
 				
-				
-				
-				if (textUsuario.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null,"Introduce un usuario por favor");
-				} else {
-				
-					// Expresion regular
-					if (textUsuario.getText().matches("[a-z][0-9]+") && textContraseña1.getText().equals(textContraseña2.getText())) {
+					if (  contraseña1.equals(contraseña2)) {
 						controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
 					} else {
 						
@@ -171,8 +188,8 @@ public class PanelRegistro extends JPanel{
 				
 					
 					
-				
 			}
+			
 		};
 	}
 	private ActionListener listenerbtnVolver(ControladorPanelRegistro controladorPanelRegistro) {

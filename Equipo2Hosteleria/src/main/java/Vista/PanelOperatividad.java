@@ -12,6 +12,8 @@ import Controlador.ControladorPanelOperatividad;
 import Controlador.ControladorPanelComandas;
 import Controlador.ControladorPanelAprovisionamiento;
 import Controlador.ControladorPanelTicketFactura;
+import Modelo.Usuario;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -27,8 +29,23 @@ public class PanelOperatividad extends JPanel {
 	private JButton btnPruebaConexion;
 	private JLabel lblOperatividad;
 	private ControladorPanelOperatividad controladorPanelOperatividad;
+	private Usuario usuario;
+	private String negocio;
 	
-	public PanelOperatividad(ControladorPanelOperatividad controladorPanelOperatividad)
+	
+	
+	/*public void Usuario(String Negocio) {
+		this.negocio=Negocio;
+		
+		if(negocio =="bar") {
+			btnPedidos.setEnabled(false);
+		}
+		if(negocio =="bar" || negocio =="cafeteria") {
+			btnComandas.setEnabled(false);
+		}
+	}
+	*/
+	public PanelOperatividad(ControladorPanelOperatividad controladorPanelOperatividad,Usuario usuario)
 	{
 		setBackground(new Color(102, 153, 255));
 		this.controladorPanelOperatividad = controladorPanelOperatividad;
@@ -82,6 +99,9 @@ public class PanelOperatividad extends JPanel {
 		this.btnAprovisionamiento.addActionListener(listenerBotonAprovisionamiento(this.controladorPanelOperatividad));
 		this.btnTicketfactura.addActionListener(listenerBotonTicketfactura(this.controladorPanelOperatividad));
 		this.btnPruebaConexion.addActionListener(listenerBotonPruebaConexion(this.controladorPanelOperatividad));
+		
+	
+		
 	}
 	
 	private ActionListener listenerBotonDesconectarse(ControladorPanelOperatividad controladorPanelOperatividad) {

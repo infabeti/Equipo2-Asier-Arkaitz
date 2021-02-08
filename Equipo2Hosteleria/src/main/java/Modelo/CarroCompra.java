@@ -1,9 +1,10 @@
 package Modelo;
 
 public class CarroCompra {
-		String ListaCompra="";
-		double TotalCarro=0;
-		private ConsultasBBDD consultasBBDD;
+	
+	String ListaCompra="";
+	double TotalCarro=0;
+	private ConsultasBBDD consultasBBDD;
 	
 	public void anadirProductos(String nombre, double precio, int cantidad) {
 		double total=precio*cantidad;

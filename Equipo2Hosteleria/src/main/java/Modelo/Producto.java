@@ -7,8 +7,6 @@ public class Producto {
 	protected String fechaCaducidad;
 	protected double precioCompra;
 	protected double precioVenta;
-	Producto arrayProducto[]=new Producto[5];
-	String arrayNombresProducto[]=new String[5];
 			
 	//Constructor con parametros
 	public Producto(String Nombre, String Tipo, String FechaCaducidad, double PrecioCompra, double PrecioVenta) {
@@ -18,7 +16,7 @@ public class Producto {
 		this.precioCompra = PrecioCompra;
 		this.precioVenta = PrecioVenta;
 
-			}
+	}
 	
 	//get y set
 	//get
@@ -73,10 +71,6 @@ public class Producto {
 	{
 		this.precioVenta = PrecioVenta;
 	}
-	
-	
-	//METODOS
-	
 	
 }
 

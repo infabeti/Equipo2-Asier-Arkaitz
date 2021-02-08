@@ -5,6 +5,9 @@ public class Ticket {
 	protected int NTransaccion;
 	protected String fecha;
 	protected String nif_local;
+	
+	//Constructor sin parametros
+	public Ticket() {}
 			
 	//Constructor con parametros
 	public Ticket(int NTransaccion, String fecha, String nif_local) {

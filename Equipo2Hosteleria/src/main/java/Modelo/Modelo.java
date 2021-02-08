@@ -1,42 +1,33 @@
 package Modelo;
 
-
 public class Modelo {
 
 	private ConsultasBBDD consultasBBDD;
+	private CarroCompra carroCompra;
+	private Ticket ticket;
 	
-	//ALMACENAR DATOS CARRO DE LA COMPRA
-	public CarroCompra setListaCompra() {
-		this.anadirProductos;
+	public ConsultasBBDD getConsultasBBDD() {
+		return this.consultasBBDD;
 	}
 	
-	public CarroCompra getListaCompra() {
-		return this.leerLista;
+	public void setConsultasBBDD(ConsultasBBDD consultasBBDD) {
+		this.consultasBBDD = consultasBBDD;
 	}
 	
-	public CarroCompra setTotalCarro() {
-		return this.añadirCoste;
+	public CarroCompra getCarroCompra() {
+		return this.carroCompra;
 	}
 	
-	public CarroCompra getTotalCarro() {
-		return this.leerCoste;
+	public void setCarroCompra(CarroCompra carroCompra) {
+		this.carroCompra = carroCompra;
 	}
 	
-	public CarroCompra resetCarro() {
-		return this.borrarListaCompra;
+	public Ticket getTicket() {
+		return this.ticket;
 	}
 	
-	public CarroCompra mostrarNumeroTransaccion() {
-		return this.leerNumTrans;
-	}
-	
-	public CarroCompra aumentarNumeroTransaccion() {
-		return this.sumarNumTrans;
-	}
-	
-	//MYSQL
-	public ConexionMySQL pruebaConexion() {
-		return this.probarConexion;
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
 	}
 	
 }

@@ -24,12 +24,12 @@ public class ControladorPanelOperatividad {
 	}
 	
 	public void accionadoBottonVolverPanelOperatividad() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
 	public boolean accionadoBottonPruebaConexionPanelOperatividad() {
-		return this.modelo.pruebaConexion().probarConexion();
+		return this.modelo.getConsultasBBDD().probarConexion();
 	}
 	
 	public void accionadoBottonMostrarPanelPedidos() {

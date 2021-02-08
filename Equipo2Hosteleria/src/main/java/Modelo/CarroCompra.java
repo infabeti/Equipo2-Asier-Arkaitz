@@ -1,9 +1,9 @@
 package Modelo;
 
-public class ProcesarDatos {
+public class CarroCompra {
 		String ListaCompra="";
 		double TotalCarro=0;
-		static int NTransaccion=1;
+		private ConsultasBBDD consultasBBDD;
 	
 	public void anadirProductos(String nombre, double precio, int cantidad) {
 		double total=precio*cantidad;
@@ -29,11 +29,11 @@ public class ProcesarDatos {
 	}
 	
 	public int leerNumTrans() {
-		return NTransaccion;
+		return consultasBBDD.getNTransaccion();
 	}
 		
-	public int sumarNumTrans() {
-		return NTransaccion++;
+	public void sumarNumTrans() {
+		consultasBBDD.setNTransaccion(consultasBBDD.getNTransaccion()+1);
 	}
 	
 }

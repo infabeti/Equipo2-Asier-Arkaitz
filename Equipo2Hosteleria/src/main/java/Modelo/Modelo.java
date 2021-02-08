@@ -3,32 +3,7 @@ package Modelo;
 
 public class Modelo {
 
-	private Producto arrayProducto[]=new Producto[5];
-	private String arrayNombresProducto[]=new String[5];
-	private CarroCompra carro;
-	private ConexionMySQL probarConexion;
-	
-	//OBTENER DATOS DE PRODUCTOS
-	public String[] getNombresProductos() {
-		//arrayNombresProducto = Producto.nombresProductos();
-		
-		return arrayNombresProducto;
-	}
-	
-	public String[] nombresProductos() {
-		//Producto arrayProducto[]=listaProductos();
-				
-		for(int i = 0;i<arrayProducto.length;i++)
-		{
-			arrayNombresProducto[i]=arrayProducto[i].getNombre();
-		}
-		
-		return arrayNombresProducto;
-	}
-	
-	public Producto getPrecioVentaProductos() {
-		return this.precioVentaProductos;
-	}
+	private ConsultasBBDD consultasBBDD;
 	
 	//ALMACENAR DATOS CARRO DE LA COMPRA
 	public CarroCompra setListaCompra() {

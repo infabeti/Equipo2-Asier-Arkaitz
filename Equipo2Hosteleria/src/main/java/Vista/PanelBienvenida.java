@@ -7,6 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelBienvenida;
+
+import Modelo.ConexionMySQL;
+import Modelo.Usuario;
+
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -77,15 +81,21 @@ public class PanelBienvenida extends JPanel{
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				String Usuario=textPane_Usuario.getText();	
-				String Contraseña=textPane_Contrasea.getText();	
-				
-					if(Usuario.equals("usuario") && Contraseña.equals("123")) {
-					System.out.println("Ejecutando evento Boton Logearse");
+				String usuario = textPane_Usuario.getText();
+				String contraseña = String.valueOf(textPane_Contrasea.getText());
+
+				ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
+
+				Usuario usuario1 = new Usuario();
+				usuario1.setUsuario(usuario);
+				usuario1.setContraseña(contraseña);
+
+				Usuario usu = ConexionMySQLUsuario.obtenerUsuario(usuario1);
+
+				if (usu != null) {
 					controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
-					}
-					
-					else {
+		
+				}else {
 						JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos.");
 					}
 				

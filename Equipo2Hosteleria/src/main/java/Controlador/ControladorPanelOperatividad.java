@@ -29,9 +29,9 @@ public class ControladorPanelOperatividad {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonPruebaConexionPanelOperatividad() {
+/*	public void accionadoBottonPruebaConexionPanelOperatividad() {
 		ConexionMySQL.btnProbarconexionActionPerformed();
-	}
+	}*/
 	
 	public void accionadoBottonMostrarPanelPedidos() {
 		this.controlador.navegarPanelPedidos();

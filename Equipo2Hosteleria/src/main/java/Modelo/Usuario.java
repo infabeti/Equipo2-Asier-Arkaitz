@@ -25,6 +25,22 @@ public class Usuario {
 
 			}
 	
+	public Usuario(String Usuario, String Contraseña, String Nombre, String Apellidos, String NIF) {
+		this.usuario = Usuario;
+
+		this.contraseña = Contraseña;
+		this.nombre = Nombre;
+		this.apellidos = Apellidos;
+
+		this.nif = NIF;
+
+			}
+	
+	public Usuario() {
+		
+	}
+	
+	
 	//get y set
 	//get
 	public String getUsuario() {

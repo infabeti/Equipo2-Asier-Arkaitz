@@ -29,8 +29,7 @@ public class PanelOperatividad extends JPanel {
 	private JButton btnPruebaConexion;
 	private JLabel lblOperatividad;
 	private ControladorPanelOperatividad controladorPanelOperatividad;
-	private Usuario usuario;
-	private String negocio;
+	
 	
 	
 	
@@ -45,7 +44,7 @@ public class PanelOperatividad extends JPanel {
 		}
 	}
 	*/
-	public PanelOperatividad(ControladorPanelOperatividad controladorPanelOperatividad,Usuario usuario)
+	public PanelOperatividad(ControladorPanelOperatividad controladorPanelOperatividad)
 	{
 		setBackground(new Color(102, 153, 255));
 		this.controladorPanelOperatividad = controladorPanelOperatividad;

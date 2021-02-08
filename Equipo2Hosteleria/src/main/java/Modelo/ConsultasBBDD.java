@@ -5,14 +5,14 @@ import java.sql.*;
 public class ConsultasBBDD {
 
     public static String DB = "equipo2hosteleria_dam";
-    public static String URL = "jdbc:mysql://localhost:33060/"+DB;
-    public static String USER = "root";
-    public static String PASS = "elorrieta";
+    public String URL = "jdbc:mysql://localhost:33060/"+DB;
+    public String USER = "root";
+    public String PASS = "elorrieta";
     static boolean conexion=false;
     private static Producto arrayProducto[]=new Producto[5];
 	static int NTransaccion=1;
     
-    public Producto[] listaProductos() {
+    public Producto[] getListaProductos() {
 		arrayProducto[0] = new Producto("Garbanzos","Comida","30-01-2021",5,5);
 		arrayProducto[1] = new Producto("Paella","Comida","31-01-2021",5,5);
 		arrayProducto[2] = new Producto("Bacalao","Comida","02-02-2021",5,5);
@@ -21,25 +21,27 @@ public class ConsultasBBDD {
 		return arrayProducto;
 	}
     
-    public String[] getNombresProductos(Producto[] arrayProducto) {
-    	String[] arrayNombresProducto = new String[arrayProducto.length];
+    public String[] nombresProductos() {
+    	Producto[] arrayProductos=getListaProductos();
+    	String[] arrayNombresProducto = new String[arrayProductos.length];
 		
-		for(int i = 0;i<arrayProducto.length;i++)
+		for(int i = 0;i<arrayProductos.length;i++)
 		{
-			arrayNombresProducto[i]=arrayProducto[i].getNombre();
+			arrayNombresProducto[i]=arrayProductos[i].getNombre();
 		}
 		
 		return arrayNombresProducto;
 	}
     
-    public double precioVentaProductos(String nombre, Producto[] arrayProducto) {
+    public double precioVentaProductos(String nombre) {
+    	Producto[] arrayProductos=getListaProductos();
     	double precio=0;
 		
-		for(int i = 0;i<arrayProducto.length;i++)
+		for(int i = 0;i<arrayProductos.length;i++)
 		{
-			if(nombre.equals(arrayProducto[i].getNombre())) {
-				precio=arrayProducto[i].getPrecioVenta();
-				i=arrayProducto.length;
+			if(nombre.equals(arrayProductos[i].getNombre())) {
+				precio=arrayProductos[i].getPrecioVenta();
+				i=arrayProductos.length;
 			}
 		}
 		
@@ -53,9 +55,12 @@ public class ConsultasBBDD {
 	public void setNTransaccion(int nTransaccion) {
 		NTransaccion = nTransaccion;
 	}
+	
+	public void sumarNTransaccion() {
+		NTransaccion++;
+	}
 
 
-   @SuppressWarnings("static-access")
    public Connection Conectar(){
 
        Connection link = null;
@@ -78,7 +83,7 @@ public class ConsultasBBDD {
 
    }
    
-   public static boolean probarConexion() {         
+   public boolean probarConexion() {         
 	   
 	   conexion=false;
 	   

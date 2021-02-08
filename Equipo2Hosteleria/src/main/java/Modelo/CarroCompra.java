@@ -4,7 +4,6 @@ public class CarroCompra {
 	
 	String ListaCompra="";
 	double TotalCarro=0;
-	private ConsultasBBDD consultasBBDD;
 	
 	public void anadirProductos(String nombre, double precio, int cantidad) {
 		double total=precio*cantidad;
@@ -27,14 +26,6 @@ public class CarroCompra {
 	public void borrarListaCompra() {
 		ListaCompra="";
 		TotalCarro=0;
-	}
-	
-	public int leerNumTrans() {
-		return consultasBBDD.getNTransaccion();
-	}
-		
-	public void sumarNumTrans() {
-		consultasBBDD.setNTransaccion(consultasBBDD.getNTransaccion()+1);
 	}
 	
 }

@@ -23,37 +23,37 @@ public class ControladorPanelPedidos {
 	}
 	
 	public String[] obtenerNombresProductos() {
-		return this.modelo.getNombresProductos().nombresProductos();
+		return this.modelo.getConsultasBBDD().nombresProductos();
 	}
 	
 	public double obtenerPrecioVentaProductos(String nombre) {
-		return this.modelo.getPrecioVentaProductos().precioVentaProductos(nombre);
+		return this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
 	}
 	
 	public void accionadoBottonVolverPanelPedidos() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelPedidos() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
 	public void accionadoBottonPasarACajaPanelPedidos() {
-		this.modelo.resetCarro().borrarListaCompra();
-		this.modelo.aumentarNumeroTransaccion().sumarNumTrans();
+		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public int mostrarNumeroTransaccion() {
-		return this.modelo.mostrarNumeroTransaccion().leerNumTrans();
+		return this.modelo.getConsultasBBDD().getNTransaccion();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {
-		double precio=this.modelo.getPrecioVentaProductos().precioVentaProductos(nombre);
-		this.modelo.setListaCompra().anadirProductos(nombre, precio, cantidad);
-		this.modelo.setTotalCarro().añadirCoste(precio, cantidad);
+		double precio=this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
+		this.modelo.getCarroCompra().anadirProductos(nombre, precio, cantidad);
+		this.modelo.getCarroCompra().anadirCoste(precio, cantidad);
 	}
 	
 	public void accionadoBottonListaCompraPanelPedidos() {

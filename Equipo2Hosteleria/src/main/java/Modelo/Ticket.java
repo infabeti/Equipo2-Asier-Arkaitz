@@ -5,6 +5,7 @@ public class Ticket {
 	protected int NTransaccion;
 	protected String fecha;
 	protected String nif_local;
+	private ConsultasBBDD consultasBBDD;
 	
 	//Constructor sin parametros
 	public Ticket() {}
@@ -17,11 +18,11 @@ public class Ticket {
 	}
 
 	public int getNTransaccion() {
-		return NTransaccion;
+		return consultasBBDD.getNTransaccion();
 	}
 
 	public void setNTransaccion(int nTransaccion) {
-		NTransaccion = nTransaccion;
+		consultasBBDD.setNTransaccion(nTransaccion);
 	}
 
 	public String getFecha() {
@@ -41,4 +42,3 @@ public class Ticket {
 	}
 	
 }
-

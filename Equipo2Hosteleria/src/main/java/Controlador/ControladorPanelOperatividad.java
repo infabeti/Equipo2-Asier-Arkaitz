@@ -4,7 +4,6 @@ import Modelo.Modelo;
 import Vista.PanelOperatividad;
 import Vista.Vista;
 
-@SuppressWarnings("static-access")
 public class ControladorPanelOperatividad {
 
 	private Modelo modelo;

@@ -4,7 +4,6 @@ import Modelo.Modelo;
 import Vista.PanelListaCompra;
 import Vista.Vista;
 
-@SuppressWarnings("static-access")
 public class ControladorPanelListaCompra {
 
 	private Modelo modelo;
@@ -24,11 +23,11 @@ public class ControladorPanelListaCompra {
 	}
 	
 	public String obtenerListaCompra() {
-		return this.modelo.getListaCompra().leerLista();
+		return this.modelo.getCarroCompra().leerLista();
 	}
 	
 	public double obtenerTotalCarro() {
-		return this.modelo.getTotalCarro().leerCoste();
+		return this.modelo.getCarroCompra().leerCoste();
 	}
 	
 	public void accionadoBottonVolverPanelListaCompra() {
@@ -36,17 +35,17 @@ public class ControladorPanelListaCompra {
 	}
 	
 	public void accionadoBottonDesconectarsePanelListaCompra() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
 	public void accionadoBottonPagarPanelListaCompra() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonBorrarListaPanelListaCompra() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 	}
 	
 	

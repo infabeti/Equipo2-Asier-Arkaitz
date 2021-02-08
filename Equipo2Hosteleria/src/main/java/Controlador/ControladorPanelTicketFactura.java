@@ -4,7 +4,6 @@ import Modelo.Modelo;
 import Vista.PanelTicketFactura;
 import Vista.Vista;
 
-@SuppressWarnings("static-access")
 public class ControladorPanelTicketFactura {
 
 	private Modelo modelo;
@@ -19,19 +18,19 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public String[] obtenerNombresProductos() {
-		return this.modelo.getNombresProductos().nombresProductos();
+		return this.modelo.getConsultasBBDD().nombresProductos();
 	}
 	
 	public double obtenerPrecioVentaProductos(String nombre) {
-		return this.modelo.getPrecioVentaProductos().precioVentaProductos(nombre);
+		return this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
 	}
 	
 	public String obtenerListaCompra() {
-		return this.modelo.getListaCompra().leerLista();
+		return this.modelo.getCarroCompra().leerLista();
 	}
 	
 	public double obtenerTotalCarro() {
-		return this.modelo.getTotalCarro().leerCoste();
+		return this.modelo.getCarroCompra().leerCoste();
 	}
 	
 	public void mostrarPanelTicketFactura() {
@@ -40,32 +39,32 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public void accionadoBottonVolverPanelTicketFactura() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelTicketFactura() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
 	public void accionadoBottonPagarPanelTicketFactura() {
-		this.modelo.resetCarro().borrarListaCompra();
-		this.modelo.aumentarNumeroTransaccion().sumarNumTrans();
+		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public int mostrarNumeroTransaccion() {
-		return this.modelo.mostrarNumeroTransaccion().leerNumTrans();
+		return this.modelo.getConsultasBBDD().getNTransaccion();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelTicketFactura(String nombre, int cantidad) {
-		double precio=this.modelo.getPrecioVentaProductos().precioVentaProductos(nombre);
-		this.modelo.setListaCompra().anadirProductos(nombre, precio, cantidad);
-		this.modelo.setTotalCarro().añadirCoste(precio, cantidad);
+		double precio=this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
+		this.modelo.getCarroCompra().anadirProductos(nombre, precio, cantidad);
+		this.modelo.getCarroCompra().anadirCoste(precio, cantidad);
 	}
 	
 	public void accionadoBottonBorrarListaPanelTicketFactura() {
-		this.modelo.resetCarro().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarListaCompra();
 	}
 }

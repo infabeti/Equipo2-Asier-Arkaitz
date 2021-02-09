@@ -22,7 +22,7 @@ public class Ticket {
 	}
 
 	public void setNTransaccion(int nTransaccion) {
-		consultasBBDD.setNTransaccion(nTransaccion);
+		this.NTransaccion = nTransaccion;
 	}
 
 	public String getFecha() {

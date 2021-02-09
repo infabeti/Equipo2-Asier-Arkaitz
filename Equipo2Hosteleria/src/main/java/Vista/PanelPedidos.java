@@ -38,6 +38,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ControladorPanelPedidos controladorPanelPedidos;
 	
 	public static int ControlarCaja=0;
+	private String tipo;
 	private JLabel lblLocal;
 	private JTextPane textPane_Local;
 	
@@ -182,11 +183,13 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			lblDireccin.setEnabled(false);
 			textPane_Direccion.setEnabled(false);
 			btnPasarACaja.setEnabled(true);
+			tipo="RECOGIDA";
 		}
 		if (rdbtnEntregaADomicilio.isSelected()) {
 			lblDireccin.setEnabled(true);
 			textPane_Direccion.setEnabled(true);
 			btnPasarACaja.setEnabled(true);
+			tipo="ENTREGA";
 		}
 	}
 	
@@ -213,16 +216,17 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String domicilio=textPane_Direccion.getText();
 				if(ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
 				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("") && !textPane_Fecha.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
+					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(tipo, domicilio);
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected() && !textPane_Fecha.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
+					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(tipo, null);
 				}else {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
 				}

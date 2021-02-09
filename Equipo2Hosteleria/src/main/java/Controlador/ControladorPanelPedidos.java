@@ -40,7 +40,8 @@ public class ControladorPanelPedidos {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonPasarACajaPanelPedidos() {
+	public void accionadoBottonPasarACajaPanelPedidos(String tipo, String domicilio) {
+		this.modelo.getConsultasBBDD().makePedido(tipo, domicilio);
 		this.modelo.getCarroCompra().borrarListaCompra();
 		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();

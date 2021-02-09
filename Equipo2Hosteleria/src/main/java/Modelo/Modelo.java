@@ -4,12 +4,10 @@ public class Modelo {
 
 	private ConsultasBBDD consultasBBDD;
 	private CarroCompra carroCompra;
-	private Ticket ticket;
 	
-	public Modelo(ConsultasBBDD consultasBBDD, CarroCompra carroCompra, Ticket ticket) {
+	public Modelo(ConsultasBBDD consultasBBDD, CarroCompra carroCompra) {
 		this.setConsultasBBDD(consultasBBDD);
 		this.setCarroCompra(carroCompra);
-		this.setTicket(ticket);
 	}
 	
 	public ConsultasBBDD getConsultasBBDD() {
@@ -26,14 +24,6 @@ public class Modelo {
 	
 	public void setCarroCompra(CarroCompra carroCompra) {
 		this.carroCompra = carroCompra;
-	}
-	
-	public Ticket getTicket() {
-		return this.ticket;
-	}
-	
-	public void setTicket(Ticket ticket) {
-		this.ticket = ticket;
 	}
 	
 }

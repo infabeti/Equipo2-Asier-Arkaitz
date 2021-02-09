@@ -1,6 +1,8 @@
 package Modelo;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.Arrays;
 
 public class ConsultasBBDD {
 
@@ -10,7 +12,11 @@ public class ConsultasBBDD {
     public String PASS = "elorrieta";
     static boolean conexion=false;
     private static Producto arrayProducto[]=new Producto[5];
+    private Ticket arrayTicket[]=new Ticket[99];
+    private Factura arrayFactura[]=new Factura[99];
+    private Pedido arrayPedido[]=new Pedido[99];
 	static int NTransaccion=1;
+	LocalDate date = LocalDate.now();
     
     public Producto[] getListaProductos() {
 		arrayProducto[0] = new Producto("Garbanzos","Comida","30-01-2021",5,5);
@@ -48,6 +54,24 @@ public class ConsultasBBDD {
 		return precio;
 	}
     
+    public void makeTicket() {
+    	String fecha = date.toString();
+		arrayTicket[getNTransaccion()-1] = new Ticket(getNTransaccion(), fecha, getNIFLocal());
+		System.out.println(Arrays.toString(arrayTicket));
+	}
+    
+    public void makeFactura(String nif, String nombre, String apellidos) {
+    	String fecha = date.toString();
+		arrayFactura[getNTransaccion()-1] = new Factura(getNTransaccion(), fecha,getNIFLocal(), nif, nombre, apellidos);
+		System.out.println(Arrays.toString(arrayFactura));
+	}
+    
+    public void makePedido(String tipo, String domicilio) {
+    	String fecha = date.toString();
+		arrayPedido[getNTransaccion()-1] = new Pedido(getNTransaccion(), fecha, getNIFLocal(), tipo, domicilio);
+		System.out.println(Arrays.toString(arrayPedido));
+	}
+    
     public int getNTransaccion() {
 		return NTransaccion;
 	}
@@ -58,6 +82,10 @@ public class ConsultasBBDD {
 	
 	public void sumarNTransaccion() {
 		NTransaccion++;
+	}
+	
+	public String getNIFLocal() {
+		return "12345678L";
 	}
 
 

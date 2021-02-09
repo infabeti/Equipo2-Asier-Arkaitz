@@ -16,7 +16,9 @@ import Controlador.ControladorPanelBienvenida;
 import Controlador.ControladorPanelOperatividad;
 import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelRegistro;
+import Modelo.ConexionMySQL;
 import Modelo.Producto;
+import Modelo.Usuario;
 import Controlador.ControladorPanelAprovisionamiento;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -31,11 +33,11 @@ public class PanelRegistro extends JPanel{
 	private JTextField textContraseña2;
 	private JButton btnCrear;
 	private JButton btnVolver;
-
+	private JComboBox comboBox_Local;
+	
 	private ControladorPanelRegistro controladorPanelRegistro;
 	private JTextField textNombre;
 	private JTextField textApellidos;
-	private JTextField textNombreLocal;
 	
 	
 	
@@ -113,24 +115,14 @@ public class PanelRegistro extends JPanel{
 		textApellidos.setBounds(79, 238, 132, 20);
 		add(textApellidos);
 		
-		JLabel lblNewLabel_6 = new JLabel("Introduce el Nombre del local");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_6.setBounds(287, 213, 250, 14);
-		add(lblNewLabel_6);
-		
-		textNombreLocal = new JTextField();
-		textNombreLocal.setBounds(397, 238, 126, 20);
-		add(textNombreLocal);
-		textNombreLocal.setColumns(10);
-		
-		JLabel lblNewLabel_4 = new JLabel("Selecciona un tipo de local");
+		JLabel lblNewLabel_4 = new JLabel("Selecciona el local");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_4.setBounds(76, 290, 225, 14);
 		add(lblNewLabel_4);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(79, 317, 148, 22);
-		add(comboBox);
+		comboBox_Local = new JComboBox();
+		comboBox_Local.setBounds(79, 317, 148, 22);
+		add(comboBox_Local);
 		
 		
 		initializeEvents();
@@ -148,7 +140,12 @@ public class PanelRegistro extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Registrarse");
 				
-
+				String usuario = textUsuario.getText();
+				String contraseña = textContraseña1.getText();
+				String nombre = textNombre.getText();
+				String apellidos = textApellidos.getText();
+				String Nif = "B78107158";
+				
 				String contraseña1=textContraseña1.getText();
 				String contraseña2=textContraseña2.getText();
 				
@@ -168,17 +165,31 @@ public class PanelRegistro extends JPanel{
 				if ( textApellidos.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"falta el Apellido");	
 				}
-				if ( textNombreLocal.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"falta el nombre del local");	
-				}
 				else {
 				
 				
-					if (  contraseña1.equals(contraseña2)) {
-						controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
+					if (contraseña1.equals(contraseña2)) {
+						
+						ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
+
+						Usuario usuario2 = new Usuario();
+						usuario2.setUsuario(usuario);
+						usuario2.setContraseña(contraseña);
+						usuario2.setNombre(nombre);
+						usuario2.setApellidos(apellidos);
+						usuario2.setNif(Nif);
+						
+						Usuario usu = ConexionMySQLUsuario.registrarUsuario(usuario2);
+
+						if (usu != null) {
+							controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
+						} else {
+
+							JOptionPane.showMessageDialog(null,"El usuario ya existe");
+						}
+						
 					} else {
-						
-						
+
 						JOptionPane.showMessageDialog(null,"La contraseña es incorrecta.");
 					}
 				}

@@ -66,5 +66,40 @@ public Usuario obtenerUsuario(Usuario usu){
 	
 }
 
+public Usuario registrarUsuario(Usuario usu){
+	
+	Usuario usuario = null;
+	
+	Connection con = null;
+	PreparedStatement pst = null;
+	ResultSet rs = null;
+	Statement st = null;
+	
+	try {
+	
+		con = ConexionMySQL.getConexion();
+
+		st = con.createStatement();
+		
+		pst = con.prepareStatement("INSERT INTO usuario (dni, contraseña, nombre, apellido, nif_local)"+ " values(?,?,?,?,?)");
+		
+		pst.setString(1, usu.getUsuario());
+		pst.setString(2, usu.getContraseña());
+		pst.setString(3, usu.getNombre());
+		pst.setString(4, usu.getApellidos());
+		pst.setString(5, usu.getNif());
+		
+		pst.executeUpdate();
+		
+		System.out.println("Usuario creado correctamente");
+		
+	} catch (Exception e) {
+	System.out.println("El usuario ya existe");
+	}
+	
+	return usuario;
+	
+}
+
 }
    

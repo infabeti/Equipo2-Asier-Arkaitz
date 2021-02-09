@@ -2,7 +2,6 @@ package Modelo;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class ConsultasBBDD {
 
@@ -57,19 +56,16 @@ public class ConsultasBBDD {
     public void makeTicket() {
     	String fecha = date.toString();
 		arrayTicket[getNTransaccion()-1] = new Ticket(getNTransaccion(), fecha, getNIFLocal());
-		System.out.println(Arrays.toString(arrayTicket));
 	}
     
     public void makeFactura(String nif, String nombre, String apellidos) {
     	String fecha = date.toString();
 		arrayFactura[getNTransaccion()-1] = new Factura(getNTransaccion(), fecha,getNIFLocal(), nif, nombre, apellidos);
-		System.out.println(Arrays.toString(arrayFactura));
 	}
     
     public void makePedido(String tipo, String domicilio) {
     	String fecha = date.toString();
 		arrayPedido[getNTransaccion()-1] = new Pedido(getNTransaccion(), fecha, getNIFLocal(), tipo, domicilio);
-		System.out.println(Arrays.toString(arrayPedido));
 	}
     
     public int getNTransaccion() {

@@ -48,7 +48,12 @@ public class ControladorPanelTicketFactura {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonPagarPanelTicketFactura() {
+	public void accionadoBottonPagarPanelTicketFactura(int factura, String nif, String nombre, String apellidos) {
+		if(factura==0) {
+			this.modelo.getConsultasBBDD().makeTicket();	
+		}else if(factura==1) {
+			this.modelo.getConsultasBBDD().makeFactura(nif, nombre, apellidos);	
+		}
 		this.modelo.getCarroCompra().borrarListaCompra();
 		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();

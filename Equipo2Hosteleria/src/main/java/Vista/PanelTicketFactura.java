@@ -54,6 +54,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	public static int ControlarCaja=0;
 	public static String ListaCompra="";
 	public static String ListaCompraTotal="";
+	private int factura=0;
 
 	static String LocalP="El plato caliente";
 	private JLabel lblProductos_1;
@@ -246,6 +247,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			textPane_NIF.setEnabled(false);
 			textPane_Nombre.setEnabled(false);
 			textPane_Apellidos.setEnabled(false);
+			factura=0;
 		}
 		if (rdbtnFactura.isSelected()) {
 			lblNif.setEnabled(true);
@@ -254,6 +256,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			textPane_NIF.setEnabled(true);
 			textPane_Nombre.setEnabled(true);
 			textPane_Apellidos.setEnabled(true);
+			factura=1;
 		}
 	}
 	
@@ -284,11 +287,11 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					if (rdbtnTicket.isSelected() && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
 						System.out.println("Ejecutando evento Boton Pagar");
 						ControlarCaja=0;
-						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
+						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, null, null, null);	
 					}else if (rdbtnFactura.isSelected() && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
 						System.out.println("Ejecutando evento Boton Pagar");
 						ControlarCaja=0;
-						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
+						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, textPane_NIF.getText(), textPane_Nombre.getText(), textPane_Apellidos.getText());	
 					}else {
 						JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
 					}

@@ -181,7 +181,8 @@ public class PanelRegistro extends JPanel{
 						
 						Usuario usu = ConexionMySQLUsuario.registrarUsuario(usuario2);
 
-						if (usu != null) {
+						if (usu == null) {
+							JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
 							controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
 						} else {
 

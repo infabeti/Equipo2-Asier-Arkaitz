@@ -1,44 +1,46 @@
 package Modelo;
 
-public class Factura {
+public class Factura extends Ticket{
 
-	protected int NTransaccion;
-	protected String fecha;
-	protected String nif_local;
-	private ConsultasBBDD consultasBBDD;
+	private String nif;
+	private String nombre;
+	private String apellidos;
 	
 	//Constructor sin parametros
 	public Factura() {}
 			
 	//Constructor con parametros
-	public Factura(int NTransaccion, String fecha, String nif_local) {
+	public Factura(int NTransaccion, String fecha, String nif_local, String nif, String nombre, String apellidos) {
 		this.setNTransaccion(NTransaccion);
 		this.setFecha(fecha);
 		this.setNif_local(nif_local);
+		this.setNif(nif);
+		this.setNombre(nombre);
+		this.setApellidos(apellidos);
 	}
 
-	public int getNTransaccion() {
-		return consultasBBDD.getNTransaccion();
+	public String getNif() {
+		return nif;
 	}
 
-	public void setNTransaccion(int nTransaccion) {
-		consultasBBDD.setNTransaccion(nTransaccion);
+	public void setNif(String nif) {
+		this.nif = nif;
 	}
 
-	public String getFecha() {
-		return fecha;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getNif_local() {
-		return nif_local;
+	public String getApellidos() {
+		return apellidos;
 	}
 
-	public void setNif_local(String nif_local) {
-		this.nif_local = nif_local;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 	
 }

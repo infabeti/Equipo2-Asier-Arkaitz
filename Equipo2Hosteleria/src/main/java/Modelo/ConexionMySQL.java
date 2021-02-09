@@ -67,30 +67,18 @@ public Usuario obtenerUsuario(Usuario usu){
 
 public Usuario registrarUsuario(Usuario usu){
 	
-	Usuario usuario = null;
+	Usuario usuario3 = null;
 	
 	Connection con = null;
 	PreparedStatement pst = null;
+	PreparedStatement pstt = null;
 	ResultSet rs = null;
 	Statement st = null;
 	
 	try {
 	
 		con = ConexionMySQL.getConexion();
-		
-		String sql = "select*from usuario where dni = ? and contraseña =  ? ";
-		
-		pst = con.prepareStatement(sql);
-		
-		pst.setString(1, usu.getUsuario());
-		pst.setString(2, usu.getContraseña());
-		
-		rs = pst.executeQuery();
-		
-		while (rs.next()) {
-			usuario = new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));			
-		}
-		
+
 		st = con.createStatement();
 		
 		pst = con.prepareStatement("INSERT INTO usuario (dni, contraseña, nombre, apellido, nif_local)"+ " values(?,?,?,?,?)");
@@ -103,12 +91,29 @@ public Usuario registrarUsuario(Usuario usu){
 		
 		pst.executeUpdate();
 
+		String sql = "select*from usuario where dni = ? and contraseña =  ? and nombre =  ? and apellido =  ? and nif_local =  ? ";
+		
+		pst = con.prepareStatement(sql);
+		
+		pst.setString(1, usu.getUsuario());
+		pst.setString(2, usu.getContraseña());
+		pst.setString(3, usu.getNombre());
+		pst.setString(4, usu.getApellidos());
+		pst.setString(5, usu.getNif());
+		
+		rs = pst.executeQuery();
+		
+		while (rs.next()) {
+			usuario3 = new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));			
+		}
+		
+		
 		
 	} catch (Exception e) {
-	System.out.println("El usuario ya existe");
+	System.out.println("El usuario ya existe o imposible implementar ese usuario");
 	}
 	
-	return usuario;
+	return usuario3;
 	
 }
 

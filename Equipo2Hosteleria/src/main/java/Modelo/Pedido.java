@@ -13,6 +13,8 @@ public class Pedido extends Ticket{
 		this.setNTransaccion(NTransaccion);
 		this.setFecha(fecha);
 		this.setNif_local(nif_local);
+		this.setTipo(tipo);
+		this.setDomicilio(domicilio);
 	}
 
 	public String getTipo() {

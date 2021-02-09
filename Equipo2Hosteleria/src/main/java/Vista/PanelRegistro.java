@@ -38,10 +38,9 @@ public class PanelRegistro extends JPanel{
 	private ControladorPanelRegistro controladorPanelRegistro;
 	private JTextField textNombre;
 	private JTextField textApellidos;
+	private JTextField textField_NIFLocal;
 	
-	
-	
-	
+
 	public PanelRegistro(ControladorPanelRegistro controladorPanelRegistro) {
 		
 		setBackground(new Color(102, 153, 255));
@@ -124,6 +123,16 @@ public class PanelRegistro extends JPanel{
 		comboBox_Local.setBounds(79, 317, 148, 22);
 		add(comboBox_Local);
 		
+		JLabel lblNewNifLocal = new JLabel("Selecciona NIF del local");
+		lblNewNifLocal.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewNifLocal.setBounds(370, 216, 225, 14);
+		add(lblNewNifLocal);
+		
+		textField_NIFLocal = new JTextField();
+		textField_NIFLocal.setColumns(10);
+		textField_NIFLocal.setBounds(370, 238, 153, 20);
+		add(textField_NIFLocal);
+		
 		
 		initializeEvents();
 	}
@@ -144,26 +153,29 @@ public class PanelRegistro extends JPanel{
 				String contraseña = textContraseña1.getText();
 				String nombre = textNombre.getText();
 				String apellidos = textApellidos.getText();
-				String Nif = "B78107158";
+				String Nif = textField_NIFLocal.getText();
 				
 				String contraseña1=textContraseña1.getText();
 				String contraseña2=textContraseña2.getText();
 				
 
 				if ( textUsuario.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"falta el DNI");
+					JOptionPane.showMessageDialog(null,"Falta el DNI");
 				}
 				if ( textContraseña1.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"falta la primera contraseña");
+					JOptionPane.showMessageDialog(null,"Falta la primera contraseña");
 				}
 				if ( textContraseña2.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"falta repetir la contraseña");
+					JOptionPane.showMessageDialog(null,"Falta repetir la contraseña");
 				}
 				if ( textNombre.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"falta el Nombre");
+					JOptionPane.showMessageDialog(null,"Falta el Nombre");
 				}
 				if ( textApellidos.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"falta el Apellido");	
+					JOptionPane.showMessageDialog(null,"Falta el Apellido");	
+				}
+				if ( textField_NIFLocal.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"Falta el NIF");	
 				}
 				else {
 				

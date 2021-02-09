@@ -9,9 +9,16 @@ public class Main {
 	private static Vista vista;
 	@SuppressWarnings("unused")
 	private static Controlador controlador;
+	private static ConsultasBBDD consultasBBDD;
+	private static CarroCompra carroCompra;
+	private static Ticket ticket;
 	
 	public static void main(String[] args) {
-		modelo = new Modelo();    
+		consultasBBDD = new ConsultasBBDD();
+		carroCompra = new CarroCompra();
+		ticket = new Ticket();
+		
+		modelo = new Modelo(consultasBBDD, carroCompra, ticket);
 		vista = new Vista();
                 
 		controlador = new Controlador(modelo, vista);

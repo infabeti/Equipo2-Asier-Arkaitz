@@ -6,6 +6,12 @@ public class Modelo {
 	private CarroCompra carroCompra;
 	private Ticket ticket;
 	
+	public Modelo(ConsultasBBDD consultasBBDD, CarroCompra carroCompra, Ticket ticket) {
+		this.setConsultasBBDD(consultasBBDD);
+		this.setCarroCompra(carroCompra);
+		this.setTicket(ticket);
+	}
+	
 	public ConsultasBBDD getConsultasBBDD() {
 		return this.consultasBBDD;
 	}

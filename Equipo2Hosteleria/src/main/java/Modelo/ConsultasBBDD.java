@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class ConsultasBBDD {
 
-    public static String DB = "equipo2hosteleria_dam";
+    public String DB = "equipo2hosteleria_dam";
     public String URL = "jdbc:mysql://localhost:33060/"+DB;
     public String USER = "root";
     public String PASS = "elorrieta";

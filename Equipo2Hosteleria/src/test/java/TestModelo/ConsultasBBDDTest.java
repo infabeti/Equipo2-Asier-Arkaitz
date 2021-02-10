@@ -10,6 +10,7 @@ import Modelo.Producto;
 public class ConsultasBBDDTest {
 
 	private ConsultasBBDD consultasBBDD = new ConsultasBBDD();
+	private ConsultasBBDD consultasBBDDMock = mock(ConsultasBBDD.class);
 	private int resultado;
 	private double resultadoDouble;
 	private String resultadoString;
@@ -24,6 +25,7 @@ public class ConsultasBBDDTest {
 	private Producto[] arrayProductosEsperado;
 	private int NTransaccion=1;
 	private String arrayNombresProducto[]= {"Garbanzos","Paella","Bacalao","Hamburguesa","Cerveza"};
+	
 	@Test
 	public void testGetListaProductos() {
 		arrayProductosEsperado = new Producto[5];
@@ -38,6 +40,10 @@ public class ConsultasBBDDTest {
 		assertArrayEquals(resultadoEsperadoArrayString, resultadoArrayString);
 		testNombresProductos();
 		testGetPrecioVentaProductos();
+		testGetNumeroTransaccion();
+		testSumarNumeroTransaccion();
+		testSetNumeroTransaccion();
+		testPruebaConexion();
 	}
 	@Test
 	public void testNombresProductos() {
@@ -50,45 +56,24 @@ public class ConsultasBBDDTest {
 		resultadoEsperadoDouble = 5;
 		resultadoDouble = consultasBBDD.precioVentaProductos("Hamburguesa");
 		org.junit.Assert.assertEquals(resultadoEsperadoDouble, resultadoDouble, 1);
-	}/*
-	@Test
-	public void testListaCompra() {
-		resultadoEsperadoString = "Hamburguesa - Cantidad: "+2+" - Precio: "+5+"€ - Total: "+10+"€\n";
-		carroCompra.anadirProductos("Hamburguesa",5,2);
-		resultadoString = funciones.getCarroCompra().leerLista();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
-	public void testTotalCarro() {
-		resultadoEsperadoDouble = 10;
-		carroCompra.anadirCoste(5,2);
-		resultadoDouble = funciones.getCarroCompra().leerCoste();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
-	}
-	@Test
-	public void testResetCarroString() {
-		resultadoEsperadoString = "";
-		carroCompra.borrarListaCompra();
-		resultadoString = funciones.getCarroCompra().leerLista();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
-	}
-	@Test
-	public void testResetCarroDouble() {
-		resultadoEsperadoDouble = 0;
-		carroCompra.borrarListaCompra();
-		resultadoDouble = funciones.getCarroCompra().leerCoste();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
-	}
-	@Test
-	public void testMostrarNumeroTransaccion() {
+	public void testGetNumeroTransaccion() {
 		resultadoEsperado = NTransaccion;
 		resultado = consultasBBDD.getNTransaccion();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
-	public void testAumentarNumeroTransaccion() {
-		resultadoEsperado = NTransaccion++;
+	public void testSumarNumeroTransaccion() {
+		resultadoEsperado = 2;
 		consultasBBDD.sumarNTransaccion();
+		resultado = consultasBBDD.getNTransaccion();
+		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
+	}
+	@Test
+	public void testSetNumeroTransaccion() {
+		resultadoEsperado = 3;
+		consultasBBDD.setNTransaccion(3);
 		resultado = consultasBBDD.getNTransaccion();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
@@ -96,6 +81,34 @@ public class ConsultasBBDDTest {
 	public void testPruebaConexion() {
 		resultadoEsperadoBoolean = true;
 		resultadoBoolean = consultasBBDD.probarConexion();
+		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
+	}/*
+	@Test
+	public void testListaCompra() {
+		resultadoEsperadoString = "Hamburguesa - Cantidad: "+2+" - Precio: "+5+"€ - Total: "+10+"€\n";
+		carroCompra.anadirProductos("Hamburguesa",5,2);
+		resultadoString = carroCompra.leerLista();
+		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
+	}
+	@Test
+	public void testTotalCarro() {
+		resultadoEsperadoDouble = 10;
+		carroCompra.anadirCoste(5,2);
+		resultadoDouble = carroCompra.leerCoste();
+		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
+	}
+	@Test
+	public void testResetCarroString() {
+		resultadoEsperadoString = "";
+		carroCompra.borrarListaCompra();
+		resultadoString = carroCompra.leerLista();
+		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
+	}
+	@Test
+	public void testResetCarroDouble() {
+		resultadoEsperadoDouble = 0;
+		carroCompra.borrarListaCompra();
+		resultadoDouble = carroCompra.leerCoste();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	*/

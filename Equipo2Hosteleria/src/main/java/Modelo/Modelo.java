@@ -9,11 +9,6 @@ public class Modelo {
 		consultasBBDD = new ConsultasBBDD();
 		carroCompra = new CarroCompra();
 	}
-	/*
-	public Modelo(ConsultasBBDD consultasBBDD, CarroCompra carroCompra) {
-		this.setConsultasBBDD(consultasBBDD);
-		this.setCarroCompra(carroCompra);
-	}*/
 	
 	public ConsultasBBDD getConsultasBBDD() {
 		return this.consultasBBDD;

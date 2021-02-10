@@ -35,9 +35,8 @@ public class ConsultasBBDDTest {
 		arrayProductos = consultasBBDD.getListaProductos();
 		resultadoEsperadoArrayString = arrayNombresProducto;
 		resultadoArrayString = consultasBBDD.nombresProductos();
-		//org.junit.Assert.assertEquals(resultadoEsperadoArray, resultadoArray);
 		assertArrayEquals(resultadoEsperadoArrayString, resultadoArrayString);
-	}/*
+	}
 	@Test
 	public void testNombresProductos() {
 		resultadoEsperadoArrayString = arrayNombresProducto;
@@ -47,9 +46,9 @@ public class ConsultasBBDDTest {
 	@Test
 	public void testGetPrecioVentaProductos() {
 		resultadoEsperadoDouble = 5;
-		resultadoDouble = funciones.getConsultasBBDD().precioVentaProductos("Hamburguesa");
+		resultadoDouble = consultasBBDD.precioVentaProductos("Hamburguesa");
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
-	}
+	}/*
 	@Test
 	public void testListaCompra() {
 		resultadoEsperadoString = "Hamburguesa - Cantidad: "+2+" - Precio: "+5+"€ - Total: "+10+"€\n";

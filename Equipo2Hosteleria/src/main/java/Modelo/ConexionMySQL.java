@@ -17,7 +17,7 @@ public class ConexionMySQL {
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
+			String url = "jdbc:mysql://localhost:3306/equipo2hosteleria_dam";
 			String usr = "root";
 			String psw = "elorrieta";
 			
@@ -116,6 +116,61 @@ public Usuario registrarUsuario(Usuario usu){
 	return usuario3;
 	
 }
+
+public Ticket RegistrarTicket(Ticket tic) {
+	
+	Ticket ticket1=null;
+	
+	
+	 Connection con = null;
+	 PreparedStatement ps = null;
+	 PreparedStatement pst = null;
+	 ResultSet rs = null;
+	 Statement st = null;
+	 
+	
+	 
+	 try {
+		 
+	con = ConexionMySQL.getConexion();	
+	
+	st = con.createStatement();
+		 
+	ps = con.prepareStatement("INSERT INTO ticket(num_trans, fecha, nif_local) VAlUES(?,?,?)");
+		 
+	 ps.setInt(1,tic.getNTransaccion());
+	 ps.setString(2,tic.getFecha());
+	 ps.setString(3,tic.getNif_local());
+		 
+		 ps.executeUpdate();
+
+			String sql = "select*from ticket where num_trans = ? and fecha =  ? and nif_local =  ?";
+			
+			ps = con.prepareStatement(sql); 
+		 
+	 
+	 ps.setInt(1,tic.getNTransaccion());
+	 ps.setString(2,tic.getFecha());
+	 ps.setString(3,tic.getNif_local());
+	
+	 rs = ps.executeQuery();
+	 
+	 while (rs.next()) {
+			ticket1 = new Ticket(rs.getInt(1), rs.getString(2), rs.getString(3));			
+		}
+	 
+	 System.out.println("Se ha creado el ticket correctamente");
+	 
+	 } catch (Exception e) {
+			System.out.println("Error en creacion del Ticket");
+			}
+
+	 return ticket1;
+	 
+
+	 
+
+	 }
 
 }
    

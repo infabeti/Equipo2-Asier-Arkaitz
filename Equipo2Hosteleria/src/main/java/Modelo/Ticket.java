@@ -18,7 +18,7 @@ public class Ticket {
 	}
 
 	public int getNTransaccion() {
-		return consultasBBDD.getNTransaccion();
+		return this.NTransaccion;
 	}
 
 	public void setNTransaccion(int nTransaccion) {

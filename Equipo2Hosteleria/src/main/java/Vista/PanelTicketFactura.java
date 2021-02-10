@@ -20,8 +20,11 @@ import Controlador.ControladorPanelOperatividad;
 import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelTicketFactura;
 import Controlador.ControladorPanelListaCompra;
+import Modelo.ConexionMySQL;
 import Modelo.Modelo;
 import Modelo.Producto;
+import Modelo.Ticket;
+import Modelo.Usuario;
 
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -290,9 +293,40 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnTicket.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
+					
+					
+					String textoTransaccion=textPane_NTransaccion.getText();
+					int NTransaccion=Integer.parseInt(textoTransaccion);
+					
+					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
+					
+					Ticket ticket1 = new Ticket();
+					
+					ticket1.setNTransaccion(NTransaccion);
+					ticket1.setFecha(textPane_Fecha.getText());
+					ticket1.setNif_local("B78107158");
+					
+					
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
+					
+					
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
 				}else if (rdbtnFactura.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
+					
+					String textoTransacion=textPane_NTransaccion.getText();
+					int NTransaccion=Integer.parseInt(textoTransacion);
+					
+					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
+					
+					Ticket ticket1 = new Ticket();
+					
+					ticket1.setNTransaccion(NTransaccion);
+					ticket1.setFecha(textPane_Fecha.getText());
+					ticket1.setNif_local(textPane_NIF.getText());
+					
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
+					
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
 				}else {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");

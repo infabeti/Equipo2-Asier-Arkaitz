@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import java.time.LocalDate;
 
 @SuppressWarnings({ "rawtypes", "unchecked" , "serial" , "deprecation"})
 public class PanelTicketFactura extends JPanel implements ChangeListener {
@@ -63,6 +64,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JComboBox comboBox_Cantidad;
 	private JButton btnBorrarLista;
 	private JButton btnAadirAlCarro;
+	LocalDate date = LocalDate.now();
+	String fecha = date.toString();
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		setBackground(new Color(102, 153, 255));
@@ -134,6 +137,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		add(lblTransaccion);
 		
 		textPane_Fecha = new JTextPane();
+		textPane_Fecha.setEditable(false);
+		textPane_Fecha.setText(fecha);
 		textPane_Fecha.setBounds(92, 101, 119, 20);
 		add(textPane_Fecha);
 		

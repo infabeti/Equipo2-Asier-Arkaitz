@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JRadioButton;
+import java.time.LocalDate;
 
 @SuppressWarnings({ "rawtypes", "unchecked" , "serial" , "deprecation"})
 public class PanelPedidos extends JPanel implements ChangeListener {
@@ -41,6 +42,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private String tipo;
 	private JLabel lblLocal;
 	private JTextPane textPane_Local;
+	LocalDate date = LocalDate.now();
+	String fecha = date.toString();
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
@@ -153,6 +156,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		add(lblFecha);
 		
 		textPane_Fecha = new JTextPane();
+		textPane_Fecha.setEditable(false);
+		textPane_Fecha.setText(fecha);
 		textPane_Fecha.setBounds(474, 167, 119, 20);
 		add(textPane_Fecha);
 		

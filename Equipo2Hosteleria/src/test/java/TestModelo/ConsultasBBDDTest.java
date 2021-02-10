@@ -4,17 +4,12 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import org.junit.Test;
 
-import Modelo.CarroCompra;
 import Modelo.ConsultasBBDD;
-import Modelo.Modelo;
 import Modelo.Producto;
 
-@SuppressWarnings({ "unused" })
 public class ConsultasBBDDTest {
 
-	private static ConsultasBBDD consultasBBDD;
-	private static CarroCompra carroCompra;
-	private Modelo funciones = new Modelo(consultasBBDD, carroCompra);
+	private ConsultasBBDD consultasBBDD = new ConsultasBBDD();
 	private int resultado;
 	private double resultadoDouble;
 	private String resultadoString;
@@ -25,12 +20,26 @@ public class ConsultasBBDDTest {
 	private boolean resultadoEsperadoBoolean;
 	private int NTransaccion=1;
 	private String arrayNombresProducto[]= {"Garbanzos","Paella","Bacalao","Hamburguesa","Cerveza"};
+	private Producto arrayProducto[];
 	
-
 	@Test
-	public void testGetNombresProductos() {
+	public void testGetListaProductos() {
+		arrayProducto = new Producto[5];
+		arrayProducto[0] = new Producto("Garbanzos","Comida","30-01-2021",5,5);
+		arrayProducto[1] = new Producto("Paella","Comida","31-01-2021",5,5);
+		arrayProducto[2] = new Producto("Bacalao","Comida","02-02-2021",5,5);
+		arrayProducto[3] = new Producto("Hamburguesa","Comida","30-01-2021",5,5);
+		arrayProducto[4] = new Producto("Cerveza","Bebida","01-02-2021",5,5);
+		Producto[] resultadoEsperadoArray = arrayProducto;
+		Producto[] resultadoArray = consultasBBDD.getListaProductos();
+		//org.junit.Assert.assertEquals(resultadoEsperadoArray, resultadoArray);
+		assertArrayEquals(resultadoEsperadoArray, resultadoArray);
+	}
+	/*
+	@Test
+	public void testNombresProductos() {
 		String[] resultadoEsperadoArray = arrayNombresProducto;
-		String[] resultadoArray = funciones.getConsultasBBDD().nombresProductos();
+		String[] resultadoArray = consultasBBDD.getListaProductos();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
@@ -86,5 +95,5 @@ public class ConsultasBBDDTest {
 		resultadoBoolean = funciones.getConsultasBBDD().probarConexion();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
-	
+	*/
 }

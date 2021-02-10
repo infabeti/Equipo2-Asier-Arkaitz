@@ -5,10 +5,15 @@ public class Modelo {
 	private ConsultasBBDD consultasBBDD;
 	private CarroCompra carroCompra;
 	
+	public Modelo() {
+		consultasBBDD = new ConsultasBBDD();
+		carroCompra = new CarroCompra();
+	}
+	/*
 	public Modelo(ConsultasBBDD consultasBBDD, CarroCompra carroCompra) {
 		this.setConsultasBBDD(consultasBBDD);
 		this.setCarroCompra(carroCompra);
-	}
+	}*/
 	
 	public ConsultasBBDD getConsultasBBDD() {
 		return this.consultasBBDD;

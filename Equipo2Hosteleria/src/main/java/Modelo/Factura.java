@@ -11,9 +11,9 @@ public class Factura extends Ticket{
 			
 	//Constructor con parametros
 	public Factura(int NTransaccion, String fecha, String nif_local, String nif, String nombre, String apellidos) {
-		this.setNTransaccion(NTransaccion);
-		this.setFecha(fecha);
-		this.setNif_local(nif_local);
+		super.setNTransaccion(NTransaccion);
+		super.setFecha(fecha);
+		super.setNif_local(nif_local);
 		this.setNif(nif);
 		this.setNombre(nombre);
 		this.setApellidos(apellidos);

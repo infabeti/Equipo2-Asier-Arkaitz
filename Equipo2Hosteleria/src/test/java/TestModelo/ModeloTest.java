@@ -18,7 +18,7 @@ public class ModeloTest {
 	
 	@Test
 	public void constructorModeloTest() {
-		modelo = new Modelo(consultasBBDDMock, carroCompraMock);
+		modelo = new Modelo();
 		
 		assertEquals(modelo.getConsultasBBDD(), consultasBBDDMock);
 		assertEquals(modelo.getCarroCompra(), carroCompraMock);
@@ -26,7 +26,7 @@ public class ModeloTest {
 
 	@Test
 	public void setConsultasBBDDTest() {
-		modelo = new Modelo(consultasBBDDMock, null);
+		modelo = new Modelo();
 		modelo.setConsultasBBDD(consultasBBDDMock2);
 		
 		assertEquals(modelo.getConsultasBBDD(), consultasBBDDMock2);
@@ -34,7 +34,7 @@ public class ModeloTest {
 
 	@Test
 	public void setCarroCompraTest() {
-		modelo = new Modelo(null, carroCompraMock);
+		modelo = new Modelo();
 		modelo.setCarroCompra(carroCompraMock2);
 		
 		assertEquals(modelo.getCarroCompra(), carroCompraMock2);

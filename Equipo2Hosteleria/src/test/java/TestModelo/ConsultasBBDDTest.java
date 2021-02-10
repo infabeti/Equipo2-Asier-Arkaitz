@@ -36,6 +36,8 @@ public class ConsultasBBDDTest {
 		resultadoEsperadoArrayString = arrayNombresProducto;
 		resultadoArrayString = consultasBBDD.nombresProductos();
 		assertArrayEquals(resultadoEsperadoArrayString, resultadoArrayString);
+		testNombresProductos();
+		testGetPrecioVentaProductos();
 	}
 	@Test
 	public void testNombresProductos() {
@@ -47,53 +49,53 @@ public class ConsultasBBDDTest {
 	public void testGetPrecioVentaProductos() {
 		resultadoEsperadoDouble = 5;
 		resultadoDouble = consultasBBDD.precioVentaProductos("Hamburguesa");
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
+		org.junit.Assert.assertEquals(resultadoEsperadoDouble, resultadoDouble, 1);
 	}/*
 	@Test
 	public void testListaCompra() {
 		resultadoEsperadoString = "Hamburguesa - Cantidad: "+2+" - Precio: "+5+"€ - Total: "+10+"€\n";
-		funciones.getCarroCompra().anadirProductos("Hamburguesa",5,2);
+		carroCompra.anadirProductos("Hamburguesa",5,2);
 		resultadoString = funciones.getCarroCompra().leerLista();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
 	public void testTotalCarro() {
 		resultadoEsperadoDouble = 10;
-		funciones.getCarroCompra().anadirCoste(5,2);
+		carroCompra.anadirCoste(5,2);
 		resultadoDouble = funciones.getCarroCompra().leerCoste();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
 	public void testResetCarroString() {
 		resultadoEsperadoString = "";
-		funciones.getCarroCompra().borrarListaCompra();
+		carroCompra.borrarListaCompra();
 		resultadoString = funciones.getCarroCompra().leerLista();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
 	public void testResetCarroDouble() {
 		resultadoEsperadoDouble = 0;
-		funciones.getCarroCompra().borrarListaCompra();
+		carroCompra.borrarListaCompra();
 		resultadoDouble = funciones.getCarroCompra().leerCoste();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
 	public void testMostrarNumeroTransaccion() {
 		resultadoEsperado = NTransaccion;
-		resultado = funciones.getConsultasBBDD().getNTransaccion();
+		resultado = consultasBBDD.getNTransaccion();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
 	public void testAumentarNumeroTransaccion() {
 		resultadoEsperado = NTransaccion++;
-		funciones.getConsultasBBDD().sumarNTransaccion();
-		resultado = funciones.getConsultasBBDD().getNTransaccion();
+		consultasBBDD.sumarNTransaccion();
+		resultado = consultasBBDD.getNTransaccion();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	@Test
 	public void testPruebaConexion() {
 		resultadoEsperadoBoolean = true;
-		resultadoBoolean = funciones.getConsultasBBDD().probarConexion();
+		resultadoBoolean = consultasBBDD.probarConexion();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 	*/

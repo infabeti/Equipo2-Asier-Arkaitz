@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import Modelo.CarroCompra;
 
+@SuppressWarnings("unused")
 public class CarroCompraTest {
 
 	private CarroCompra carroCompra = new CarroCompra();

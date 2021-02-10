@@ -7,6 +7,7 @@ import org.junit.Test;
 import Modelo.ConsultasBBDD;
 import Modelo.Producto;
 
+@SuppressWarnings("unused")
 public class ConsultasBBDDTest {
 
 	private ConsultasBBDD consultasBBDD = new ConsultasBBDD();

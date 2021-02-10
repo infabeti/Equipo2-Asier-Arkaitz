@@ -8,6 +8,7 @@ import Modelo.Modelo;
 import Modelo.ConsultasBBDD;
 import Modelo.CarroCompra;
 
+@SuppressWarnings("unused")
 public class ModeloTest {
 
 	private Modelo modelo;

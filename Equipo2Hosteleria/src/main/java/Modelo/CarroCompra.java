@@ -7,25 +7,25 @@ public class CarroCompra {
 	
 	public void anadirProductos(String nombre, double precio, int cantidad) {
 		double total=precio*cantidad;
-		ListaCompra+=nombre+" - Cantidad: "+cantidad+" - Precio: "+precio+"€ - Total: "+total+"€\n";
+		this.ListaCompra+=nombre+" - Cantidad: "+cantidad+" - Precio: "+precio+"€ - Total: "+total+"€\n";
 	}
 	
 	public String leerLista() {
-		return ListaCompra;
+		return this.ListaCompra;
 	}
 	
 	public void anadirCoste(double precio, int cantidad) {
 		double total=precio*cantidad;
-		TotalCarro+=total;
+		this.TotalCarro+=total;
 	}
 	
 	public double leerCoste() {
-		return TotalCarro;
+		return this.TotalCarro;
 	}
 	
 	public void borrarListaCompra() {
-		ListaCompra="";
-		TotalCarro=0;
+		this.ListaCompra="";
+		this.TotalCarro=0;
 	}
 	
 }

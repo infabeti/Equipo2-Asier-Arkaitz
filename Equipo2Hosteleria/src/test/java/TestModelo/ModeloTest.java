@@ -11,9 +11,9 @@ import Modelo.CarroCompra;
 public class ModeloTest {
 
 	private Modelo modelo;
-	//private ConsultasBBDD consultasBBDDMock = mock(ConsultasBBDD.class);
+	private ConsultasBBDD consultasBBDDMock = mock(ConsultasBBDD.class);
 	private ConsultasBBDD consultasBBDDMock2 = mock(ConsultasBBDD.class);
-	//private CarroCompra carroCompraMock = mock(CarroCompra.class);
+	private CarroCompra carroCompraMock = mock(CarroCompra.class);
 	private CarroCompra carroCompraMock2 = mock(CarroCompra.class);
 	
 	/*
@@ -25,6 +25,7 @@ public class ModeloTest {
 		assertEquals(modelo.getCarroCompra(), carroCompraMock);
 	}
 	*/
+	
 	@Test
 	public void setConsultasBBDDTest() {
 		modelo = new Modelo();

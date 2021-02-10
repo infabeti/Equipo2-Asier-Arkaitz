@@ -36,7 +36,9 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonPasarACajaPanelPedidos() {
-		this.controlador.navegarPanelTicketFactura();
+		this.modelo.BorrarListaCompra();
+		this.modelo.AumentarNumeroTransaccion();
+		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos() {
@@ -45,5 +47,9 @@ public class ControladorPanelPedidos {
 	
 	public void accionadoBottonListaCompraPanelPedidos() {
 		this.controlador.navegarPanelListaCompra();
+	}
+	
+	public int MostrarNumeroTransaccion() {
+		return Modelo.MostrarNumeroTransaccion();
 	}
 }

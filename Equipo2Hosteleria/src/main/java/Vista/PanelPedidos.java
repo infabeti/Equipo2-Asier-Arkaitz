@@ -38,6 +38,9 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ButtonGroup grupoBotones;
 	private JTextPane textPane_Direccion;
 	private ControladorPanelPedidos controladorPanelPedidos;
+	private JLabel lblLocal;
+	private JTextPane textPane_Local;
+	private JTextPane textPane_Fecha;
 	
 	public static int ControlarCaja=0;
 	
@@ -141,6 +144,34 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnPasarACaja.setEnabled(false);
 		btnPasarACaja.setBounds(293, 235, 107, 23);
 		add(btnPasarACaja);
+		
+		JTextPane textPane_NTransaccion = new JTextPane();
+		textPane_NTransaccion.setText(""+ controladorPanelPedidos.MostrarNumeroTransaccion());
+		textPane_NTransaccion.setEditable(false);
+		textPane_NTransaccion.setBounds(420, 136, 173, 20);
+		add(textPane_NTransaccion);
+		
+		JLabel lblTransaccion = new JLabel("N\u00BA Transaccion:");
+		lblTransaccion.setBounds(420, 114, 89, 20);
+		add(lblTransaccion);
+		
+		JLabel lblFecha = new JLabel("Fecha:");
+		lblFecha.setBounds(420, 167, 62, 20);
+		add(lblFecha);
+		
+		textPane_Fecha = new JTextPane();
+		textPane_Fecha.setBounds(474, 167, 119, 20);
+		add(textPane_Fecha);
+		
+		lblLocal = new JLabel("Local:");
+		lblLocal.setBounds(420, 198, 51, 20);
+		add(lblLocal);
+		
+		textPane_Local = new JTextPane();
+		textPane_Local.setEditable(false);
+		textPane_Local.setText("El plato caliente");
+		textPane_Local.setBounds(474, 198, 119, 20);
+		add(textPane_Local);
 		
 		initializeEvents();
 	}

@@ -10,7 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
 import Modelo.Producto;
+import Modelo.Ticket;
+import Modelo.ConexionMySQL;
 import Modelo.Modelo;
+import Modelo.Pedido;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -41,6 +44,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JLabel lblLocal;
 	private JTextPane textPane_Local;
 	private JTextPane textPane_Fecha;
+	private JTextPane textPane_NTransaccion;
 	
 	public static int ControlarCaja=0;
 	
@@ -90,13 +94,13 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		
 		grupoBotones = new ButtonGroup();
 		
-		rdbtnRecogerEnEstablecimiento = new JRadioButton("Recoger en establecimiento");
+		rdbtnRecogerEnEstablecimiento = new JRadioButton("RECOGIDA");
 		rdbtnRecogerEnEstablecimiento.setBounds(38, 166, 189, 23);
 		rdbtnRecogerEnEstablecimiento.addChangeListener(this);
 		add(rdbtnRecogerEnEstablecimiento);
 		grupoBotones.add(rdbtnRecogerEnEstablecimiento);
 		
-		rdbtnEntregaADomicilio = new JRadioButton("Entrega a domicilio");
+		rdbtnEntregaADomicilio = new JRadioButton("ENTREGA");
 		rdbtnEntregaADomicilio.setHorizontalAlignment(SwingConstants.RIGHT);
 		rdbtnEntregaADomicilio.setBounds(263, 166, 137, 23);
 		rdbtnEntregaADomicilio.addChangeListener(this);
@@ -145,7 +149,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnPasarACaja.setBounds(293, 235, 107, 23);
 		add(btnPasarACaja);
 		
-		JTextPane textPane_NTransaccion = new JTextPane();
+		textPane_NTransaccion = new JTextPane();
 		textPane_NTransaccion.setText(""+ controladorPanelPedidos.MostrarNumeroTransaccion());
 		textPane_NTransaccion.setEditable(false);
 		textPane_NTransaccion.setBounds(420, 136, 173, 20);
@@ -226,10 +230,39 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
+					
+					String textoTransacion=textPane_NTransaccion.getText();
+					int NTransaccion=Integer.parseInt(textoTransacion);
+					
+					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
+					
+					Pedido pedido1 = new Pedido();
+					
+					pedido1.setNTransaccion(NTransaccion);
+					pedido1.setTipo(rdbtnEntregaADomicilio.getText());
+					pedido1.setDomicilio(textPane_Direccion.getText());
+					
+					Ticket ped = ConexionMySQLTicket.RegistrarTicket(pedido1);	
+					
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
+					
+					String textoTransacion=textPane_NTransaccion.getText();
+					int NTransaccion=Integer.parseInt(textoTransacion);
+					
+					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
+					
+					Pedido pedido2 = new Pedido();
+					
+					pedido2.setNTransaccion(NTransaccion);
+					pedido2.setTipo(rdbtnRecogerEnEstablecimiento.getText());
+					pedido2.setDomicilio(null);
+					
+					Ticket ped = ConexionMySQLTicket.RegistrarTicket(pedido2);
+					
+					
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else {
 					JOptionPane.showMessageDialog(null,"Añade una dirección.");

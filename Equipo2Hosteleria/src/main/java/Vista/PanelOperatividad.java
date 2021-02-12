@@ -20,7 +20,6 @@ public class PanelOperatividad extends JPanel {
 	private JButton btnComandas;
 	private JButton btnAprovisionamiento;
 	private JButton btnTicketfactura;
-	private JButton btnPruebaConexion;
 	private JLabel lblOperatividad;
 	private ControladorPanelOperatividad controladorPanelOperatividad;
 	
@@ -39,33 +38,28 @@ public class PanelOperatividad extends JPanel {
 		
 		btnDesconectarse = new JButton("Desconectarse");
 		btnDesconectarse.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnDesconectarse.setBounds(131, 201, 157, 29);
+		btnDesconectarse.setBounds(214, 286, 192, 43);
 		add(btnDesconectarse);
 		
 		btnPedidos = new JButton("Pedidos");
 		btnPedidos.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnPedidos.setBounds(21, 54, 174, 43);
+		btnPedidos.setBounds(78, 104, 192, 43);
 		add(btnPedidos);
 		
 		btnAprovisionamiento = new JButton("Aprovisionamiento");
 		btnAprovisionamiento.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAprovisionamiento.setBounds(229, 139, 192, 43);
+		btnAprovisionamiento.setBounds(348, 189, 192, 43);
 		add(btnAprovisionamiento);
 		
 		btnComandas = new JButton("Comandas");
 		btnComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnComandas.setBounds(229, 54, 192, 43);
+		btnComandas.setBounds(348, 104, 192, 43);
 		add(btnComandas);
 		
 		btnTicketfactura = new JButton("Ticket / Factura");
 		btnTicketfactura.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnTicketfactura.setBounds(21, 139, 174, 43);
+		btnTicketfactura.setBounds(78, 189, 192, 43);
 		add(btnTicketfactura);
-		
-		btnPruebaConexion = new JButton("Conexi\u00F3n MySQL");
-		btnPruebaConexion.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnPruebaConexion.setBounds(264, 244, 157, 29);
-		add(btnPruebaConexion);
 		
 		initializeEvents();
 	

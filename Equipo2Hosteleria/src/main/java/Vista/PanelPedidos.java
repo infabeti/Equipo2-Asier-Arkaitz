@@ -13,11 +13,12 @@ import Controlador.ControladorPanelPedidos;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JComboBox;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
 import java.time.LocalDate;
 
 @SuppressWarnings({ "rawtypes", "unchecked" , "serial" , "deprecation"})
@@ -31,17 +32,18 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JComboBox comboBox_Productos;
 	private JComboBox comboBox_Cantidad;
 	private JLabel lblDireccin;
+	private JLabel lblLocal;
 	private JRadioButton rdbtnRecogerEnEstablecimiento;
 	private JRadioButton rdbtnEntregaADomicilio;
 	private ButtonGroup grupoBotones;
-	private JTextPane textPane_Direccion;
-	private JTextPane textPane_Fecha;
+	private JTextField textField_Direccion;
+	private JTextField textField_Fecha;
+	private JTextField textField_Local;
 	private ControladorPanelPedidos controladorPanelPedidos;
 	
+	static String LocalP="Freddy Fazbear's Pizza";
 	public static int ControlarCaja=0;
 	private String tipo;
-	private JLabel lblLocal;
-	private JTextPane textPane_Local;
 	LocalDate date = LocalDate.now();
 	String fecha = date.toString();
 	
@@ -99,10 +101,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		add(rdbtnEntregaADomicilio);
 		grupoBotones.add(rdbtnEntregaADomicilio);
 		
-		textPane_Direccion = new JTextPane();
-		textPane_Direccion.setEnabled(false);
-		textPane_Direccion.setBounds(211, 196, 189, 22);
-		add(textPane_Direccion);
+		textField_Direccion = new JTextField();
+		textField_Direccion.setEnabled(false);
+		textField_Direccion.setBounds(211, 196, 189, 22);
+		add(textField_Direccion);
 		
 		comboBox_Cantidad = new JComboBox();
 		comboBox_Cantidad.setBounds(340, 84, 60, 22);
@@ -141,11 +143,12 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnPasarACaja.setBounds(293, 235, 107, 23);
 		add(btnPasarACaja);
 		
-		JTextPane textPane_NTransaccion = new JTextPane();
-		textPane_NTransaccion.setText(""+ controladorPanelPedidos.mostrarNumeroTransaccion());
-		textPane_NTransaccion.setEditable(false);
-		textPane_NTransaccion.setBounds(420, 136, 173, 20);
-		add(textPane_NTransaccion);
+		JTextField textField_NTransaccion = new JTextField();
+		textField_NTransaccion.setHorizontalAlignment(SwingConstants.TRAILING);
+		textField_NTransaccion.setText(""+ controladorPanelPedidos.mostrarNumeroTransaccion());
+		textField_NTransaccion.setEditable(false);
+		textField_NTransaccion.setBounds(420, 136, 173, 20);
+		add(textField_NTransaccion);
 		
 		JLabel lblTransaccion = new JLabel("N\u00BA Transaccion:");
 		lblTransaccion.setBounds(420, 114, 89, 20);
@@ -155,21 +158,23 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		lblFecha.setBounds(420, 167, 62, 20);
 		add(lblFecha);
 		
-		textPane_Fecha = new JTextPane();
-		textPane_Fecha.setEditable(false);
-		textPane_Fecha.setText(fecha);
-		textPane_Fecha.setBounds(474, 167, 119, 20);
-		add(textPane_Fecha);
+		textField_Fecha = new JTextField();
+		textField_Fecha.setHorizontalAlignment(SwingConstants.TRAILING);
+		textField_Fecha.setEditable(false);
+		textField_Fecha.setText(fecha);
+		textField_Fecha.setBounds(462, 167, 131, 20);
+		add(textField_Fecha);
 		
 		lblLocal = new JLabel("Local:");
 		lblLocal.setBounds(420, 198, 51, 20);
 		add(lblLocal);
 		
-		textPane_Local = new JTextPane();
-		textPane_Local.setEditable(false);
-		textPane_Local.setText("El plato caliente");
-		textPane_Local.setBounds(474, 198, 119, 20);
-		add(textPane_Local);
+		textField_Local = new JTextField();
+		textField_Local.setHorizontalAlignment(SwingConstants.TRAILING);
+		textField_Local.setEditable(false);
+		textField_Local.setText(LocalP);
+		textField_Local.setBounds(462, 198, 131, 20);
+		add(textField_Local);
 		
 		initializeEvents();
 	}
@@ -186,13 +191,13 @@ public class PanelPedidos extends JPanel implements ChangeListener {
         
 		if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 			lblDireccin.setEnabled(false);
-			textPane_Direccion.setEnabled(false);
+			textField_Direccion.setEnabled(false);
 			btnPasarACaja.setEnabled(true);
 			tipo="RECOGIDA";
 		}
 		if (rdbtnEntregaADomicilio.isSelected()) {
 			lblDireccin.setEnabled(true);
-			textPane_Direccion.setEnabled(true);
+			textField_Direccion.setEnabled(true);
 			btnPasarACaja.setEnabled(true);
 			tipo="ENTREGA";
 		}
@@ -221,14 +226,14 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String domicilio=textPane_Direccion.getText();
+				String domicilio=textField_Direccion.getText();
 				if(ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
-				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("") && !textPane_Fecha.getText().equals("")) {
+				}else if (rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("") && !textField_Fecha.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(tipo, domicilio);
-				}else if (rdbtnRecogerEnEstablecimiento.isSelected() && !textPane_Fecha.getText().equals("")) {
+				}else if (rdbtnRecogerEnEstablecimiento.isSelected() && !textField_Fecha.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(tipo, null);

@@ -28,6 +28,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JButton btnVolver;
 	private JButton btnDesconectarse;
 	private JButton btnPagar;
+	private JButton btnBorrarLista;
+	private JButton btnAadirAlCarro;
+	private JComboBox comboBox_Productos;
+	private JComboBox comboBox_Cantidad;
 	private JRadioButton rdbtnTicket;
 	private JRadioButton rdbtnFactura;
 	private JLabel lblTicketFactura;
@@ -39,6 +43,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
 	private JLabel lblTotal;
+	private JLabel lblProductos_1;
+	private JLabel lblCantidad;
 	private JTextPane textPane_Fecha;
 	private JTextPane textPane_NTransaccion;
 	private JTextPane textPane_Local;
@@ -57,13 +63,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	public static String ListaCompraTotal="";
 	private int factura=0;
 
-	static String LocalP="El plato caliente";
-	private JLabel lblProductos_1;
-	private JComboBox comboBox_Productos;
-	private JLabel lblCantidad;
-	private JComboBox comboBox_Cantidad;
-	private JButton btnBorrarLista;
-	private JButton btnAadirAlCarro;
+	static String LocalP="Freddy Fazbear's Pizza";
 	LocalDate date = LocalDate.now();
 	String fecha = date.toString();
 	

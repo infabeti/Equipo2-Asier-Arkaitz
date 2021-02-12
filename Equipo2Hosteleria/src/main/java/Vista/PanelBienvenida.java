@@ -11,12 +11,14 @@ import Controlador.ControladorPanelBienvenida;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
 public class PanelBienvenida extends JPanel{
 
 	private JButton btnOperatividad;
 	private JLabel lblBienvenida;
+	private JProgressBar progressBar;
 	private ControladorPanelBienvenida controladorPanelBienvenida;
 	
 	public PanelBienvenida(ControladorPanelBienvenida controladorPanelBienvenida) {
@@ -31,8 +33,21 @@ public class PanelBienvenida extends JPanel{
 		add(lblBienvenida);
 		
 		btnOperatividad = new JButton("Operatividad");
-		btnOperatividad.setBounds(250, 218, 120, 23);
+		btnOperatividad.setBounds(214, 208, 192, 43);
 		add(btnOperatividad);
+		
+		JLabel lblConexion = new JLabel("Estado de la conexi\u00F3n con MySQL:");
+		lblConexion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConexion.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblConexion.setBounds(135, 331, 350, 32);
+		add(lblConexion);
+		
+		progressBar = new JProgressBar();
+		progressBar.setMaximum(1);
+		progressBar.setBackground(new Color(255, 0, 0));
+		progressBar.setForeground(new Color(0, 204, 0));
+		progressBar.setBounds(237, 374, 146, 25);
+		add(progressBar);
 		
 		initializeEvents();
 	}
@@ -55,9 +70,11 @@ public class PanelBienvenida extends JPanel{
 		System.out.println("Ejecutando evento Boton Prueba Conexion");
 		boolean conexion = controladorPanelBienvenida.establecerConexion();
 			if(conexion==true) {
-				JOptionPane.showMessageDialog(null, "Conectado a la base de datos");
+				//JOptionPane.showMessageDialog(null, "Conectado a la base de datos");
+				progressBar.setValue(1);
 			}else {
-				JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
+				//JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
+				progressBar.setValue(0);
 				System.exit(0);
 			}
 	}

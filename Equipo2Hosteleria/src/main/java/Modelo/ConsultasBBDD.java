@@ -5,10 +5,10 @@ import java.time.LocalDate;
 
 public class ConsultasBBDD {
 
-    public String DB = "equipo2hosteleria_dam";
-    public String URL = "jdbc:mysql://localhost:33060/"+DB;
-    public String USER = "root";
-    public String PASS = "elorrieta";
+    public final String DB = "equipo2hosteleria_dam";
+    public final String URL = "jdbc:mysql://localhost:33060/"+DB;
+    public final String USER = "root";
+    public final String PASS = "elorrieta";
     static boolean conexion=false;
     private static Producto arrayProducto[]=new Producto[5];
     private Ticket ticket1=new Ticket();

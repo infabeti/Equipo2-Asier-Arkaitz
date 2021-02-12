@@ -15,13 +15,13 @@ import javax.swing.event.ChangeListener;
 
 import Controlador.ControladorPanelTicketFactura;
 
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.time.LocalDate;
-import javax.swing.JList;
 
 @SuppressWarnings({ "rawtypes", "unchecked" , "serial" , "deprecation"})
 public class PanelTicketFactura extends JPanel implements ChangeListener {
@@ -53,6 +53,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JTextField textField_Nombre;
 	private JTextField textField_Apellidos;
 	private JTextField textField_Total;
+	private JTextPane textPane_Productos;
+	private JScrollPane scrollPane;
 	private ButtonGroup grupoBotones;
 	
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
@@ -65,8 +67,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	static String LocalP="Freddy Fazbear's Pizza";
 	LocalDate date = LocalDate.now();
 	String fecha = date.toString();
-	private JTextArea textArea_Productos;
-	private JList list;
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		setBackground(new Color(102, 153, 255));
@@ -255,21 +255,31 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	}
 	
 	public void generarListaCompra(){
+		//textField_Total.remove(textField_Total);
+		//textField_Total.remove(textPane_Productos);
+		
 		textField_Total = new JTextField();
 		textField_Total.setEditable(false);
 		textField_Total.setBounds(333, 191, 63, 20);
 		add(textField_Total);
 		textField_Total.setText(ListaCompraTotal);
 		
+		/*
 		textArea_Productos = new JTextArea();
 		textArea_Productos.setEditable(false);
 		textArea_Productos.setBounds(28, 225, 563, 69);
 		add(textArea_Productos);
 		textArea_Productos.setText(ListaCompra);
+		*/
 		
-		list = new JList();
-		list.setBounds(28, 318, 563, 54);
-		add(list);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(28, 225, 563, 69);
+		add(scrollPane);
+		
+		textPane_Productos = new JTextPane();
+		textPane_Productos.setEditable(false);
+		scrollPane.setViewportView(textPane_Productos);
+		textPane_Productos.setText(ListaCompra);
 		
 	}
 	

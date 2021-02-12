@@ -70,10 +70,9 @@ public class PanelBienvenida extends JPanel{
 		System.out.println("Ejecutando evento Boton Prueba Conexion");
 		boolean conexion = controladorPanelBienvenida.establecerConexion();
 			if(conexion==true) {
-				//JOptionPane.showMessageDialog(null, "Conectado a la base de datos");
 				progressBar.setValue(1);
 			}else {
-				//JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
+				JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
 				progressBar.setValue(0);
 				System.exit(0);
 			}

@@ -1,13 +1,14 @@
 package Modelo;
 
-public class Incluye {
+public class Incluye  {
 	
 	private String nombreProducto;
 	private int ntransaccion;
 	private int cantidad;
 	private double precioVenta;
 	private double precioCompra;
-	
+	private Ticket ticket;
+	private Producto producto;
 	
 	
 	public Incluye(String NombreProducto, int Ntransaccion, int Cantidad, double PrecioVenta,double PrecioCompra) {

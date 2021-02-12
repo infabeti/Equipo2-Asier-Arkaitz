@@ -62,7 +62,7 @@ public class ConsultasBBDD {
     
     public void makeFactura(String nif, String nombre, String apellidos) {
     	String fecha = date.toString();
-		arrayFactura[getNTransaccion()-1] = new Factura(getNTransaccion(), fecha,getNIFLocal(), nif, nombre, apellidos);
+		arrayFactura[getNTransaccion()-1] = new Factura(getNTransaccion(), nif);
 		System.out.println(Arrays.toString(arrayFactura));
 	}
     

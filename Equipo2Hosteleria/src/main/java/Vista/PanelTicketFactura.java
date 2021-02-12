@@ -21,6 +21,7 @@ import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelTicketFactura;
 import Controlador.ControladorPanelListaCompra;
 import Modelo.ConexionMySQL;
+import Modelo.Factura;
 import Modelo.Modelo;
 import Modelo.Producto;
 import Modelo.Ticket;
@@ -317,14 +318,18 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					String textoTransacion=textPane_NTransaccion.getText();
 					int NTransaccion=Integer.parseInt(textoTransacion);
 					
+					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
+					Factura factura1 = new Factura();
 					Ticket ticket1 = new Ticket();
 					
-					ticket1.setNTransaccion(NTransaccion);
+					factura1.setNTransaccion(NTransaccion);
+					factura1.setNif("Y00107158");
 					ticket1.setFecha(textPane_Fecha.getText());
-					ticket1.setNif_local(textPane_NIF.getText());
+					ticket1.setNif_local("B78107158");
 					
+					Factura fac = ConexionMySQLTicket.RegistrarFactura(factura1);
 					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
 					
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	

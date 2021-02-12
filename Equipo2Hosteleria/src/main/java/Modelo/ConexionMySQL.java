@@ -167,10 +167,68 @@ public Ticket RegistrarTicket(Ticket tic) {
 
 	 return ticket1;
 	 
+}
+	 
+	 public Factura RegistrarFactura(Factura fac) {
+		 
+		 
+		 
+		 
+		 
+		 
+			Factura factura1=null;
+			
+			
+			 Connection con = null;
+			 PreparedStatement ps = null;
+			 PreparedStatement pst = null;
+			 ResultSet rs = null;
+			 Statement st = null;
+			 
+			
+			 
+			 try {
+				 
+			con = ConexionMySQL.getConexion();	
+			
+			st = con.createStatement();
+				 
+			ps = con.prepareStatement("INSERT INTO factura(num_trans, nif) VAlUES(?,?)");
+				 
+			 ps.setInt(1,fac.getNTransaccion());
+			 ps.setString(2,fac.getNif());
+			
+				 
+				 ps.executeUpdate();
+
+					String sql = "select*from factura where num_trans = ? and nif = ?";
+					
+					ps = con.prepareStatement(sql); 
+				 
+			 
+					 ps.setInt(1,fac.getNTransaccion());
+					 ps.setString(2,fac.getNif());
+					
+			 rs = ps.executeQuery();
+			 
+			 while (rs.next()) {
+				 factura1 = new Factura(rs.getInt(1), rs.getString(2));			
+				}
+			 
+			 System.out.println("Se ha creado la factura correctamente");
+			 
+			 } catch (Exception e) {
+					System.out.println("Error en creacion de la Factura");
+					}
+
+			 return factura1;
+		}
 
 	 
 
-	 }
+	 
+
+
 
 }
    

@@ -225,10 +225,61 @@ public Ticket RegistrarTicket(Ticket tic) {
 		}
 
 	 
+	 public Identificacion RegistrarIdentificacion(Identificacion ide) {
+		
+		 
+		 
+		 Identificacion Identificacion1=null;
+			
+			
+		 Connection con = null;
+		 PreparedStatement ps = null;
+		 PreparedStatement pst = null;
+		 ResultSet rs = null;
+		 Statement st = null;
+		 
+		
+		 
+		 try {
+			 
+		con = ConexionMySQL.getConexion();	
+		
+		st = con.createStatement();
+			 
+		ps = con.prepareStatement("INSERT INTO Identificacion(nif, nombre, apellidos) VAlUES(?,?,?)");
+			 
+		 ps.setString(1,ide.getNif());
+		 ps.setString(2,ide.getNombre());
+		 ps.setString(3,ide.getApellido());
+		
+			 
+			 ps.executeUpdate();
 
+				String sql = "select*from Identificacion where nif = ?, nombre = ?, apellidos=?";
+				
+				ps = con.prepareStatement(sql); 
+			 
+		 
+				 ps.setString(1,ide.getNif());
+				 ps.setString(2,ide.getNombre());
+				 ps.setString(3,ide.getApellido());
+				 
+		 rs = ps.executeQuery();
+		 
+		 while (rs.next()) {
+			 Identificacion1 = new Identificacion(rs.getString(1), rs.getString(2),rs.getString(3));			
+			}
+		 
+		 System.out.println("Se ha creado la Identificacion correctamente");
+		 
+		 } catch (Exception e) {
+				System.out.println("Error en creacion de la Identificacion");
+				}
+
+		 return Identificacion1;
 	 
 
 
-
+	 }
 }
    

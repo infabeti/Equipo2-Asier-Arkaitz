@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelBienvenida;
+
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -37,6 +39,7 @@ public class PanelBienvenida extends JPanel{
 	
 	private void initializeEvents() {
 		this.btnOperatividad.addActionListener(listenerBotonOperatividad(this.controladorPanelBienvenida));
+		this.establecerConexion();
 	}
 	
 	private ActionListener listenerBotonOperatividad(ControladorPanelBienvenida controladorPanelBienvenida) {
@@ -46,5 +49,16 @@ public class PanelBienvenida extends JPanel{
 				controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
 			}
 		};
+	}
+	
+	public void establecerConexion() {
+		System.out.println("Ejecutando evento Boton Prueba Conexion");
+		boolean conexion = controladorPanelBienvenida.establecerConexion();
+			if(conexion==true) {
+				JOptionPane.showMessageDialog(null, "Conectado a la base de datos");
+			}else {
+				JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
+				System.exit(0);
+			}
 	}
 }

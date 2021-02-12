@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Controlador.ControladorPanelOperatividad;
@@ -78,7 +77,6 @@ public class PanelOperatividad extends JPanel {
 		this.btnComandas.addActionListener(listenerBotonComandas(this.controladorPanelOperatividad));
 		this.btnAprovisionamiento.addActionListener(listenerBotonAprovisionamiento(this.controladorPanelOperatividad));
 		this.btnTicketfactura.addActionListener(listenerBotonTicketfactura(this.controladorPanelOperatividad));
-		this.btnPruebaConexion.addActionListener(listenerBotonPruebaConexion(this.controladorPanelOperatividad));
 	}
 	
 	private ActionListener listenerBotonDesconectarse(ControladorPanelOperatividad controladorPanelOperatividad) {
@@ -86,21 +84,6 @@ public class PanelOperatividad extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectarse");
 				controladorPanelOperatividad.accionadoBottonVolverPanelOperatividad();
-			}
-		};
-	}
-	
-	private ActionListener listenerBotonPruebaConexion(ControladorPanelOperatividad controladorPanelOperatividad) {
-		return new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Prueba Conexion");
-				boolean conexion = controladorPanelOperatividad.accionadoBottonPruebaConexionPanelOperatividad();
-				if(conexion==true) {
-					JOptionPane.showMessageDialog(null, "Conectado");
-				}else {
-					JOptionPane.showMessageDialog(null, "Error al conectar");
-					System.exit(0);
-				}
 			}
 		};
 	}

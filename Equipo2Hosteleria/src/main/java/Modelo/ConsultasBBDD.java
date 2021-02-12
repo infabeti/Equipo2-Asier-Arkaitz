@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class ConsultasBBDD {
 
@@ -11,11 +10,7 @@ public class ConsultasBBDD {
     public final String PASS = "elorrieta";
     static boolean conexion=false;
     private static Producto arrayProducto[]=new Producto[5];
-    private Ticket ticket1=new Ticket();
-    private Factura factura1=new Factura();
-    private Pedido pedido1=new Pedido();
 	static int NTransaccion=1;
-	LocalDate date = LocalDate.now();
     
     public Producto[] getListaProductos() {
 		arrayProducto[0] = new Producto("Garbanzos","Comida","30-01-2021",5,5);
@@ -51,21 +46,6 @@ public class ConsultasBBDD {
 		}
 		
 		return precio;
-	}
-    
-    public void makeTicket() {
-    	String fecha = date.toString();
-		ticket1=new Ticket(getNTransaccion(), fecha, getNIFLocal());
-	}
-    
-    public void makeFactura(String nif, String nombre, String apellidos) {
-    	String fecha = date.toString();
-		factura1=new Factura(getNTransaccion(), fecha,getNIFLocal(), nif, nombre, apellidos);
-	}
-    
-    public void makePedido(String tipo, String domicilio) {
-    	String fecha = date.toString();
-		pedido1=new Pedido(getNTransaccion(), fecha, getNIFLocal(), tipo, domicilio);
 	}
     
     public int getNTransaccion() {

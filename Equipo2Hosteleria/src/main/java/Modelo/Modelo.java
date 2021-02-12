@@ -4,10 +4,12 @@ public class Modelo {
 
 	private ConsultasBBDD consultasBBDD;
 	private CarroCompra carroCompra;
+	private Makers makers;
 	
 	public Modelo() {
 		consultasBBDD = new ConsultasBBDD();
 		carroCompra = new CarroCompra();
+		makers = new Makers();
 	}
 	
 	public ConsultasBBDD getConsultasBBDD() {
@@ -24,6 +26,14 @@ public class Modelo {
 	
 	public void setCarroCompra(CarroCompra carroCompra) {
 		this.carroCompra = carroCompra;
+	}
+	
+	public Makers getMakers() {
+		return this.makers;
+	}
+	
+	public void setMakers(Makers makers) {
+		this.makers = makers;
 	}
 	
 }

@@ -14,7 +14,7 @@ public class ControladorPanelTicketFactura {
 	public ControladorPanelTicketFactura(Modelo modelo, Vista vista, Controlador controlador) {
 		this.modelo = modelo;
 		this.vista = vista;
-		this.controlador = controlador;	
+		this.controlador = controlador;
 	}
 	
 	public String[] obtenerNombresProductos() {
@@ -50,9 +50,9 @@ public class ControladorPanelTicketFactura {
 	
 	public void accionadoBottonPagarPanelTicketFactura(int factura, String nif, String nombre, String apellidos) {
 		if(factura==0) {
-			this.modelo.getConsultasBBDD().makeTicket();	
+			this.modelo.getMakers().makeTicket();	
 		}else if(factura==1) {
-			this.modelo.getConsultasBBDD().makeFactura(nif, nombre, apellidos);	
+			this.modelo.getMakers().makeFactura(nif, nombre, apellidos);	
 		}
 		this.modelo.getCarroCompra().borrarListaCompra();
 		this.modelo.getConsultasBBDD().sumarNTransaccion();

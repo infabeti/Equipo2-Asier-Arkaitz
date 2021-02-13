@@ -30,6 +30,14 @@ public class ControladorPanelPedidos {
 		return this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
 	}
 	
+	public String obtenerListaCompra() {
+		return this.modelo.getCarroCompra().leerLista();
+	}
+	
+	public double obtenerTotalCarro() {
+		return this.modelo.getCarroCompra().leerCoste();
+	}
+	
 	public void accionadoBottonVolverPanelPedidos() {
 		this.modelo.getCarroCompra().borrarListaCompra();
 		this.controlador.navegarPanelOperatividad();
@@ -57,7 +65,7 @@ public class ControladorPanelPedidos {
 		this.modelo.getCarroCompra().anadirCoste(precio, cantidad);
 	}
 	
-	public void accionadoBottonListaCompraPanelPedidos() {
-		this.controlador.navegarPanelListaCompra();
+	public void accionadoBottonBorrarListaPanelPedidos() {
+		this.modelo.getCarroCompra().borrarListaCompra();
 	}
 }

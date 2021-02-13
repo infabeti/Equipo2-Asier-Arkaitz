@@ -38,13 +38,6 @@ public class ConsultasBBDDTest {
 		resultadoEsperadoArrayString = arrayNombresProducto;
 		resultadoArrayString = consultasBBDD.nombresProductos();
 		assertArrayEquals(resultadoEsperadoArrayString, resultadoArrayString);
-		testNombresProductos();
-		testGetPrecioVentaProductos();
-		testGetNumeroTransaccion();
-		testSumarNumeroTransaccion();
-		testSetNumeroTransaccion();
-		testGetNIFLocal();
-		testPruebaConexion();
 	}
 	@Test
 	public void testNombresProductos() {

@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import Modelo.Modelo;
 import Modelo.ConsultasBBDD;
+import Modelo.Makers;
 import Modelo.CarroCompra;
 
 @SuppressWarnings("unused")
@@ -13,33 +14,30 @@ public class ModeloTest {
 
 	private Modelo modelo;
 	private ConsultasBBDD consultasBBDDMock = mock(ConsultasBBDD.class);
-	private ConsultasBBDD consultasBBDDMock2 = mock(ConsultasBBDD.class);
 	private CarroCompra carroCompraMock = mock(CarroCompra.class);
-	private CarroCompra carroCompraMock2 = mock(CarroCompra.class);
-	
-	/*
-	@Test
-	public void constructorModeloTest() {
-		modelo = new Modelo();
-		
-		assertEquals(modelo.getConsultasBBDD(), consultasBBDDMock);
-		assertEquals(modelo.getCarroCompra(), carroCompraMock);
-	}
-	*/
+	private Makers makersMock = mock(Makers.class);
 	
 	@Test
 	public void setConsultasBBDDTest() {
 		modelo = new Modelo();
-		modelo.setConsultasBBDD(consultasBBDDMock2);
+		modelo.setConsultasBBDD(consultasBBDDMock);
 		
-		assertEquals(modelo.getConsultasBBDD(), consultasBBDDMock2);
+		assertEquals(modelo.getConsultasBBDD(), consultasBBDDMock);
 	}
 
 	@Test
 	public void setCarroCompraTest() {
 		modelo = new Modelo();
-		modelo.setCarroCompra(carroCompraMock2);
+		modelo.setCarroCompra(carroCompraMock);
 		
-		assertEquals(modelo.getCarroCompra(), carroCompraMock2);
+		assertEquals(modelo.getCarroCompra(), carroCompraMock);
+	}
+
+	@Test
+	public void setMakersTest() {
+		modelo = new Modelo();
+		modelo.setMakers(makersMock);
+		
+		assertEquals(modelo.getMakers(), makersMock);
 	}
 }

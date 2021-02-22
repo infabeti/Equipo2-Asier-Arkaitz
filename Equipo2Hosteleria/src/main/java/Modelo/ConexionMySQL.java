@@ -257,10 +257,10 @@ public Ticket RegistrarTicket(Ticket tic) {
 				 pedido1 = new Pedido(rs.getInt(1), rs.getString(2), rs.getString(3));			
 				}
 			 
-			 System.out.println("Se ha creado la factura correctamente");
+			 System.out.println("Se ha creado el pedido correctamente");
 			 
 			 } catch (Exception e) {
-					System.out.println("Error en creacion de la Factura");
+					System.out.println("Error en creacion del Pedido");
 					}
 
 			 return pedido1;

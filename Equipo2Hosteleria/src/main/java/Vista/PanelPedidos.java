@@ -242,7 +242,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					pedido1.setTipo(rdbtnEntregaADomicilio.getText());
 					pedido1.setDomicilio(textPane_Direccion.getText());
 					
-					Ticket ped = ConexionMySQLTicket.RegistrarTicket(pedido1);	
+					Pedido pedi = ConexionMySQLTicket.RegistrarPedido(pedido1);	
 					
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
@@ -255,12 +255,17 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
 					Pedido pedido2 = new Pedido();
+					Ticket ticket1 = new Ticket();
 					
 					pedido2.setNTransaccion(NTransaccion);
 					pedido2.setTipo(rdbtnRecogerEnEstablecimiento.getText());
 					pedido2.setDomicilio(null);
+					ticket1.setNTransaccion(NTransaccion);
+					ticket1.setFecha(textPane_Fecha.getText());
+					ticket1.setNif_local("B78107158");
 					
-					Ticket ped = ConexionMySQLTicket.RegistrarTicket(pedido2);
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
+					Pedido pedi = ConexionMySQLTicket.RegistrarPedido(pedido2);
 					
 					
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();

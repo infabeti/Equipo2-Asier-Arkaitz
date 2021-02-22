@@ -17,7 +17,7 @@ public class ConexionMySQL {
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/equipo2hosteleria_dam";
+			String url = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
 			String usr = "root";
 			String psw = "elorrieta";
 			
@@ -171,22 +171,15 @@ public Ticket RegistrarTicket(Ticket tic) {
 	 
 	 public Factura RegistrarFactura(Factura fac) {
 		 
-		 
-		 
-		 
-		 
-		 
 			Factura factura1=null;
-			
-			
+				
 			 Connection con = null;
 			 PreparedStatement ps = null;
 			 PreparedStatement pst = null;
 			 ResultSet rs = null;
 			 Statement st = null;
 			 
-			
-			 
+ 
 			 try {
 				 
 			con = ConexionMySQL.getConexion();	
@@ -222,6 +215,55 @@ public Ticket RegistrarTicket(Ticket tic) {
 					}
 
 			 return factura1;
+		}
+	 
+	 public Pedido RegistrarPedido(Pedido pedi) {
+		 
+			Pedido pedido1=null;
+				
+			 Connection con = null;
+			 PreparedStatement ps = null;
+			 PreparedStatement pst = null;
+			 ResultSet rs = null;
+			 Statement st = null;
+			 
+			 try {
+				 
+			con = ConexionMySQL.getConexion();	
+			
+			st = con.createStatement();
+				 
+			ps = con.prepareStatement("INSERT INTO pedido(num_trans, tipo, domicilio) VAlUES(?,?,?)");
+				 
+			 ps.setInt(1,pedi.getNTransaccion());
+			 ps.setString(2,pedi.getTipo());
+			 ps.setString(3,pedi.getDomicilio());
+			
+				 
+				 ps.executeUpdate();
+
+					String sql = "select*from factura where num_trans = ? and tipo = ? and domicilio = ?";
+					
+					ps = con.prepareStatement(sql); 
+				 
+			 
+					 ps.setInt(1,pedi.getNTransaccion());
+					 ps.setString(2,pedi.getTipo());
+					 ps.setString(3,pedi.getDomicilio());
+					
+			 rs = ps.executeQuery();
+			 
+			 while (rs.next()) {
+				 pedido1 = new Pedido(rs.getInt(1), rs.getString(2), rs.getString(3));			
+				}
+			 
+			 System.out.println("Se ha creado la factura correctamente");
+			 
+			 } catch (Exception e) {
+					System.out.println("Error en creacion de la Factura");
+					}
+
+			 return pedido1;
 		}
 
 	 

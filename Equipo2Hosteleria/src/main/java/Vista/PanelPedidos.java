@@ -17,12 +17,14 @@ import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import java.time.LocalDate;
+import javax.swing.JTable;
 
 @SuppressWarnings({ "rawtypes", "unchecked" , "serial" , "deprecation"})
 public class PanelPedidos extends JPanel implements ChangeListener {
@@ -35,7 +37,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JComboBox comboBox_Productos;
 	private JComboBox comboBox_Cantidad;
 	private JLabel lblDireccin;
-	private JLabel lblLocal;
 	private JRadioButton rdbtnRecogerEnEstablecimiento;
 	private JRadioButton rdbtnEntregaADomicilio;
 	private ButtonGroup grupoBotones;
@@ -43,8 +44,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JTextField textField_Fecha;
 	private JTextField textField_Local;
 	private JTextPane textPane_Total;
-	private JTextPane textPane_Productos;
 	private JScrollPane scrollPane;
+	private JTable table;
 	private ControladorPanelPedidos controladorPanelPedidos;
 	
 	static String LocalP="Freddy Fazbear's Pizza";
@@ -54,7 +55,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private String tipo;
 	LocalDate date = LocalDate.now();
 	String fecha = date.toString();
-	private JLabel lblProductos_1;
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
@@ -127,7 +127,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnAadirAlCarro.setBounds(447, 80, 146, 23);
 		add(btnAadirAlCarro);
 		
-		lblDireccin = new JLabel("Direcci\u00F3n de entrega:");
+		JLabel lblDireccin = new JLabel("Direcci\u00F3n de entrega:");
 		lblDireccin.setEnabled(false);
 		lblDireccin.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDireccin.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -165,7 +165,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		textField_Fecha.setBounds(462, 167, 131, 20);
 		add(textField_Fecha);
 		
-		lblLocal = new JLabel("Local:");
+		JLabel lblLocal = new JLabel("Local:");
 		lblLocal.setBounds(420, 198, 51, 20);
 		add(lblLocal);
 		
@@ -184,26 +184,29 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		lblTotal.setBounds(490, 234, 45, 20);
 		add(lblTotal);
 		
-		lblProductos_1 = new JLabel("Productos:");
+		JLabel lblProductos_1 = new JLabel("Productos:");
 		lblProductos_1.setBounds(30, 234, 89, 19);
 		add(lblProductos_1);
-		
-		//****************************************
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(30, 265, 563, 107);
 		add(scrollPane);
-		
-		textPane_Productos = new JTextPane();
-		scrollPane.setViewportView(textPane_Productos);
-		textPane_Productos.setEditable(false);
-		textPane_Productos.setText(ListaCompra);
 		
 		textPane_Total = new JTextPane();
 		textPane_Total.setEditable(false);
 		textPane_Total.setBounds(530, 234, 63, 20);
 		add(textPane_Total);
 		textPane_Total.setText(""+ListaCompraTotal);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+					"Producto", "Cantidad", "Precio", "Total"
+			}
+		));
+		scrollPane.setViewportView(table);
 		
 		initializeEvents();
 	}
@@ -236,8 +239,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	public void generarListaCompra(){
 		ListaCompra = controladorPanelPedidos.obtenerListaCompra();
 		ListaCompraTotal = ""+controladorPanelPedidos.obtenerTotalCarro();
-
-		textPane_Productos.setText(ListaCompra);
 		textPane_Total.setText(""+ListaCompraTotal);
 		
 	}

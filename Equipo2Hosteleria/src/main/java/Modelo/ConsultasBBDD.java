@@ -65,7 +65,9 @@ public class ConsultasBBDD {
 	}
 
 
-   public Connection Conectar(){
+   public boolean/*Connection*/ Conectar(){
+	   
+	   conexion=true;
 
        Connection link = null;
 
@@ -83,10 +85,12 @@ public class ConsultasBBDD {
        }
 
 
-       return link;
+       //return link;
+       return conexion;
 
    }
    
+   /*
    public boolean probarConexion() {         
 	   
 	   conexion=false;
@@ -116,6 +120,7 @@ public class ConsultasBBDD {
        return conexion;
 
    }
+   */
 
 
 }

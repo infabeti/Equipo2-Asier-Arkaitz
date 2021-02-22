@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorPanelTicketFactura;
 
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.time.LocalDate;
@@ -55,6 +57,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JTextField textField_Total;
 	private JTextPane textPane_Productos;
 	private JScrollPane scrollPane;
+	private JTable table;
 	private ButtonGroup grupoBotones;
 	
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
@@ -234,6 +237,16 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		scrollPane.setViewportView(textPane_Productos);
 		textPane_Productos.setEditable(false);
 		textPane_Productos.setText(ListaCompra);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+					"Producto", "Cantidad", "Precio", "Total"
+			}
+		));
+		scrollPane.setViewportView(table);
 		
 		initializeEvents();
 	}

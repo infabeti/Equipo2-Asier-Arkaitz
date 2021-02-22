@@ -27,10 +27,6 @@ public class ControladorPanelOperatividad {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public boolean accionadoBottonPruebaConexionPanelOperatividad() {
-		return this.modelo.getConsultasBBDD().probarConexion();
-	}
-	
 	public void accionadoBottonMostrarPanelPedidos() {
 		this.controlador.navegarPanelPedidos();
 	}

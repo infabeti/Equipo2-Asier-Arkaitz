@@ -28,6 +28,6 @@ public class ControladorPanelBienvenida {
 	}
 	
 	public boolean establecerConexion() {
-		return this.modelo.getConsultasBBDD().probarConexion();
+		return this.modelo.getConsultasBBDD().Conectar();
 	}
 }

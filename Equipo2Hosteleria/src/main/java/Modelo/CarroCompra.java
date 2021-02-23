@@ -4,7 +4,7 @@ public class CarroCompra {
 	
 	//String ListaCompra="";
 	double TotalCarro=0;
-	public ProductoEscogido[] arrayCarro;
+	//public ProductoEscogido[] arrayCarro;
 	public Object[][] array = new Object[99][4];
 	
 	public void anadirProducto(String nombre, double precio, int cantidad) {
@@ -12,24 +12,29 @@ public class CarroCompra {
 		boolean repetido=false;
 		for(int i=0;i<array.length;i++) {
 			if(nombre == array[i][0]) {
-				int c = array[i][1];
-				array[i][1] = Integer.parseInt(array[i][1])+cantidad;
-				array[i][3] = arrayCarro[i].getPrecioVenta()*arrayCarro[i].getCantidad();
+				int canti = (int) array[i][1];
+				array[i][1] = canti+cantidad;
+				array[i][3] = precio*(canti+cantidad);
 				
 				repetido=true;
 			}
 		}
 		if(repetido==false) {
-			for(int i=0;i<arrayCarro.length+1;i++) {
-				if(arrayCarro[i].getNombre() == null) {
-					arrayCarro[i].setNombre(nombre);
-					arrayCarro[i].setCantidad(cantidad);
-					arrayCarro[i].setPrecioVenta(precio);
-					arrayCarro[i].setPrecioTotal(precio*cantidad);
+			for(int i=0;i<array.length+1;i++) {
+				if(array[i][0] == null) {
+					array[i][0] = nombre;
+					array[i][1] = cantidad;
+					array[i][2] = precio;
+					array[i][3] = precio*cantidad;
+					i=array.length+1;
 				}
 			}
 		}
 		this.TotalCarro+=precio*cantidad;
+	}
+	
+	public Object[][] getCarroCompra() {
+		return this.array;
 	}
 	/*
 	public void anadirProducto(String nombre, double precio, int cantidad) {
@@ -55,7 +60,7 @@ public class CarroCompra {
 		}
 		this.TotalCarro+=precio*cantidad;
 	}
-	*/
+	
 	public Object[][] getCarroCompra() {
 		for(int i=0;i<arrayCarro.length;i++) {
 			if(arrayCarro[i].getNombre()!=null) {
@@ -68,7 +73,6 @@ public class CarroCompra {
 		return array;
 	}
 	
-	/*
 	public void anadirProductos(String nombre, double precio, int cantidad) {
 		double total=precio*cantidad;
 		this.ListaCompra+=nombre+" - Cantidad: "+cantidad+" - Precio: "+precio+"€ - Total: "+total+"€\n";
@@ -84,14 +88,13 @@ public class CarroCompra {
 	}
 	
 	public void borrarCarroCompra() {
-		arrayCarro = new ProductoEscogido[99];
 		//this.ListaCompra="";
 		this.TotalCarro=0;
-		for(int i=0;i<arrayCarro.length;i++) {
-			arrayCarro[i].setNombre(null);
-			arrayCarro[i].setCantidad(0);
-			arrayCarro[i].setPrecioVenta(0);
-			arrayCarro[i].setPrecioTotal(0);
+		for(int i=0;i<array.length;i++) {
+			array[i][0] = null;
+			array[i][0] = 0;
+			array[i][0] = 0;
+			array[i][0] = 0;
 		}
 	}
 }

@@ -30,8 +30,10 @@ public class ControladorPanelPedidos {
 		return this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
 	}
 	
-	public String obtenerListaCompra() {
-		return this.modelo.getCarroCompra().getListaCompra();
+	public Object[][] obtenerListaCompra() {
+		
+		return this.modelo.getCarroCompra().getCarroCompra();
+		//return this.modelo.getCarroCompra().getListaCompra();
 	}
 	
 	public double obtenerTotalCarro() {
@@ -61,7 +63,7 @@ public class ControladorPanelPedidos {
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {
 		double precio=this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
-		this.modelo.getCarroCompra().anadirProductos(nombre, precio, cantidad);
+		this.modelo.getCarroCompra().anadirProducto(nombre, precio, cantidad);
 	}
 	
 	public void accionadoBottonBorrarListaPanelPedidos() {

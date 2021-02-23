@@ -127,7 +127,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnAadirAlCarro.setBounds(447, 80, 146, 23);
 		add(btnAadirAlCarro);
 		
-		JLabel lblDireccin = new JLabel("Direcci\u00F3n de entrega:");
+		lblDireccin = new JLabel("Direcci\u00F3n de entrega:");
 		lblDireccin.setEnabled(false);
 		lblDireccin.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDireccin.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -217,7 +217,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
-		this.generarListaCompra();
+		//this.generarListaCompra();
 	}
 	
 	public void stateChanged(ChangeEvent e){
@@ -237,7 +237,14 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	}
 	
 	public void generarListaCompra(){
-		ListaCompra = controladorPanelPedidos.obtenerListaCompra();
+		//ListaCompra = controladorPanelPedidos.obtenerListaCompra();
+		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+		Object lista[][] = controladorPanelPedidos.obtenerListaCompra();
+		for(int i = 0;i<lista.length;i++)
+		{
+			Object temp[] = { lista[i][0], lista[i][1], lista[i][2], lista[i][3] };
+			modeloTabla.addRow(temp);
+		}
 		ListaCompraTotal = ""+controladorPanelPedidos.obtenerTotalCarro();
 		textPane_Total.setText(""+ListaCompraTotal);
 		

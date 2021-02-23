@@ -8,22 +8,18 @@ public class CarroCompra {
 	public void anadirProductos(String nombre, double precio, int cantidad) {
 		double total=precio*cantidad;
 		this.ListaCompra+=nombre+" - Cantidad: "+cantidad+" - Precio: "+precio+"€ - Total: "+total+"€\n";
-	}
-	
-	public String leerLista() {
-		return this.ListaCompra;
-	}
-	
-	public void anadirCoste(double precio, int cantidad) {
-		double total=precio*cantidad;
 		this.TotalCarro+=total;
 	}
 	
-	public double leerCoste() {
+	public String getListaCompra() {
+		return this.ListaCompra;
+	}
+	
+	public double getTotalCarro() {
 		return this.TotalCarro;
 	}
 	
-	public void borrarListaCompra() {
+	public void borrarCarroCompra() {
 		this.ListaCompra="";
 		this.TotalCarro=0;
 	}

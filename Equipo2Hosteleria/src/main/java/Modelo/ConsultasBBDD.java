@@ -69,6 +69,7 @@ public class ConsultasBBDD {
 	   
 	   conexion=true;
 
+       @SuppressWarnings("unused")
        Connection link = null;
 
        try{

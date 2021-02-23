@@ -23,7 +23,7 @@ public class ControladorPanelOperatividad {
 	}
 	
 	public void accionadoBottonVolverPanelOperatividad() {
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	

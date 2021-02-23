@@ -26,11 +26,11 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public String obtenerListaCompra() {
-		return this.modelo.getCarroCompra().leerLista();
+		return this.modelo.getCarroCompra().getListaCompra();
 	}
 	
 	public double obtenerTotalCarro() {
-		return this.modelo.getCarroCompra().leerCoste();
+		return this.modelo.getCarroCompra().getTotalCarro();
 	}
 	
 	public void mostrarPanelTicketFactura() {
@@ -39,12 +39,12 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public void accionadoBottonVolverPanelTicketFactura() {
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelTicketFactura() {
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
@@ -54,7 +54,7 @@ public class ControladorPanelTicketFactura {
 		}else if(factura==1) {
 			this.modelo.getMakers().makeFactura(nif, nombre, apellidos);	
 		}
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();
 	}
@@ -66,10 +66,9 @@ public class ControladorPanelTicketFactura {
 	public void accionadoBottonAadirAlCarroPanelTicketFactura(String nombre, int cantidad) {
 		double precio=this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
 		this.modelo.getCarroCompra().anadirProductos(nombre, precio, cantidad);
-		this.modelo.getCarroCompra().anadirCoste(precio, cantidad);
 	}
 	
 	public void accionadoBottonBorrarListaPanelTicketFactura() {
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 	}
 }

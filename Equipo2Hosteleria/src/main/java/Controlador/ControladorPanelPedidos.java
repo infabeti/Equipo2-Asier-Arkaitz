@@ -31,26 +31,26 @@ public class ControladorPanelPedidos {
 	}
 	
 	public String obtenerListaCompra() {
-		return this.modelo.getCarroCompra().leerLista();
+		return this.modelo.getCarroCompra().getListaCompra();
 	}
 	
 	public double obtenerTotalCarro() {
-		return this.modelo.getCarroCompra().leerCoste();
+		return this.modelo.getCarroCompra().getTotalCarro();
 	}
 	
 	public void accionadoBottonVolverPanelPedidos() {
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelPedidos() {
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
 	public void accionadoBottonPasarACajaPanelPedidos(String tipo, String domicilio) {
 		this.modelo.getMakers().makePedido(tipo, domicilio);
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();
 	}
@@ -62,10 +62,9 @@ public class ControladorPanelPedidos {
 	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {
 		double precio=this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
 		this.modelo.getCarroCompra().anadirProductos(nombre, precio, cantidad);
-		this.modelo.getCarroCompra().anadirCoste(precio, cantidad);
 	}
 	
 	public void accionadoBottonBorrarListaPanelPedidos() {
-		this.modelo.getCarroCompra().borrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 	}
 }

@@ -304,15 +304,15 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
-					Ticket ticket1 = new Ticket();
+				/*	Ticket ticket1 = new Ticket();
 					
 					ticket1.setNTransaccion(NTransaccion);
 					ticket1.setFecha(textPane_Fecha.getText());
-					ticket1.setNif_local("B78107158");
+					ticket1.setNif_local("B78107158");					*/
 					
 					
 					int PosicionArray = NTransaccion-1;
-						
+					
 					  ticket.add(PosicionArray,new Ticket()); 
 					  ticket.get(PosicionArray).setNTransaccion(NTransaccion);
 					  ticket.get(PosicionArray).setFecha(textPane_Fecha.getText());
@@ -323,7 +323,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					  System.out.println(ticket.get(PosicionArray).getNif_local());
 					
 					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket.get(PosicionArray));
 					
 					
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	

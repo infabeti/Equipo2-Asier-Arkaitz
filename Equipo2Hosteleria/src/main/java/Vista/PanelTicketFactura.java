@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -70,6 +71,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	public static String ListaCompra="";
 	public static String ListaCompraTotal="";
+	public static  ArrayList<Ticket> ticket = new ArrayList();
 
 	static String LocalP="El plato caliente";
 	private JLabel lblProductos_1;
@@ -309,6 +311,18 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					ticket1.setNif_local("B78107158");
 					
 					
+					int PosicionArray = NTransaccion-1;
+						
+					  ticket.add(PosicionArray,new Ticket()); 
+					  ticket.get(PosicionArray).setNTransaccion(NTransaccion);
+					  ticket.get(PosicionArray).setFecha(textPane_Fecha.getText());
+					  ticket.get(PosicionArray).setNif_local("B78107158");
+
+					  System.out.println(ticket.get(PosicionArray).getNTransaccion());
+					  System.out.println(ticket.get(PosicionArray).getFecha());
+					  System.out.println(ticket.get(PosicionArray).getNif_local());
+					
+					
 					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
 					
 					
@@ -335,11 +349,16 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					Identificacion1.setApellido(textPane_Apellidos.getText());
 					Identificacion1.setNif("F32145634");
 					
+
+					
+					
 					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
 					Identificacion ide=ConexionMySQLTicket.RegistrarIdentificacion(Identificacion1);
 					Factura fac = ConexionMySQLTicket.RegistrarFactura(factura1);
 					
-					
+					 
+					  
+
 					
 					
 					

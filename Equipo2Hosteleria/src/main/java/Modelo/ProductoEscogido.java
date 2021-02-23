@@ -3,73 +3,48 @@ package Modelo;
 public class ProductoEscogido {
 
 	protected String nombre;
-	protected String tipo;
-	protected String fechaCaducidad;
-	protected double precioCompra;
+	protected int cantidad;
 	protected double precioVenta;
+	protected double precioTotal;
 			
 	//Constructor con parametros
-	public ProductoEscogido(String Nombre, String Tipo, String FechaCaducidad, double PrecioCompra, double PrecioVenta) {
-		this.nombre = Nombre;
-		this.tipo = Tipo;
-		this.fechaCaducidad = FechaCaducidad;
-		this.precioCompra = PrecioCompra;
-		this.precioVenta = PrecioVenta;
+	public ProductoEscogido(String Nombre, int Cantidad, double PrecioVenta, double PrecioTotal) {
+		this.setNombre(Nombre);
+		this.setCantidad(Cantidad);
+		this.setPrecioVenta(PrecioVenta);
+		this.setPrecioTotal(PrecioTotal);
+	}
 
-	}
-	
-	//get y set
-	//get
 	public String getNombre() {
-				
-		return this.nombre;
+		return nombre;
 	}
-	
-	public String getTipo() {
-		
-		return this.tipo;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	
-	public String getFechaCaducidad() {
-		
-		return this.fechaCaducidad;
+
+	public int getCantidad() {
+		return cantidad;
 	}
-	
-	public double getPrecioCompra() {
-		
-		return this.precioCompra;
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
-	
+
 	public double getPrecioVenta() {
-		
-		return this.precioVenta;
+		return precioVenta;
 	}
-	
-			
-	//set
-	public void setNombre(String Nombre)
-	{
-		this.nombre = Nombre;
+
+	public void setPrecioVenta(double precioVenta) {
+		this.precioVenta = precioVenta;
 	}
-	
-	public void setTipo(String Tipo)
-	{
-		this.tipo = Tipo;
+
+	public double getPrecioTotal() {
+		return precioTotal;
 	}
-	
-	public void setFechaCaducidad(String FechaCaducidad)
-	{
-		this.fechaCaducidad = FechaCaducidad;
-	}
-	
-	public void setPrecioCompra(double PrecioCompra)
-	{
-		this.precioCompra = PrecioCompra;
-	}
-	
-	public void setPrecioVenta(double PrecioVenta)
-	{
-		this.precioVenta = PrecioVenta;
+
+	public void setPrecioTotal(double precioTotal) {
+		this.precioTotal = precioTotal;
 	}
 	
 }

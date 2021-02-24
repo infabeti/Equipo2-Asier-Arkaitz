@@ -216,6 +216,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
+		this.borrarListaCompra();
 	}
 	
 	public void stateChanged(ChangeEvent e){

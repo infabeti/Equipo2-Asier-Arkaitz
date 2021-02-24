@@ -248,6 +248,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelTicketFactura));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelTicketFactura));
+		this.borrarListaCompra();
 	}
 	
 	public void stateChanged(ChangeEvent e){

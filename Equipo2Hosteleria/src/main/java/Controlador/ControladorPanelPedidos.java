@@ -31,9 +31,7 @@ public class ControladorPanelPedidos {
 	}
 	
 	public Object[][] obtenerListaCompra() {
-		
 		return this.modelo.getCarroCompra().getCarroCompra();
-		//return this.modelo.getCarroCompra().getListaCompra();
 	}
 	
 	public double obtenerTotalCarro() {

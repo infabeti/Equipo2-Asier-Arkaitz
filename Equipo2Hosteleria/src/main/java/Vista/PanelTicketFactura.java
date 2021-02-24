@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import Controlador.ControladorPanelTicketFactura;
 
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -55,7 +54,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JTextField textField_Nombre;
 	private JTextField textField_Apellidos;
 	private JTextField textField_Total;
-	private JTextPane textPane_Productos;
 	private JScrollPane scrollPane;
 	private JTable table;
 	private ButtonGroup grupoBotones;
@@ -63,7 +61,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
 	
 	public static int ControlarCaja=0;
-	public static String ListaCompra="";
 	public static String ListaCompraTotal="";
 	private int factura=0;
 
@@ -76,7 +73,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		this.controladorPanelTicketFactura = controladorPanelTicketFactura;
 		setLayout(null);
 		
-		ListaCompra = controladorPanelTicketFactura.obtenerListaCompra();
 		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
 		
 		btnAadirAlCarro = new JButton("A\u00F1adir al carro");
@@ -233,11 +229,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		scrollPane.setBounds(28, 225, 563, 147);
 		add(scrollPane);
 		
-		textPane_Productos = new JTextPane();
-		scrollPane.setViewportView(textPane_Productos);
-		textPane_Productos.setEditable(false);
-		textPane_Productos.setText(ListaCompra);
-		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -257,7 +248,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelTicketFactura));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelTicketFactura));
-		this.generarListaCompra();
 	}
 	
 	public void stateChanged(ChangeEvent e){
@@ -282,11 +272,39 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		}
 	}
 	
-	public void generarListaCompra(){
-		ListaCompra = controladorPanelTicketFactura.obtenerListaCompra();
+	public void generarListaCompras(){
 		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
-
-		textPane_Productos.setText(ListaCompra);
+		textField_Total.setText(""+ListaCompraTotal);
+	}
+	
+	public void generarListaCompra(){
+		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+		int rowCount = modeloTabla.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+			modeloTabla.removeRow(i);
+		}
+		Object lista[][] = controladorPanelTicketFactura.obtenerListaCompra();
+		for(int i = 0;i<lista.length;i++)
+		{
+			Object temp[] = { lista[i][0], lista[i][1], lista[i][2], lista[i][3] };
+			modeloTabla.addRow(temp);
+		}
+		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
+		textField_Total.setText(""+ListaCompraTotal);
+	}
+	
+	public void borrarListaCompra(){
+		controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
+		
+		ControlarCaja=0;
+		
+		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+		int rowCount = modeloTabla.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+			modeloTabla.removeRow(i);
+		}
+		
+		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
 		textField_Total.setText(""+ListaCompraTotal);
 		
 	}
@@ -337,14 +355,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Borrar");
-				controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
-				
-				ControlarCaja=0;
-				
-				ListaCompra = controladorPanelTicketFactura.obtenerListaCompra();
-				ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
-				
-				generarListaCompra();
+				borrarListaCompra();
 			}
 		};
 	}
@@ -360,9 +371,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura(nomProducto, cantidad);
 				
 				ControlarCaja=1;
-				
-				ListaCompra = controladorPanelTicketFactura.obtenerListaCompra();
-				ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
 				
 				generarListaCompra();
 			}

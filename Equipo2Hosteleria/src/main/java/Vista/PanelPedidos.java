@@ -50,7 +50,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	
 	static String LocalP="Freddy Fazbear's Pizza";
 	public static int ControlarCaja=0;
-	public static String ListaCompra="";
 	public static String ListaCompraTotal="";
 	private String tipo;
 	LocalDate date = LocalDate.now();
@@ -217,7 +216,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
-		//this.generarListaCompra();
 	}
 	
 	public void stateChanged(ChangeEvent e){
@@ -314,7 +312,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Borrar");
-				
 				borrarListaCompra();
 			}
 		};

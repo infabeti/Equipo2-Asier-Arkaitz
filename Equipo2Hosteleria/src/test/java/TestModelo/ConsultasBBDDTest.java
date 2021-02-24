@@ -80,7 +80,7 @@ public class ConsultasBBDDTest {
 	@Test
 	public void testPruebaConexion() {
 		resultadoEsperadoBoolean = true;
-		resultadoBoolean = consultasBBDD.probarConexion();
+		resultadoBoolean = consultasBBDD.Conectar();
 		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
 	}
 }

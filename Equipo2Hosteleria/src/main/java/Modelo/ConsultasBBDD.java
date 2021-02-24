@@ -65,7 +65,7 @@ public class ConsultasBBDD {
 	}
 
 
-   public boolean/*Connection*/ Conectar(){
+   public boolean Conectar(){
 	   
 	   conexion=true;
 
@@ -84,45 +84,9 @@ public class ConsultasBBDD {
            ex.printStackTrace();
 
        }
-
-
-       //return link;
-       return conexion;
-
-   }
-   
-   /*
-   public boolean probarConexion() {         
-	   
-	   conexion=false;
-	   
-	   ConsultasBBDD mysql = new ConsultasBBDD();
-
-       java.sql.Connection cn= mysql.Conectar();
-
-
-       if(cn!=null){
-
-    	   conexion=true;
-
-               try{
-
-                   cn.close();
-
-               }catch(SQLException ex){
-
-            	   System.out.println("Error al desconectar "+ex);
-            	   conexion=false;
-
-               }
-
-       }
        
        return conexion;
 
    }
-   */
-
-
 }
    

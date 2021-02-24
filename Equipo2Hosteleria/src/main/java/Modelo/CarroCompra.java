@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class CarroCompra {
 	
-	double TotalCarro=0;
+	public double TotalCarro=0;
 	public Object[][] array = new Object[0][4];
 	
 	public void anadirProducto(String nombre, double precio, int cantidad) {
@@ -57,11 +57,5 @@ public class CarroCompra {
 		Object[][] arrayLimpiador = new Object[0][4];
 		this.array = Arrays.copyOf(arrayLimpiador ,0);
 		this.TotalCarro=0;
-		for(int i=0;i<array.length;i++) {
-			array[i][0] = null;
-			array[i][1] = null;
-			array[i][2] = null;
-			array[i][3] = null;
-		}
 	}
 }

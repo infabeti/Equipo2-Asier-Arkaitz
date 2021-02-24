@@ -77,7 +77,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		add(comboBox_Productos);
 		
 		String arrayNombresProducto[] = controladorPanelPedidos.obtenerNombresProductos();
-		
 		for(int i = 0;i<arrayNombresProducto.length;i++)
 		{
 			comboBox_Productos.addItem(arrayNombresProducto[i]);
@@ -198,13 +197,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		textPane_Total.setText(""+ListaCompraTotal);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-					"Producto", "Cantidad", "Precio", "Total"
-			}
-		));
+		table.setModel(new DefaultTableModel(new Object[][] {},
+		new String[] {	"Producto", "Cantidad", "Precio", "Total"	}));
 		scrollPane.setViewportView(table);
 		
 		initializeEvents();
@@ -220,14 +214,12 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	}
 	
 	public void stateChanged(ChangeEvent e){
-        
 		if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 			lblDireccin.setEnabled(false);
 			textField_Direccion.setEnabled(false);
 			btnPasarACaja.setEnabled(true);
 			tipo="RECOGIDA";
-		}
-		if (rdbtnEntregaADomicilio.isSelected()) {
+		}else if (rdbtnEntregaADomicilio.isSelected()) {
 			lblDireccin.setEnabled(true);
 			textField_Direccion.setEnabled(true);
 			btnPasarACaja.setEnabled(true);
@@ -249,23 +241,18 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		}
 		ListaCompraTotal = ""+controladorPanelPedidos.obtenerTotalCarro();
 		textPane_Total.setText(""+ListaCompraTotal);
-		
 	}
 	
 	public void borrarListaCompra(){
 		controladorPanelPedidos.accionadoBottonBorrarListaPanelPedidos();
-		
 		ControlarCaja=0;
-		
 		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
 		int rowCount = modeloTabla.getRowCount();
 		for (int i = rowCount - 1; i >= 0; i--) {
 			modeloTabla.removeRow(i);
 		}
-		
 		ListaCompraTotal = ""+controladorPanelPedidos.obtenerTotalCarro();
 		textPane_Total.setText(""+ListaCompraTotal);
-		
 	}
 	
 	private ActionListener listenerBotonVolver(ControladorPanelPedidos controladorPanelPedidos) {
@@ -322,14 +309,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
-				
 				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
 				String nomProducto = (comboBox_Productos.getSelectedItem().toString());
-				
 				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos(nomProducto, cantidad);
-				
 				ControlarCaja=1;
-				
 				generarListaCompra();
 			}
 		};

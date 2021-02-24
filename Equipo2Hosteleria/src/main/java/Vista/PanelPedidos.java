@@ -237,14 +237,33 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	}
 	
 	public void generarListaCompra(){
-		//ListaCompra = controladorPanelPedidos.obtenerListaCompra();
 		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+		int rowCount = modeloTabla.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+			modeloTabla.removeRow(i);
+		}
 		Object lista[][] = controladorPanelPedidos.obtenerListaCompra();
 		for(int i = 0;i<lista.length;i++)
 		{
 			Object temp[] = { lista[i][0], lista[i][1], lista[i][2], lista[i][3] };
 			modeloTabla.addRow(temp);
 		}
+		ListaCompraTotal = ""+controladorPanelPedidos.obtenerTotalCarro();
+		textPane_Total.setText(""+ListaCompraTotal);
+		
+	}
+	
+	public void borrarListaCompra(){
+		controladorPanelPedidos.accionadoBottonBorrarListaPanelPedidos();
+		
+		ControlarCaja=0;
+		
+		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+		int rowCount = modeloTabla.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+			modeloTabla.removeRow(i);
+		}
+		
 		ListaCompraTotal = ""+controladorPanelPedidos.obtenerTotalCarro();
 		textPane_Total.setText(""+ListaCompraTotal);
 		
@@ -295,11 +314,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Borrar");
-				controladorPanelPedidos.accionadoBottonBorrarListaPanelPedidos();
 				
-				ControlarCaja=0;
-				
-				generarListaCompra();
+				borrarListaCompra();
 			}
 		};
 	}

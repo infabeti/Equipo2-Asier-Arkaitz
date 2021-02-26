@@ -242,16 +242,15 @@ public Ticket RegistrarTicket(Ticket tic) {
 				 
 				 ps.executeUpdate();
 
-					String sql = "select*from factura where num_trans = ? and tipo = ? and domicilio = ?";
+					String sql = "select*from pedido where num_trans = ? and tipo = ? and domicilio = ?";
 					
-					ps = con.prepareStatement(sql); 
+					pst = con.prepareStatement(sql); 
 				 
-			 
-					 ps.setInt(1,pedi.getNTransaccion());
-					 ps.setString(2,pedi.getTipo());
-					 ps.setString(3,pedi.getDomicilio());
-					
-			 rs = ps.executeQuery();
+					 pst.setInt(1,pedi.getNTransaccion());
+					 pst.setString(2,pedi.getTipo());
+					 pst.setString(3,pedi.getDomicilio());
+
+			 rs = pst.executeQuery();
 			 
 			 while (rs.next()) {
 				 pedido1 = new Pedido(rs.getInt(1), rs.getString(2), rs.getString(3));			
@@ -323,5 +322,65 @@ public Ticket RegistrarTicket(Ticket tic) {
 
 
 	 }
+	 
+	 public Incluye RegistrarIncluye(Incluye inc) {
+
+		 Incluye Incluye1=null;
+
+
+		 Connection con = null;
+		 PreparedStatement ps = null;
+		 PreparedStatement pst = null;
+		 ResultSet rs = null;
+		 Statement st = null;
+
+
+
+		 try {
+
+		 con = ConexionMySQL.getConexion();
+
+		 st = con.createStatement();
+
+		 ps = con.prepareStatement("INSERT INTO Incluye(nombre_producto, num_trans, cantidad, precio_venta,precio_compra) VAlUES(?,?,?,?,?)");
+
+		 ps.setString(1,inc.getNombreProducto());
+		 ps.setInt(2,inc.getNtransaccion());
+		 ps.setInt(3,inc.getCantidad());
+		 ps.setDouble(4,inc.getPrecioVenta());
+		 ps.setDouble(5,inc.getPrecioCompra());
+
+
+		 ps.executeUpdate();
+
+		 String sql = "select*from Incluye where nombre_producto = ? and num_trans = ? and cantidad = ? and precio_venta = ? and precio_compra = ?";
+
+		 pst = con.prepareStatement(sql);
+
+		 pst.setString(1,inc.getNombreProducto());
+		 pst.setInt(2,inc.getNtransaccion());
+		 pst.setInt(3,inc.getCantidad());
+		 pst.setDouble(4,inc.getPrecioVenta());
+		 pst.setDouble(5,inc.getPrecioCompra());
+
+
+		 rs = pst.executeQuery();
+
+		 while (rs.next()) {
+		 Incluye1 = new Incluye(rs.getString(1), rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDouble(5));
+		 }
+
+		 System.out.println("Se ha creado la Incluye correctamente");
+
+		 } catch (Exception e) {
+		 System.out.println("Error en creacion de la Incluye");
+		 }
+
+		 return Incluye1;
+
+
+
+		 }
+	 
 }
    

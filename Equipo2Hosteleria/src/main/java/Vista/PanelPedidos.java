@@ -12,6 +12,7 @@ import Controlador.ControladorPanelPedidos;
 import Modelo.Producto;
 import Modelo.Ticket;
 import Modelo.ConexionMySQL;
+import Modelo.Incluye;
 import Modelo.Modelo;
 import Modelo.Pedido;
 
@@ -237,12 +238,31 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
 					Pedido pedido1 = new Pedido();
+					Ticket ticket1 = new Ticket();
+					Incluye incluye1 = new Incluye();
 					
 					pedido1.setNTransaccion(NTransaccion);
 					pedido1.setTipo(rdbtnEntregaADomicilio.getText());
 					pedido1.setDomicilio(textPane_Direccion.getText());
+
+					ticket1.setNTransaccion(NTransaccion);
+					ticket1.setFecha(textPane_Fecha.getText());
+					ticket1.setNif_local("B78107158");
 					
+					String Producto = (comboBox_Productos.getSelectedItem().toString());
+					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
+					double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
+					double PrecioCompra = (((Producto) comboBox_Productos.getSelectedItem()).PrecioCompra());
+					
+					incluye1.setNombreProducto(Producto);
+					incluye1.setNTransaccion(NTransaccion);
+					incluye1.setCantidad(Cantidad);
+					incluye1.setPrecioVenta(PrecioVenta);
+					incluye1.setPrecioCompra(PrecioCompra);
+					
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);				
 					Pedido pedi = ConexionMySQLTicket.RegistrarPedido(pedido1);	
+					Incluye incl = ConexionMySQLTicket.RegistrarIncluye(incluye1);
 					
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
@@ -255,19 +275,35 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
 					Pedido pedido2 = new Pedido();
-					Ticket ticket1 = new Ticket();
+					Ticket ticket2 = new Ticket();
+					Incluye incluye2 = new Incluye();
 					
 					pedido2.setNTransaccion(NTransaccion);
 					pedido2.setTipo(rdbtnRecogerEnEstablecimiento.getText());
 					pedido2.setDomicilio(null);
-					ticket1.setNTransaccion(NTransaccion);
-					ticket1.setFecha(textPane_Fecha.getText());
-					ticket1.setNif_local("B78107158");
 					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
+					ticket2.setNTransaccion(NTransaccion);
+					ticket2.setFecha(textPane_Fecha.getText());
+					ticket2.setNif_local("B78107158");
+					
+					String Producto = (comboBox_Productos.getSelectedItem().toString());
+					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
+					double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
+					double PrecioCompra = (((Producto) comboBox_Productos.getSelectedItem()).getPrecioCompra());
+					
+					incluye2.setNombreProducto(Producto);
+					incluye2.setNTransaccion(NTransaccion);
+					incluye2.setCantidad(Cantidad);
+					incluye2.setPrecioVenta(PrecioVenta);
+					incluye2.setPrecioCompra(PrecioCompra);
+					
+					System.out.println(PrecioVenta);
+					System.out.println(PrecioCompra);
+					
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket2);
 					Pedido pedi = ConexionMySQLTicket.RegistrarPedido(pedido2);
-					
-					
+					Incluye incl = ConexionMySQLTicket.RegistrarIncluye(incluye2);
+										
 					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
 				}else {
 					JOptionPane.showMessageDialog(null,"Añade una dirección.");
@@ -284,6 +320,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
 				String Producto = (comboBox_Productos.getSelectedItem().toString());
 				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
+				double PrecioCompra = (((Producto) comboBox_Productos.getSelectedItem()).PrecioCompra());
 				double Total = PrecioVenta*Cantidad;
 				
 				ControlarCaja=1;

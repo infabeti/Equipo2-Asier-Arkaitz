@@ -10,11 +10,14 @@ public class Incluye  {
 	private Ticket ticket;
 	private Producto producto;
 	
+	public Incluye() {
+
+	}
 	
 	public Incluye(String NombreProducto, int Ntransaccion, int Cantidad, double PrecioVenta,double PrecioCompra) {
 		
 		this.setNombreProducto(NombreProducto);
-		this.setNtransaccion(Ntransaccion);
+		this.setNTransaccion(Ntransaccion);
 		this.setCantidad(Cantidad);
 		this.setPrecioVenta(PrecioVenta);
 		this.setPrecioCompra(PrecioCompra);
@@ -64,12 +67,8 @@ public class Incluye  {
 		this.nombreProducto = nombreProducto;
 	}
 
-	public void setNtransaccion(int ntransaccion) {
+	public void setNTransaccion(int ntransaccion) {
 		this.ntransaccion = ntransaccion;
 	}
-	
-	
-	
-	
 
 }

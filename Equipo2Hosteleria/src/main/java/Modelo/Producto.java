@@ -81,6 +81,10 @@ public class Producto {
 	 public double PrecioVenta() {
 	      return this.precioVenta;
 	   }
+	 
+	 public double PrecioCompra() {
+	      return this.precioCompra;
+	   }
 	
 	
 }

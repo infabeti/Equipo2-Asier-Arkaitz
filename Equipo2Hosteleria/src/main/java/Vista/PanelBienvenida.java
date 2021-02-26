@@ -81,10 +81,12 @@ public class PanelBienvenida extends JPanel{
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				String usuario = textPane_Usuario.getText();
-				String contraseña = textPane_Contrasea.getText();
+			//	String usuario = textPane_Usuario.getText();
+			//	String contraseña = textPane_Contrasea.getText();
 				
-
+				String usuario = "11111111A";
+				String contraseña = "111";
+				
 				ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
 
 				Usuario usuario1 = new Usuario();

@@ -38,6 +38,7 @@ public class CarroCompra {
 	public void aumentarArray() {
 		ProductoEscogido[] arrayTemp = new ProductoEscogido[this.arrayProdEsc.length+1];
 		for (int i = 0; i<this.arrayProdEsc.length;i++) {
+			arrayTemp[i] = new ProductoEscogido();
 			arrayTemp[i].setNombre(this.arrayProdEsc[i].getNombre());
 			arrayTemp[i].setCantidad(this.arrayProdEsc[i].getCantidad());
 			arrayTemp[i].setPrecioVenta(this.arrayProdEsc[i].getPrecioVenta());

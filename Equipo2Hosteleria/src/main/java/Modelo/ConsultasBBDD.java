@@ -41,7 +41,7 @@ public class ConsultasBBDD {
 		{
 			if(nombre.equals(arrayProductos[i].getNombre())) {
 				precio=arrayProductos[i].getPrecioVenta();
-				i=arrayProductos.length;
+				break;
 			}
 		}
 		

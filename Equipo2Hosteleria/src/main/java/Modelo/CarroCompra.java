@@ -27,7 +27,7 @@ public class CarroCompra {
 					array[i][1] = cantidad;
 					array[i][2] = precio;
 					array[i][3] = precio*cantidad;
-					i=array.length;
+					break;
 				}
 			}
 		}

@@ -8,13 +8,6 @@ public class ProductoEscogido {
 	protected double precioTotal;
 			
 	//Constructor con parametros
-	public ProductoEscogido(String Nombre, int Cantidad, double PrecioVenta, double PrecioTotal) {
-		this.setNombre(Nombre);
-		this.setCantidad(Cantidad);
-		this.setPrecioVenta(PrecioVenta);
-		this.setPrecioTotal(PrecioTotal);
-	}
-
 	public ProductoEscogido() {
 	}
 

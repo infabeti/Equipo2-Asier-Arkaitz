@@ -56,7 +56,6 @@ public class CarroCompra {
 			array[i][2] = this.arrayProdEsc[i].getPrecioVenta();
 			array[i][3] = this.arrayProdEsc[i].getPrecioTotal();
 		}
-		
 		return this.array;
 	}
 	

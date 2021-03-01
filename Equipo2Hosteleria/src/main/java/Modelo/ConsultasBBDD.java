@@ -29,7 +29,6 @@ public class ConsultasBBDD {
 		{
 			arrayNombresProducto[i]=arrayProductos[i].getNombre();
 		}
-		
 		return arrayNombresProducto;
 	}
     
@@ -44,7 +43,6 @@ public class ConsultasBBDD {
 				break;
 			}
 		}
-		
 		return precio;
 	}
     
@@ -73,20 +71,14 @@ public class ConsultasBBDD {
        Connection link = null;
 
        try{
-
            Class.forName("com.mysql.cj.jdbc.Driver");
-
            link = DriverManager.getConnection(this.URL, this.USER, this.PASS);
-
+           
        }catch(Exception ex){
-    	   
     	   conexion=false;
            ex.printStackTrace();
-
        }
-       
        return conexion;
-
    }
 }
    

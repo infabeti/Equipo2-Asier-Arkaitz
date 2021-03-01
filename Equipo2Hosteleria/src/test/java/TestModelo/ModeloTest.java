@@ -6,15 +6,13 @@ import org.junit.Test;
 
 import Modelo.Modelo;
 import Modelo.ConsultasBBDD;
-import Modelo.Makers;
 import Modelo.CarroCompra;
 
 public class ModeloTest {
 
 	private Modelo modelo;
-	private ConsultasBBDD consultasBBDDMock = mock(ConsultasBBDD.class);
-	private CarroCompra carroCompraMock = mock(CarroCompra.class);
-	private Makers makersMock = mock(Makers.class);
+	private ConsultasBBDD consultasBBDD = new ConsultasBBDD();
+	private CarroCompra carroCompra = new CarroCompra();
 	
 	@Test
 	public void setConsultasBBDDTest() {

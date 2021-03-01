@@ -49,7 +49,7 @@ public class ControladorPanelPedidos {
 	}
 	
 	public void accionadoBottonPasarACajaPanelPedidos(String tipo, String domicilio) {
-		this.modelo.getMakers().makePedido(tipo, domicilio);
+		this.modelo.setPedido(tipo, domicilio);
 		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();

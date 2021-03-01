@@ -50,9 +50,9 @@ public class ControladorPanelTicketFactura {
 	
 	public void accionadoBottonPagarPanelTicketFactura(int factura, String nif, String nombre, String apellidos) {
 		if(factura==0) {
-			this.modelo.getMakers().makeTicket();	
+			this.modelo.setTicket();	
 		}else if(factura==1) {
-			this.modelo.getMakers().makeFactura(nif, nombre, apellidos);	
+			this.modelo.setFactura(nif, nombre, apellidos);	
 		}
 		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.modelo.getConsultasBBDD().sumarNTransaccion();

@@ -40,12 +40,12 @@ public class ProductoTest {
 	@Test
 	public void testSetPrecioCompra() {
 		p1.setPrecioCompra(6);
-		assertEquals(p1.getPrecioCompra(), 6, 1);
+		assertEquals(p1.getPrecioCompra(), 6, 0);
 	}
 	
 	@Test
 	public void testPrecioVenta() {
 		p1.setPrecioVenta(7);
-		assertEquals(p1.getPrecioVenta(), 7, 1);
+		assertEquals(p1.getPrecioVenta(), 7, 0);
 	}
 }

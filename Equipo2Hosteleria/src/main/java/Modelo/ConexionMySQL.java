@@ -217,10 +217,11 @@ public Ticket RegistrarTicket(Ticket tic) {
 			 return factura1;
 		}
 	 
-	 public Pedido RegistrarPedido(Pedido pedi) {
+	 public Pedido RegistrarPedidoConDomicilio(Pedido pedi) {
 		 
-			Pedido pedido1=null;
-				
+			Pedido Pedido1=null;
+			
+			
 			 Connection con = null;
 			 PreparedStatement ps = null;
 			 PreparedStatement pst = null;
@@ -253,18 +254,67 @@ public Ticket RegistrarTicket(Ticket tic) {
 			 rs = pst.executeQuery();
 			 
 			 while (rs.next()) {
-				 pedido1 = new Pedido(rs.getInt(1), rs.getString(2), rs.getString(3));			
+				 Pedido1 = new Pedido(rs.getInt(1), rs.getString(2), rs.getString(3));			
 				}
 			 
 			 System.out.println("Se ha creado el pedido correctamente");
-			 
+						 
 			 } catch (Exception e) {
 					System.out.println("Error en creacion del Pedido");
 					}
 
-			 return pedido1;
+			 return Pedido1;
 		}
 
+	 public Pedido RegistrarPedidoSinDomicilio(Pedido pedi) {
+		 
+			Pedido Pedido1=null;
+			
+			
+			 Connection con = null;
+			 PreparedStatement ps = null;
+			 PreparedStatement pst = null;
+			 ResultSet rs = null;
+			 Statement st = null;
+			 
+			 try {
+				 
+			con = ConexionMySQL.getConexion();	
+			
+			st = con.createStatement();
+				 
+			ps = con.prepareStatement("INSERT INTO pedido(num_trans, tipo) VAlUES(?,?)");
+				 
+			 ps.setInt(1,pedi.getNTransaccion());
+			 ps.setString(2,pedi.getTipo());
+		
+			
+				 
+				 ps.executeUpdate();
+
+					String sql = "select*from pedido where num_trans = ? and tipo = ?";
+					
+					pst = con.prepareStatement(sql); 
+				 
+					 pst.setInt(1,pedi.getNTransaccion());
+					 pst.setString(2,pedi.getTipo());
+				
+
+			 rs = pst.executeQuery();
+			 
+			 while (rs.next()) {
+				 Pedido1 = new Pedido(rs.getInt(1), rs.getString(2));			
+				}
+			 
+			 System.out.println("Se ha creado el pedido correctamente");
+						 
+			 } catch (Exception e) {
+					System.out.println("Error en creacion del Pedido");
+					}
+
+			 return Pedido1;
+		}
+	 
 	 
 	 public Identificacion RegistrarIdentificacion(Identificacion ide) {
 		

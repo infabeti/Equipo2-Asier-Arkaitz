@@ -7,6 +7,11 @@ public class Pedido extends Ticket{
 	
 	//Constructor sin parametros
 	public Pedido() {}
+	
+	public Pedido(int NTransaccion, String tipo) {
+		this.setNTransaccion(NTransaccion);
+		this.setTipo(tipo);
+	}
 			
 	public Pedido(int NTransaccion, String tipo, String domicilio) {
 		this.setNTransaccion(NTransaccion);

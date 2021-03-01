@@ -49,6 +49,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	
 	public static int ControlarCaja=0;
 	
+	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
 		setBackground(new Color(102, 153, 255));
@@ -228,6 +229,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				if(ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
+				}else if (textPane_Direccion.getText()=="") {						
+					JOptionPane.showMessageDialog(null,"Añade una dirección.");								
 				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
@@ -249,6 +252,9 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ticket1.setFecha(textPane_Fecha.getText());
 					ticket1.setNif_local("B78107158");
 					
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);				
+					Pedido pedi = ConexionMySQLTicket.RegistrarPedidoConDomicilio(pedido1);	
+										
 					String Producto = (comboBox_Productos.getSelectedItem().toString());
 					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
 					double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
@@ -260,11 +266,14 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					incluye1.setPrecioVenta(PrecioVenta);
 					incluye1.setPrecioCompra(PrecioCompra);
 					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);				
-					Pedido pedi = ConexionMySQLTicket.RegistrarPedido(pedido1);	
 					Incluye incl = ConexionMySQLTicket.RegistrarIncluye(incluye1);
 					
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
+					if (tic != null && pedi != null && incl != null) {
+						controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();			
+					}else {
+							JOptionPane.showMessageDialog(null,"Fallo al crear la operacion.");
+						}
+								
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
@@ -280,12 +289,14 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					
 					pedido2.setNTransaccion(NTransaccion);
 					pedido2.setTipo(rdbtnRecogerEnEstablecimiento.getText());
-					pedido2.setDomicilio(null);
 					
 					ticket2.setNTransaccion(NTransaccion);
 					ticket2.setFecha(textPane_Fecha.getText());
 					ticket2.setNif_local("B78107158");
 					
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket2);
+					Pedido pedi = ConexionMySQLTicket.RegistrarPedidoSinDomicilio(pedido2);
+									
 					String Producto = (comboBox_Productos.getSelectedItem().toString());
 					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
 					double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
@@ -296,18 +307,16 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					incluye2.setCantidad(Cantidad);
 					incluye2.setPrecioVenta(PrecioVenta);
 					incluye2.setPrecioCompra(PrecioCompra);
-					
-					System.out.println(PrecioVenta);
-					System.out.println(PrecioCompra);
-					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket2);
-					Pedido pedi = ConexionMySQLTicket.RegistrarPedido(pedido2);
-					Incluye incl = ConexionMySQLTicket.RegistrarIncluye(incluye2);
 										
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();
-				}else {
-					JOptionPane.showMessageDialog(null,"Añade una dirección.");
+					Incluye incl = ConexionMySQLTicket.RegistrarIncluye(incluye2);	
+					
+					if (tic != null && pedi != null && incl != null) {
+						controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();			
+					}else {
+							JOptionPane.showMessageDialog(null,"Fallo al crear la operacion.");
+						}					
 				}
+				
 			}
 		};
 	}

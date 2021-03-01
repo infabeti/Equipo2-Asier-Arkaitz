@@ -45,7 +45,6 @@ public class Producto {
 		return this.precioVenta;
 	}
 	
-			
 	//set
 	public void setNombre(String Nombre)
 	{

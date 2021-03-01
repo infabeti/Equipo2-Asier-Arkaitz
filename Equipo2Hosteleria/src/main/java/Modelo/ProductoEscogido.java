@@ -16,7 +16,6 @@ public class ProductoEscogido {
 	}
 
 	public ProductoEscogido() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getNombre() {

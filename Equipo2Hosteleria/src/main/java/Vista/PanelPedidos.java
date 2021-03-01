@@ -112,6 +112,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		textPane_Direccion = new JTextPane();
 		textPane_Direccion.setEnabled(false);
 		textPane_Direccion.setBounds(211, 196, 189, 22);
+		textPane_Direccion.setText(null);
 		add(textPane_Direccion);
 		
 		comboBox_Cantidad = new JComboBox();
@@ -228,9 +229,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(ControlarCaja==0) {
-					JOptionPane.showMessageDialog(null, "Añade productos.");
-				}else if (textPane_Direccion.getText()=="") {						
-					JOptionPane.showMessageDialog(null,"Añade una dirección.");								
+					JOptionPane.showMessageDialog(null, "Añade productos.");									
 				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
@@ -252,7 +251,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ticket1.setFecha(textPane_Fecha.getText());
 					ticket1.setNif_local("B78107158");
 					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);				
+					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);		
+					
+
+					
 					Pedido pedi = ConexionMySQLTicket.RegistrarPedidoConDomicilio(pedido1);	
 										
 					String Producto = (comboBox_Productos.getSelectedItem().toString());

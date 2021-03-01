@@ -227,7 +227,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		}
 	}
 	
-	public void generarListaCompra(){
+	private void generarListaCompra(){
 		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
 		int rowCount = modeloTabla.getRowCount();
 		for (int i = rowCount - 1; i >= 0; i--) {
@@ -243,7 +243,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		textPane_Total.setText(""+ListaCompraTotal);
 	}
 	
-	public void borrarListaCompra(){
+	private void borrarListaCompra(){
 		controladorPanelPedidos.accionadoBottonBorrarListaPanelPedidos();
 		ControlarCaja=0;
 		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();

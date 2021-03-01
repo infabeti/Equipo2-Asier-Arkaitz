@@ -17,24 +17,16 @@ public class ModeloTest {
 	@Test
 	public void setConsultasBBDDTest() {
 		modelo = new Modelo();
-		modelo.setConsultasBBDD(consultasBBDDMock);
+		modelo.setConsultasBBDD(consultasBBDD);
 		
-		assertEquals(modelo.getConsultasBBDD(), consultasBBDDMock);
+		assertEquals(modelo.getConsultasBBDD(), consultasBBDD);
 	}
 
 	@Test
 	public void setCarroCompraTest() {
 		modelo = new Modelo();
-		modelo.setCarroCompra(carroCompraMock);
+		modelo.setCarroCompra(carroCompra);
 		
-		assertEquals(modelo.getCarroCompra(), carroCompraMock);
-	}
-
-	@Test
-	public void setMakersTest() {
-		modelo = new Modelo();
-		modelo.setMakers(makersMock);
-		
-		assertEquals(modelo.getMakers(), makersMock);
+		assertEquals(modelo.getCarroCompra(), carroCompra);
 	}
 }

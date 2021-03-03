@@ -1,13 +1,12 @@
 package Controlador;
 
 import Modelo.Modelo;
-import Vista.PanelBienvenida;
-import Vista.PanelOperatividad;
 import Vista.PanelAprovisionamiento;
 import Vista.Vista;
 
 public class ControladorPanelAprovisionamiento {
 
+	@SuppressWarnings("unused")
 	private Modelo modelo;
 	private Vista vista;
 	private Controlador controlador;

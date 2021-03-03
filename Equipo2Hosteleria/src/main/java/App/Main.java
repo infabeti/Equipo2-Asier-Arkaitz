@@ -11,7 +11,8 @@ public class Main {
 	private static Controlador controlador;
 	
 	public static void main(String[] args) {
-		modelo = new Modelo();    
+		
+		modelo = new Modelo();
 		vista = new Vista();
                 
 		controlador = new Controlador(modelo, vista);

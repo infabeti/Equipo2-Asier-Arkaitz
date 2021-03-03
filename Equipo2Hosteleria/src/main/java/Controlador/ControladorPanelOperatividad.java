@@ -1,8 +1,6 @@
 package Controlador;
 
-import Modelo.ConexionMySQL;
 import Modelo.Modelo;
-import Vista.PanelBienvenida;
 import Vista.PanelOperatividad;
 import Vista.Vista;
 
@@ -25,13 +23,9 @@ public class ControladorPanelOperatividad {
 	}
 	
 	public void accionadoBottonVolverPanelOperatividad() {
-		this.modelo.BorrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
-	
-/*	public void accionadoBottonPruebaConexionPanelOperatividad() {
-		ConexionMySQL.btnProbarconexionActionPerformed();
-	}*/
 	
 	public void accionadoBottonMostrarPanelPedidos() {
 		this.controlador.navegarPanelPedidos();

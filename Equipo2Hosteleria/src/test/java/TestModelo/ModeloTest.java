@@ -1,31 +1,32 @@
 package TestModelo;
 
 import static org.junit.Assert.*;
-
+import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import Modelo.Modelo;
+import Modelo.ConsultasBBDD;
+import Modelo.CarroCompra;
 
 public class ModeloTest {
 
-	private Modelo funciones = new Modelo();
-	private int resultado;
-	private int resultadoEsperado;
-	private int NTransaccion;
+	private Modelo modelo;
+	private ConsultasBBDD consultasBBDD = new ConsultasBBDD();
+	private CarroCompra carroCompra = new CarroCompra();
 	
 	@Test
-	public void testMostrarNumeroTransaccion() {
-		NTransaccion=Modelo.NTransaccion;
-		resultadoEsperado = NTransaccion;
-		resultado = funciones.MostrarNumeroTransaccion();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
+	public void setConsultasBBDDTest() {
+		modelo = new Modelo();
+		modelo.setConsultasBBDD(consultasBBDD);
+		
+		assertEquals(modelo.getConsultasBBDD(), consultasBBDD);
 	}
+
 	@Test
-	public void testAumentarNumeroTransaccion() {
-		NTransaccion=Modelo.NTransaccion;
-		resultadoEsperado = NTransaccion++;
-		resultado = funciones.AumentarNumeroTransaccion();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
+	public void setCarroCompraTest() {
+		modelo = new Modelo();
+		modelo.setCarroCompra(carroCompra);
+		
+		assertEquals(modelo.getCarroCompra(), carroCompra);
 	}
-	
 }

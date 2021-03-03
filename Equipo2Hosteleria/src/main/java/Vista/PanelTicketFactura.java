@@ -11,15 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 
-import Controlador.ControladorPanelBienvenida;
-import Controlador.ControladorPanelComandas;
-import Controlador.ControladorPanelOperatividad;
-import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelTicketFactura;
+<<<<<<< HEAD
 import Controlador.ControladorPanelListaCompra;
 import Modelo.ConexionMySQL;
 import Modelo.Factura;
@@ -28,23 +25,27 @@ import Modelo.Modelo;
 import Modelo.Producto;
 import Modelo.Ticket;
 import Modelo.Usuario;
+=======
+>>>>>>> main
 
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import javax.swing.JRadioButton;
-import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import java.time.LocalDate;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "rawtypes", "unchecked" , "serial" , "deprecation"})
 public class PanelTicketFactura extends JPanel implements ChangeListener {
 
 	private JButton btnVolver;
 	private JButton btnDesconectarse;
 	private JButton btnPagar;
+	private JButton btnBorrarLista;
+	private JButton btnAadirAlCarro;
+	private JComboBox comboBox_Productos;
+	private JComboBox comboBox_Cantidad;
 	private JRadioButton rdbtnTicket;
 	private JRadioButton rdbtnFactura;
 	private JLabel lblTicketFactura;
@@ -56,46 +57,50 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
 	private JLabel lblTotal;
-	private JTextPane textPane_Fecha;
-	private JTextPane textPane_NTransaccion;
-	private JTextPane textPane_Local;
-	private JTextPane textPane_NIF;
-	private JTextPane textPane_Nombre;
-	private JTextPane textPane_Apellidos;
-	private JTextPane textPane_Total;
-	private JTextPane textPane_Productos;
+	private JLabel lblProductos_1;
+	private JLabel lblCantidad;
+	private JTextField textField_Fecha;
+	private JTextField textField_NTransaccion;
+	private JTextField textField_Local;
+	private JTextField textField_NIF;
+	private JTextField textField_Nombre;
+	private JTextField textField_Apellidos;
+	private JTextField textField_Total;
 	private JScrollPane scrollPane;
+	private JTable table;
 	private ButtonGroup grupoBotones;
 	
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
 	
-	public static String ListaCompra="";
+	public static int ControlarCaja=0;
 	public static String ListaCompraTotal="";
+<<<<<<< HEAD
 	public static  ArrayList<Ticket> ticket = new ArrayList();
+=======
+	private int factura=0;
+>>>>>>> main
 
-	static String LocalP="El plato caliente";
-	private JLabel lblProductos_1;
-	private JComboBox comboBox_Productos;
-	private JLabel lblCantidad;
-	private JComboBox comboBox_Cantidad;
-	private JButton btnBorrarLista;
-	private JButton btnAadirAlCarro;
+	static String LocalP="Freddy Fazbear's Pizza";
+	LocalDate date = LocalDate.now();
+	String fecha = date.toString();
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		setBackground(new Color(102, 153, 255));
 		this.controladorPanelTicketFactura = controladorPanelTicketFactura;
 		setLayout(null);
 		
+		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
+		
 		btnAadirAlCarro = new JButton("A\u00F1adir al carro");
-		btnAadirAlCarro.setBounds(434, 149, 146, 23);
+		btnAadirAlCarro.setBounds(419, 187, 172, 23);
 		add(btnAadirAlCarro);
 		
 		btnBorrarLista = new JButton("Borrar lista");
-		btnBorrarLista.setBounds(443, 235, 158, 23);
+		btnBorrarLista.setBounds(444, 396, 146, 23);
 		add(btnBorrarLista);
 		
 		comboBox_Cantidad = new JComboBox();
-		comboBox_Cantidad.setBounds(522, 110, 60, 22);
+		comboBox_Cantidad.setBounds(531, 150, 60, 22);
 		add(comboBox_Cantidad);
 		
 		int numbers_to_add_max = 99;
@@ -104,144 +109,151 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		}
 		
 		lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCantidad.setBounds(391, 114, 115, 14);
+		lblCantidad.setBounds(419, 150, 102, 22);
 		add(lblCantidad);
 		
 		comboBox_Productos = new JComboBox();
-		comboBox_Productos.setBounds(429, 76, 173, 22);
+		comboBox_Productos.setBounds(419, 117, 173, 22);
 		add(comboBox_Productos);
 		
-		Producto Producto1 = new Producto("Garbanzos","Comida","30-01-2021",5,5);	
-		Producto Producto2 = new Producto("Paella","Comida","31-01-2021",5,5);	
-		Producto Producto3 = new Producto("Bacalao","Comida","02-02-2021",5,5);	
-		Producto Producto4 = new Producto("Hamburguesa","Comida","30-01-2021",5,5);	
-		Producto Producto5 = new Producto("Cerveza","Bebida","01-02-2021",5,5);	
-
-		comboBox_Productos.addItem(Producto1);
-		comboBox_Productos.addItem(Producto2);
-		comboBox_Productos.addItem(Producto3);
-		comboBox_Productos.addItem(Producto4);
-		comboBox_Productos.addItem(Producto5);
+		String arrayNombresProducto[] = controladorPanelTicketFactura.obtenerNombresProductos();
+		
+		for(int i = 0;i<arrayNombresProducto.length;i++)
+		{
+			comboBox_Productos.addItem(arrayNombresProducto[i]);
+		}
 		
 		lblProductos_1 = new JLabel("Productos:");
 		lblProductos_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblProductos_1.setBounds(431, 44, 115, 14);
+		lblProductos_1.setBounds(419, 84, 170, 22);
 		add(lblProductos_1);
 		
 		lblTicketFactura = new JLabel("Ticket o Factura");
 		lblTicketFactura.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTicketFactura.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTicketFactura.setBounds(126, 11, 368, 14);
+		lblTicketFactura.setBounds(30, 24, 561, 14);
 		add(lblTicketFactura);
 		
 		btnDesconectarse = new JButton("Desconectarse");
-		btnDesconectarse.setBounds(137, 235, 146, 23);
+		btnDesconectarse.setBounds(149, 396, 146, 23);
 		add(btnDesconectarse);
 		
 		btnVolver = new JButton("Volver");
-		btnVolver.setBounds(38, 235, 89, 23);
+		btnVolver.setBounds(30, 396, 89, 23);
 		add(btnVolver);
 		
 		btnPagar = new JButton("Pagar");
-		btnPagar.setBounds(293, 235, 139, 23);
+		btnPagar.setBounds(325, 396, 89, 23);
 		add(btnPagar);
 		
-		lblTransaccion = new JLabel("N\u00BA Transaccion:");
-		lblTransaccion.setBounds(38, 48, 89, 20);
+		lblTransaccion = new JLabel("N\u00BA Transacci\u00F3n:");
+		lblTransaccion.setBounds(28, 59, 89, 20);
 		add(lblTransaccion);
 		
-		textPane_Fecha = new JTextPane();
-		textPane_Fecha.setBounds(92, 101, 119, 20);
-		add(textPane_Fecha);
+		textField_Fecha = new JTextField();
+		textField_Fecha.setHorizontalAlignment(SwingConstants.TRAILING);
+		textField_Fecha.setEditable(false);
+		textField_Fecha.setText(fecha);
+		textField_Fecha.setBounds(70, 119, 131, 20);
+		add(textField_Fecha);
 		
 		lblFecha = new JLabel("Fecha:");
-		lblFecha.setBounds(38, 101, 62, 20);
+		lblFecha.setBounds(28, 119, 62, 20);
 		add(lblFecha);
 		
 		lblLocal = new JLabel("Local:");
-		lblLocal.setBounds(38, 126, 51, 20);
+		lblLocal.setBounds(28, 150, 51, 20);
 		add(lblLocal);
 		
-		textPane_NTransaccion = new JTextPane();
-		textPane_NTransaccion.setBounds(38, 70, 173, 20);
-		add(textPane_NTransaccion);
-		textPane_NTransaccion.setText(""+ controladorPanelTicketFactura.MostrarNumeroTransaccion());
+		textField_NTransaccion = new JTextField();
+		textField_NTransaccion.setHorizontalAlignment(SwingConstants.TRAILING);
+		textField_NTransaccion.setEditable(false);
+		textField_NTransaccion.setBounds(28, 89, 173, 20);
+		add(textField_NTransaccion);
+		textField_NTransaccion.setText(""+ controladorPanelTicketFactura.mostrarNumeroTransaccion());
 		
-		textPane_Local = new JTextPane();
-		textPane_Local.setBounds(92, 126, 119, 20);
-		add(textPane_Local);
-		textPane_Local.setText(LocalP);
+		textField_Local = new JTextField();
+		textField_Local.setHorizontalAlignment(SwingConstants.TRAILING);
+		textField_Local.setEditable(false);
+		textField_Local.setBounds(70, 150, 131, 20);
+		add(textField_Local);
+		textField_Local.setText(LocalP);
 		
 		
 		lblProductos = new JLabel("Productos:");
-		lblProductos.setBounds(38, 153, 89, 19);
+		lblProductos.setBounds(28, 195, 89, 19);
 		add(lblProductos);
 		
 		grupoBotones = new ButtonGroup();
 		
 		rdbtnTicket = new JRadioButton("Ticket");
 		rdbtnTicket.setSelected(true);
-		rdbtnTicket.setBounds(246, 38, 71, 23);
+		rdbtnTicket.setBounds(236, 56, 71, 23);
 		rdbtnTicket.addChangeListener(this);
 		add(rdbtnTicket);
 		grupoBotones.add(rdbtnTicket);
 		
 		rdbtnFactura = new JRadioButton("Factura");
 		rdbtnFactura.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnFactura.setBounds(325, 38, 81, 23);
+		rdbtnFactura.setBounds(315, 56, 81, 23);
 		rdbtnFactura.addChangeListener(this);
 		add(rdbtnFactura);
 		grupoBotones.add(rdbtnFactura);
 		
 		lblNif = new JLabel("NIF:");
 		lblNif.setEnabled(false);
-		lblNif.setBounds(221, 76, 62, 20);
+		lblNif.setBounds(211, 89, 62, 20);
 		add(lblNif);
 		
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setEnabled(false);
-		lblNombre.setBounds(221, 101, 62, 20);
+		lblNombre.setBounds(211, 119, 62, 20);
 		add(lblNombre);
 		
 		lblApellidos = new JLabel("Apellidos:");
 		lblApellidos.setEnabled(false);
-		lblApellidos.setBounds(221, 126, 62, 20);
+		lblApellidos.setBounds(211, 150, 62, 20);
 		add(lblApellidos);
 		
-		textPane_NIF = new JTextPane();
-		textPane_NIF.setEnabled(false);
-		textPane_NIF.setBounds(287, 76, 119, 20);
-		add(textPane_NIF);
+		textField_NIF = new JTextField();
+		textField_NIF.setEnabled(false);
+		textField_NIF.setBounds(277, 89, 119, 20);
+		add(textField_NIF);
 		
-		textPane_Nombre = new JTextPane();
-		textPane_Nombre.setEnabled(false);
-		textPane_Nombre.setBounds(287, 101, 119, 20);
-		add(textPane_Nombre);
+		textField_Nombre = new JTextField();
+		textField_Nombre.setEnabled(false);
+		textField_Nombre.setBounds(277, 119, 119, 20);
+		add(textField_Nombre);
 		
-		textPane_Apellidos = new JTextPane();
-		textPane_Apellidos.setEnabled(false);
-		textPane_Apellidos.setBounds(287, 126, 119, 20);
-		add(textPane_Apellidos);
+		textField_Apellidos = new JTextField();
+		textField_Apellidos.setEnabled(false);
+		textField_Apellidos.setBounds(277, 150, 119, 20);
+		add(textField_Apellidos);
 		
 		lblTotal = new JLabel("Total:");
-		lblTotal.setBounds(303, 153, 45, 19);
+		lblTotal.setBounds(293, 192, 45, 19);
 		add(lblTotal);
 		
-		textPane_Total = new JTextPane();
-		textPane_Total.setEditable(false);
-		textPane_Total.setBounds(343, 152, 63, 20);
-		add(textPane_Total);
-		textPane_Total.setText(ListaCompraTotal);
+		textField_Total = new JTextField();
+		textField_Total.setEditable(false);
+		textField_Total.setBounds(333, 191, 63, 20);
+		add(textField_Total);
+		textField_Total.setText(ListaCompraTotal);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(38, 177, 573, 47);
+		scrollPane.setBounds(28, 225, 563, 147);
 		add(scrollPane);
 		
-		textPane_Productos = new JTextPane();
-		scrollPane.setViewportView(textPane_Productos);
-		textPane_Productos.setText(ListaCompra);
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+					"Producto", "Cantidad", "Precio", "Total"
+			}
+		));
+		scrollPane.setViewportView(table);
 		
 		initializeEvents();
 	}
@@ -252,6 +264,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelTicketFactura));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelTicketFactura));
+		this.borrarListaCompra();
 	}
 	
 	public void stateChanged(ChangeEvent e){
@@ -260,24 +273,59 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			lblNif.setEnabled(false);
 			lblNombre.setEnabled(false);
 			lblApellidos.setEnabled(false);
-			textPane_NIF.setEnabled(false);
-			textPane_Nombre.setEnabled(false);
-			textPane_Apellidos.setEnabled(false);
+			textField_NIF.setEnabled(false);
+			textField_Nombre.setEnabled(false);
+			textField_Apellidos.setEnabled(false);
+			factura=0;
 		}
 		if (rdbtnFactura.isSelected()) {
 			lblNif.setEnabled(true);
 			lblNombre.setEnabled(true);
 			lblApellidos.setEnabled(true);
-			textPane_NIF.setEnabled(true);
-			textPane_Nombre.setEnabled(true);
-			textPane_Apellidos.setEnabled(true);
+			textField_NIF.setEnabled(true);
+			textField_Nombre.setEnabled(true);
+			textField_Apellidos.setEnabled(true);
+			factura=1;
 		}
+	}
+	
+	private void generarListaCompra(){
+		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+		int rowCount = modeloTabla.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+			modeloTabla.removeRow(i);
+		}
+		Object lista[][] = controladorPanelTicketFactura.obtenerListaCompra();
+		for(int i = 0;i<lista.length;i++)
+		{
+			Object temp[] = { lista[i][0], lista[i][1], lista[i][2], lista[i][3] };
+			modeloTabla.addRow(temp);
+		}
+		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
+		textField_Total.setText(""+ListaCompraTotal);
+	}
+	
+	private void borrarListaCompra(){
+		controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
+		
+		ControlarCaja=0;
+		
+		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+		int rowCount = modeloTabla.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+			modeloTabla.removeRow(i);
+		}
+		
+		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
+		textField_Total.setText(""+ListaCompraTotal);
+		
 	}
 	
 	private ActionListener listenerBotonVolver(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
+				ControlarCaja=0;
 				controladorPanelTicketFactura.accionadoBottonVolverPanelTicketFactura();
 			}
 		};
@@ -287,6 +335,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Desconectarse");
+				ControlarCaja=0;
 				controladorPanelTicketFactura.accionadoBottonDesconectarsePanelTicketFactura();
 			}
 		};
@@ -295,6 +344,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+<<<<<<< HEAD
 				if (rdbtnTicket.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					
@@ -363,8 +413,22 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					
 					
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
+=======
+				if(ControlarCaja==1) {
+					if (rdbtnTicket.isSelected() && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("")) {
+						System.out.println("Ejecutando evento Boton Pagar");
+						ControlarCaja=0;
+						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, null, null, null);	
+					}else if (rdbtnFactura.isSelected() && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("") && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
+						System.out.println("Ejecutando evento Boton Pagar");
+						ControlarCaja=0;
+						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());	
+					}else {
+						JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
+					}
+>>>>>>> main
 				}else {
-					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
+					JOptionPane.showMessageDialog(null, "Añade productos.");
 				}
 			}
 		};
@@ -374,7 +438,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Borrar");
-				controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
+				borrarListaCompra();
 			}
 		};
 	}
@@ -383,24 +447,16 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
-				int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-				String Producto = (comboBox_Productos.getSelectedItem().toString());
-				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
-				double Total = PrecioVenta*Cantidad;
 				
-				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
+				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
+				String nomProducto = (comboBox_Productos.getSelectedItem().toString());
 				
-				Modelo.TotalProducto=Modelo.TotalProducto+Total;
+				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura(nomProducto, cantidad);
 				
-				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
-				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
+				ControlarCaja=1;
 				
-				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
-				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura();
-				
+				generarListaCompra();
 			}
 		};
 	}
-	
 }

@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelBienvenida;
 
+<<<<<<< HEAD
 import Modelo.ConexionMySQL;
 import Modelo.Usuario;
 
@@ -15,6 +16,12 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextPane;
+=======
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JProgressBar;
+>>>>>>> main
 
 @SuppressWarnings("serial")
 public class PanelBienvenida extends JPanel{
@@ -22,10 +29,14 @@ public class PanelBienvenida extends JPanel{
 	private JButton btnIniciarSesion;
 	private JButton btnRegistrarse;
 	private JLabel lblBienvenida;
+<<<<<<< HEAD
 	private JLabel lblUsuario;
 	private JLabel lblContrasea;
 	private JTextPane textPane_Usuario;
 	private JTextPane textPane_Contrasea;
+=======
+	private JProgressBar progressBar;
+>>>>>>> main
 	private ControladorPanelBienvenida controladorPanelBienvenida;
 	
 	public PanelBienvenida(ControladorPanelBienvenida controladorPanelBienvenida) {
@@ -39,6 +50,7 @@ public class PanelBienvenida extends JPanel{
 		lblBienvenida.setBounds(40, 35, 539, 32);
 		add(lblBienvenida);
 		
+<<<<<<< HEAD
 		btnIniciarSesion = new JButton("Iniciar Sesion");
 		btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnIniciarSesion.setBounds(183, 337, 126, 32);
@@ -68,13 +80,36 @@ public class PanelBienvenida extends JPanel{
 		btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRegistrarse.setBounds(309, 337, 126, 32);
 		add(btnRegistrarse);
+=======
+		btnOperatividad = new JButton("Operatividad");
+		btnOperatividad.setBounds(214, 208, 192, 43);
+		add(btnOperatividad);
+>>>>>>> main
+		
+		JLabel lblConexion = new JLabel("Estado de la conexi\u00F3n con MySQL:");
+		lblConexion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConexion.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblConexion.setBounds(135, 331, 350, 32);
+		add(lblConexion);
+		
+		progressBar = new JProgressBar();
+		progressBar.setMaximum(1);
+		progressBar.setBackground(new Color(255, 0, 0));
+		progressBar.setForeground(new Color(0, 204, 0));
+		progressBar.setBounds(237, 374, 146, 25);
+		add(progressBar);
 		
 		initializeEvents();
 	}
 	
 	private void initializeEvents() {
+<<<<<<< HEAD
 		this.btnIniciarSesion.addActionListener(listenerBotonOperatividad(this.controladorPanelBienvenida));
 		this.btnRegistrarse.addActionListener(listenerBotonRegistrarse(this.controladorPanelBienvenida));
+=======
+		this.btnOperatividad.addActionListener(listenerBotonOperatividad(this.controladorPanelBienvenida));
+		this.establecerConexion();
+>>>>>>> main
 	}
 	
 	private ActionListener listenerBotonOperatividad(ControladorPanelBienvenida controladorPanelBienvenida) {
@@ -113,5 +148,17 @@ public class PanelBienvenida extends JPanel{
 				controladorPanelBienvenida.accionadoBottonMostrarPanelRegistro();
 			}
 		};
+	}
+	
+	public void establecerConexion() {
+		System.out.println("Ejecutando evento Boton Prueba Conexion");
+		boolean conexion = controladorPanelBienvenida.establecerConexion();
+			if(conexion==true) {
+				progressBar.setValue(1);
+			}else {
+				JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
+				progressBar.setValue(0);
+				System.exit(0);
+			}
 	}
 }

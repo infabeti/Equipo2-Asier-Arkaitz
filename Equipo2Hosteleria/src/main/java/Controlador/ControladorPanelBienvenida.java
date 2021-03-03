@@ -30,4 +30,8 @@ public class ControladorPanelBienvenida {
 	public void accionadoBottonMostrarPanelRegistro() {
 		this.controlador.navegarPanelRegistro();
 	}
+	
+	public boolean establecerConexion() {
+		return this.modelo.getConsultasBBDD().Conectar();
+	}
 }

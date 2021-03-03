@@ -16,7 +16,7 @@ public class Producto {
 		this.precioCompra = PrecioCompra;
 		this.precioVenta = PrecioVenta;
 
-			}
+	}
 	
 	//get y set
 	//get
@@ -45,7 +45,6 @@ public class Producto {
 		return this.precioVenta;
 	}
 	
-			
 	//set
 	public void setNombre(String Nombre)
 	{
@@ -72,6 +71,7 @@ public class Producto {
 		this.precioVenta = PrecioVenta;
 	}
 	
+<<<<<<< HEAD
 	//METODOS
 	
 	 public String toString() {
@@ -87,5 +87,7 @@ public class Producto {
 	   }
 	
 	
+=======
+>>>>>>> main
 }
 

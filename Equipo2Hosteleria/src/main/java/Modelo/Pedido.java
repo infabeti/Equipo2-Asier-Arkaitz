@@ -7,6 +7,7 @@ public class Pedido extends Ticket{
 	
 	//Constructor sin parametros
 	public Pedido() {}
+<<<<<<< HEAD
 	
 	public Pedido(int NTransaccion, String tipo) {
 		this.setNTransaccion(NTransaccion);
@@ -24,6 +25,14 @@ public class Pedido extends Ticket{
 		this.setNTransaccion(NTransaccion);
 		this.setFecha(fecha);
 		this.setNif_local(nif_local);
+=======
+			
+	//Constructor con parametros
+	public Pedido(int NTransaccion, String fecha, String nif_local, String tipo, String domicilio) {
+		super.setNTransaccion(NTransaccion);
+		super.setFecha(fecha);
+		super.setNif_local(nif_local);
+>>>>>>> main
 		this.setTipo(tipo);
 		this.setDomicilio(domicilio);
 	}
@@ -44,4 +53,8 @@ public class Pedido extends Ticket{
 		this.domicilio = domicilio;
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

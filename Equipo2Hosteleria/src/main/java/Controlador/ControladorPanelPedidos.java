@@ -1,9 +1,6 @@
 package Controlador;
 
 import Modelo.Modelo;
-import Vista.PanelBienvenida;
-import Vista.PanelOperatividad;
-import Vista.PanelListaCompra;
 import Vista.PanelPedidos;
 import Vista.Vista;
 
@@ -25,31 +22,49 @@ public class ControladorPanelPedidos {
 		this.vista.mostrarPanel(this.panelPedidos);
 	}
 	
+	public String[] obtenerNombresProductos() {
+		return this.modelo.getConsultasBBDD().nombresProductos();
+	}
+	
+	public double obtenerPrecioVentaProductos(String nombre) {
+		return this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
+	}
+	
+	public Object[][] obtenerListaCompra() {
+		return this.modelo.getCarroCompra().getCarroCompra();
+	}
+	
+	public double obtenerTotalCarro() {
+		return this.modelo.getCarroCompra().getTotalCarro();
+	}
+	
 	public void accionadoBottonVolverPanelPedidos() {
-		this.modelo.BorrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelPedidos() {
-		this.modelo.BorrarListaCompra();
+		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonPasarACajaPanelPedidos() {
-		this.modelo.BorrarListaCompra();
-		this.modelo.AumentarNumeroTransaccion();
+	public void accionadoBottonPasarACajaPanelPedidos(String tipo, String domicilio) {
+		this.modelo.setPedido(tipo, domicilio);
+		this.modelo.getCarroCompra().borrarCarroCompra();
+		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
-	public void accionadoBottonAadirAlCarroPanelPedidos() {
-		
+	public int mostrarNumeroTransaccion() {
+		return this.modelo.getConsultasBBDD().getNTransaccion();
 	}
 	
-	public void accionadoBottonListaCompraPanelPedidos() {
-		this.controlador.navegarPanelListaCompra();
+	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {
+		double precio=this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
+		this.modelo.getCarroCompra().anadirProducto(nombre, precio, cantidad);
 	}
 	
-	public int MostrarNumeroTransaccion() {
-		return Modelo.MostrarNumeroTransaccion();
+	public void accionadoBottonBorrarListaPanelPedidos() {
+		this.modelo.getCarroCompra().borrarCarroCompra();
 	}
 }

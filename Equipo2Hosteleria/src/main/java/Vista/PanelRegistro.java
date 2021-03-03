@@ -139,43 +139,30 @@ public class PanelRegistro extends JPanel{
 				String nombre = textNombre.getText();
 				String apellidos = textApellidos.getText();
 				String Nif = textField_NIFLocal.getText();
-				String contraseña1=textContraseña1.getText();
-				String contraseña2=textContraseña2.getText();
+				String contrasena1=textContraseña1.getText();
+				String contrasena2=textContraseña2.getText();
 				
-				if (textUsuario.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"Falta el DNI");
-				}else if (textContraseña1.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"Falta la primera contraseña");
-				}else if (textContraseña2.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"Falta repetir la contraseña");
-				}else if (textNombre.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"Falta el Nombre");
-				}else if (textApellidos.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"Falta el Apellido");	
-				}else if (textField_NIFLocal.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"Falta el NIF");	
+				if (textUsuario.getText().equals("") || textContraseña1.getText().equals("") || textNombre.getText().equals("") || textApellidos.getText().equals("") || textField_NIFLocal.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,"Rellene todos los campos");
+				}else if (textContraseña2.getText().equals(textContraseña1.getText())) {
+					JOptionPane.showMessageDialog(null,"Repita la contraseña correctamente");
 				}else {
-					if (contraseña1.equals(contraseña2)) {
-						
-						ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
+					ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
 
-						Usuario usuario2 = new Usuario();
-						usuario2.setUsuario(usuario);
-						usuario2.setContraseña(contraseña);
-						usuario2.setNombre(nombre);
-						usuario2.setApellidos(apellidos);
-						usuario2.setNif(Nif);
+					Usuario usuario2 = new Usuario();
+					usuario2.setUsuario(usuario);
+					usuario2.setContraseña(contraseña);
+					usuario2.setNombre(nombre);
+					usuario2.setApellidos(apellidos);
+					usuario2.setNif(Nif);
 						
-						Usuario usu = ConexionMySQLUsuario.registrarUsuario(usuario2);
+					Usuario usu = ConexionMySQLUsuario.registrarUsuario(usuario2);
 
-						if (usu != null) {
-							JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
-							controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
-						}else {
-							JOptionPane.showMessageDialog(null,"El usuario ya existe o imposible implementar ese usuario");
-						}
+					if (usu != null) {
+						JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
+						controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
 					}else {
-						JOptionPane.showMessageDialog(null,"La contraseña es incorrecta.");
+						JOptionPane.showMessageDialog(null,"El usuario ya existe o imposible implementar ese usuario");
 					}
 				}
 			}

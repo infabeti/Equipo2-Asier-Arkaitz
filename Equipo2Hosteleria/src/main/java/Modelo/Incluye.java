@@ -7,32 +7,25 @@ public class Incluye  {
 	private int cantidad;
 	private double precioVenta;
 	private double precioCompra;
-	private Ticket ticket;
-	private Producto producto;
 	
-	public Incluye() {
-
-	}
+	public Incluye() {}
 	
 	public Incluye(String NombreProducto, int Ntransaccion, int Cantidad, double PrecioVenta,double PrecioCompra) {
-		
 		this.setNombreProducto(NombreProducto);
 		this.setNTransaccion(Ntransaccion);
 		this.setCantidad(Cantidad);
 		this.setPrecioVenta(PrecioVenta);
 		this.setPrecioCompra(PrecioCompra);
 	}
-
-
-
+	
 	public double getPrecioCompra() {
 		return precioCompra;
 	}
-
+	
 	public double getPrecioVenta() {
 		return precioVenta;
 	}
-
+	
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -45,30 +38,24 @@ public class Incluye  {
 		return ntransaccion;
 	}
 	
-	
-	
-	
-	
-	
-	
 	public void setPrecioCompra(double precioCompra) {
 		this.precioCompra = precioCompra;
 	}
-
+	
 	public void setPrecioVenta(double precioVenta) {
 		this.precioVenta = precioVenta;
 	}
-
+	
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-
+	
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
 	}
-
+	
 	public void setNTransaccion(int ntransaccion) {
 		this.ntransaccion = ntransaccion;
 	}
-
+	
 }

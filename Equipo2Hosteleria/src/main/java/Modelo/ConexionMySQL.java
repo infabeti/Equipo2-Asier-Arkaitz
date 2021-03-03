@@ -1,13 +1,11 @@
 package Modelo;
 
 import java.sql.*;
-import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import Modelo.Usuario;
 
 
 public class ConexionMySQL {
@@ -71,7 +69,6 @@ public Usuario registrarUsuario(Usuario usu){
 	
 	Connection con = null;
 	PreparedStatement pst = null;
-	PreparedStatement pstt = null;
 	ResultSet rs = null;
 	Statement st = null;
 	
@@ -124,7 +121,6 @@ public Ticket RegistrarTicket(Ticket tic) {
 	
 	 Connection con = null;
 	 PreparedStatement ps = null;
-	 PreparedStatement pst = null;
 	 ResultSet rs = null;
 	 Statement st = null;
 	 
@@ -175,7 +171,6 @@ public Ticket RegistrarTicket(Ticket tic) {
 				
 			 Connection con = null;
 			 PreparedStatement ps = null;
-			 PreparedStatement pst = null;
 			 ResultSet rs = null;
 			 Statement st = null;
 			 
@@ -325,7 +320,6 @@ public Ticket RegistrarTicket(Ticket tic) {
 			
 		 Connection con = null;
 		 PreparedStatement ps = null;
-		 PreparedStatement pst = null;
 		 ResultSet rs = null;
 		 Statement st = null;
 		 
@@ -341,7 +335,7 @@ public Ticket RegistrarTicket(Ticket tic) {
 			 
 		 ps.setString(1,ide.getNif());
 		 ps.setString(2,ide.getNombre());
-		 ps.setString(3,ide.getApellido());
+		 ps.setString(3,ide.getApellidos());
 		
 			 
 			 ps.executeUpdate();
@@ -353,7 +347,7 @@ public Ticket RegistrarTicket(Ticket tic) {
 		 
 				 ps.setString(1,ide.getNif());
 				 ps.setString(2,ide.getNombre());
-				 ps.setString(3,ide.getApellido());
+				 ps.setString(3,ide.getApellidos());
 				 
 		 rs = ps.executeQuery();
 		 

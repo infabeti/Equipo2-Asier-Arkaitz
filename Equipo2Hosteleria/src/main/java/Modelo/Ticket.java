@@ -5,10 +5,6 @@ public class Ticket {
 	protected int NTransaccion;
 	protected String fecha;
 	protected String nif_local;
-<<<<<<< HEAD
-	private ConsultasBBDD consultasBBDD;
-=======
->>>>>>> main
 	
 	//Constructor sin parametros
 	public Ticket() {}
@@ -21,11 +17,7 @@ public class Ticket {
 	}
 
 	public int getNTransaccion() {
-<<<<<<< HEAD
 		return this.NTransaccion;
-=======
-		return NTransaccion;
->>>>>>> main
 	}
 
 	public void setNTransaccion(int nTransaccion) {
@@ -48,8 +40,4 @@ public class Ticket {
 		this.nif_local = nif_local;
 	}
 	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main

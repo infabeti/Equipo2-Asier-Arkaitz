@@ -2,43 +2,31 @@ package Modelo;
 
 public class Identificacion extends Factura{
 	
-	private String Nombre;
-	private String Apellido;
+	private String nombre;
+	private String apellidos;
 	
+	public Identificacion() {}
 	
-	public Identificacion(String NIF, String Nombre, String Apellido) {
+	public Identificacion(String NIF, String nombre, String apellidos) {
 		this.setNif(NIF);
-		this.setNombre(Nombre);
-		this.setApellido(Apellido);
-		
+		this.setNombre(nombre);
+		this.setApellidos(apellidos);
 	}
-
-
-	public Identificacion() {
-		// TODO Auto-generated constructor stub
-	}
-
-
+	
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
-
-
-	public String getApellido() {
-		return Apellido;
-	}
-
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 
-
-	public void setApellido(String apellido) {
-		Apellido = apellido;
+	public String getApellidos() {
+		return apellidos;
 	}
 
-
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
 	
-
 }

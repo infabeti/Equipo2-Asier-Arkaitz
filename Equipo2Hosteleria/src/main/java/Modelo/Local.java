@@ -1,7 +1,5 @@
 package Modelo;
 
-import javax.swing.ComboBoxModel;
-
 public class Local {
 
 	protected String nif;
@@ -9,10 +7,9 @@ public class Local {
 	protected String nombre_propietario;
 	protected String tipo;
 	protected String direccion;
-
-	public Local() {
-		
-	}		
+	
+	//Constructor sin parametros
+	public Local() {}		
 	
 	//Constructor con parametros
 	public Local(String NIF, String Nombre, String NombrePropietario, String Tipo, String Direccion) {
@@ -21,7 +18,6 @@ public class Local {
 		this.nombre_propietario = NombrePropietario;
 		this.tipo = Tipo;
 		this.direccion = Direccion;
-
 	}
 
 	//get y set
@@ -50,18 +46,15 @@ public class Local {
 		
 			
 	//set
-	public void setNIF(String NIF)
-	{
+	public void setNIF(String NIF) {
 		this.nif = NIF;
 	}
 	
-	public void setNombre(String Nombre)
-	{
+	public void setNombre(String Nombre) {
 		this.nombre = Nombre;
 	}
 	
-	public void setNombrePropietario(String NombrePropietario)
-	{
+	public void setNombrePropietario(String NombrePropietario) {
 		this.nombre_propietario = NombrePropietario;
 	}
 	

@@ -1,7 +1,5 @@
 package Modelo;
 
-import javax.swing.ComboBoxModel;
-
 public class Usuario {
 
 	protected String usuario;
@@ -9,9 +7,10 @@ public class Usuario {
 	protected String contraseña;
 	protected String nombre;
 	protected String apellidos;
-	protected String nombreempresa;
+	protected String nombreEmpresa;
 	protected String nif;
 	
+	public Usuario() {}
 			
 	//Constructor con parametros
 	public Usuario(String Usuario, String Contraseña, String Negocio, String Nombre, String Apellidos, String NombreEmpresa, String NIF) {
@@ -20,36 +19,25 @@ public class Usuario {
 		this.contraseña = Contraseña;
 		this.nombre = Nombre;
 		this.apellidos = Apellidos;
-		this.nombreempresa = NombreEmpresa;
+		this.nombreEmpresa = NombreEmpresa;
 		this.nif = NIF;
-
-			}
+	}
 	
 	public Usuario(String Usuario, String Contraseña, String Nombre, String Apellidos, String NIF) {
 		this.usuario = Usuario;
-
 		this.contraseña = Contraseña;
 		this.nombre = Nombre;
 		this.apellidos = Apellidos;
-
 		this.nif = NIF;
-
-			}
-	
-	public Usuario() {
-		
 	}
-	
 	
 	//get y set
 	//get
 	public String getUsuario() {
-				
 		return this.usuario;
 	}
 	
 	public String getTipo() {
-		
 		return this.negocio;
 	}
 	
@@ -62,7 +50,7 @@ public class Usuario {
 	}
 	
 	public String getNombreempresa() {
-		return nombreempresa;
+		return nombreEmpresa;
 	}
 
 	public String getNif() {
@@ -70,26 +58,19 @@ public class Usuario {
 	}
 
 	public String getContraseña() {
-		
 		return this.contraseña;
 	}
-	
-	
-	
-			
+		
 	//set
-	public void setUsuario(String Usuario)
-	{
+	public void setUsuario(String Usuario) {
 		this.usuario = Usuario;
 	}
 	
-	public void setTipo(String Negocio)
-	{
+	public void setTipo(String Negocio) {
 		this.negocio = Negocio;
 	}
 	
-	public void setContraseña(String Contraseña)
-	{
+	public void setContraseña(String Contraseña) {
 		this.contraseña = Contraseña;
 	}
 	
@@ -101,15 +82,13 @@ public class Usuario {
 		this.apellidos = apellidos;
 	}
 	
-	public void setNombreempresa(String nombreempresa) {
-		this.nombreempresa = nombreempresa;
+	public void setNombreempresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
 	}
 	
 	public void setNif(String nif) {
 		this.nif = nif;
 	}
 
-	
-	
 }
 

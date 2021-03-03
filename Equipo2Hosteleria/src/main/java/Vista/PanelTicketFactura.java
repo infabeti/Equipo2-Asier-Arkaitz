@@ -254,7 +254,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelTicketFactura));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelTicketFactura));
-		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
+		//this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelTicketFactura));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelTicketFactura));
 		this.borrarListaCompra();
@@ -330,6 +330,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		};
 	}
 	
+	/*
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -343,13 +344,13 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
-					/*	
+					//	
 					Ticket ticket1 = new Ticket();
 					
 					ticket1.setNTransaccion(NTransaccion);
 					ticket1.setFecha(textPane_Fecha.getText());
 					ticket1.setNif_local("B78107158");
-					*/
+					//
 					
 					
 					int PosicionArray = NTransaccion-1;
@@ -374,7 +375,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					String textoTransacion=textField_NTransaccion.getText();
 					int NTransaccion=Integer.parseInt(textoTransacion);
 					
-					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
 					Factura factura1 = new Factura();
@@ -390,18 +390,9 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					Identificacion1.setApellidos(textField_Apellidos.getText());
 					Identificacion1.setNif("F32145634");
 					
-
-					
-					
 					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
 					Identificacion ide=ConexionMySQLTicket.RegistrarIdentificacion(Identificacion1);
 					Factura fac = ConexionMySQLTicket.RegistrarFactura(factura1);
-					
-					 
-					  
-
-					
-					
 					
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
 =======
@@ -424,6 +415,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			}
 		};
 	}
+	*/
 	
 	private ActionListener listenerBotonBorrarLista(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {

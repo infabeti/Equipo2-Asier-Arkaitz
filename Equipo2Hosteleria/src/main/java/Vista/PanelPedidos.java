@@ -218,9 +218,9 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelPedidos));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelPedidos));
-		this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
+		//this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
-		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
+		//this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
 		this.borrarListaCompra();
 	}
 	
@@ -286,6 +286,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		};
 	}
 	
+	/*
 	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -431,6 +432,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			}
 		};
 	}
+	*/
 	
 	private ActionListener listenerBotonAadirAlCarro(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {

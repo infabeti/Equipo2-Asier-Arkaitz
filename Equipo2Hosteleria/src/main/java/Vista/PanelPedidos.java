@@ -9,15 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
-<<<<<<< HEAD
 import Modelo.Producto;
 import Modelo.Ticket;
 import Modelo.ConexionMySQL;
 import Modelo.Incluye;
 import Modelo.Modelo;
 import Modelo.Pedido;
-=======
->>>>>>> main
 
 import java.awt.Color;
 import java.awt.Font;
@@ -107,37 +104,24 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		add(lblCantidad);
 		
 		grupoBotones = new ButtonGroup();
-		
-<<<<<<< HEAD
-		rdbtnRecogerEnEstablecimiento = new JRadioButton("RECOGIDA");
-		rdbtnRecogerEnEstablecimiento.setBounds(38, 166, 189, 23);
-=======
+
 		rdbtnRecogerEnEstablecimiento = new JRadioButton("Recoger en establecimiento");
 		rdbtnRecogerEnEstablecimiento.setBounds(38, 155, 189, 23);
->>>>>>> main
 		rdbtnRecogerEnEstablecimiento.addChangeListener(this);
 		add(rdbtnRecogerEnEstablecimiento);
 		grupoBotones.add(rdbtnRecogerEnEstablecimiento);
 		
-		rdbtnEntregaADomicilio = new JRadioButton("ENTREGA");
+		rdbtnEntregaADomicilio = new JRadioButton("Entrega a domicilio");
 		rdbtnEntregaADomicilio.setHorizontalAlignment(SwingConstants.RIGHT);
 		rdbtnEntregaADomicilio.setBounds(263, 155, 137, 23);
 		rdbtnEntregaADomicilio.addChangeListener(this);
 		add(rdbtnEntregaADomicilio);
 		grupoBotones.add(rdbtnEntregaADomicilio);
 		
-<<<<<<< HEAD
-		textPane_Direccion = new JTextPane();
-		textPane_Direccion.setEnabled(false);
-		textPane_Direccion.setBounds(211, 196, 189, 22);
-		textPane_Direccion.setText(null);
-		add(textPane_Direccion);
-=======
 		textField_Direccion = new JTextField();
 		textField_Direccion.setEnabled(false);
 		textField_Direccion.setBounds(211, 198, 189, 20);
 		add(textField_Direccion);
->>>>>>> main
 		
 		comboBox_Cantidad = new JComboBox();
 		comboBox_Cantidad.setBounds(340, 111, 60, 23);
@@ -168,20 +152,12 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnPasarACaja.setBounds(325, 396, 89, 23);
 		add(btnPasarACaja);
 		
-<<<<<<< HEAD
-		textPane_NTransaccion = new JTextPane();
-		textPane_NTransaccion.setText(""+ controladorPanelPedidos.MostrarNumeroTransaccion());
-		textPane_NTransaccion.setEditable(false);
-		textPane_NTransaccion.setBounds(420, 136, 173, 20);
-		add(textPane_NTransaccion);
-=======
 		JTextField textField_NTransaccion = new JTextField();
 		textField_NTransaccion.setHorizontalAlignment(SwingConstants.TRAILING);
 		textField_NTransaccion.setText(""+ controladorPanelPedidos.mostrarNumeroTransaccion());
 		textField_NTransaccion.setEditable(false);
 		textField_NTransaccion.setBounds(420, 136, 173, 20);
 		add(textField_NTransaccion);
->>>>>>> main
 		
 		JLabel lblTransaccion = new JLabel("N\u00BA Transaccion:");
 		lblTransaccion.setBounds(420, 114, 89, 20);
@@ -191,21 +167,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		lblFecha.setBounds(420, 167, 62, 20);
 		add(lblFecha);
 		
-<<<<<<< HEAD
-		textPane_Fecha = new JTextPane();
-		textPane_Fecha.setBounds(474, 167, 119, 20);
-		add(textPane_Fecha);
-		
-		lblLocal = new JLabel("Local:");
-		lblLocal.setBounds(420, 198, 51, 20);
-		add(lblLocal);
-		
-		textPane_Local = new JTextPane();
-		textPane_Local.setEditable(false);
-		textPane_Local.setText("El plato caliente");
-		textPane_Local.setBounds(474, 198, 119, 20);
-		add(textPane_Local);
-=======
 		textField_Fecha = new JTextField();
 		textField_Fecha.setHorizontalAlignment(SwingConstants.TRAILING);
 		textField_Fecha.setEditable(false);
@@ -250,7 +211,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		table.setModel(new DefaultTableModel(new Object[][] {},
 		new String[] {	"Producto", "Cantidad", "Precio", "Total"	}));
 		scrollPane.setViewportView(table);
->>>>>>> main
 		
 		initializeEvents();
 	}

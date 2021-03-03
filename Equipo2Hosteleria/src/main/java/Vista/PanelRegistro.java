@@ -8,26 +8,17 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
-import Controlador.ControladorPanelBienvenida;
-import Controlador.ControladorPanelOperatividad;
-import Controlador.ControladorPanelPedidos;
 import Controlador.ControladorPanelRegistro;
 import Modelo.ConexionMySQL;
-import Modelo.Producto;
 import Modelo.Usuario;
-import Controlador.ControladorPanelAprovisionamiento;
 import java.awt.Color;
 import javax.swing.JTextField;
-import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings("serial")
 public class PanelRegistro extends JPanel{
 	
-	private JLabel lblProductos;	
 	private JTextField textUsuario;
 	private JTextField textContraseña1;
 	private JTextField textContraseña2;
@@ -133,16 +124,13 @@ public class PanelRegistro extends JPanel{
 		textField_NIFLocal.setBounds(370, 238, 153, 20);
 		add(textField_NIFLocal);
 		
-		
 		initializeEvents();
 	}
 	
 	private void initializeEvents() {
-	
 		this.btnVolver.addActionListener(listenerbtnVolver(this.controladorPanelRegistro)); 
 		this.btnCrear.addActionListener(listenerbtnCrear(this.controladorPanelRegistro));
-		
-			}
+	}
 	
 	private ActionListener listenerbtnCrear(ControladorPanelRegistro controladorPanelRegistro) {
 		return new ActionListener() {
@@ -159,27 +147,19 @@ public class PanelRegistro extends JPanel{
 				String contraseña2=textContraseña2.getText();
 				
 
-				if ( textUsuario.getText().equals("")) {
+				if (textUsuario.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Falta el DNI");
-				}
-				if ( textContraseña1.getText().equals("")) {
+				}else if (textContraseña1.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Falta la primera contraseña");
-				}
-				if ( textContraseña2.getText().equals("")) {
+				}else if (textContraseña2.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Falta repetir la contraseña");
-				}
-				if ( textNombre.getText().equals("")) {
+				}else if (textNombre.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Falta el Nombre");
-				}
-				if ( textApellidos.getText().equals("")) {
+				}else if (textApellidos.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Falta el Apellido");	
-				}
-				if ( textField_NIFLocal.getText().equals("")) {
+				}else if (textField_NIFLocal.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Falta el NIF");	
-				}
-				else {
-				
-				
+				}else {
 					if (contraseña1.equals(contraseña2)) {
 						
 						ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
@@ -196,31 +176,20 @@ public class PanelRegistro extends JPanel{
 						if (usu != null) {
 							JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
 							controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
-						} else {
-
+						}else {
 							JOptionPane.showMessageDialog(null,"El usuario ya existe o imposible implementar ese usuario");
 						}
-						
-					} else {
-
+					}else {
 						JOptionPane.showMessageDialog(null,"La contraseña es incorrecta.");
 					}
 				}
-				
-				
-				
-				
-					
-					
 			}
-			
 		};
 	}
 	private ActionListener listenerbtnVolver(ControladorPanelRegistro controladorPanelRegistro) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Volver");
-				
 				controladorPanelRegistro.mostrarPanelBienvenida();
 			}
 		};

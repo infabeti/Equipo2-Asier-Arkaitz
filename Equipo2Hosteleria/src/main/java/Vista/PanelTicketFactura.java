@@ -16,8 +16,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorPanelTicketFactura;
-<<<<<<< HEAD
-import Controlador.ControladorPanelListaCompra;
 import Modelo.ConexionMySQL;
 import Modelo.Factura;
 import Modelo.Identificacion;
@@ -25,8 +23,6 @@ import Modelo.Modelo;
 import Modelo.Producto;
 import Modelo.Ticket;
 import Modelo.Usuario;
-=======
->>>>>>> main
 
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -74,11 +70,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	public static int ControlarCaja=0;
 	public static String ListaCompraTotal="";
-<<<<<<< HEAD
 	public static  ArrayList<Ticket> ticket = new ArrayList();
-=======
 	private int factura=0;
->>>>>>> main
 
 	static String LocalP="Freddy Fazbear's Pizza";
 	LocalDate date = LocalDate.now();
@@ -268,7 +261,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	}
 	
 	public void stateChanged(ChangeEvent e){
-        
 		if (rdbtnTicket.isSelected()) {
 			lblNif.setEnabled(false);
 			lblNombre.setEnabled(false);
@@ -307,7 +299,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	private void borrarListaCompra(){
 		controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
-		
 		ControlarCaja=0;
 		
 		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
@@ -315,10 +306,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		for (int i = rowCount - 1; i >= 0; i--) {
 			modeloTabla.removeRow(i);
 		}
-		
 		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
 		textField_Total.setText(""+ListaCompraTotal);
-		
 	}
 	
 	private ActionListener listenerBotonVolver(ControladorPanelTicketFactura controladorPanelTicketFactura) {
@@ -345,27 +334,29 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 <<<<<<< HEAD
-				if (rdbtnTicket.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("")) {
+				if (rdbtnTicket.isSelected() && !textField_NTransaccion.getText().equals("") && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					
 					
-					String textoTransaccion=textPane_NTransaccion.getText();
+					String textoTransaccion=textField_NTransaccion.getText();
 					int NTransaccion=Integer.parseInt(textoTransaccion);
 					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
-				/*	Ticket ticket1 = new Ticket();
+					/*	
+					Ticket ticket1 = new Ticket();
 					
 					ticket1.setNTransaccion(NTransaccion);
 					ticket1.setFecha(textPane_Fecha.getText());
-					ticket1.setNif_local("B78107158");					*/
+					ticket1.setNif_local("B78107158");
+					*/
 					
 					
 					int PosicionArray = NTransaccion-1;
 					
 					  ticket.add(PosicionArray,new Ticket()); 
 					  ticket.get(PosicionArray).setNTransaccion(NTransaccion);
-					  ticket.get(PosicionArray).setFecha(textPane_Fecha.getText());
+					  ticket.get(PosicionArray).setFecha(textField_Fecha.getText());
 					  ticket.get(PosicionArray).setNif_local("B78107158");
 
 					  System.out.println(ticket.get(PosicionArray).getNTransaccion());
@@ -377,10 +368,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					
 					
 					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
-				}else if (rdbtnFactura.isSelected() && !textPane_NTransaccion.getText().equals("") && !textPane_Fecha.getText().equals("") && !textPane_Local.getText().equals("") && !textPane_Total.getText().equals("") && !textPane_NIF.getText().equals("") && !textPane_Nombre.getText().equals("") && !textPane_Apellidos.getText().equals("")) {
+				}else if (rdbtnFactura.isSelected() && !textField_NTransaccion.getText().equals("") && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("") && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					
-					String textoTransacion=textPane_NTransaccion.getText();
+					String textoTransacion=textField_NTransaccion.getText();
 					int NTransaccion=Integer.parseInt(textoTransacion);
 					
 					
@@ -393,10 +384,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					
 					factura1.setNTransaccion(NTransaccion);
 					factura1.setNif("F32145634");
-					ticket1.setFecha(textPane_Fecha.getText());
+					ticket1.setFecha(textField_Fecha.getText());
 					ticket1.setNif_local("B78107158");
-					Identificacion1.setNombre(textPane_Nombre.getText());
-					Identificacion1.setApellido(textPane_Apellidos.getText());
+					Identificacion1.setNombre(textField_Nombre.getText());
+					Identificacion1.setApellidos(textField_Apellidos.getText());
 					Identificacion1.setNif("F32145634");
 					
 

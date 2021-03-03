@@ -8,14 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Controlador.ControladorPanelOperatividad;
-<<<<<<< HEAD
-import Controlador.ControladorPanelComandas;
-import Controlador.ControladorPanelAprovisionamiento;
-import Controlador.ControladorPanelTicketFactura;
 import Modelo.Usuario;
-
-=======
->>>>>>> main
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -31,10 +24,8 @@ public class PanelOperatividad extends JPanel {
 	private JLabel lblOperatividad;
 	private ControladorPanelOperatividad controladorPanelOperatividad;
 	
-	
-	
-	
-	/*public void Usuario(String Negocio) {
+	/*
+	public void Usuario(String Negocio) {
 		this.negocio=Negocio;
 		
 		if(negocio =="bar") {
@@ -93,13 +84,6 @@ public class PanelOperatividad extends JPanel {
 		this.btnComandas.addActionListener(listenerBotonComandas(this.controladorPanelOperatividad));
 		this.btnAprovisionamiento.addActionListener(listenerBotonAprovisionamiento(this.controladorPanelOperatividad));
 		this.btnTicketfactura.addActionListener(listenerBotonTicketfactura(this.controladorPanelOperatividad));
-<<<<<<< HEAD
-		this.btnPruebaConexion.addActionListener(listenerBotonPruebaConexion(this.controladorPanelOperatividad));
-		
-	
-		
-=======
->>>>>>> main
 	}
 	
 	private ActionListener listenerBotonDesconectarse(ControladorPanelOperatividad controladorPanelOperatividad) {
@@ -111,18 +95,6 @@ public class PanelOperatividad extends JPanel {
 		};
 	}
 	
-<<<<<<< HEAD
-	private ActionListener listenerBotonPruebaConexion(ControladorPanelOperatividad controladorPanelOperatividad) {
-		return new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Prueba Conexion");
-				//controladorPanelOperatividad.accionadoBottonPruebaConexionPanelOperatividad();
-			}
-		};
-	}
-	
-=======
->>>>>>> main
 	private ActionListener listenerBotonPedidos(ControladorPanelOperatividad controladorPanelOperatividad) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

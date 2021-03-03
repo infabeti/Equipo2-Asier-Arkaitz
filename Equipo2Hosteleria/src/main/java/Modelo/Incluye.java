@@ -5,31 +5,20 @@ public class Incluye  {
 	private String nombreProducto;
 	private int ntransaccion;
 	private int cantidad;
-	private double precioVenta;
-	private double precioCompra;
+	private double precio;
+	private String tipo;
 	
 	public Incluye() {}
 	
-	public Incluye(String NombreProducto, int Ntransaccion, int Cantidad, double PrecioVenta,double PrecioCompra) {
-		this.setNombreProducto(NombreProducto);
-		this.setNTransaccion(Ntransaccion);
-		this.setCantidad(Cantidad);
-		this.setPrecioVenta(PrecioVenta);
-		this.setPrecioCompra(PrecioCompra);
+	public Incluye(String NombreProducto, int Ntransaccion, int Cantidad, double Precio,String Tipo) {
+		this.nombreProducto = NombreProducto;
+		this.ntransaccion = Ntransaccion;
+		this.cantidad = Cantidad;
+		this.precio = Precio;
+		this.tipo = Tipo;
 	}
-	
-	public double getPrecioCompra() {
-		return precioCompra;
-	}
-	
-	public double getPrecioVenta() {
-		return precioVenta;
-	}
-	
-	public int getCantidad() {
-		return cantidad;
-	}
-	
+
+	//Get y Set
 	public String getNombreProducto() {
 		return nombreProducto;
 	}
@@ -38,24 +27,35 @@ public class Incluye  {
 		return ntransaccion;
 	}
 	
-	public void setPrecioCompra(double precioCompra) {
-		this.precioCompra = precioCompra;
+	public int getCantidad() {
+		return cantidad;
 	}
 	
-	public void setPrecioVenta(double precioVenta) {
-		this.precioVenta = precioVenta;
+	public double getPrecio() {
+		return precio;
 	}
 	
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setNombreProducto(String NombreProducto) {
+		this.nombreProducto = NombreProducto;
 	}
 	
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
+	public void setNTransaccion(int Ntransaccion) {
+		this.ntransaccion = Ntransaccion;
 	}
 	
-	public void setNTransaccion(int ntransaccion) {
-		this.ntransaccion = ntransaccion;
+	public void setCantidad(int Cantidad) {
+		this.cantidad = Cantidad;
 	}
 	
+	public void setPrecio(double Precio) {
+		this.precio = Precio;
+	}
+	
+	public void setTipo(String Tipo) {
+		this.tipo = Tipo;
+	}
 }

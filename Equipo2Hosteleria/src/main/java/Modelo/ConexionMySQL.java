@@ -37,7 +37,6 @@ public class ConexionMySQL {
 		ResultSet rs = null;
 		
 		try {
-		
 			con = ConexionMySQL.getConexion();
 		
 			String sql = "select*from usuario where dni = ? and contraseña =  ? ";

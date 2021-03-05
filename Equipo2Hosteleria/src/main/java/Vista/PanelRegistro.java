@@ -113,12 +113,12 @@ public class PanelRegistro extends JPanel{
 		
 		JLabel lblNewNifLocal = new JLabel("Selecciona NIF del local");
 		lblNewNifLocal.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewNifLocal.setBounds(340, 216, 198, 20);
+		lblNewNifLocal.setBounds(340, 290, 198, 20);
 		add(lblNewNifLocal);
 		
 		textField_NIFLocal = new JTextField();
 		textField_NIFLocal.setColumns(10);
-		textField_NIFLocal.setBounds(385, 238, 153, 20);
+		textField_NIFLocal.setBounds(385, 317, 153, 20);
 		add(textField_NIFLocal);
 		
 		initializeEvents();
@@ -144,7 +144,7 @@ public class PanelRegistro extends JPanel{
 				
 				if (textUsuario.getText().equals("") || textContraseña1.getText().equals("") || textNombre.getText().equals("") || textApellidos.getText().equals("") || textField_NIFLocal.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos");
-				}else if (textContraseña2.getText().equals(textContraseña1.getText())) {
+				}else if (!textContraseña2.getText().equals(textContraseña1.getText())) {
 					JOptionPane.showMessageDialog(null,"Repita la contraseña correctamente");
 				}else {
 					ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();

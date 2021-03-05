@@ -103,17 +103,17 @@ public class PanelBienvenida extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//Ajuste temporal para la entrada rapida al programa
-				//String usuario = textPane_Usuario.getText();
-				//String contraseña = textPane_Contrasea.getText();
+				//String dni = textPane_Usuario.getText();
+				//String contrasena = textPane_Contrasea.getText();
 				
-				String usuario = "11111111A";
-				String contraseña = "111";
+				String dni = "11111111A";
+				String contrasena = "111";
 				
 				ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
 
 				Usuario usuario1 = new Usuario();
-				usuario1.setUsuario(usuario);
-				usuario1.setContraseña(contraseña);
+				usuario1.setDni(dni);
+				usuario1.setContrasena(contrasena);
 
 				Usuario usu = ConexionMySQLUsuario.obtenerUsuario(usuario1);
 

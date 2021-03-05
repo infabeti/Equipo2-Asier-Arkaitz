@@ -16,20 +16,20 @@ import Modelo.Usuario;
 import java.awt.Color;
 import javax.swing.JTextField;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "rawtypes" })
 public class PanelRegistro extends JPanel{
 	
-	private JTextField textUsuario;
-	private JTextField textContraseña1;
-	private JTextField textContraseña2;
+	private JTextField textDni;
+	private JTextField textContrasena1;
+	private JTextField textContrasena2;
+	private JTextField textNombre;
+	private JTextField textApellidos;
+	private JTextField textField_NIFLocal;
 	private JButton btnCrear;
 	private JButton btnVolver;
 	private JComboBox comboBox_Local;
 	
 	private ControladorPanelRegistro controladorPanelRegistro;
-	private JTextField textNombre;
-	private JTextField textApellidos;
-	private JTextField textField_NIFLocal;
 	
 
 	public PanelRegistro(ControladorPanelRegistro controladorPanelRegistro) {
@@ -49,30 +49,30 @@ public class PanelRegistro extends JPanel{
 		lblNewLabel_1.setBounds(82, 50, 198, 20);
 		add(lblNewLabel_1);
 		
-		textUsuario = new JTextField();
-		textUsuario.setBounds(82, 75, 153, 20);
-		add(textUsuario);
-		textUsuario.setColumns(10);
+		textDni = new JTextField();
+		textDni.setBounds(82, 75, 153, 20);
+		add(textDni);
+		textDni.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Introduce tu contrase\u00F1a");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_2.setBounds(340, 50, 198, 20);
 		add(lblNewLabel_2);
 		
-		textContraseña1 = new JTextField();
-		textContraseña1.setBounds(385, 75, 153, 20);
-		add(textContraseña1);
-		textContraseña1.setColumns(10);
+		textContrasena1 = new JTextField();
+		textContrasena1.setBounds(385, 75, 153, 20);
+		add(textContrasena1);
+		textContrasena1.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Repetir contrase\u00F1a");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_3.setBounds(340, 130, 198, 20);
 		add(lblNewLabel_3);
 		
-		textContraseña2 = new JTextField();
-		textContraseña2.setBounds(385, 155, 153, 20);
-		add(textContraseña2);
-		textContraseña2.setColumns(10);
+		textContrasena2 = new JTextField();
+		textContrasena2.setBounds(385, 155, 153, 20);
+		add(textContrasena2);
+		textContrasena2.setColumns(10);
 		
 		btnCrear = new JButton("Crear");
 		btnCrear.setBounds(82, 375, 126, 32);
@@ -134,31 +134,25 @@ public class PanelRegistro extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Ejecutando evento Boton Registrarse");
 				
-				String usuario = textUsuario.getText();
-				String contraseña = textContraseña1.getText();
-				String nombre = textNombre.getText();
-				String apellidos = textApellidos.getText();
-				String Nif = textField_NIFLocal.getText();
-				String contrasena1=textContraseña1.getText();
-				String contrasena2=textContraseña2.getText();
-				
-				if (textUsuario.getText().equals("") || textContraseña1.getText().equals("") || textNombre.getText().equals("") || textApellidos.getText().equals("") || textField_NIFLocal.getText().equals("")) {
+				if (textDni.getText().equals("") || textContrasena1.getText().equals("") || textNombre.getText().equals("") || textApellidos.getText().equals("") || textField_NIFLocal.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos");
-				}else if (!textContraseña2.getText().equals(textContraseña1.getText())) {
+				}else if (!textContrasena2.getText().equals(textContrasena1.getText())) {
 					JOptionPane.showMessageDialog(null,"Repita la contraseña correctamente");
 				}else {
-					ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
-
+					boolean creado = controladorPanelRegistro.accionadoBottonCrearPanelRegistro(textDni.getText(), textContrasena1.getText(), textNombre.getText(), textApellidos.getText(), textField_NIFLocal.getText());
+					
+					/*
 					Usuario usuario2 = new Usuario();
-					usuario2.setUsuario(usuario);
-					usuario2.setContraseña(contraseña);
+					usuario2.setDni(dni);
+					usuario2.setContrasena(contrasena);
 					usuario2.setNombre(nombre);
 					usuario2.setApellidos(apellidos);
-					usuario2.setNif(Nif);
+					usuario2.setNif_local(nif_local);
 						
 					Usuario usu = ConexionMySQLUsuario.registrarUsuario(usuario2);
+					*/
 
-					if (usu != null) {
+					if (creado == true) {
 						JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
 						controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
 					}else {

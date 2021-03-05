@@ -7,10 +7,17 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
 public class ConexionMySQL {
 	
+	private static Connection con=null;
+	private static PreparedStatement ps = null;
+	private static PreparedStatement pst=null;
+	private static ResultSet rs=null;
+	private static Statement st=null;
+	
 	public static Connection getConexion() {
-		Connection con = null;
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
@@ -26,16 +33,13 @@ public class ConexionMySQL {
 		}
 		return con;
 	}
-   
+
 	public Usuario obtenerUsuario(Usuario usu){
 		
 		Usuario usuario = null;
 		
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-		
 		try {
+		
 			con = ConexionMySQL.getConexion();
 		
 			String sql = "select*from usuario where dni = ? and contraseña =  ? ";
@@ -62,15 +66,9 @@ public class ConexionMySQL {
 	public Usuario registrarUsuario(Usuario usu){
 		
 		Usuario usuario3 = null;
-		
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-		Statement st = null;
-		
+				
 		try {
-			con = ConexionMySQL.getConexion();
-			st = con.createStatement();
+			Conexion();
 			pst = con.prepareStatement("INSERT INTO usuario (dni, contraseña, nombre, apellido, nif_local)"+ " values(?,?,?,?,?)");
 			
 			pst.setString(1, usu.getUsuario());
@@ -105,18 +103,12 @@ public class ConexionMySQL {
 		return usuario3;
 	}
 	
-	public Ticket registrarTicket(Ticket tic) {
+	public Ticket RegistrarTicket(Ticket tic) {
 		
 		Ticket ticket1=null;
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Statement st = null;
-		 
+				 
 		try {
-			con = ConexionMySQL.getConexion();	
-			st = con.createStatement();
+			Conexion();
 			ps = con.prepareStatement("INSERT INTO ticket(num_trans, fecha, nif_local) VAlUES(?,?,?)");
 			 
 			ps.setInt(1,tic.getNTransaccion());
@@ -132,12 +124,11 @@ public class ConexionMySQL {
 			ps.setInt(1,tic.getNTransaccion());
 			ps.setString(2,tic.getFecha());
 			ps.setString(3,tic.getNif_local());
-			ps.setString(4,tic.getTipo());
 		
 			rs = ps.executeQuery();
 		 
 			while (rs.next()) {
-				ticket1 = new Ticket(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));			
+				ticket1 = new Ticket(rs.getInt(1), rs.getString(2), rs.getString(3), sql);			
 			}
 		 
 			System.out.println("Se ha creado el ticket correctamente");
@@ -148,18 +139,12 @@ public class ConexionMySQL {
 		return ticket1;
 	}
 	 
-	public Factura registrarFactura(Factura fac) {
+	public Factura RegistrarFactura(Factura fac) {
 		
 		Factura factura1=null;
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Statement st = null;
-			 
+					 
 		try {
-			con = ConexionMySQL.getConexion();	
-			st = con.createStatement();
+			Conexion();
 			ps = con.prepareStatement("INSERT INTO factura(num_trans, nif) VAlUES(?,?)");
 				 
 			ps.setInt(1,fac.getNTransaccion());
@@ -188,19 +173,12 @@ public class ConexionMySQL {
 			return factura1;
 		}
 	 
-	public Pedido registrarPedidoConDomicilio(Pedido pedi) {
+	public Pedido RegistrarPedidoConDomicilio(Pedido pedi) {
 		 
 		Pedido Pedido1=null;
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-		Statement st = null;
-			 
+				 
 		try {
-			con = ConexionMySQL.getConexion();	
-			st = con.createStatement();
+			Conexion();
 			ps = con.prepareStatement("INSERT INTO pedido(num_trans, tipo, domicilio) VAlUES(?,?,?)");
 				 
 			ps.setInt(1,pedi.getNTransaccion());
@@ -230,19 +208,12 @@ public class ConexionMySQL {
 		return Pedido1;
 	}
 
-	public Pedido registrarPedidoSinDomicilio(Pedido pedi) {
+	public Pedido RegistrarPedidoSinDomicilio(Pedido pedi) {
 		
 		Pedido Pedido1=null;
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-		Statement st = null;
-			 
+					 
 		try {
-			con = ConexionMySQL.getConexion();	
-			st = con.createStatement();
+			Conexion();
 			ps = con.prepareStatement("INSERT INTO pedido(num_trans, tipo) VAlUES(?,?)");
 				 
 			ps.setInt(1,pedi.getNTransaccion());
@@ -255,7 +226,7 @@ public class ConexionMySQL {
 			pst = con.prepareStatement(sql); 
 				 
 			pst.setInt(1,pedi.getNTransaccion());
-			pst.setString(2,pedi.getTipoPedido());
+			pst.setString(2,pedi.getTipo());
 			
 			rs = pst.executeQuery();
 			 
@@ -271,18 +242,13 @@ public class ConexionMySQL {
 		return Pedido1;
 	}
 	
-	public Identificacion registrarIdentificacion(Identificacion ide) {
+	public Identificacion RegistrarIdentificacion(Identificacion ide) {
 		
 		Identificacion Identificacion1=null;
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Statement st = null;
 		
 		try {
 			 
-			con = ConexionMySQL.getConexion();	
-			st = con.createStatement();
+			Conexion();
 			ps = con.prepareStatement("INSERT INTO Identificacion(nif, nombre, apellidos) VAlUES(?,?,?)");
 			 
 			ps.setString(1,ide.getNif());
@@ -313,28 +279,21 @@ public class ConexionMySQL {
 		return Identificacion1;
 	}
 	 
-	public Incluye registrarIncluye(Incluye inc) {
+	public Incluye RegistrarIncluye(Incluye inc) {
 		 Incluye Incluye1=null;
 
-		 Connection con = null;
-		 PreparedStatement ps = null;
-		 PreparedStatement pst = null;
-		 ResultSet rs = null;
-		 Statement st = null;
-
 		 try {
-			 con = ConexionMySQL.getConexion();
-			 st = con.createStatement();
-			 ps = con.prepareStatement("INSERT INTO Incluye(nombre_producto, num_trans, cantidad, precio_venta,precio_compra) VAlUES(?,?,?,?,?)");
+			 Conexion();
+			 ps = con.prepareStatement("INSERT INTO Incluye(nombre_producto, num_trans, cantidad, precio) VAlUES(?,?,?,?,?)");
 	
 			 ps.setString(1,inc.getNombreProducto());
 			 ps.setInt(2,inc.getNtransaccion());
 			 ps.setInt(3,inc.getCantidad());
 			 ps.setDouble(4,inc.getPrecio());
-	
+		
 			 ps.executeUpdate();
 	
-			 String sql = "select*from Incluye where nombre_producto = ? and num_trans = ? and cantidad = ? and precio = ?";
+			 String sql = "select*from Incluye where nombre_producto = ? and num_trans = ? and cantidad = ? and precio_venta = ? and precio_compra = ?";
 	
 			 pst = con.prepareStatement(sql);
 	
@@ -342,7 +301,7 @@ public class ConexionMySQL {
 			 pst.setInt(2,inc.getNtransaccion());
 			 pst.setInt(3,inc.getCantidad());
 			 pst.setDouble(4,inc.getPrecio());
-	
+			 
 			 rs = pst.executeQuery();
 	
 			 while (rs.next()) {
@@ -355,5 +314,10 @@ public class ConexionMySQL {
 			 System.out.println("Error en creacion de la Incluye");
 		 }
 		 return Incluye1;
+	}
+	
+	public static void Conexion() throws SQLException {
+		con = ConexionMySQL.getConexion();	
+		st = con.createStatement();
 	}
 }

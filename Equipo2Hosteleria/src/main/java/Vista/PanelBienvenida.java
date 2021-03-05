@@ -136,7 +136,7 @@ public class PanelBienvenida extends JPanel{
 		};
 	}
 	
-	public void establecerConexion() {
+	private void establecerConexion() {
 		System.out.println("Ejecutando evento Boton Prueba Conexion");
 		boolean conexion = controladorPanelBienvenida.establecerConexion();
 		if(conexion==true) {

@@ -22,7 +22,7 @@ CREATE TABLE producto
 (nombre varchar(40) primary key,
 tipo enum ('BEBIDA', 'COMIDA', 'OTROS', 'INGREDIENTE') not null,
 fecha_caducidad date,
-precio_venta float not null,
+precio_venta float,
 precio_compra float not null,
 alergeno enum ('GLUTEN', 'MARISCO', 'FRUTOS SECOS'));
 
@@ -30,6 +30,7 @@ CREATE TABLE ticket
 (num_trans int auto_increment primary key,
 fecha date not null,
 nif_local char(9) not null,
+tipo enum ('TICKET', 'FACTURA', 'PEDIDO', 'APROVISIONAMIENTO', 'COMANDA') not null, 
 CONSTRAINT fk_nif_local_ticket FOREIGN KEY (nif_local) references local(nif) );
 
 CREATE TABLE tiene
@@ -45,7 +46,6 @@ CREATE TABLE incluye
 num_trans int,
 cantidad int not null,
 precio float not null,
-tipo enum ('COMPRA', 'VENTA') not null, 
 CONSTRAINT pk_incluye PRIMARY KEY (nombre_producto, num_trans),
 CONSTRAINT fk_nombre_producto_incluye FOREIGN KEY (nombre_producto) references producto(nombre),
 CONSTRAINT fk_num_trans_incluye FOREIGN KEY (num_trans) references ticket(num_trans) );
@@ -92,6 +92,7 @@ CREATE TABLE contiene
 (codigo_plato varchar(20),
 num_trans int,
 precio float not null,
+cantidad int not null,
 CONSTRAINT pk_tiene PRIMARY KEY (codigo_plato, num_trans),
 CONSTRAINT fk_codigo_plato_contiene FOREIGN KEY (codigo_plato) references plato(codigo),
 CONSTRAINT fk_num_trans_contiene FOREIGN KEY (num_trans) references comandas(num_trans) );

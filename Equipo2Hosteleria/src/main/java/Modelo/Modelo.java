@@ -41,7 +41,7 @@ public class Modelo {
 	
 	public void setTicket() {
     	String fecha = date.toString();
-		ticket1=new Ticket(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal());
+		ticket1=new Ticket(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), "TICKET");
 	}
 	
 	public Factura getFactura() {
@@ -50,16 +50,16 @@ public class Modelo {
     
     public void setFactura(String nif, String nombre, String apellidos) {
     	String fecha = date.toString();
-		factura1=new Factura(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), nif, nombre, apellidos);
+		factura1=new Factura(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), "FACTURA", nif, nombre, apellidos);
 	}
 	
 	public Pedido getPedido() {
 		return this.pedido1;
 	}
     
-    public void setPedido(String tipo, String domicilio) {
+    public void setPedido(String tipoPedido, String domicilio) {
     	String fecha = date.toString();
-		pedido1=new Pedido(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), tipo, domicilio);
+		pedido1=new Pedido(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), "PEDIDO", tipoPedido, domicilio);
 	}
 	
 }

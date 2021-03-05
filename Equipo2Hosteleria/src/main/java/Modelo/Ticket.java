@@ -5,15 +5,17 @@ public class Ticket {
 	protected int NTransaccion;
 	protected String fecha;
 	protected String nif_local;
+	protected String tipo;
 	
 	//Constructor sin parametros
 	public Ticket() {}
 			
 	//Constructor con parametros
-	public Ticket(int NTransaccion, String fecha, String nif_local) {
+	public Ticket(int NTransaccion, String fecha, String nif_local, String tipo) {
 		this.setNTransaccion(NTransaccion);
 		this.setFecha(fecha);
 		this.setNif_local(nif_local);
+		this.setTipo(tipo);
 	}
 
 	public int getNTransaccion() {
@@ -38,6 +40,14 @@ public class Ticket {
 
 	public void setNif_local(String nif_local) {
 		this.nif_local = nif_local;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }

@@ -2,38 +2,46 @@ package Modelo;
 
 public class Pedido extends Ticket{
 
-	private String tipo;
+	private String tipoPedido;
 	private String domicilio;
 	
 	//Constructor sin parametros
 	public Pedido() {}
 	
-	public Pedido(int NTransaccion, String tipo) {
+	//Constructor con parametros
+	public Pedido(int NTransaccion, String tipo, String tipoPedido) {
 		super.setNTransaccion(NTransaccion);
-		this.setTipo(tipo);
+		super.setTipo(tipo);
+		this.setTipoPedido(tipoPedido);
+	}
+	
+	public Pedido(int NTransaccion, String tipoPedido) {
+		super.setNTransaccion(NTransaccion);
+		this.setTipoPedido(tipoPedido);
 	}
 			
-	public Pedido(int NTransaccion, String tipo, String domicilio) {
+	public Pedido(int NTransaccion, String tipo, String tipoPedido, String domicilio) {
 		super.setNTransaccion(NTransaccion);
-		this.setTipo(tipo);
+		super.setTipo(tipo);
+		this.setTipoPedido(tipoPedido);
 		this.setDomicilio(domicilio);
 	}
 	
-	//Constructor con parametros
-	public Pedido(int NTransaccion, String fecha, String nif_local, String tipo, String domicilio) {
+	public Pedido(int NTransaccion, String fecha, String nif_local, String tipo, String tipoPedido, String domicilio) {
 		super.setNTransaccion(NTransaccion);
 		super.setFecha(fecha);
 		super.setNif_local(nif_local);
-		this.setTipo(tipo);
+		super.setTipo(tipo);
+		this.setTipoPedido(tipoPedido);
 		this.setDomicilio(domicilio);
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getTipoPedido() {
+		return tipoPedido;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTipoPedido(String tipoPedido) {
+		this.tipoPedido = tipoPedido;
 	}
 
 	public String getDomicilio() {

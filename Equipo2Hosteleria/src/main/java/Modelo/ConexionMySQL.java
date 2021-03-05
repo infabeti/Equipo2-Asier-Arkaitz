@@ -27,7 +27,6 @@ public class ConexionMySQL {
 		}
 		return con;
 	}
-
    
 	public Usuario obtenerUsuario(Usuario usu){
 		
@@ -135,11 +134,12 @@ public class ConexionMySQL {
 			ps.setInt(1,tic.getNTransaccion());
 			ps.setString(2,tic.getFecha());
 			ps.setString(3,tic.getNif_local());
+			ps.setString(4,tic.getTipo());
 		
 			rs = ps.executeQuery();
 		 
 			while (rs.next()) {
-				ticket1 = new Ticket(rs.getInt(1), rs.getString(2), rs.getString(3));			
+				ticket1 = new Ticket(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));			
 			}
 		 
 			System.out.println("Se ha creado el ticket correctamente");
@@ -257,7 +257,7 @@ public class ConexionMySQL {
 			pst = con.prepareStatement(sql); 
 				 
 			pst.setInt(1,pedi.getNTransaccion());
-			pst.setString(2,pedi.getTipo());
+			pst.setString(2,pedi.getTipoPedido());
 			
 			rs = pst.executeQuery();
 			 
@@ -332,25 +332,23 @@ public class ConexionMySQL {
 			 ps.setString(1,inc.getNombreProducto());
 			 ps.setInt(2,inc.getNtransaccion());
 			 ps.setInt(3,inc.getCantidad());
-			 ps.setDouble(4,inc.getPrecioVenta());
-			 ps.setDouble(5,inc.getPrecioCompra());
+			 ps.setDouble(4,inc.getPrecio());
 	
 			 ps.executeUpdate();
 	
-			 String sql = "select*from Incluye where nombre_producto = ? and num_trans = ? and cantidad = ? and precio_venta = ? and precio_compra = ?";
+			 String sql = "select*from Incluye where nombre_producto = ? and num_trans = ? and cantidad = ? and precio = ?";
 	
 			 pst = con.prepareStatement(sql);
 	
 			 pst.setString(1,inc.getNombreProducto());
 			 pst.setInt(2,inc.getNtransaccion());
 			 pst.setInt(3,inc.getCantidad());
-			 pst.setDouble(4,inc.getPrecioVenta());
-			 pst.setDouble(5,inc.getPrecioCompra());
+			 pst.setDouble(4,inc.getPrecio());
 	
 			 rs = pst.executeQuery();
 	
 			 while (rs.next()) {
-				 Incluye1 = new Incluye(rs.getString(1), rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDouble(5));
+				 Incluye1 = new Incluye(rs.getString(1), rs.getInt(2),rs.getInt(3),rs.getDouble(4));
 			 }
 			 
 			 System.out.println("Se ha creado la Incluye correctamente");

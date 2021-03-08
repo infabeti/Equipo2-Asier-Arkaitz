@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
 public class ConexionMySQL {
 	
 	private static Connection con=null;
@@ -69,26 +68,26 @@ public class ConexionMySQL {
 				
 		try {
 			Conexion();
-			pst = con.prepareStatement("INSERT INTO usuario (dni, contraseña, nombre, apellido, nif_local)"+ " values(?,?,?,?,?)");
 			
-			pst.setString(1, usu.getDni());
-			pst.setString(2, usu.getContrasena());
-			pst.setString(3, usu.getNombre());
-			pst.setString(4, usu.getApellidos());
-			pst.setString(5, usu.getNif_local());
-			
-			pst.executeUpdate();
+			pst = con.prepareStatement("INSERT INTO usuario (dni, contraseña, nombre, apellido, nif_local)"+ " values(?,?,?,?,?)");		
+			pst.setString(1, usu.getDni());	pst.setString(2, usu.getContrasena());	pst.setString(3, usu.getNombre());	pst.setString(4, usu.getApellidos());	pst.setString(5, usu.getNif_local());
+			pst.executeUpdate();		
+						
+		} catch (Exception e) {
+			System.out.println("El usuario ya existe o imposible implementar ese usuario");
+		}
+		return usuario3;
+	}
 	
-			String sql = "select*from usuario where dni = ? and contraseña =  ? and nombre =  ? and apellido =  ? and nif_local =  ? ";
-			
-			pst = con.prepareStatement(sql);
-			
-			pst.setString(1, usu.getDni());
-			pst.setString(2, usu.getContrasena());
-			pst.setString(3, usu.getNombre());
-			pst.setString(4, usu.getApellidos());
-			pst.setString(5, usu.getNif_local());
-			
+public Usuario comprobarUsuarioRegistrado(Usuario usu){
+	
+		Usuario usuario3 = null;
+				
+		try {
+			Conexion();		
+			String sql = "select*from usuario where dni = ? and contraseña =  ? and nombre =  ? and apellido =  ? and nif_local =  ? ";			
+			pst = con.prepareStatement(sql);			
+			pst.setString(1, usu.getDni());	pst.setString(2, usu.getContrasena());	pst.setString(3, usu.getNombre());	pst.setString(4, usu.getApellidos());	pst.setString(5, usu.getNif_local());		
 			rs = pst.executeQuery();
 			
 			while (rs.next()) {

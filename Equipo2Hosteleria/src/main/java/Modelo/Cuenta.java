@@ -10,6 +10,7 @@ public class Cuenta {
 		conexionMySQL = new ConexionMySQL();
 		usuario1 = new Usuario(dni, contrasena, nombre, apellidos, nif_local);
 		Usuario usu = conexionMySQL.registrarUsuario(usuario1);
+		usu = conexionMySQL.comprobarUsuarioRegistrado(usuario1);
 		
 		if (usu != null) {
 			funciona=true;
@@ -17,7 +18,7 @@ public class Cuenta {
 			funciona=false;
 		}
 		return funciona;
-	}
+	}	
 	
 	public boolean iniciarUsuario(String dni, String contrasena) {
 		conexionMySQL = new ConexionMySQL();
@@ -31,5 +32,4 @@ public class Cuenta {
 		}
 		return funciona;
 	}
-	
 }

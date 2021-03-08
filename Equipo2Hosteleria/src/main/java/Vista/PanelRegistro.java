@@ -137,7 +137,7 @@ public class PanelRegistro extends JPanel{
 					JOptionPane.showMessageDialog(null,"Repita la contraseña correctamente");
 				}else {
 					boolean creado = controladorPanelRegistro.accionadoBottonCrearPanelRegistro(textDni.getText(), textContrasena1.getText(), textNombre.getText(), textApellidos.getText(), textField_NIFLocal.getText());
-					
+				
 					if (creado == true) {
 						JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
 						controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();

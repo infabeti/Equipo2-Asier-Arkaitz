@@ -218,7 +218,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelPedidos));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelPedidos));
-		//this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
+		this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		//this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
 		this.borrarListaCompra();
@@ -286,20 +286,16 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		};
 	}
 	
-	/*
 	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String domicilio=textField_Direccion.getText();
+				int NTransaccion=Integer.parseInt(textPane_NTransaccion.getText());
 				if(ControlarCaja==0) {
-<<<<<<< HEAD
-					JOptionPane.showMessageDialog(null, "Añade productos.");									
-				}else if (rdbtnEntregaADomicilio.isSelected() && !textPane_Direccion.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Añade productos.");
+				}else if (rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
-					
-					String textoTransacion=textPane_NTransaccion.getText();
-					int NTransaccion=Integer.parseInt(textoTransacion);
 					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
@@ -309,43 +305,35 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					
 					pedido1.setNTransaccion(NTransaccion);
 					pedido1.setTipo(rdbtnEntregaADomicilio.getText());
-					pedido1.setDomicilio(textPane_Direccion.getText());
+					pedido1.setDomicilio(textField_Direccion.getText());
 
 					ticket1.setNTransaccion(NTransaccion);
 					ticket1.setFecha(textPane_Fecha.getText());
 					ticket1.setNif_local("B78107158");
 					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);		
-					
-
-					
-					Pedido pedi = ConexionMySQLTicket.RegistrarPedidoConDomicilio(pedido1);	
+					Ticket tic = ConexionMySQLTicket.registrarTicket(ticket1);
+					Pedido pedi = ConexionMySQLTicket.registrarPedidoConDomicilio(pedido1);	
 										
 					String Producto = (comboBox_Productos.getSelectedItem().toString());
 					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-					double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
-					double PrecioCompra = (((Producto) comboBox_Productos.getSelectedItem()).PrecioCompra());
+					double Precio = (((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
 					
 					incluye1.setNombreProducto(Producto);
 					incluye1.setNTransaccion(NTransaccion);
 					incluye1.setCantidad(Cantidad);
-					incluye1.setPrecioVenta(PrecioVenta);
-					incluye1.setPrecioCompra(PrecioCompra);
+					incluye1.setPrecio(Precio);
 					
-					Incluye incl = ConexionMySQLTicket.RegistrarIncluye(incluye1);
+					Incluye incl = ConexionMySQLTicket.registrarIncluye(incluye1);
 					
 					if (tic != null && pedi != null && incl != null) {
-						controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();			
+						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
 					}else {
-							JOptionPane.showMessageDialog(null,"Fallo al crear la operacion.");
-						}
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+					}
 								
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
-					
-					String textoTransacion=textPane_NTransaccion.getText();
-					int NTransaccion=Integer.parseInt(textoTransacion);
 					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
@@ -360,46 +348,34 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ticket2.setFecha(textPane_Fecha.getText());
 					ticket2.setNif_local("B78107158");
 					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket2);
-					Pedido pedi = ConexionMySQLTicket.RegistrarPedidoSinDomicilio(pedido2);
+					Ticket tic = ConexionMySQLTicket.registrarTicket(ticket2);
+					Pedido pedi = ConexionMySQLTicket.registrarPedidoSinDomicilio(pedido2);
 									
 					String Producto = (comboBox_Productos.getSelectedItem().toString());
 					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-					double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
-					double PrecioCompra = (((Producto) comboBox_Productos.getSelectedItem()).getPrecioCompra());
+					double Precio = (((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
 					
 					incluye2.setNombreProducto(Producto);
 					incluye2.setNTransaccion(NTransaccion);
 					incluye2.setCantidad(Cantidad);
-					incluye2.setPrecioVenta(PrecioVenta);
-					incluye2.setPrecioCompra(PrecioCompra);
+					incluye2.setPrecio(Precio);
 										
-					Incluye incl = ConexionMySQLTicket.RegistrarIncluye(incluye2);	
+					Incluye incl = ConexionMySQLTicket.registrarIncluye(incluye2);	
 					
 					if (tic != null && pedi != null && incl != null) {
-						controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos();			
+						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
 					}else {
-							JOptionPane.showMessageDialog(null,"Fallo al crear la operacion.");
-						}					
-=======
-					JOptionPane.showMessageDialog(null, "Añade productos.");
-				}else if (rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("") && !textField_Fecha.getText().equals("")) {
-					System.out.println("Ejecutando evento Boton Pasar A Caja");
-					ControlarCaja=0;
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(tipo, domicilio);
-				}else if (rdbtnRecogerEnEstablecimiento.isSelected() && !textField_Fecha.getText().equals("")) {
-					System.out.println("Ejecutando evento Boton Pasar A Caja");
-					ControlarCaja=0;
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(tipo, null);
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+					}
 				}else {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
->>>>>>> main
 				}
 				
 			}
 		};
 	}
 	
+	/*	
 	private ActionListener listenerBotonBorrarLista(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

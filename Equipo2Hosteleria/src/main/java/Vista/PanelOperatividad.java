@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Controlador.ControladorPanelOperatividad;
-import Modelo.Usuario;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;

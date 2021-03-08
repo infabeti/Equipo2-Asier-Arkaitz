@@ -11,6 +11,10 @@ public class Local {
 	//Constructor sin parametros
 	public Local() {}		
 	
+	public Local(String NIF) {
+		this.nif = NIF;
+	}	
+	
 	//Constructor con parametros
 	public Local(String NIF, String Nombre, String NombrePropietario, String Tipo, String Direccion) {
 		this.nif = NIF;

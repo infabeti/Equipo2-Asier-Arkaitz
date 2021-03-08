@@ -79,7 +79,7 @@ public class ConexionMySQL {
 		return usuario3;
 	}
 	
-public Usuario comprobarUsuarioRegistrado(Usuario usu){
+	public Usuario comprobarUsuarioRegistrado(Usuario usu){
 	
 		Usuario usuario3 = null;
 				
@@ -318,5 +318,35 @@ public Usuario comprobarUsuarioRegistrado(Usuario usu){
 	public static void Conexion() throws SQLException {
 		con = ConexionMySQL.getConexion();	
 		st = con.createStatement();
+	}
+	public static String datosLocal() {
+			Local local=null;
+			
+	try {
+		Conexion();
+		
+		String sql = "SELECT nif FROM local where tipo='BAR'";
+		
+		st = con.createStatement();
+		rs = st.executeQuery(sql);
+		
+		//String nif=rs.getString("nif");
+		String registro="";
+		
+		
+		 while (rs.next()) {
+			 registro=rs.getString("nif");
+			
+		 } 
+		 return registro;
+
+	 } catch (Exception e) {
+		 System.out.println("Error en creacion de la Incluye");
+		 return null;
+	 }
+	
+		
+		
+	
 	}
 }

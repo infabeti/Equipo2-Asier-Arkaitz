@@ -11,8 +11,7 @@ public class ControladorPanelRegistro {
 	private Vista vista;
 	private Controlador controlador;
 	private PanelRegistro panelRegistro;
-	
-	
+		
 	public void mostrarPanelRegistro() {
 		this.panelRegistro = new PanelRegistro(this);
 		this.vista.mostrarPanel(this.panelRegistro);
@@ -35,4 +34,8 @@ public class ControladorPanelRegistro {
 	public boolean accionadoBottonCrearPanelRegistro(String dni, String contrasena, String nombre, String apellidos, String nif_local) {
 		return this.modelo.getCuenta().crearUsuario(dni, contrasena, nombre, apellidos, nif_local);
 	}	
+	public String MostrarNif() {
+		return this.modelo.getConexionMySQL().datosLocal();
+		
+	}
 }

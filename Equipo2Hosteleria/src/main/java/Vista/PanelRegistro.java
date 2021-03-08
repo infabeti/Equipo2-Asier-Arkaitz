@@ -116,6 +116,7 @@ public class PanelRegistro extends JPanel{
 		textField_NIFLocal = new JTextField();
 		textField_NIFLocal.setColumns(10);
 		textField_NIFLocal.setBounds(385, 317, 153, 20);
+		textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNif());
 		add(textField_NIFLocal);
 		
 		initializeEvents();

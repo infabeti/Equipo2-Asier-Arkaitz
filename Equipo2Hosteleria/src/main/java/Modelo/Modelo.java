@@ -59,9 +59,9 @@ public class Modelo {
 		return this.ticket1;
 	}
 	
-	public void setTicket() {
+	public void setTicket(String tipo) {
     	String fecha = date.toString();
-		ticket1=new Ticket(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), "TICKET");
+		ticket1=new Ticket(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), tipo);
 	}
 	
 	public Factura getFactura() {

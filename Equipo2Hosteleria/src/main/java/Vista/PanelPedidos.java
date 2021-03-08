@@ -297,22 +297,24 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					
-					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
+					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(NTransaccion, "ENTREGA", null, comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
+					
+					ConexionMySQL conexionMySQL = new ConexionMySQL();
 					
 					Pedido pedido1 = new Pedido();
 					Ticket ticket1 = new Ticket();
 					Incluye incluye1 = new Incluye();
 					
 					pedido1.setNTransaccion(NTransaccion);
-					pedido1.setTipo(rdbtnEntregaADomicilio.getText());
+					pedido1.setTipo("ENTREGA");
 					pedido1.setDomicilio(textField_Direccion.getText());
 
 					ticket1.setNTransaccion(NTransaccion);
 					ticket1.setFecha(textPane_Fecha.getText());
 					ticket1.setNif_local("B78107158");
 					
-					Ticket tic = ConexionMySQLTicket.registrarTicket(ticket1);
-					Pedido pedi = ConexionMySQLTicket.registrarPedidoConDomicilio(pedido1);	
+					Ticket tic = conexionMySQL.registrarTicket(ticket1);
+					Pedido pedi = conexionMySQL.registrarPedidoConDomicilio(pedido1);	
 										
 					String Producto = (comboBox_Productos.getSelectedItem().toString());
 					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
@@ -323,7 +325,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					incluye1.setCantidad(Cantidad);
 					incluye1.setPrecio(Precio);
 					
-					Incluye incl = ConexionMySQLTicket.registrarIncluye(incluye1);
+					Incluye incl = conexionMySQL.registrarIncluye(incluye1);
 					
 					if (tic != null && pedi != null && incl != null) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
@@ -335,21 +337,21 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					
-					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
+					ConexionMySQL conexionMySQL = new ConexionMySQL();
 					
 					Pedido pedido2 = new Pedido();
 					Ticket ticket2 = new Ticket();
 					Incluye incluye2 = new Incluye();
 					
 					pedido2.setNTransaccion(NTransaccion);
-					pedido2.setTipo(rdbtnRecogerEnEstablecimiento.getText());
+					pedido2.setTipo("RECOGIDA");
 					
 					ticket2.setNTransaccion(NTransaccion);
 					ticket2.setFecha(textPane_Fecha.getText());
 					ticket2.setNif_local("B78107158");
 					
-					Ticket tic = ConexionMySQLTicket.registrarTicket(ticket2);
-					Pedido pedi = ConexionMySQLTicket.registrarPedidoSinDomicilio(pedido2);
+					Ticket tic = conexionMySQL.registrarTicket(ticket2);
+					Pedido pedi = conexionMySQL.registrarPedidoSinDomicilio(pedido2);
 									
 					String Producto = (comboBox_Productos.getSelectedItem().toString());
 					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
@@ -360,7 +362,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					incluye2.setCantidad(Cantidad);
 					incluye2.setPrecio(Precio);
 										
-					Incluye incl = ConexionMySQLTicket.registrarIncluye(incluye2);	
+					Incluye incl = conexionMySQL.registrarIncluye(incluye2);	
 					
 					if (tic != null && pedi != null && incl != null) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			

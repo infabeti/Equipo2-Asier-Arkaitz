@@ -4,31 +4,32 @@ public class Cuenta {
 	
 	private ConexionMySQL conexionMySQL;
 	private Usuario usuario1;
+	private boolean funciona;
 
 	public boolean crearUsuario(String dni, String contrasena, String nombre, String apellidos, String nif_local) {
+		conexionMySQL = new ConexionMySQL();
 		usuario1 = new Usuario(dni, contrasena, nombre, apellidos, nif_local);
 		Usuario usu = conexionMySQL.registrarUsuario(usuario1);
-		boolean creado=false;
 		
 		if (usu != null) {
-			creado=true;
+			funciona=true;
 		}else {
-			creado=false;
+			funciona=false;
 		}
-		return creado;
+		return funciona;
 	}
 	
-	public boolean iniciarUsuario(String dni, String contrasena, String nombre, String apellidos, String nif_local) {
-		usuario1 = new Usuario(dni, contrasena, nombre, apellidos, nif_local);
-		Usuario usu = conexionMySQL.registrarUsuario(usuario1);
-		boolean creado=false;
+	public boolean iniciarUsuario(String dni, String contrasena) {
+		conexionMySQL = new ConexionMySQL();
+		usuario1 = new Usuario(dni, contrasena);
+		Usuario usu = conexionMySQL.obtenerUsuario(usuario1);
 		
 		if (usu != null) {
-			creado=true;
+			funciona=true;
 		}else {
-			creado=false;
+			funciona=false;
 		}
-		return creado;
+		return funciona;
 	}
 	
 }

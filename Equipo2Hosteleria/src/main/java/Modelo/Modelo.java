@@ -46,6 +46,14 @@ public class Modelo {
 	public void setCarroCompra(CarroCompra carroCompra) {
 		this.carroCompra = carroCompra;
 	}
+
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
 	
 	public Ticket getTicket() {
 		return this.ticket1;
@@ -72,14 +80,6 @@ public class Modelo {
     public void setPedido(String tipoPedido, String domicilio) {
     	String fecha = date.toString();
 		pedido1=new Pedido(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), "PEDIDO", tipoPedido, domicilio);
-	}
-
-	public Cuenta getCuenta() {
-		return cuenta;
-	}
-
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
 	}
 	
 }

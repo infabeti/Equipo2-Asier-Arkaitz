@@ -6,7 +6,6 @@ import Vista.Vista;
 
 public class ControladorPanelBienvenida {
 
-	@SuppressWarnings("unused")
 	private Modelo modelo;
 	private Vista vista;
 	private Controlador controlador;
@@ -33,5 +32,9 @@ public class ControladorPanelBienvenida {
 	
 	public boolean establecerConexion() {
 		return this.modelo.getConsultasBBDD().Conectar();
+	}
+	
+	public boolean accionadoBottonIniciarPanelOperatividad(String dni, String contrasena) {
+		return this.modelo.getCuenta().iniciarUsuario(dni, contrasena);
 	}
 }

@@ -8,9 +8,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelBienvenida;
 
-import Modelo.ConexionMySQL;
-import Modelo.Usuario;
-
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -105,24 +102,16 @@ public class PanelBienvenida extends JPanel{
 				//Ajuste temporal para la entrada rapida al programa
 				//String dni = textPane_Usuario.getText();
 				//String contrasena = textPane_Contrasea.getText();
-				
 				String dni = "11111111A";
 				String contrasena = "111";
 				
-				ConexionMySQL ConexionMySQLUsuario = new ConexionMySQL();
+				boolean iniciado = controladorPanelBienvenida.accionadoBottonIniciarPanelOperatividad(dni, contrasena);
 
-				Usuario usuario1 = new Usuario();
-				usuario1.setDni(dni);
-				usuario1.setContrasena(contrasena);
-
-				Usuario usu = ConexionMySQLUsuario.obtenerUsuario(usuario1);
-
-				if (usu != null) {
+				if (iniciado == true) {
 					controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
 				}else {
 					JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos.");
 				}
-				
 			}
 		};
 	}

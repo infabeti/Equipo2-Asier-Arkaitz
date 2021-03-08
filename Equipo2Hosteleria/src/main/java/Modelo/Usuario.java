@@ -18,6 +18,11 @@ public class Usuario {
 		this.setApellidos(apellidos);
 		this.setNif_local(nif_local);
 	}
+	
+	public Usuario(String dni, String contrasena) {
+		this.setDni(dni);
+		this.setContrasena(contrasena);
+	}
 
 	public String getDni() {
 		return dni;

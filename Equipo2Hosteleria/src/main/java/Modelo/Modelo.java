@@ -7,20 +7,20 @@ public class Modelo {
 	private ConsultasBBDD consultasBBDD;
 	private ConexionMySQL conexionMySQL;
 	private CarroCompra carroCompra;
+	private Cuenta cuenta;
 	private Ticket ticket1;
     private Factura factura1;
     private Pedido pedido1;
-    private Usuario usuario1;
 	LocalDate date = LocalDate.now();
 	
 	public Modelo() {
 		consultasBBDD = new ConsultasBBDD();
 		conexionMySQL = new ConexionMySQL();
 		carroCompra = new CarroCompra();
+		cuenta = new Cuenta();
 		ticket1 = new Ticket();
 		factura1 = new Factura();
 		pedido1 = new Pedido();
-		usuario1 = new Usuario();
 	}
 	
 	public ConsultasBBDD getConsultasBBDD() {
@@ -74,21 +74,12 @@ public class Modelo {
 		pedido1=new Pedido(this.consultasBBDD.getNTransaccion(), fecha, this.consultasBBDD.getNIFLocal(), "PEDIDO", tipoPedido, domicilio);
 	}
 
-	public Usuario getUsuario() {
-		return usuario1;
+	public Cuenta getCuenta() {
+		return cuenta;
 	}
 
-	public boolean crearUsuario(String dni, String contrasena, String nombre, String apellidos, String nif_local) {
-		usuario1 = new Usuario(dni, contrasena, nombre, apellidos, nif_local);
-		Usuario usu = conexionMySQL.registrarUsuario(usuario1);
-		boolean creado=false;
-		
-		if (usu != null) {
-			creado=true;
-		}else {
-			creado=false;
-		}
-		return creado;
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
 	}
 	
 }

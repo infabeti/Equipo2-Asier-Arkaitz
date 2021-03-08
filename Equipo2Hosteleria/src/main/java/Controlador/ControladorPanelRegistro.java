@@ -33,7 +33,7 @@ public class ControladorPanelRegistro {
 	}
 	
 	public boolean accionadoBottonCrearPanelRegistro(String dni, String contrasena, String nombre, String apellidos, String nif_local) {
-		return this.modelo.crearUsuario(dni, contrasena, nombre, apellidos, nif_local);
+		return this.modelo.getCuenta().crearUsuario(dni, contrasena, nombre, apellidos, nif_local);
 	}
 	
 }

@@ -11,8 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Controlador.ControladorPanelRegistro;
-import Modelo.ConexionMySQL;
-import Modelo.Usuario;
 import java.awt.Color;
 import javax.swing.JTextField;
 

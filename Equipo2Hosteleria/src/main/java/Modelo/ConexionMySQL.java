@@ -103,7 +103,7 @@ public class ConexionMySQL {
 		return usuario3;
 	}
 	
-	public Ticket RegistrarTicket(Ticket tic) {
+	public Ticket registrarTicket(Ticket tic) {
 		
 		Ticket ticket1=null;
 				 
@@ -139,7 +139,7 @@ public class ConexionMySQL {
 		return ticket1;
 	}
 	 
-	public Factura RegistrarFactura(Factura fac) {
+	public Factura registrarFactura(Factura fac) {
 		
 		Factura factura1=null;
 					 
@@ -173,7 +173,7 @@ public class ConexionMySQL {
 			return factura1;
 		}
 	 
-	public Pedido RegistrarPedidoConDomicilio(Pedido pedi) {
+	public Pedido registrarPedidoConDomicilio(Pedido pedi) {
 		 
 		Pedido Pedido1=null;
 				 
@@ -208,7 +208,7 @@ public class ConexionMySQL {
 		return Pedido1;
 	}
 
-	public Pedido RegistrarPedidoSinDomicilio(Pedido pedi) {
+	public Pedido registrarPedidoSinDomicilio(Pedido pedi) {
 		
 		Pedido Pedido1=null;
 					 
@@ -242,7 +242,7 @@ public class ConexionMySQL {
 		return Pedido1;
 	}
 	
-	public Identificacion RegistrarIdentificacion(Identificacion ide) {
+	public Identificacion registrarIdentificacion(Identificacion ide) {
 		
 		Identificacion Identificacion1=null;
 		
@@ -279,7 +279,7 @@ public class ConexionMySQL {
 		return Identificacion1;
 	}
 	 
-	public Incluye RegistrarIncluye(Incluye inc) {
+	public Incluye registrarIncluye(Incluye inc) {
 		 Incluye Incluye1=null;
 
 		 try {

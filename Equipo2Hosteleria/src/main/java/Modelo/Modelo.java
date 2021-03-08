@@ -2,8 +2,6 @@ package Modelo;
 
 import java.time.LocalDate;
 
-import javax.swing.JOptionPane;
-
 public class Modelo {
 
 	private ConsultasBBDD consultasBBDD;

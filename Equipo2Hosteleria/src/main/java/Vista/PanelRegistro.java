@@ -141,17 +141,6 @@ public class PanelRegistro extends JPanel{
 				}else {
 					boolean creado = controladorPanelRegistro.accionadoBottonCrearPanelRegistro(textDni.getText(), textContrasena1.getText(), textNombre.getText(), textApellidos.getText(), textField_NIFLocal.getText());
 					
-					/*
-					Usuario usuario2 = new Usuario();
-					usuario2.setDni(dni);
-					usuario2.setContrasena(contrasena);
-					usuario2.setNombre(nombre);
-					usuario2.setApellidos(apellidos);
-					usuario2.setNif_local(nif_local);
-						
-					Usuario usu = ConexionMySQLUsuario.registrarUsuario(usuario2);
-					*/
-
 					if (creado == true) {
 						JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
 						controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
@@ -162,6 +151,7 @@ public class PanelRegistro extends JPanel{
 			}
 		};
 	}
+	
 	private ActionListener listenerbtnVolver(ControladorPanelRegistro controladorPanelRegistro) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -171,4 +161,3 @@ public class PanelRegistro extends JPanel{
 		};
 	}
 }
-

@@ -245,8 +245,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			modeloTabla.removeRow(i);
 		}
 		Object lista[][] = controladorPanelPedidos.obtenerListaCompra();
-		for(int i = 0;i<lista.length;i++)
-		{
+		for(int i = 0;i<lista.length;i++) {
 			Object temp[] = { lista[i][0], lista[i][1], lista[i][2], lista[i][3] };
 			modeloTabla.addRow(temp);
 		}
@@ -289,15 +288,13 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String domicilio=textField_Direccion.getText();
-				int NTransaccion=Integer.parseInt(textPane_NTransaccion.getText());
 				if(ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
 				}else if (rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(NTransaccion, "ENTREGA", null, comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
+					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textPane_NTransaccion.getText()), "ENTREGA", null, comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
 					
 					ConexionMySQL conexionMySQL = new ConexionMySQL();
 					
@@ -305,11 +302,11 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					Ticket ticket1 = new Ticket();
 					Incluye incluye1 = new Incluye();
 					
-					pedido1.setNTransaccion(NTransaccion);
+					pedido1.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
 					pedido1.setTipo("ENTREGA");
 					pedido1.setDomicilio(textField_Direccion.getText());
 
-					ticket1.setNTransaccion(NTransaccion);
+					ticket1.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
 					ticket1.setFecha(textPane_Fecha.getText());
 					ticket1.setNif_local("B78107158");
 					
@@ -321,7 +318,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					double Precio = (((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
 					
 					incluye1.setNombreProducto(Producto);
-					incluye1.setNTransaccion(NTransaccion);
+					incluye1.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
 					incluye1.setCantidad(Cantidad);
 					incluye1.setPrecio(Precio);
 					
@@ -343,10 +340,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					Ticket ticket2 = new Ticket();
 					Incluye incluye2 = new Incluye();
 					
-					pedido2.setNTransaccion(NTransaccion);
+					pedido2.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
 					pedido2.setTipo("RECOGIDA");
 					
-					ticket2.setNTransaccion(NTransaccion);
+					ticket2.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
 					ticket2.setFecha(textPane_Fecha.getText());
 					ticket2.setNif_local("B78107158");
 					
@@ -358,7 +355,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					double Precio = (((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
 					
 					incluye2.setNombreProducto(Producto);
-					incluye2.setNTransaccion(NTransaccion);
+					incluye2.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
 					incluye2.setCantidad(Cantidad);
 					incluye2.setPrecio(Precio);
 										

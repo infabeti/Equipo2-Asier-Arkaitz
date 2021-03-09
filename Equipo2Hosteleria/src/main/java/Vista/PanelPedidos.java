@@ -49,14 +49,11 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JTextField textField_Direccion;
 	private JTextField textField_Fecha;
 	private JTextField textField_Local;
+	private JTextField textField_NTransaccion;
 	private JTextPane textPane_Total;
 	private JScrollPane scrollPane;
 	private JTable table;
 	private ControladorPanelPedidos controladorPanelPedidos;
-	private JLabel lblLocal;
-	private JTextPane textPane_Local;
-	private JTextPane textPane_Fecha;
-	private JTextPane textPane_NTransaccion;
 	
 	static String LocalP="Freddy Fazbear's Pizza";
 	public static int ControlarCaja=0;
@@ -152,7 +149,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnPasarACaja.setBounds(325, 396, 89, 23);
 		add(btnPasarACaja);
 		
-		JTextField textField_NTransaccion = new JTextField();
+		textField_NTransaccion = new JTextField();
 		textField_NTransaccion.setHorizontalAlignment(SwingConstants.TRAILING);
 		textField_NTransaccion.setText(""+ controladorPanelPedidos.mostrarNumeroTransaccion());
 		textField_NTransaccion.setEditable(false);
@@ -295,97 +292,25 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ControlarCaja=0;
 					
 					//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textPane_NTransaccion.getText()), textPane_Fecha.getText(), "B78107158", "ENTREGA", textField_Direccion.getText(), comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta(), controladorPanelPedidos.obtenerListaCompra());
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", "ENTREGA", textField_Direccion.getText(), comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta(), controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
-					}
-					
-					/*
-					ConexionMySQL conexionMySQL = new ConexionMySQL();
-					
-					Pedido pedido1 = new Pedido();
-					Ticket ticket1 = new Ticket();
-					Incluye incluye1 = new Incluye();
-					
-					pedido1.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
-					pedido1.setTipo("ENTREGA");
-					pedido1.setDomicilio(textField_Direccion.getText());
-
-					ticket1.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
-					ticket1.setFecha(textPane_Fecha.getText());
-					ticket1.setNif_local("B78107158");
-					
-					Ticket tic = conexionMySQL.registrarTicket(ticket1);
-					Pedido pedi = conexionMySQL.registrarPedidoConDomicilio(pedido1);	
-										
-					String Producto = (comboBox_Productos.getSelectedItem().toString());
-					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-					double Precio = (((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
-					
-					incluye1.setNombreProducto(Producto);
-					incluye1.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
-					incluye1.setCantidad(Cantidad);
-					incluye1.setPrecio(Precio);
-					
-					Incluye incl = conexionMySQL.registrarIncluye(incluye1);
-					
-					if (tic != null && pedi != null && incl != null) {
-						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
-					}else {
-						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
-					}
-					*/
-								
+					}								
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					
 					//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textPane_NTransaccion.getText()), textPane_Fecha.getText(), "B78107158", "RECOGIDA", null, comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta(), controladorPanelPedidos.obtenerListaCompra());
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", "RECOGIDA", null, comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta(), controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
 					}
-					
-					/*
-					ConexionMySQL conexionMySQL = new ConexionMySQL();
-					
-					Pedido pedido2 = new Pedido();
-					Ticket ticket2 = new Ticket();
-					Incluye incluye2 = new Incluye();
-					
-					pedido2.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
-					pedido2.setTipo("RECOGIDA");
-					
-					ticket2.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
-					ticket2.setFecha(textPane_Fecha.getText());
-					ticket2.setNif_local("B78107158");
-					
-					Ticket tic = conexionMySQL.registrarTicket(ticket2);
-					Pedido pedi = conexionMySQL.registrarPedidoSinDomicilio(pedido2);
-									
-					String Producto = (comboBox_Productos.getSelectedItem().toString());
-					int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-					double Precio = (((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
-					
-					incluye2.setNombreProducto(Producto);
-					incluye2.setNTransaccion(Integer.parseInt(textPane_NTransaccion.getText()));
-					incluye2.setCantidad(Cantidad);
-					incluye2.setPrecio(Precio);
-										
-					Incluye incl = conexionMySQL.registrarIncluye(incluye2);	
-					
-					if (tic != null && pedi != null && incl != null) {
-						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
-					}else {
-						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
-					}
-					*/
 				}else {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
 				}

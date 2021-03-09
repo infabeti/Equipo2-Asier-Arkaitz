@@ -9,10 +9,10 @@ public class Pedido extends Ticket{
 	public Pedido() {}
 	
 	//Constructor con parametros
-	public Pedido(int NTransaccion, String tipo, String tipoPedido) {
+	public Pedido(int NTransaccion, String tipoPedido, String domicilio) {
 		super.setNTransaccion(NTransaccion);
-		super.setTipo(tipo);
 		this.setTipoPedido(tipoPedido);
+		this.setDomicilio(domicilio);
 	}
 	
 	public Pedido(int NTransaccion, String tipoPedido) {

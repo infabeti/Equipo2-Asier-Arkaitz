@@ -9,12 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
-import Modelo.Producto;
-import Modelo.Ticket;
-import Modelo.ConexionMySQL;
-import Modelo.Incluye;
-import Modelo.Modelo;
-import Modelo.Pedido;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -37,8 +31,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 
 	private JButton btnVolver;
 	private JButton btnDesconectarse;
-	private JButton btnPasarACaja;
 	private JButton btnAadirAlCarro;
+	private JButton btnPagar;
 	private JButton btnBorrarLista;
 	private JComboBox comboBox_Productos;
 	private JComboBox comboBox_Cantidad;
@@ -61,6 +55,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private String tipo;
 	LocalDate date = LocalDate.now();
 	String fecha = date.toString();
+	private JButton btnNewButton;
 	
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
@@ -144,11 +139,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnDesconectarse.setBounds(149, 396, 146, 23);
 		add(btnDesconectarse);
 		
-		btnPasarACaja = new JButton("Pagar");
-		btnPasarACaja.setEnabled(false);
-		btnPasarACaja.setBounds(325, 396, 89, 23);
-		add(btnPasarACaja);
-		
 		textField_NTransaccion = new JTextField();
 		textField_NTransaccion.setHorizontalAlignment(SwingConstants.TRAILING);
 		textField_NTransaccion.setText(""+ controladorPanelPedidos.mostrarNumeroTransaccion());
@@ -186,6 +176,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnBorrarLista.setBounds(444, 396, 146, 23);
 		add(btnBorrarLista);
 		
+		btnPagar = new JButton("Pagar");
+		btnNewButton.setBounds(327, 396, 89, 23);
+		add(btnNewButton);
+		
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setBounds(490, 234, 45, 20);
 		add(lblTotal);
@@ -215,7 +209,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelPedidos));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelPedidos));
-		this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
+		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		//this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
 		this.borrarListaCompra();
@@ -225,12 +219,12 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 			lblDireccin.setEnabled(false);
 			textField_Direccion.setEnabled(false);
-			btnPasarACaja.setEnabled(true);
+			btnPagar.setEnabled(true);
 			tipo="RECOGIDA";
 		}else if (rdbtnEntregaADomicilio.isSelected()) {
 			lblDireccin.setEnabled(true);
 			textField_Direccion.setEnabled(true);
-			btnPasarACaja.setEnabled(true);
+			btnPagar.setEnabled(true);
 			tipo="ENTREGA";
 		}
 	}
@@ -282,7 +276,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		};
 	}
 	
-	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
+	private ActionListener listenerBotonPagar(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(ControlarCaja==0) {
@@ -292,7 +286,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ControlarCaja=0;
 					
 					//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", "ENTREGA", textField_Direccion.getText(), comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta(), controladorPanelPedidos.obtenerListaCompra());
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(6, textField_Fecha.getText(), "B78107158", "ENTREGA", textField_Direccion.getText(), controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
@@ -304,7 +298,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ControlarCaja=0;
 					
 					//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", "RECOGIDA", null, comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta(), controladorPanelPedidos.obtenerListaCompra());
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(6, textField_Fecha.getText(), "B78107158", "RECOGIDA", null, controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
@@ -318,7 +312,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			}
 		};
 	}
-	
 	/*	
 	private ActionListener listenerBotonBorrarLista(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {

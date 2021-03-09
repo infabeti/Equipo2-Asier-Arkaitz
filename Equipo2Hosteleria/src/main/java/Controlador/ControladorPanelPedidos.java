@@ -48,7 +48,7 @@ public class ControladorPanelPedidos {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public boolean accionadoBottonPasarACajaPanelPedidos(int NTransaccion, String fecha, String nif_local, String tipoPedido, String domicilio, String nombreProducto, int cantidad, double precio, Object lista[][]) {
+	public boolean accionadoBottonPasarACajaPanelPedidos(int NTransaccion, String fecha, String nif_local, String tipoPedido, String domicilio, Object lista[][]) {
 		this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "PEDIDO");
 		this.modelo.getPago().crearIncluye(NTransaccion, lista);
 		return this.modelo.getPago().crearPedido(NTransaccion, tipoPedido, domicilio);

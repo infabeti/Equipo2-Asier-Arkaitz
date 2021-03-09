@@ -110,7 +110,7 @@ insert into producto values ("Bacalao","COMIDA","2021/02/02",5,5, null);
 insert into producto values ("Hamburguesa","COMIDA","2021/01/30",5,5,null);
 insert into producto values ("Cerveza","BEBIDA","2021/02/01",5,5,null);
 
-insert into local values ("B95970901","Freddy Fazbear's Pizza","William Afton","RESTAURANTE","Calle El Mundo de las Pizzas 4");
+insert into local values ("B95970901","Freddy Fazbears Pizza","William Afton","RESTAURANTE","Calle El Mundo de las Pizzas 4");
 insert into local values ("B95231197","Los Cafres Hermanos","Gus Fring","CAFETERIA","Avenida de Trafico 2");
 insert into local values ("B78107158","Taberna de Moe","Moe Szyslak","BAR","Evergreen Terrace 666");
 

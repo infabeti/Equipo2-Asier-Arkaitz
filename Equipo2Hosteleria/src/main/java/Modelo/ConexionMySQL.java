@@ -315,13 +315,13 @@ public class ConexionMySQL {
 		 return Incluye1;
 	}
 	
-	public static String nifLocal() {
+	public static String nifLocal(String nombreLocal) {
 		Local local=null;
 		
 	try {
 	Conexion();
 	
-	String sql = "SELECT nif FROM local where tipo='BAR'";
+	String sql = "SELECT nif FROM local where nombre='"+nombreLocal+"';";
 	
 	st = con.createStatement();
 	rs = st.executeQuery(sql);

@@ -34,8 +34,8 @@ public class ControladorPanelRegistro {
 	public boolean accionadoBottonCrearPanelRegistro(String dni, String contrasena, String nombre, String apellidos, String nif_local) {
 		return this.modelo.getCuenta().crearUsuario(dni, contrasena, nombre, apellidos, nif_local);
 	}	
-	public String MostrarNifLocal() {
-		return this.modelo.getConexionMySQL().nifLocal();
+	public String MostrarNifLocal(String nombreLocal) {
+		return this.modelo.getConexionMySQL().nifLocal(nombreLocal);
 	}
 	public String[] MostrarNombreLocal() {
 		return this.modelo.getConexionMySQL().nombreLocal();

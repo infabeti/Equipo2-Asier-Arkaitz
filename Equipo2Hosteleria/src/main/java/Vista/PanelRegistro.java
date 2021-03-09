@@ -13,6 +13,8 @@ import javax.swing.SwingConstants;
 import Controlador.ControladorPanelRegistro;
 import java.awt.Color;
 import javax.swing.JTextField;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 @SuppressWarnings({ "serial", "rawtypes" })
 public class PanelRegistro extends JPanel{
@@ -26,6 +28,8 @@ public class PanelRegistro extends JPanel{
 	private JButton btnCrear;
 	private JButton btnVolver;
 	private JComboBox comboBox_Local;
+	
+	public static String nombreLocal="";
 	
 	private ControladorPanelRegistro controladorPanelRegistro;
 	
@@ -113,7 +117,8 @@ public class PanelRegistro extends JPanel{
 		{
 			comboBox_Local.addItem(arrayNombresLocal[i]);
 		}
-		
+		nombreLocal=comboBox_Local.getSelectedItem().toString();
+				
 		JLabel lblNewNifLocal = new JLabel("Selecciona NIF del local");
 		lblNewNifLocal.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewNifLocal.setBounds(340, 290, 198, 20);
@@ -122,8 +127,15 @@ public class PanelRegistro extends JPanel{
 		textField_NIFLocal = new JTextField();
 		textField_NIFLocal.setColumns(10);
 		textField_NIFLocal.setBounds(385, 317, 153, 20);
-		textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNifLocal());
+		textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNifLocal(nombreLocal));
 		add(textField_NIFLocal);
+		
+		comboBox_Local.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				nombreLocal=comboBox_Local.getSelectedItem().toString();	
+				textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNifLocal(nombreLocal));
+			}
+		});
 		
 		initializeEvents();
 	}
@@ -164,4 +176,5 @@ public class PanelRegistro extends JPanel{
 			}
 		};
 	}
+	
 }

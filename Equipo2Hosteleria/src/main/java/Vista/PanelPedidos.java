@@ -294,8 +294,16 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textPane_NTransaccion.getText()), "ENTREGA", null, comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta());
+					//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textPane_NTransaccion.getText()), textPane_Fecha.getText(), "B78107158", "ENTREGA", textField_Direccion.getText(), comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta(), controladorPanelPedidos.obtenerListaCompra());
 					
+					if (funciona == true) {
+						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
+					}else {
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+					}
+					
+					/*
 					ConexionMySQL conexionMySQL = new ConexionMySQL();
 					
 					Pedido pedido1 = new Pedido();
@@ -329,11 +337,22 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
 					}
+					*/
 								
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
 					
+					//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textPane_NTransaccion.getText()), textPane_Fecha.getText(), "B78107158", "RECOGIDA", null, comboBox_Productos.getSelectedItem().toString(), Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString()), ((Producto) comboBox_Productos.getSelectedItem()).getPrecioVenta(), controladorPanelPedidos.obtenerListaCompra());
+					
+					if (funciona == true) {
+						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
+					}else {
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+					}
+					
+					/*
 					ConexionMySQL conexionMySQL = new ConexionMySQL();
 					
 					Pedido pedido2 = new Pedido();
@@ -366,6 +385,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
 					}
+					*/
 				}else {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
 				}

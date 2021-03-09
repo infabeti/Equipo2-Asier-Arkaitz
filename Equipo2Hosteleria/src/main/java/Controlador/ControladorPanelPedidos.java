@@ -48,9 +48,10 @@ public class ControladorPanelPedidos {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonPasarACajaPanelPedidos(int NTransaccion, String tipoPedido, String domicilio, String nombreProducto, int cantidad, double precio) {
-		this.modelo.setTicket("PEDIDO");
-		this.modelo.setPedido(tipoPedido, domicilio);
+	public boolean accionadoBottonPasarACajaPanelPedidos(int NTransaccion, String fecha, String nif_local, String tipoPedido, String domicilio, String nombreProducto, int cantidad, double precio, Object lista[][]) {
+		this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "PEDIDO");
+		this.modelo.getPago().crearIncluye(NTransaccion, lista);
+		return this.modelo.getPago().crearPedido(NTransaccion, tipoPedido, domicilio);
 	}
 	
 	public void transaccionFinalizadaPanelPedidos() {

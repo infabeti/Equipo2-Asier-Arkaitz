@@ -8,6 +8,7 @@ public class Modelo {
 	private ConexionMySQL conexionMySQL;
 	private CarroCompra carroCompra;
 	private Cuenta cuenta;
+	private Pago pago;
 	private Ticket ticket1;
     private Factura factura1;
     private Pedido pedido1;
@@ -18,6 +19,7 @@ public class Modelo {
 		conexionMySQL = new ConexionMySQL();
 		carroCompra = new CarroCompra();
 		cuenta = new Cuenta();
+		pago = new Pago();
 		ticket1 = new Ticket();
 		factura1 = new Factura();
 		pedido1 = new Pedido();
@@ -53,6 +55,14 @@ public class Modelo {
 
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
+	}
+
+	public Pago getPago() {
+		return pago;
+	}
+
+	public void setPago(Pago pago) {
+		this.pago = pago;
 	}
 	
 	public Ticket getTicket() {

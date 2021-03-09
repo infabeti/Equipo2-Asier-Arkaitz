@@ -129,20 +129,14 @@ public class PanelRegistro extends JPanel{
 		textField_NIFLocal.setBounds(385, 317, 153, 20);
 		textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNifLocal(nombreLocal));
 		add(textField_NIFLocal);
-		
-		comboBox_Local.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				nombreLocal=comboBox_Local.getSelectedItem().toString();	
-				textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNifLocal(nombreLocal));
-			}
-		});
-		
+
 		initializeEvents();
 	}
 	
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerbtnVolver(this.controladorPanelRegistro)); 
 		this.btnCrear.addActionListener(listenerbtnCrear(this.controladorPanelRegistro));
+		this.comboBox_Local.addItemListener(listenerLocal(this.controladorPanelRegistro));
 	}
 	
 	private ActionListener listenerbtnCrear(ControladorPanelRegistro controladorPanelRegistro) {
@@ -177,4 +171,13 @@ public class PanelRegistro extends JPanel{
 		};
 	}
 	
+	private ItemListener listenerLocal(ControladorPanelRegistro controladorPanelRegistro) {
+		return new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				nombreLocal=comboBox_Local.getSelectedItem().toString();	
+				textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNifLocal(nombreLocal));
+			}
+		};
+	}
+
 }

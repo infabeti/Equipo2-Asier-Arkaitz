@@ -107,6 +107,12 @@ public class PanelRegistro extends JPanel{
 		comboBox_Local = new JComboBox();
 		comboBox_Local.setBounds(82, 317, 153, 22);
 		add(comboBox_Local);
+	
+		String arrayNombresLocal[] = controladorPanelRegistro.MostrarNombreLocal();
+		for(int i = 0;i<arrayNombresLocal.length;i++)
+		{
+			comboBox_Local.addItem(arrayNombresLocal[i]);
+		}
 		
 		JLabel lblNewNifLocal = new JLabel("Selecciona NIF del local");
 		lblNewNifLocal.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -116,7 +122,7 @@ public class PanelRegistro extends JPanel{
 		textField_NIFLocal = new JTextField();
 		textField_NIFLocal.setColumns(10);
 		textField_NIFLocal.setBounds(385, 317, 153, 20);
-		textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNif());
+		textField_NIFLocal.setText(""+controladorPanelRegistro.MostrarNifLocal());
 		add(textField_NIFLocal);
 		
 		initializeEvents();

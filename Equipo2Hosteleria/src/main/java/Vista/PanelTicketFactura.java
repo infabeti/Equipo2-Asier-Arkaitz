@@ -324,6 +324,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String Nif_local = "B78107158";
 				if (ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
 				}else if (rdbtnTicket.isSelected()) {
@@ -338,7 +339,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					ticket1.setNif_local("B78107158");
 					Ticket tic = conexionMySQL.registrarTicket(ticket1);
 					*/
-					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", 0, null, null, null);
+					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), Nif_local, 0, null, null, null);
 
 					if (funciona == true) {
 						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
@@ -367,7 +368,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					Identificacion ide=ConexionMySQLTicket.registrarIdentificacion(Identificacion1);
 					Factura fac = ConexionMySQLTicket.registrarFactura(factura1);
 					
-					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", 1, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());
+					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), Nif_local, 1, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());
 
 					if (funciona == true) {
 						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			

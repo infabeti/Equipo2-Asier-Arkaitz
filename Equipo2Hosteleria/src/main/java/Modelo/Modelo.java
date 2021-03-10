@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.time.LocalDate;
-
 public class Modelo {
 
 	private ConsultasBBDD consultasBBDD;
@@ -9,7 +7,6 @@ public class Modelo {
 	private CarroCompra carroCompra;
 	private Cuenta cuenta;
 	private Pago pago;
-	LocalDate date = LocalDate.now();
 	
 	public Modelo() {
 		consultasBBDD = new ConsultasBBDD();

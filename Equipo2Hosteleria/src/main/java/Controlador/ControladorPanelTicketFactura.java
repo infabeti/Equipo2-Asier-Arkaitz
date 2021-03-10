@@ -48,12 +48,16 @@ public class ControladorPanelTicketFactura {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonPagarPanelTicketFactura(int factura, String nif, String nombre, String apellidos) {
+	public boolean accionadoBottonPagarPanelTicketFactura(int NTransaccion, String fecha, String nif_local, int factura, String nif, String nombre, String apellidos) {
+		boolean funciona = false;
 		if(factura==0) {
-			//this.modelo.setTicket();	
+			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "TICKET");
 		}else if(factura==1) {
-			this.modelo.setFactura(nif, nombre, apellidos);	
+			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "FACTURA");
+			//if (funciona == true) funciona = this.modelo.getPago().crearfactura(NTransaccion, fecha, nif_local, "FACTURA");
+			//if (funciona == true) funciona = this.modelo.getPago().crearIdentificacion(NTransaccion, fecha, nif_local, "FACTURA");
 		}
+		return funciona;
 	}
 	
 	public void transaccionFinalizadaPanelTicketFactura() {

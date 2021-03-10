@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
@@ -16,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorPanelTicketFactura;
 import Modelo.ConexionMySQL;
+import Modelo.Factura;
+import Modelo.Identificacion;
 import Modelo.Ticket;
 
 import javax.swing.JTextField;
@@ -321,58 +324,58 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (ControlarCaja==1 && rdbtnTicket.isSelected() && !textField_NTransaccion.getText().equals("") && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("")) {
+				if (ControlarCaja==0) {
+					JOptionPane.showMessageDialog(null, "Añade productos.");
+				}else if (rdbtnTicket.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pagar");
-					int NTransaccion=Integer.parseInt(textField_NTransaccion.getText());
 					ControlarCaja=0;
-					
+					/*
 					ConexionMySQL conexionMySQL = new ConexionMySQL();
 					
 					Ticket ticket1 = new Ticket();
-					ticket1.setNTransaccion(NTransaccion);
+					ticket1.setNTransaccion(Integer.parseInt(textField_NTransaccion.getText()));
 					ticket1.setFecha(textField_Fecha.getText());
 					ticket1.setNif_local("B78107158");
-					
-					int PosicionArray = NTransaccion-1;
-					
-					ticket.add(PosicionArray,new Ticket()); 
-					ticket.get(PosicionArray).setNTransaccion(NTransaccion);
-					ticket.get(PosicionArray).setFecha(textField_Fecha.getText());
-					ticket.get(PosicionArray).setNif_local("B78107158");
+					Ticket tic = conexionMySQL.registrarTicket(ticket1);
+					*/
+					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", 0, null, null, null);
 
-					System.out.println(ticket.get(PosicionArray).getNTransaccion());
-					System.out.println(ticket.get(PosicionArray).getFecha());
-					System.out.println(ticket.get(PosicionArray).getNif_local());
-					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket.get(PosicionArray));
-					
-					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, null, null, null);
-				}else if (ControlarCaja==1 && rdbtnFactura.isSelected() && !textField_NTransaccion.getText().equals("") && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("") && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
+					if (funciona == true) {
+						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
+					}else {
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+					}
+				}else if (rdbtnFactura.isSelected() && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					
-					int NTransaccion=Integer.parseInt(textField_NTransaccion.getText());
-					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
-					
-					Factura factura1 = new Factura();
+
 					Ticket ticket1 = new Ticket();
+					Factura factura1 = new Factura();
 					Identificacion Identificacion1 = new Identificacion();
 					
-					factura1.setNTransaccion(NTransaccion);
-					factura1.setNif("F32145634");
+					ticket1.setNTransaccion(Integer.parseInt(textField_NTransaccion.getText()));
 					ticket1.setFecha(textField_Fecha.getText());
 					ticket1.setNif_local("B78107158");
+					factura1.setNTransaccion(Integer.parseInt(textField_NTransaccion.getText()));
+					factura1.setNif("F32145634");
 					Identificacion1.setNombre(textField_Nombre.getText());
 					Identificacion1.setApellidos(textField_Apellidos.getText());
 					Identificacion1.setNif("F32145634");
 					
-					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket1);
-					Identificacion ide=ConexionMySQLTicket.RegistrarIdentificacion(Identificacion1);
-					Factura fac = ConexionMySQLTicket.RegistrarFactura(factura1);
+					Ticket tic = ConexionMySQLTicket.registrarTicket(ticket1);
+					Identificacion ide=ConexionMySQLTicket.registrarIdentificacion(Identificacion1);
+					Factura fac = ConexionMySQLTicket.registrarFactura(factura1);
 					
-					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());
+					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", 1, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());
+
+					if (funciona == true) {
+						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
+					}else {
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+					}
 				}else {
-					JOptionPane.showMessageDialog(null, "Añade productos y rellena los campos pertinentes.");
+					JOptionPane.showMessageDialog(null, "Rellene los campos pertinentes.");
 				}
 			}
 		};

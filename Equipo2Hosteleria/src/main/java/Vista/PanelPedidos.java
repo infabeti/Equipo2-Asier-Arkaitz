@@ -52,10 +52,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	static String LocalP="Freddy Fazbear's Pizza";
 	public static int ControlarCaja=0;
 	public static String ListaCompraTotal="";
-	private String tipo;
 	LocalDate date = LocalDate.now();
 	String fecha = date.toString();
-	private JButton btnNewButton;
 	
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
@@ -220,12 +218,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			lblDireccin.setEnabled(false);
 			textField_Direccion.setEnabled(false);
 			btnPagar.setEnabled(true);
-			tipo="RECOGIDA";
 		}else if (rdbtnEntregaADomicilio.isSelected()) {
 			lblDireccin.setEnabled(true);
 			textField_Direccion.setEnabled(true);
 			btnPagar.setEnabled(true);
-			tipo="ENTREGA";
 		}
 	}
 	

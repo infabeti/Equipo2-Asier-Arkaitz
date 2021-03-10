@@ -36,4 +36,10 @@ public class TicketTest {
 		t2.setNif_local("12345678A");
 		assertEquals(t2.getNif_local(), "12345678A");
 	}
+	
+	@Test
+	public void testSetTipo() {
+		t2.setTipo("FACTURA");
+		assertEquals(t2.getTipo(), "FACTURA");
+	}
 }

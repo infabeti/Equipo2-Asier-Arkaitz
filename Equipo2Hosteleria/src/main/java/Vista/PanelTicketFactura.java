@@ -340,6 +340,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+						ControlarCaja=1;
 					}
 				}else if (rdbtnFactura.isSelected() && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
@@ -365,9 +366,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), Nif_local, 1, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());
 
 					if (funciona == true) {
-						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
+						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();		
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+						ControlarCaja=1;
 					}
 				}else {
 					JOptionPane.showMessageDialog(null, "Rellene los campos pertinentes.");

@@ -33,6 +33,7 @@ public class PanelRegistro extends JPanel{
 	
 	private ControladorPanelRegistro controladorPanelRegistro;
 	
+	@SuppressWarnings("unchecked")
 	public PanelRegistro(ControladorPanelRegistro controladorPanelRegistro) {
 		
 		setBackground(new Color(102, 153, 255));

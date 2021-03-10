@@ -177,8 +177,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		add(btnBorrarLista);
 		
 		btnPagar = new JButton("Pagar");
-		btnNewButton.setBounds(327, 396, 89, 23);
-		add(btnNewButton);
+		btnPagar.setBounds(327, 396, 89, 23);
+		add(btnPagar);
 		
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setBounds(490, 234, 45, 20);
@@ -286,7 +286,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ControlarCaja=0;
 					
 					//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(6, textField_Fecha.getText(), "B78107158", "ENTREGA", textField_Direccion.getText(), controladorPanelPedidos.obtenerListaCompra());
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", "ENTREGA", textField_Direccion.getText(), controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
@@ -298,7 +298,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 					ControlarCaja=0;
 					
 					//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(6, textField_Fecha.getText(), "B78107158", "RECOGIDA", null, controladorPanelPedidos.obtenerListaCompra());
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "B78107158", "RECOGIDA", null, controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			

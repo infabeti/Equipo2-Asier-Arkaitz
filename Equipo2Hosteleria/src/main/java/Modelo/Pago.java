@@ -9,6 +9,7 @@ public class Pago {
 	private boolean funciona;
 	
 	public boolean crearTicket(int NTransaccion, String fecha, String nif_local, String tipo) {
+		conexionMySQL = new ConexionMySQL();
 		ticket1 = new Ticket(NTransaccion, fecha, nif_local, tipo);
 		Ticket tic = conexionMySQL.registrarTicket(ticket1);
 		
@@ -21,6 +22,7 @@ public class Pago {
 	}
 
 	public boolean crearPedido(int NTransaccion, String tipoPedido, String domicilio) {
+		conexionMySQL = new ConexionMySQL();
 		funciona=false;
 		if(tipoPedido.equals("ENTREGA")) {
 			pedido1 = new Pedido(NTransaccion, tipoPedido, domicilio);
@@ -35,6 +37,7 @@ public class Pago {
 	}
 
 	public void crearIncluye(int NTransaccion, Object lista[][]) {
+		conexionMySQL = new ConexionMySQL();
 		for(int i = 0;i<lista.length;i++) {
 			incluye1 = new Incluye(lista[i][0].toString(), NTransaccion, Integer.parseInt(lista[i][1].toString()), Double.parseDouble(lista[i][2].toString()));
 			conexionMySQL.registrarIncluye(incluye1);

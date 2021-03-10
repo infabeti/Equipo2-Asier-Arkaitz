@@ -50,7 +50,7 @@ public class ControladorPanelTicketFactura {
 	
 	public void accionadoBottonPagarPanelTicketFactura(int factura, String nif, String nombre, String apellidos) {
 		if(factura==0) {
-			this.modelo.setTicket();	
+			//this.modelo.setTicket();	
 		}else if(factura==1) {
 			this.modelo.setFactura(nif, nombre, apellidos);	
 		}

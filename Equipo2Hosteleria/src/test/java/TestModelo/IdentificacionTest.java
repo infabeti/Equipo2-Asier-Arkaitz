@@ -6,9 +6,9 @@ import org.junit.Test;
 
 import Modelo.Factura;
 
-public class FacturaTest {
+public class IdentificacionTest {
 
-	private Factura f1 = new Factura(3, "26-06-2020", "12345678P");
+	private Factura f1 = new Factura(3, "26-06-2020", "12345678P", "87654321S", "Homer", "Simpson");
 	private Factura f2 = new Factura();
 	
 	@Test

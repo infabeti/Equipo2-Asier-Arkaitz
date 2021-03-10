@@ -15,6 +15,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorPanelTicketFactura;
+import Modelo.ConexionMySQL;
+import Modelo.Ticket;
 
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -243,7 +245,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelTicketFactura));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelTicketFactura));
-		//this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
+		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelTicketFactura));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelTicketFactura));
 		this.borrarListaCompra();
@@ -287,7 +289,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private void borrarListaCompra(){
 		controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
 		ControlarCaja=0;
-		
 		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
 		int rowCount = modeloTabla.getRowCount();
 		for (int i = rowCount - 1; i >= 0; i--) {
@@ -317,57 +318,45 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		};
 	}
 	
-	/*
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-<<<<<<< HEAD
-				if (rdbtnTicket.isSelected() && !textField_NTransaccion.getText().equals("") && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("")) {
+				if (ControlarCaja==1 && rdbtnTicket.isSelected() && !textField_NTransaccion.getText().equals("") && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
+					int NTransaccion=Integer.parseInt(textField_NTransaccion.getText());
+					ControlarCaja=0;
 					
+					ConexionMySQL conexionMySQL = new ConexionMySQL();
 					
-					String textoTransaccion=textField_NTransaccion.getText();
-					int NTransaccion=Integer.parseInt(textoTransaccion);
-					
-					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
-					
-					//	
 					Ticket ticket1 = new Ticket();
-					
 					ticket1.setNTransaccion(NTransaccion);
-					ticket1.setFecha(textPane_Fecha.getText());
+					ticket1.setFecha(textField_Fecha.getText());
 					ticket1.setNif_local("B78107158");
-					//
-					
 					
 					int PosicionArray = NTransaccion-1;
 					
-					  ticket.add(PosicionArray,new Ticket()); 
-					  ticket.get(PosicionArray).setNTransaccion(NTransaccion);
-					  ticket.get(PosicionArray).setFecha(textField_Fecha.getText());
-					  ticket.get(PosicionArray).setNif_local("B78107158");
+					ticket.add(PosicionArray,new Ticket()); 
+					ticket.get(PosicionArray).setNTransaccion(NTransaccion);
+					ticket.get(PosicionArray).setFecha(textField_Fecha.getText());
+					ticket.get(PosicionArray).setNif_local("B78107158");
 
-					  System.out.println(ticket.get(PosicionArray).getNTransaccion());
-					  System.out.println(ticket.get(PosicionArray).getFecha());
-					  System.out.println(ticket.get(PosicionArray).getNif_local());
-					
+					System.out.println(ticket.get(PosicionArray).getNTransaccion());
+					System.out.println(ticket.get(PosicionArray).getFecha());
+					System.out.println(ticket.get(PosicionArray).getNif_local());
 					
 					Ticket tic = ConexionMySQLTicket.RegistrarTicket(ticket.get(PosicionArray));
 					
-					
-					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
-				}else if (rdbtnFactura.isSelected() && !textField_NTransaccion.getText().equals("") && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("") && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
+					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, null, null, null);
+				}else if (ControlarCaja==1 && rdbtnFactura.isSelected() && !textField_NTransaccion.getText().equals("") && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("") && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					
-					String textoTransacion=textField_NTransaccion.getText();
-					int NTransaccion=Integer.parseInt(textoTransacion);
+					int NTransaccion=Integer.parseInt(textField_NTransaccion.getText());
 					
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
 					
 					Factura factura1 = new Factura();
 					Ticket ticket1 = new Ticket();
 					Identificacion Identificacion1 = new Identificacion();
-					
 					
 					factura1.setNTransaccion(NTransaccion);
 					factura1.setNif("F32145634");
@@ -381,28 +370,13 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					Identificacion ide=ConexionMySQLTicket.RegistrarIdentificacion(Identificacion1);
 					Factura fac = ConexionMySQLTicket.RegistrarFactura(factura1);
 					
-					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura();	
-=======
-				if(ControlarCaja==1) {
-					if (rdbtnTicket.isSelected() && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("")) {
-						System.out.println("Ejecutando evento Boton Pagar");
-						ControlarCaja=0;
-						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, null, null, null);	
-					}else if (rdbtnFactura.isSelected() && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("") && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
-						System.out.println("Ejecutando evento Boton Pagar");
-						ControlarCaja=0;
-						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());	
-					}else {
-						JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
-					}
->>>>>>> main
+					controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());
 				}else {
-					JOptionPane.showMessageDialog(null, "Añade productos.");
+					JOptionPane.showMessageDialog(null, "Añade productos y rellena los campos pertinentes.");
 				}
 			}
 		};
 	}
-	*/
 	
 	private ActionListener listenerBotonBorrarLista(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {

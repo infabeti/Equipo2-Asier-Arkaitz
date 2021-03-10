@@ -54,6 +54,9 @@ public class ControladorPanelTicketFactura {
 		}else if(factura==1) {
 			this.modelo.setFactura(nif, nombre, apellidos);	
 		}
+	}
+	
+	public void transaccionFinalizadaPanelTicketFactura() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
 		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();

@@ -6,7 +6,6 @@ import Vista.Vista;
 
 public class ControladorPanelRegistro {
 
-	@SuppressWarnings("unused")
 	private Modelo modelo;
 	private Vista vista;
 	private Controlador controlador;

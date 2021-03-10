@@ -98,13 +98,10 @@ public class PanelBienvenida extends JPanel{
 	private ActionListener listenerBotonOperatividad(ControladorPanelBienvenida controladorPanelBienvenida) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				//Ajuste temporal para la entrada rapida al programa
-				//String dni = textPane_Usuario.getText();
-				//String contrasena = textPane_Contrasea.getText();
-				String dni = "11111111A";
-				String contrasena = "111";
-				
+
+				String dni = textPane_Usuario.getText();
+				String contrasena = textPane_Contrasea.getText();
+		
 				boolean iniciado = controladorPanelBienvenida.accionadoBottonIniciarPanelOperatividad(dni, contrasena);
 
 				if (iniciado == true) {

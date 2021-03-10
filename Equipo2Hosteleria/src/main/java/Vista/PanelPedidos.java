@@ -211,7 +211,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelPedidos));
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
-		//this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
+		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
 		this.borrarListaCompra();
 	}
 	
@@ -312,40 +312,15 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			}
 		};
 	}
-	/*	
+	
 	private ActionListener listenerBotonBorrarLista(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-<<<<<<< HEAD
-				System.out.println("Ejecutando evento Boton Añadir Al Carro");
-				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos();
-				int Cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
-				String Producto = (comboBox_Productos.getSelectedItem().toString());
-				double PrecioVenta = (((Producto) comboBox_Productos.getSelectedItem()).PrecioVenta());
-				double PrecioCompra = (((Producto) comboBox_Productos.getSelectedItem()).PrecioCompra());
-				double Total = PrecioVenta*Cantidad;
-				
-				ControlarCaja=1;
-				
-				PanelListaCompra.ListaCompra=PanelListaCompra.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-				PanelTicketFactura.ListaCompra=PanelTicketFactura.ListaCompra.concat(Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€\n");
-				
-				Modelo.TotalProducto=Modelo.TotalProducto+Total;
-				
-				PanelListaCompra.ListaCompraTotal=PanelListaCompra.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
-				PanelTicketFactura.ListaCompraTotal=PanelTicketFactura.ListaCompraTotal.valueOf(Modelo.TotalProducto+"€");
-				
-				System.out.println("Has elegido "+Producto+" - Cantidad: "+Cantidad+" - Precio: "+PrecioVenta+"€ - Total: "+Total+"€");
-		
-				
-=======
 				System.out.println("Ejecutando evento Boton Borrar");
 				borrarListaCompra();
->>>>>>> main
 			}
 		};
 	}
-	*/
 	
 	private ActionListener listenerBotonAadirAlCarro(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {

@@ -19,22 +19,6 @@ public class Pedido extends Ticket{
 		super.setNTransaccion(NTransaccion);
 		this.setTipoPedido(tipoPedido);
 	}
-			
-	public Pedido(int NTransaccion, String tipo, String tipoPedido, String domicilio) {
-		super.setNTransaccion(NTransaccion);
-		super.setTipo(tipo);
-		this.setTipoPedido(tipoPedido);
-		this.setDomicilio(domicilio);
-	}
-	
-	public Pedido(int NTransaccion, String fecha, String nif_local, String tipo, String tipoPedido, String domicilio) {
-		super.setNTransaccion(NTransaccion);
-		super.setFecha(fecha);
-		super.setNif_local(nif_local);
-		super.setTipo(tipo);
-		this.setTipoPedido(tipoPedido);
-		this.setDomicilio(domicilio);
-	}
 
 	public String getTipoPedido() {
 		return tipoPedido;

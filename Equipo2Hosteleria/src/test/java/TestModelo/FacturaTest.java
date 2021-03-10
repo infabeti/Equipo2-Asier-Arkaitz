@@ -8,25 +8,17 @@ import Modelo.Factura;
 
 public class FacturaTest {
 
-	private Factura f1 = new Factura(3, "26-06-2020", "12345678P");
+	private Factura f1 = new Factura(3, "87654321S");
 	private Factura f2 = new Factura();
 	
 	@Test
 	public void testCreateFactura() {
 		assertEquals(f1.getNTransaccion(), 3);
-		assertEquals(f1.getFecha(), "26-06-2020");
-		assertEquals(f1.getNif_local(), "12345678P");
 		assertEquals(f1.getNif(), "87654321S");
-		assertEquals(f1.getNombre(), "Homer");
-		assertEquals(f1.getApellidos(), "Simpson");
 		
 		f2.setNif("87654321G");
-		f2.setNombre("Peter");
-		f2.setApellidos("Griffin");
 		
 		assertEquals(f2.getNif(), "87654321G");
-		assertEquals(f2.getNombre(), "Peter");
-		assertEquals(f2.getApellidos(), "Griffin");
 	}
 	
 	@Test
@@ -51,17 +43,5 @@ public class FacturaTest {
 	public void testSetNif() {
 		f2.setNif("87654321G");
 		assertEquals(f2.getNif(), "87654321G");
-	}
-	
-	@Test
-	public void testSetNombre() {
-		f2.setNombre("Peter");
-		assertEquals(f2.getNombre(), "Peter");
-	}
-	
-	@Test
-	public void testSetApellidos() {
-		f2.setApellidos("Griffin");
-		assertEquals(f2.getApellidos(), "Griffin");
 	}
 }

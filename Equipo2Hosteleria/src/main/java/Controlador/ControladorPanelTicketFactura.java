@@ -54,8 +54,8 @@ public class ControladorPanelTicketFactura {
 			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "TICKET");
 		}else if(factura==1) {
 			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "FACTURA");
-			//if (funciona == true) funciona = this.modelo.getPago().crearfactura(NTransaccion, fecha, nif_local, "FACTURA");
-			//if (funciona == true) funciona = this.modelo.getPago().crearIdentificacion(NTransaccion, fecha, nif_local, "FACTURA");
+			if (funciona == true) funciona = this.modelo.getPago().crearFactura(NTransaccion, nif);
+			if (funciona == true) funciona = this.modelo.getPago().crearIdentificacion(nif, nombre, apellidos);
 		}
 		return funciona;
 	}

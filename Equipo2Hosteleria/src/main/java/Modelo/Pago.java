@@ -5,6 +5,8 @@ public class Pago {
 	private ConexionMySQL conexionMySQL;
 	private Pedido pedido1;
 	private Ticket ticket1;
+	private Factura factura1;
+	private Identificacion identificacion1;
 	private Incluye incluye1;
 	private boolean funciona;
 	
@@ -14,6 +16,32 @@ public class Pago {
 		Ticket tic = conexionMySQL.registrarTicket(ticket1);
 		
 		if (tic != null) {
+			funciona=true;			
+		}else {
+			funciona=false;
+		}
+		return funciona;
+	}
+	
+	public boolean crearFactura(int NTransaccion, String nif) {
+		conexionMySQL = new ConexionMySQL();
+		factura1 = new Factura(NTransaccion, nif);
+		Factura fac = conexionMySQL.registrarFactura(factura1);
+		
+		if (fac != null) {
+			funciona=true;			
+		}else {
+			funciona=false;
+		}
+		return funciona;
+	}
+	
+	public boolean crearIdentificacion(String nif, String nombre, String apellidos) {
+		conexionMySQL = new ConexionMySQL();
+		identificacion1 = new Identificacion(nif, nombre, apellidos);
+		Identificacion ide = conexionMySQL.registrarIdentificacion(identificacion1);
+		
+		if (ide != null) {
 			funciona=true;			
 		}else {
 			funciona=false;

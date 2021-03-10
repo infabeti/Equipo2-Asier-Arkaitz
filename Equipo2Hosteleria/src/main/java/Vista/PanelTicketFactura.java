@@ -16,10 +16,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorPanelTicketFactura;
-import Modelo.ConexionMySQL;
-import Modelo.Factura;
-import Modelo.Identificacion;
-import Modelo.Ticket;
 
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -332,7 +328,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					ControlarCaja=0;
 					/*
 					ConexionMySQL conexionMySQL = new ConexionMySQL();
-					
 					Ticket ticket1 = new Ticket();
 					ticket1.setNTransaccion(Integer.parseInt(textField_NTransaccion.getText()));
 					ticket1.setFecha(textField_Fecha.getText());
@@ -348,9 +343,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					}
 				}else if (rdbtnFactura.isSelected() && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
-					
+					/*
 					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
-
 					Ticket ticket1 = new Ticket();
 					Factura factura1 = new Factura();
 					Identificacion Identificacion1 = new Identificacion();
@@ -367,7 +361,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					Ticket tic = ConexionMySQLTicket.registrarTicket(ticket1);
 					Identificacion ide=ConexionMySQLTicket.registrarIdentificacion(Identificacion1);
 					Factura fac = ConexionMySQLTicket.registrarFactura(factura1);
-					
+					*/
 					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), Nif_local, 1, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());
 
 					if (funciona == true) {

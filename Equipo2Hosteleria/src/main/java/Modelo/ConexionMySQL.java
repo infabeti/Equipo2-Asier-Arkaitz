@@ -250,7 +250,7 @@ public class ConexionMySQL {
 		try {
 			 
 			Conexion();
-			ps = con.prepareStatement("INSERT INTO Identificacion(nif, nombre, apellidos) VAlUES(?,?,?)");
+			ps = con.prepareStatement("INSERT INTO identificacion(nif, nombre, apellidos) VAlUES(?,?,?)");
 			 
 			ps.setString(1,ide.getNif());
 			ps.setString(2,ide.getNombre());
@@ -258,15 +258,15 @@ public class ConexionMySQL {
 			
 			ps.executeUpdate();
 
-			String sql = "select*from Identificacion where nif = ?, nombre = ?, apellidos=?";
+			String sql = "select*from identificacion where nif = ? and nombre = ? and apellidos=?";
 				
-			ps = con.prepareStatement(sql); 
+			pst = con.prepareStatement(sql); 
 		 
-			ps.setString(1,ide.getNif());
-			ps.setString(2,ide.getNombre());
-			ps.setString(3,ide.getApellidos());
+			pst.setString(1,ide.getNif());
+			pst.setString(2,ide.getNombre());
+			pst.setString(3,ide.getApellidos());
 				
-			rs = ps.executeQuery();
+			rs = pst.executeQuery();
 		 
 			while (rs.next()) {
 				Identificacion1 = new Identificacion(rs.getString(1), rs.getString(2), rs.getString(3));			

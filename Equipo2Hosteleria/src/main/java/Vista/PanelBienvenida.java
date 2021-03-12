@@ -108,6 +108,7 @@ public class PanelBienvenida extends JPanel{
 				boolean iniciado = controladorPanelBienvenida.accionadoBottonIniciarPanelOperatividad(dni, contrasena);
 
 				if (iniciado == true) {
+					controladorPanelBienvenida.obtenerLocal(dni);
 					controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
 				}else {
 					JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos.");

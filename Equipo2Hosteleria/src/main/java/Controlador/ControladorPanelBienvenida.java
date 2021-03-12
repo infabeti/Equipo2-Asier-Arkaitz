@@ -37,4 +37,9 @@ public class ControladorPanelBienvenida {
 	public boolean accionadoBottonIniciarPanelOperatividad(String dni, String contrasena) {
 		return this.modelo.getCuenta().iniciarUsuario(dni, contrasena);
 	}
+	
+	public void obtenerLocal(String dni) {
+		this.modelo.getConexionMySQL().obtenerLocal(dni);
+	}
+	
 }

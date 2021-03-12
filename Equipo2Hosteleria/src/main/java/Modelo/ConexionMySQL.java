@@ -397,6 +397,35 @@ public class ConexionMySQL {
 	 return null;
 	}	
  }
+	
+	public Local obtenerLocal(String NIF_LOCAL) {
+		Local local1=null;
+		
+	try {
+	Conexion();
+	
+	String sql = "SELECT nif, L.nombre, nombre_propietario, tipo, direccion FROM local L join Usuario U on L.nif = U.nif_local where nif='"+NIF_LOCAL+"';";
+	
+	pst = con.prepareStatement(sql); 
+		 
+	pst.setString(1,local1.getNIF());
+	pst.setString(2,local1.getNombre());
+	pst.setString(3,local1.getNombrePropietario());
+	pst.setString(4,local1.getTipo());
+	pst.setString(5,local1.getDireccion());
+
+	rs = pst.executeQuery();
+	 
+	while (rs.next()) {
+		local1 = new Local(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));			
+	}
+
+	} catch (Exception e) {
+	 System.out.println("Error en obtener el Local");
+	}	
+	return local1;
+	
+ }
  
 	public static void Conexion() throws SQLException {
 		con = ConexionMySQL.getConexion();	

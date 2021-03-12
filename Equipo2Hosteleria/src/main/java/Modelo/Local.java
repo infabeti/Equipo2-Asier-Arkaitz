@@ -9,11 +9,7 @@ public class Local {
 	protected String direccion;
 	
 	//Constructor sin parametros
-	public Local() {}		
-	
-	public Local(String NIF) {
-		this.nif = NIF;
-	}	
+	public Local() {}
 	
 	//Constructor con parametros
 	public Local(String NIF, String Nombre, String NombrePropietario, String Tipo, String Direccion) {

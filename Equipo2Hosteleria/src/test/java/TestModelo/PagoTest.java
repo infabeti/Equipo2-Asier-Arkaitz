@@ -2,28 +2,54 @@ package TestModelo;
 
 import org.junit.Test;
 
-import Modelo.Cuenta;
+import Modelo.CarroCompra;
+import Modelo.Pago;
 
-@SuppressWarnings("unused")
 public class PagoTest {
 
-	private Cuenta cuenta = new Cuenta();
-	private double resultadoDouble;
-	private String resultadoString;
-	private double resultadoEsperadoDouble;
-	private String resultadoEsperadoString;
+	private Pago pago = new Pago();
+	private CarroCompra carroCompra = new CarroCompra();
 	
 	@Test
-	public void testCrearUsuario() {
-		boolean resultadoBoolean = cuenta.crearUsuario("12345678A", "123", "John", "Smith", "87654321Z");
+	public void testCrearTicket() {
+		boolean resultadoBoolean = pago.crearTicket(1, "2021-03-12", "Z12345678", "PEDIDO");
 		org.junit.Assert.assertEquals(false, resultadoBoolean);
 	}
 	
 	@Test
-	public void testIniciarUsuario() {
-		boolean resultadoBoolean = cuenta.iniciarUsuario("11111111A", "111");
+	public void testCrearFactura() {
+		boolean resultadoBoolean = pago.crearFactura(2, "A87654321");
+		org.junit.Assert.assertEquals(false, resultadoBoolean);
+	}
+	
+	@Test
+	public void testCrearIdentificacion() {
+		boolean resultadoBoolean = pago.crearIdentificacion("12345678P", "Jose", "Augusto");
+		org.junit.Assert.assertEquals(false, resultadoBoolean);
+	}
+	
+	@Test
+	public void testCrearPedidoEntrega() {
+		boolean resultadoBoolean = pago.crearPedido(3, "ENTREGA", "123");
 		org.junit.Assert.assertEquals(true, resultadoBoolean);
-		resultadoBoolean = cuenta.iniciarUsuario("11111111B", "112");
+	}
+	
+	@Test
+	public void testCrearPedidoRecogida() {
+		boolean resultadoBoolean = pago.crearPedido(4, "RECOGIDA", null);
+		org.junit.Assert.assertEquals(true, resultadoBoolean);
+	}
+	
+	@Test
+	public void testCrearPedidoNinguno() {
+		boolean resultadoBoolean = pago.crearPedido(5, "NINGUNO", null);
+		org.junit.Assert.assertEquals(false, resultadoBoolean);
+	}
+	
+	@Test
+	public void testCrearIncluye() {
+		carroCompra.anadirProducto("Cerveza", 5, 3);
+		boolean resultadoBoolean = pago.crearIncluye(6, carroCompra.getCarroCompra());
 		org.junit.Assert.assertEquals(false, resultadoBoolean);
 	}
 }

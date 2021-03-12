@@ -16,7 +16,7 @@ public class Pago {
 		Ticket tic = conexionMySQL.registrarTicket(ticket1);
 		
 		if (tic != null) {
-			funciona=true;			
+			funciona=true;
 		}else {
 			funciona=false;
 		}
@@ -64,11 +64,18 @@ public class Pago {
 		return funciona;
 	}
 
-	public void crearIncluye(int NTransaccion, Object lista[][]) {
+	public boolean crearIncluye(int NTransaccion, Object lista[][]) {
 		conexionMySQL = new ConexionMySQL();
 		for(int i = 0;i<lista.length;i++) {
 			incluye1 = new Incluye(lista[i][0].toString(), NTransaccion, Integer.parseInt(lista[i][1].toString()), Double.parseDouble(lista[i][2].toString()));
-			conexionMySQL.registrarIncluye(incluye1);
+			Incluye inc = conexionMySQL.registrarIncluye(incluye1);
+
+			if (inc != null) {
+				funciona=true;			
+			}else {
+				funciona=false;
+			}
 		}
+		return funciona;
 	}
 }

@@ -369,24 +369,28 @@ public class ConexionMySQL {
 	}	
  }
 	
-	public String nifTicketGeneral(int NTransaccion) {
+	public String NTransaccionTicketGeneral() {
 		Ticket ticket=null;
 		
 	try {
 	Conexion();
 	
-	String sql = "SELECT nif FROM ticket where nombre='"+nombreLocal+"';";
+	String sql = "SELECT num_trans FROM ticket";
 	
 	st = con.createStatement();
 	rs = st.executeQuery(sql);
 	
-	//String nif=rs.getString("nif");
+	//String nif=rs.getString("nif_local");
 	String registro="";
 		
 	 while (rs.next()) {
-		 registro=rs.getString("nif");			
+		 registro=rs.getString("num_trans");			
 	 } 
-	 return registro;
+	 int registroEntero = Integer.parseInt (registro);
+	 registroEntero= registroEntero + 1;
+	 String registroString= ""+registroEntero;
+	 
+	 return registroString;
 
 	} catch (Exception e) {
 	 System.out.println("Error en coger el Nif");
@@ -394,9 +398,6 @@ public class ConexionMySQL {
 	}	
  }
  
-	
-	
-	
 	public static void Conexion() throws SQLException {
 		con = ConexionMySQL.getConexion();	
 		st = con.createStatement();

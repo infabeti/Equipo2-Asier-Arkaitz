@@ -139,7 +139,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		
 		textField_NTransaccion = new JTextField();
 		textField_NTransaccion.setHorizontalAlignment(SwingConstants.TRAILING);
-		textField_NTransaccion.setText(""+ controladorPanelPedidos.mostrarNumeroTransaccion());
+		textField_NTransaccion.setText(""+controladorPanelPedidos.NTransaccionTicketGeneral());
 		textField_NTransaccion.setEditable(false);
 		textField_NTransaccion.setBounds(420, 136, 173, 20);
 		add(textField_NTransaccion);

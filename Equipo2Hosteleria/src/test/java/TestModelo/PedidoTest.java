@@ -14,32 +14,32 @@ public class PedidoTest {
 	
 	@Test
 	public void testCreatePedido1() {
-		assertEquals(pe1.getNTransaccion(), 5);
-		assertEquals(pe1.getTipoPedido(), "ENTREGA");
-		assertEquals(pe1.getDomicilio(), "South Park");
+		assertEquals(5, pe1.getNTransaccion());
+		assertEquals("ENTREGA", pe1.getTipoPedido());
+		assertEquals("South Park", pe1.getDomicilio());
 	}
 
 	@Test
 	public void testCreatePedido2() {
-		assertEquals(pe3.getNTransaccion(), 5);
-		assertEquals(pe3.getTipoPedido(), "RECOGIDA");
+		assertEquals(5, pe3.getNTransaccion());
+		assertEquals("RECOGIDA", pe3.getTipoPedido());
 	}
 	
 	@Test
 	public void testSetNTransaccion() {
 		pe2.setNTransaccion(6);
-		assertEquals(pe2.getNTransaccion(), 6);
+		assertEquals(6, pe2.getNTransaccion());
 	}
 	
 	@Test
 	public void testSetTipoPedido() {
 		pe2.setTipo("RECOGIDA");
-		assertEquals(pe2.getTipo(), "RECOGIDA");
+		assertEquals("RECOGIDA", pe2.getTipo());
 	}
 	
 	@Test
 	public void testSetDomicilio() {
 		pe2.setDomicilio("Irk");
-		assertEquals(pe2.getDomicilio(), "Irk");
+		assertEquals("Irk", pe2.getDomicilio());
 	}
 }

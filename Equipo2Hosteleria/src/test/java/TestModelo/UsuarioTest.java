@@ -30,30 +30,30 @@ public class UsuarioTest {
 	@Test
 	public void testSetDni() {
 		u2.setDni("12345678A");
-		assertEquals(u2.getDni(), "12345678A");
+		assertEquals("12345678A", u2.getDni());
 	}
 	
 	@Test
 	public void testSetContrasena() {
 		u2.setContrasena("123");
-		assertEquals(u2.getContrasena(), "123");
+		assertEquals("123", u2.getContrasena());
 	}
 	
 	@Test
 	public void testSetNombre() {
 		u2.setNombre("John");
-		assertEquals(u2.getNombre(), "John");
+		assertEquals("John", u2.getNombre());
 	}
 	
 	@Test
 	public void testSetApellidos() {
 		u2.setApellidos("Smith");
-		assertEquals(u2.getApellidos(), "Smith");
+		assertEquals("Smith", u2.getApellidos());
 	}
 	
 	@Test
 	public void testSetNif_local() {
 		u2.setNif_local("87654321Z");
-		assertEquals(u2.getNif_local(), "87654321Z");
+		assertEquals("87654321Z", u2.getNif_local());
 	}
 }

@@ -12,40 +12,40 @@ public class ProductoTest {
 	
 	@Test
 	public void testCreateProducto() {
-		assertEquals(p1.getNombre(), "Garbanzos");
-		assertEquals(p1.getTipo(), "Comida");
-		assertEquals(p1.getFechaCaducidad(), "30-01-2021");
-		assertEquals(p1.getPrecioCompra(), 5, 1);
-		assertEquals(p1.getPrecioVenta(), 5, 1);
+		assertEquals("Garbanzos", p1.getNombre());
+		assertEquals("Comida", p1.getTipo());
+		assertEquals("30-01-2021", p1.getFechaCaducidad());
+		assertEquals(5, p1.getPrecioCompra(), 0);
+		assertEquals(5, p1.getPrecioVenta(), 0);
 	}
 	
 	@Test
 	public void testSetNombre() {
 		p1.setNombre("Duff");
-		assertEquals(p1.getNombre(), "Duff");
+		assertEquals("Duff", p1.getNombre());
 	}
 	
 	@Test
 	public void testSetTipo() {
 		p1.setTipo("Bebida");
-		assertEquals(p1.getTipo(), "Bebida");
+		assertEquals("Bebida", p1.getTipo());
 	}
 	
 	@Test
 	public void testSetFechaCaducidad() {
 		p1.setFechaCaducidad("26-06-2021");
-		assertEquals(p1.getFechaCaducidad(), "26-06-2021");
+		assertEquals("26-06-2021", p1.getFechaCaducidad());
 	}
 	
 	@Test
 	public void testSetPrecioCompra() {
 		p1.setPrecioCompra(6);
-		assertEquals(p1.getPrecioCompra(), 6, 0);
+		assertEquals(6, p1.getPrecioCompra(), 0);
 	}
 	
 	@Test
 	public void testPrecioVenta() {
 		p1.setPrecioVenta(7);
-		assertEquals(p1.getPrecioVenta(), 7, 0);
+		assertEquals(7, p1.getPrecioVenta(), 0);
 	}
 }

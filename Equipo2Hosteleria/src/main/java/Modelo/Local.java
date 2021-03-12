@@ -27,12 +27,10 @@ public class Local {
 	//get y set
 	//get
 	public String getNIF() {
-				
 		return this.nif;
 	}
 	
 	public String getNombre() {
-		
 		return this.nombre;
 	}
 	

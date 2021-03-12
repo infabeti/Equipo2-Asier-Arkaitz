@@ -12,7 +12,7 @@ public class IdentificacionTest {
 	private Identificacion i2 = new Identificacion();
 	
 	@Test
-	public void testCreateFactura() {
+	public void testCreateIdentificacion() {
 		assertEquals(i1.getNif(), "87654321S");
 		assertEquals(i1.getNombre(), "Homer");
 		assertEquals(i1.getApellidos(), "Simpson");

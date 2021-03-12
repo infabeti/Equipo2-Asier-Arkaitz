@@ -79,4 +79,8 @@ public class ControladorPanelTicketFactura {
 	public void accionadoBottonBorrarListaPanelTicketFactura() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
 	}
+	
+	public String NTransaccionTicketGeneral() {
+		if(this.modelo.getConexionMySQL().NTransaccionTicketGeneral()==null) {return "1";} else return this.modelo.getConexionMySQL().NTransaccionTicketGeneral();
+	}
 }

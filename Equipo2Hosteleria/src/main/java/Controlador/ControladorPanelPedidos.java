@@ -60,8 +60,8 @@ public class ControladorPanelPedidos {
 		this.controlador.navegarPanelOperatividad();
 	}
 	
-	public int mostrarNumeroTransaccion() {
-		return this.modelo.getConsultasBBDD().getNTransaccion();
+	public String NTransaccionTicketGeneral() {
+		if(this.modelo.getConexionMySQL().NTransaccionTicketGeneral()==null) {return "1";} else return this.modelo.getConexionMySQL().NTransaccionTicketGeneral();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {

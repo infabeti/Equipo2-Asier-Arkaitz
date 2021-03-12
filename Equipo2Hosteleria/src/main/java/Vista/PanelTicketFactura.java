@@ -154,7 +154,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		textField_NTransaccion.setEditable(false);
 		textField_NTransaccion.setBounds(28, 89, 173, 20);
 		add(textField_NTransaccion);
-		textField_NTransaccion.setText(""+ controladorPanelTicketFactura.mostrarNumeroTransaccion());
+		textField_NTransaccion.setText(""+controladorPanelTicketFactura.NTransaccionTicketGeneral());
 		
 		textField_Local = new JTextField();
 		textField_Local.setHorizontalAlignment(SwingConstants.TRAILING);

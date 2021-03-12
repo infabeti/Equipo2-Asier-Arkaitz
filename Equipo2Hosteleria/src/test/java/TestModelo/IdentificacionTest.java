@@ -13,52 +13,44 @@ public class IdentificacionTest {
 	
 	@Test
 	public void testCreateIdentificacion() {
-		assertEquals(i1.getNif(), "87654321S");
-		assertEquals(i1.getNombre(), "Homer");
-		assertEquals(i1.getApellidos(), "Simpson");
-		
-		i2.setNif("87654321G");
-		i2.setNombre("Peter");
-		i2.setApellidos("Griffin");
-		
-		assertEquals(i2.getNif(), "87654321G");
-		assertEquals(i2.getNombre(), "Peter");
-		assertEquals(i2.getApellidos(), "Griffin");
+		assertEquals("87654321S", i1.getNif());
+		assertEquals("Homer", i1.getNombre());
+		assertEquals("Simpson", i1.getApellidos());
 	}
 	
 	@Test
 	public void testSetNTransaccion() {
 		i2.setNTransaccion(4);
-		assertEquals(i2.getNTransaccion(), 4);
+		assertEquals(4, i2.getNTransaccion());
 	}
 	
 	@Test
 	public void testSetFecha() {
 		i2.setFecha("01-10-2018");
-		assertEquals(i2.getFecha(), "01-10-2018");
+		assertEquals("01-10-2018", i2.getFecha());
 	}
 	
 	@Test
 	public void testSetNif_local() {
 		i2.setNif_local("12312312A");
-		assertEquals(i2.getNif_local(), "12312312A");
+		assertEquals("12312312A", i2.getNif_local());
 	}
 	
 	@Test
 	public void testSetNif() {
 		i2.setNif("87654321G");
-		assertEquals(i2.getNif(), "87654321G");
+		assertEquals("87654321G", i2.getNif());
 	}
 	
 	@Test
 	public void testSetNombre() {
 		i2.setNombre("Peter");
-		assertEquals(i2.getNombre(), "Peter");
+		assertEquals("Peter", i2.getNombre());
 	}
 	
 	@Test
 	public void testSetApellidos() {
 		i2.setApellidos("Griffin");
-		assertEquals(i2.getApellidos(), "Griffin");
+		assertEquals("Griffin", i2.getApellidos());
 	}
 }

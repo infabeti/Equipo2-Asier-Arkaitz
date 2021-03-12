@@ -24,7 +24,7 @@ public class ModeloTest {
 		modelo = new Modelo();
 		modelo.setConsultasBBDD(consultasBBDD);
 		
-		assertEquals(modelo.getConsultasBBDD(), consultasBBDD);
+		assertEquals(consultasBBDD, modelo.getConsultasBBDD());
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class ModeloTest {
 		modelo = new Modelo();
 		modelo.setConexionMySQL(conexionMySQL);
 		
-		assertEquals(modelo.getConexionMySQL(), conexionMySQL);
+		assertEquals(conexionMySQL, modelo.getConexionMySQL());
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class ModeloTest {
 		modelo = new Modelo();
 		modelo.setCarroCompra(carroCompra);
 		
-		assertEquals(modelo.getCarroCompra(), carroCompra);
+		assertEquals(carroCompra, modelo.getCarroCompra());
 	}
 
 	@Test
@@ -48,7 +48,7 @@ public class ModeloTest {
 		modelo = new Modelo();
 		modelo.setCuenta(cuenta);
 		
-		assertEquals(modelo.getCuenta(), cuenta);
+		assertEquals(cuenta, modelo.getCuenta());
 	}
 
 	@Test
@@ -56,6 +56,6 @@ public class ModeloTest {
 		modelo = new Modelo();
 		modelo.setPago(pago);
 		
-		assertEquals(modelo.getPago(), pago);
+		assertEquals(pago, modelo.getPago());
 	}
 }

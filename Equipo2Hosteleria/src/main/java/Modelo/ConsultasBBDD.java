@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class ConsultasBBDD {
 
@@ -11,8 +10,6 @@ public class ConsultasBBDD {
     public final String PASS = "elorrieta";
     static boolean conexion=false;
     private static Producto arrayProducto[]=new Producto[5];
-	static int NTransaccion=1;
-	LocalDate date = LocalDate.now();
     
     public Producto[] getListaProductos() {
 		arrayProducto[0] = new Producto("Garbanzos","Comida","30-01-2021",5,5);
@@ -47,23 +44,7 @@ public class ConsultasBBDD {
 		}
 		return precio;
 	}
-    
-    public int getNTransaccion() {
-		return NTransaccion;
-	}
-
-	public void setNTransaccion(int nTransaccion) {
-		NTransaccion = nTransaccion;
-	}
-	
-	public void sumarNTransaccion() {
-		NTransaccion++;
-	}
-	
-	public String getNIFLocal() {
-		return "12345678L";
-	}
-	
+    	
 	public boolean Conectar(){
 	   
 	   conexion=true;
@@ -81,4 +62,6 @@ public class ConsultasBBDD {
        }
        return conexion;
 	}
+
+	
 }

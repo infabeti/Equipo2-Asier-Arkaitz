@@ -7,6 +7,7 @@ public class Modelo {
 	private CarroCompra carroCompra;
 	private Cuenta cuenta;
 	private Pago pago;
+	private Local local;
 	
 	public Modelo() {
 		consultasBBDD = new ConsultasBBDD();
@@ -14,6 +15,7 @@ public class Modelo {
 		carroCompra = new CarroCompra();
 		cuenta = new Cuenta();
 		pago = new Pago();
+		local = new Local();
 	}
 	
 	public ConsultasBBDD getConsultasBBDD() {
@@ -54,6 +56,14 @@ public class Modelo {
 
 	public void setPago(Pago pago) {
 		this.pago = pago;
+	}
+
+	public Local getLocal() {
+		return local;
+	}
+
+	public void setLocal(String dni) {
+		this.local = getConexionMySQL().obtenerLocal(dni);
 	}
 	
 }

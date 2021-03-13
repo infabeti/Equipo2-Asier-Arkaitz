@@ -56,7 +56,6 @@ public class ControladorPanelPedidos {
 	
 	public void transaccionFinalizadaPanelPedidos() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
-		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();
 	}
 	

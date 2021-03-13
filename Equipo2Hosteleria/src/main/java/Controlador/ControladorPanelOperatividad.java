@@ -42,4 +42,8 @@ public class ControladorPanelOperatividad {
 	public void accionadoBottonMostrarPanelTicketFactura() {
 		this.controlador.navegarPanelTicketFactura();
 	}
+	
+	public String obtenerTipoLocal() {
+		return this.modelo.getLocal().getTipo();
+	}
 }

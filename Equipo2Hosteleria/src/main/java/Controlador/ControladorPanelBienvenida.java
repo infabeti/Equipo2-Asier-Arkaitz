@@ -39,7 +39,7 @@ public class ControladorPanelBienvenida {
 	}
 	
 	public void obtenerLocal(String dni) {
-		this.modelo.getConexionMySQL().obtenerLocal(dni);
+		this.modelo.setLocal(dni);
 	}
 	
 }

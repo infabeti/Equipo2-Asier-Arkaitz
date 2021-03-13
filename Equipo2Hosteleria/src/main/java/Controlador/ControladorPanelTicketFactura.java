@@ -63,12 +63,7 @@ public class ControladorPanelTicketFactura {
 	
 	public void transaccionFinalizadaPanelTicketFactura() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
-		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();
-	}
-	
-	public int mostrarNumeroTransaccion() {
-		return this.modelo.getConsultasBBDD().getNTransaccion();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelTicketFactura(String nombre, int cantidad) {

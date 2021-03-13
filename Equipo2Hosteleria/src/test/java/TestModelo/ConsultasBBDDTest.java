@@ -52,32 +52,6 @@ public class ConsultasBBDDTest {
 		org.junit.Assert.assertEquals(resultadoEsperadoDouble, resultadoDouble, 1);
 	}
 	@Test
-	public void testGetNumeroTransaccion() {
-		resultadoEsperado = NTransaccion;
-		resultado = consultasBBDD.getNTransaccion();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
-	}
-	@Test
-	public void testSumarNumeroTransaccion() {
-		resultadoEsperado = 2;
-		consultasBBDD.sumarNTransaccion();
-		resultado = consultasBBDD.getNTransaccion();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
-	}
-	@Test
-	public void testSetNumeroTransaccion() {
-		resultadoEsperado = 3;
-		consultasBBDD.setNTransaccion(3);
-		resultado = consultasBBDD.getNTransaccion();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
-	}
-	@Test
-	public void testGetNIFLocal() {
-		resultadoEsperadoString = "12345678L";
-		resultadoString = consultasBBDD.getNIFLocal();
-		org.junit.Assert.assertEquals(resultadoEsperadoString, resultadoString);
-	}
-	@Test
 	public void testPruebaConexion() {
 		resultadoEsperadoBoolean = true;
 		resultadoBoolean = consultasBBDD.Conectar();

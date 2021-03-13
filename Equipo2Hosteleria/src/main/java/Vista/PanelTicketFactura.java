@@ -60,12 +60,11 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
 	
-	public static int ControlarCaja=0;
-	public static String ListaCompraTotal="";
+	private static int ControlarCaja=0;
+	private static String ListaCompraTotal="";
 
-	static String LocalP="Freddy Fazbear's Pizza";
-	LocalDate date = LocalDate.now();
-	String fecha = date.toString();
+	private LocalDate date = LocalDate.now();
+	private String fecha = date.toString();
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		setBackground(new Color(102, 153, 255));
@@ -161,7 +160,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		textField_Local.setEditable(false);
 		textField_Local.setBounds(70, 150, 131, 20);
 		add(textField_Local);
-		textField_Local.setText(LocalP);
+		textField_Local.setText(""+controladorPanelTicketFactura.obtenerNombreLocal());
 		
 		
 		lblProductos = new JLabel("Productos:");
@@ -320,21 +319,12 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String Nif_local = "B78107158";
 				if (ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
 				}else if (rdbtnTicket.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					ControlarCaja=0;
-					/*
-					ConexionMySQL conexionMySQL = new ConexionMySQL();
-					Ticket ticket1 = new Ticket();
-					ticket1.setNTransaccion(Integer.parseInt(textField_NTransaccion.getText()));
-					ticket1.setFecha(textField_Fecha.getText());
-					ticket1.setNif_local("B78107158");
-					Ticket tic = conexionMySQL.registrarTicket(ticket1);
-					*/
-					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), Nif_local, 0, null, null, null, controladorPanelTicketFactura.obtenerListaCompra());
+					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), 0, null, null, null, controladorPanelTicketFactura.obtenerListaCompra());
 
 					if (funciona == true) {
 						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
@@ -344,26 +334,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					}
 				}else if (rdbtnFactura.isSelected() && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
-					/*
-					ConexionMySQL ConexionMySQLTicket = new ConexionMySQL();
-					Ticket ticket1 = new Ticket();
-					Factura factura1 = new Factura();
-					Identificacion Identificacion1 = new Identificacion();
-					
-					ticket1.setNTransaccion(Integer.parseInt(textField_NTransaccion.getText()));
-					ticket1.setFecha(textField_Fecha.getText());
-					ticket1.setNif_local("B78107158");
-					factura1.setNTransaccion(Integer.parseInt(textField_NTransaccion.getText()));
-					factura1.setNif("F32145634");
-					Identificacion1.setNombre(textField_Nombre.getText());
-					Identificacion1.setApellidos(textField_Apellidos.getText());
-					Identificacion1.setNif("F32145634");
-					
-					Ticket tic = ConexionMySQLTicket.registrarTicket(ticket1);
-					Identificacion ide=ConexionMySQLTicket.registrarIdentificacion(Identificacion1);
-					Factura fac = ConexionMySQLTicket.registrarFactura(factura1);
-					*/
-					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), Nif_local, 1, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText(), controladorPanelTicketFactura.obtenerListaCompra());
+					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), 1, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText(), controladorPanelTicketFactura.obtenerListaCompra());
 
 					if (funciona == true) {
 						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();		

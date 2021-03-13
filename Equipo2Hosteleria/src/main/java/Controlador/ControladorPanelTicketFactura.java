@@ -48,12 +48,12 @@ public class ControladorPanelTicketFactura {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public boolean accionadoBottonPagarPanelTicketFactura(int NTransaccion, String fecha, String nif_local, int factura, String nif, String nombre, String apellidos, Object lista[][]) {
+	public boolean accionadoBottonPagarPanelTicketFactura(int NTransaccion, String fecha, int factura, String nif, String nombre, String apellidos, Object lista[][]) {
 		boolean funciona = false;
 		if(factura==0) {
-			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "TICKET");
+			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, this.modelo.getLocal().getNIF(), "TICKET");
 		}else if(factura==1) {
-			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "FACTURA");
+			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, this.modelo.getLocal().getNIF(), "FACTURA");
 			if (funciona == true) funciona = this.modelo.getPago().crearIdentificacion(nif, nombre, apellidos);
 			if (funciona == true) funciona = this.modelo.getPago().crearFactura(NTransaccion, nif);
 		}
@@ -77,5 +77,9 @@ public class ControladorPanelTicketFactura {
 	
 	public String NTransaccionTicketGeneral() {
 		if(this.modelo.getConexionMySQL().NTransaccionTicketGeneral()==null) {return "1";} else return this.modelo.getConexionMySQL().NTransaccionTicketGeneral();
+	}
+	
+	public String obtenerNombreLocal() {
+		return this.modelo.getLocal().getNombre();
 	}
 }

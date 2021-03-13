@@ -48,8 +48,8 @@ public class ControladorPanelPedidos {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public boolean accionadoBottonPasarACajaPanelPedidos(int NTransaccion, String fecha, String nif_local, String tipoPedido, String domicilio, Object lista[][]) {
-		this.modelo.getPago().crearTicket(NTransaccion, fecha, nif_local, "PEDIDO");
+	public boolean accionadoBottonPasarACajaPanelPedidos(int NTransaccion, String fecha, String tipoPedido, String domicilio, Object lista[][]) {
+		this.modelo.getPago().crearTicket(NTransaccion, fecha, this.modelo.getLocal().getNIF(), "PEDIDO");
 		this.modelo.getPago().crearIncluye(NTransaccion, lista);
 		return this.modelo.getPago().crearPedido(NTransaccion, tipoPedido, domicilio);
 	}
@@ -70,5 +70,9 @@ public class ControladorPanelPedidos {
 	
 	public void accionadoBottonBorrarListaPanelPedidos() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
+	}
+	
+	public String obtenerNombreLocal() {
+		return this.modelo.getLocal().getNombre();
 	}
 }

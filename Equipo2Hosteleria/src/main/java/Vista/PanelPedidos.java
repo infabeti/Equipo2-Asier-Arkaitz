@@ -49,11 +49,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JTable table;
 	private ControladorPanelPedidos controladorPanelPedidos;
 	
-	static String LocalP="Freddy Fazbear's Pizza";
-	public static int ControlarCaja=0;
-	public static String ListaCompraTotal="";
-	LocalDate date = LocalDate.now();
-	String fecha = date.toString();
+	private static int ControlarCaja=0;
+	private static String ListaCompraTotal="";
+	private LocalDate date = LocalDate.now();
+	private String fecha = date.toString();
 	
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
@@ -166,7 +165,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		textField_Local = new JTextField();
 		textField_Local.setHorizontalAlignment(SwingConstants.TRAILING);
 		textField_Local.setEditable(false);
-		textField_Local.setText(LocalP);
+		textField_Local.setText(""+controladorPanelPedidos.obtenerNombreLocal());
 		textField_Local.setBounds(462, 198, 131, 20);
 		add(textField_Local);
 		
@@ -275,14 +274,12 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//HAY QUE CAMBIAR EL NIF DEL LOCAL PREDETERMINADO POR UNA FORMA DE OBTENERLO DE LA BASE DE DATOS
-				String Nif_local = "B78107158";
 				if(ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
 				}else if (rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), Nif_local, "ENTREGA", textField_Direccion.getText(), controladorPanelPedidos.obtenerListaCompra());
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "ENTREGA", textField_Direccion.getText(), controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
@@ -292,7 +289,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), Nif_local, "RECOGIDA", null, controladorPanelPedidos.obtenerListaCompra());
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "RECOGIDA", null, controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			

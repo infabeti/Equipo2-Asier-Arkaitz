@@ -99,7 +99,7 @@ public class PanelBienvenida extends JPanel{
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				//Ajuste temporal para la entrada rapida al programa
+				//Ajuste temporal para la entrada rapida al programa como un BAR
 				//String dni = textPane_Usuario.getText();
 				//String contrasena = textPane_Contrasea.getText();
 				String dni = "11111111A";

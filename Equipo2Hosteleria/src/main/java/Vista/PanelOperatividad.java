@@ -81,13 +81,13 @@ public class PanelOperatividad extends JPanel {
 	private void obtenerTipoLocal(){
 		String tipo = this.controladorPanelOperatividad.obtenerTipoLocal();
 		if (tipo.equals("BAR")) {
-			this.btnPedidos.setEnabled(true);
+			this.btnTicketfactura.setEnabled(true);
 		} else if (tipo.equals("CAFETERIA")) {
-			this.btnPedidos.setEnabled(true);
 			this.btnTicketfactura.setEnabled(true);
+			this.btnPedidos.setEnabled(true);
 		} else if (tipo.equals("RESTAURANTE")) {
-			this.btnPedidos.setEnabled(true);
 			this.btnTicketfactura.setEnabled(true);
+			this.btnPedidos.setEnabled(true);
 			this.btnComandas.setEnabled(true);
 		} 
 	}

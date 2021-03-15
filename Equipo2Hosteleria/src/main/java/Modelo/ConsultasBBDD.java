@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.sql.*;
-
 public class ConsultasBBDD {
 
     private static Producto arrayProducto[]=new Producto[5];

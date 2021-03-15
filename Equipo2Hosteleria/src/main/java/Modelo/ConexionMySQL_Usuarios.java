@@ -9,17 +9,18 @@ public class ConexionMySQL_Usuarios {
 	private static Connection con=null;
 	private static PreparedStatement pst=null;
 	private static ResultSet rs=null;
+	private static final String GETUSUARIO = "select*from usuario where dni = ? and contraseña =  ? ";
+	private static final String NEWUSUARIO = "INSERT INTO usuario (dni, contraseña, nombre, apellido, nif_local)"+ " values(?,?,?,?,?)";
+	private static final String CHECKUSUARIO = "select*from usuario where dni = ? and contraseña =  ? and nombre =  ? and apellido =  ? and nif_local =  ? ";
 	
 	public Usuario obtenerUsuario(Usuario usu){
 		Usuario usuario = null;
 		
 		try {
-		
-			con = ConexionMySQL.getConexion();
-		
-			String sql = "select*from usuario where dni = ? and contraseña =  ? ";
 			
-			pst = con.prepareStatement(sql);
+			con = ConexionMySQL.getConexion();
+			
+			pst = con.prepareStatement(GETUSUARIO);
 			
 			pst.setString(1, usu.getDni());
 			pst.setString(2, usu.getContrasena());
@@ -45,7 +46,7 @@ public class ConexionMySQL_Usuarios {
 		try {
 			ConexionMySQL.Conexion();
 			
-			pst = con.prepareStatement("INSERT INTO usuario (dni, contraseña, nombre, apellido, nif_local)"+ " values(?,?,?,?,?)");		
+			pst = con.prepareStatement(NEWUSUARIO);		
 			pst.setString(1, usu.getDni());	pst.setString(2, usu.getContrasena());	pst.setString(3, usu.getNombre());	pst.setString(4, usu.getApellidos());	pst.setString(5, usu.getNif_local());
 			pst.executeUpdate();		
 						
@@ -60,9 +61,9 @@ public class ConexionMySQL_Usuarios {
 		Usuario usuario3 = null;
 				
 		try {
-			ConexionMySQL.Conexion();		
-			String sql = "select*from usuario where dni = ? and contraseña =  ? and nombre =  ? and apellido =  ? and nif_local =  ? ";			
-			pst = con.prepareStatement(sql);			
+			ConexionMySQL.Conexion();
+			
+			pst = con.prepareStatement(CHECKUSUARIO);			
 			pst.setString(1, usu.getDni());	pst.setString(2, usu.getContrasena());	pst.setString(3, usu.getNombre());	pst.setString(4, usu.getApellidos());	pst.setString(5, usu.getNif_local());		
 			rs = pst.executeQuery();
 			

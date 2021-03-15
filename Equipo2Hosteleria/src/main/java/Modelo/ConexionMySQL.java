@@ -320,7 +320,6 @@ public class ConexionMySQL {
 	}
 	
 	public String nifLocal(String nombreLocal) {
-		Local local=null;
 		
 	try {
 	Conexion();
@@ -345,7 +344,6 @@ public class ConexionMySQL {
  }
 	
 	public String[] nombreLocal() {
-		Local local=null;
 		String [] registro = new String[3];
 		int i=0;
 	try {
@@ -372,7 +370,6 @@ public class ConexionMySQL {
  }
 	
 	public String NTransaccionTicketGeneral() {
-		Ticket ticket=null;
 		
 	try {
 	Conexion();

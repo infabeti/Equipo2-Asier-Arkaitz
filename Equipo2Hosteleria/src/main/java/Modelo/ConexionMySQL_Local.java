@@ -1,14 +1,13 @@
 package Modelo;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
 
 public class ConexionMySQL_Local {
 	
 	private static Connection con=null;
 	private static ResultSet rs=null;
 	private static Statement st=null;
+	static boolean conexion=false;
 	private static String nombreLocal;
 	private static String dni;
 	private static final String GETNIFLOCAL = "SELECT nif FROM local where nombre='"+nombreLocal+"';";
@@ -16,9 +15,51 @@ public class ConexionMySQL_Local {
 	private static final String GETNTRANSACCION = "SELECT num_trans FROM ticket";
 	private static final String GETLOCAL = "SELECT nif, L.nombre, nombre_propietario, tipo, direccion FROM local L join Usuario U on L.nif = U.nif_local where dni='"+dni+"';";
 	
+	public final static String URL = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
+	public final static String USER = "root";
+	public final static String PASS = "elorrieta";
+	
+	public static Connection getConexion() {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			con = DriverManager.getConnection(URL, USER, PASS);
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error: Driver no Instalado");
+		} catch (SQLException e) {
+			System.out.println("Error de conexión con la Base de Datos");
+		}
+		return con;
+	}
+	
+	public static void Conexion() throws SQLException {
+		con = ConexionMySQL.getConexion();	
+		st = con.createStatement();
+	}
+	
+	public boolean Conectar(){
+		   
+		conexion=true;
+	    @SuppressWarnings("unused")
+	    Connection link = null;
+
+	    try{
+	    	Class.forName("com.mysql.cj.jdbc.Driver");
+	    	link = DriverManager.getConnection(ConexionMySQL.URL, ConexionMySQL.USER, ConexionMySQL.PASS);
+	           
+	    }catch(Exception ex){
+	    	conexion=false;
+	    	ex.printStackTrace();
+	    }
+	    return conexion;
+	}
+	
 	public String nifLocal(String nombreLocal1) {
 		try {
-			ConexionMySQL.Conexion();
+			//ConexionMySQL.Conexion();
+			this.Conexion();
 			nombreLocal = nombreLocal1;
 			st = con.createStatement();
 			rs = st.executeQuery(GETNIFLOCAL);
@@ -39,7 +80,8 @@ public class ConexionMySQL_Local {
 		String [] registro = new String[3];
 		int i=0;
 		try {
-			ConexionMySQL.Conexion();
+			//ConexionMySQL.Conexion();
+			this.Conexion();
 	
 			st = con.createStatement();
 			rs = st.executeQuery(GETNOMBRELOCAL);
@@ -58,6 +100,7 @@ public class ConexionMySQL_Local {
 	public String NTransaccionTicketGeneral() {
 		try {
 			ConexionMySQL.Conexion();
+			//Conexion();
 			st = con.createStatement();
 			rs = st.executeQuery(GETNTRANSACCION);
 	
@@ -80,9 +123,10 @@ public class ConexionMySQL_Local {
 		Local local1 = new Local();
 			
 		try {
-			ConexionMySQL.Conexion();
+			ConexionMySQL_Local.Conexion();
+			//Conexion();
 			dni = dni1;			
-			st = con.createStatement(); 
+			st = ConexionMySQL_Local.con.createStatement(); 
 			rs = st.executeQuery(GETLOCAL); 
 			
 			while (rs.next()) {

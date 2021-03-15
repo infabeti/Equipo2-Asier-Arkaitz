@@ -51,10 +51,4 @@ public class ConsultasBBDDTest {
 		resultadoDouble = consultasBBDD.precioVentaProductos("Hamburguesa");
 		org.junit.Assert.assertEquals(resultadoEsperadoDouble, resultadoDouble, 1);
 	}
-	@Test
-	public void testPruebaConexion() {
-		resultadoEsperadoBoolean = true;
-		resultadoBoolean = consultasBBDD.Conectar();
-		org.junit.Assert.assertEquals(resultadoEsperado, resultado);
-	}
 }

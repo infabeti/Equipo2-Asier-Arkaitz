@@ -14,17 +14,18 @@ public class ConexionMySQL {
 	private static PreparedStatement pst=null;
 	private static ResultSet rs=null;
 	private static Statement st=null;
+	static boolean conexion=false;
 	
-	private static String url = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
-	private static String usr = "root";
-	private static String psw = "elorrieta";
+	public final static String URL = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
+	public final static String USER = "root";
+	public final static String PASS = "elorrieta";
 	
 	public static Connection getConexion() {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			con = DriverManager.getConnection(url, usr, psw);
+			con = DriverManager.getConnection(URL, USER, PASS);
 			
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error: Driver no Instalado");
@@ -425,5 +426,20 @@ public class ConexionMySQL {
 		st = con.createStatement();
 	}
 	
-	
+	public boolean Conectar(){
+		   
+		   conexion=true;
+	       @SuppressWarnings("unused")
+	       Connection link = null;
+
+	       try{
+	           Class.forName("com.mysql.cj.jdbc.Driver");
+	           link = DriverManager.getConnection(ConexionMySQL.URL, ConexionMySQL.USER, ConexionMySQL.PASS);
+	           
+	       }catch(Exception ex){
+	    	   conexion=false;
+	           ex.printStackTrace();
+	       }
+	       return conexion;
+		}
 }

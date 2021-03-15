@@ -4,11 +4,6 @@ import java.sql.*;
 
 public class ConsultasBBDD {
 
-	public final String DB = "equipo2hosteleria_dam";
-    public final String URL = "jdbc:mysql://localhost:33060/"+DB;
-    public final String USER = "root";
-    public final String PASS = "elorrieta";
-    static boolean conexion=false;
     private static Producto arrayProducto[]=new Producto[5];
     
     public Producto[] getListaProductos() {
@@ -44,23 +39,4 @@ public class ConsultasBBDD {
 		}
 		return precio;
 	}
-    	
-	public boolean Conectar(){
-	   
-	   conexion=true;
-
-       @SuppressWarnings("unused")
-       Connection link = null;
-
-       try{
-           Class.forName("com.mysql.cj.jdbc.Driver");
-           link = DriverManager.getConnection(this.URL, this.USER, this.PASS);
-           
-       }catch(Exception ex){
-    	   conexion=false;
-           ex.printStackTrace();
-       }
-       return conexion;
-	}
-
 }

@@ -31,7 +31,7 @@ public class ControladorPanelBienvenida {
 	}
 	
 	public boolean establecerConexion() {
-		return this.modelo.getConsultasBBDD().Conectar();
+		return this.modelo.getConexionMySQL().Conectar();
 	}
 	
 	public boolean accionadoBottonIniciarPanelOperatividad(String dni, String contrasena) {

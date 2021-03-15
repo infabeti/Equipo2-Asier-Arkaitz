@@ -60,7 +60,7 @@ public class ControladorPanelPedidos {
 	}
 	
 	public String NTransaccionTicketGeneral() {
-		if(this.modelo.getConexionMySQL().NTransaccionTicketGeneral()==null) {return "1";} else return this.modelo.getConexionMySQL().NTransaccionTicketGeneral();
+		if(this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral()==null) {return "1";} else return this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {

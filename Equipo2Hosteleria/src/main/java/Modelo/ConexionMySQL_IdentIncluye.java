@@ -2,41 +2,23 @@ package Modelo;
 
 import java.sql.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-@SuppressWarnings("unused")
 public class ConexionMySQL_IdentIncluye {
 	
 	private static Connection con=null;
 	private static PreparedStatement ps = null;
 	private static PreparedStatement pst=null;
 	private static ResultSet rs=null;
+	@SuppressWarnings("unused")
 	private static Statement st=null;
-	static boolean conexion=false;
 	private final String SETIDENTIFICACION = "INSERT INTO identificacion(nif, nombre, apellidos) VAlUES(?,?,?)";
 	private final String GETIDENTIFICACION = "select*from identificacion where nif = ? and nombre = ? and apellidos=?";
 	private final String SETINCLUYE = "INSERT INTO Incluye(nombre_producto, num_trans, cantidad, precio) VAlUES(?,?,?,?)";
 	private final String GETINCLUYE = "select*from Incluye where nombre_producto = ? and num_trans = ? and cantidad = ? and precio = ?";
 	
-	public final static String URL = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
-	public final static String USER = "root";
-	public final static String PASS = "elorrieta";
-	
-	public static Connection getConexion() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(URL, USER, PASS);
-		} catch (ClassNotFoundException e) {
-			System.out.println("Error: Driver no Instalado");
-		} catch (SQLException e) {
-			System.out.println("Error de conexión con la Base de Datos");
-		}
-		return con;
-	}
-
 	public Identificacion registrarIdentificacion(Identificacion ide) {
 		Identificacion Identificacion1=null;
 		try {
@@ -86,7 +68,7 @@ public class ConexionMySQL_IdentIncluye {
 	}
 	
 	public static void Conexion() throws SQLException {
-		con = getConexion();
+		con = ConexionMySQL.getConexion();	
 		st = con.createStatement();
 	}
 }

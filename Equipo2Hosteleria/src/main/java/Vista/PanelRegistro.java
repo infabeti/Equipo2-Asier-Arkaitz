@@ -27,8 +27,7 @@ public class PanelRegistro extends JPanel{
 	private JTextField textField_NIFLocal;
 	private JButton btnCrear;
 	private JButton btnVolver;
-	private JComboBox comboBox_Local;
-	
+	private JComboBox comboBox_Local;	
 	public static String nombreLocal="";
 	
 	private ControladorPanelRegistro controladorPanelRegistro;
@@ -155,7 +154,7 @@ public class PanelRegistro extends JPanel{
 				
 					if (creado == true) {
 						JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
-						controladorPanelRegistro.accionadoBottonMostrarPanelOperatividad();
+						controladorPanelRegistro.mostrarPanelBienvenida();
 					}else {
 						JOptionPane.showMessageDialog(null,"El usuario ya existe o imposible implementar ese usuario");
 					}

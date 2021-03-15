@@ -7,16 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelBienvenida;
-
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextPane;
-/*
-import java.awt.Color;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-*/
 import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
@@ -99,12 +93,8 @@ public class PanelBienvenida extends JPanel{
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				//Ajuste temporal para la entrada rapida al programa como un BAR
-				//String dni = textPane_Usuario.getText();
-				//String contrasena = textPane_Contrasea.getText();
-				String dni = "87654321A";
-				String contrasena = "876";
-		
+				String dni = textPane_Usuario.getText();
+				String contrasena = textPane_Contrasea.getText();	
 				boolean iniciado = controladorPanelBienvenida.accionadoBottonIniciarPanelOperatividad(dni, contrasena);
 
 				if (iniciado == true) {

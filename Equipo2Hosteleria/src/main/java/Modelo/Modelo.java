@@ -94,7 +94,6 @@ public class Modelo {
 
 	public void setLocal(String dni) {
 		this.local = getConexionMySQL_Local().obtenerLocal(dni);
-		//this.local = getConexionMySQL().obtenerLocal(dni);
 	}
 	
 }

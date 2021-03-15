@@ -1,6 +1,9 @@
 package Modelo;
 
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 
 public class ConexionMySQL_Local {
 	
@@ -8,102 +11,54 @@ public class ConexionMySQL_Local {
 	private static ResultSet rs=null;
 	private static Statement st=null;
 	static boolean conexion=false;
-	private static String nombreLocal;
-	private static String dni;
-	private static final String GETNIFLOCAL = "SELECT nif FROM local where nombre='"+nombreLocal+"';";
-	private static final String GETNOMBRELOCAL = "SELECT nombre FROM local";
-	private static final String GETNTRANSACCION = "SELECT num_trans FROM ticket";
-	private static final String GETLOCAL = "SELECT nif, L.nombre, nombre_propietario, tipo, direccion FROM local L join Usuario U on L.nif = U.nif_local where dni='"+dni+"';";
+	private final String GETNIFLOCAL_P1 = "SELECT nif FROM local where nombre='";
+	private final String GETNIFLOCAL_P2 = "';";
+	private final String GETNOMBRELOCAL = "SELECT nombre FROM local";
+	private final String GETNUMTRANSACION = "SELECT num_trans FROM ticket";
+	private final String GETLOCAL_P1 = "SELECT nif, L.nombre, nombre_propietario, tipo, direccion FROM local L join Usuario U on L.nif = U.nif_local where dni='";
+	private final String GETLOCAL_P2 = "';";
 	
 	public final static String URL = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
 	public final static String USER = "root";
 	public final static String PASS = "elorrieta";
-	
-	public static Connection getConexion() {
-		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			con = DriverManager.getConnection(URL, USER, PASS);
-			
-		} catch (ClassNotFoundException e) {
-			System.out.println("Error: Driver no Instalado");
-		} catch (SQLException e) {
-			System.out.println("Error de conexión con la Base de Datos");
-		}
-		return con;
-	}
-	
-	public static void Conexion() throws SQLException {
-		con = ConexionMySQL.getConexion();	
-		st = con.createStatement();
-	}
-	
-	public boolean Conectar(){
-		   
-		conexion=true;
-	    @SuppressWarnings("unused")
-	    Connection link = null;
 
-	    try{
-	    	Class.forName("com.mysql.cj.jdbc.Driver");
-	    	link = DriverManager.getConnection(ConexionMySQL.URL, ConexionMySQL.USER, ConexionMySQL.PASS);
-	           
-	    }catch(Exception ex){
-	    	conexion=false;
-	    	ex.printStackTrace();
-	    }
-	    return conexion;
-	}
-	
-	public String nifLocal(String nombreLocal1) {
+	public String nifLocal(String nombreLocal) {
 		try {
-			//ConexionMySQL.Conexion();
-			this.Conexion();
-			nombreLocal = nombreLocal1;
+			Conexion();
 			st = con.createStatement();
-			rs = st.executeQuery(GETNIFLOCAL);
-			
+			rs = st.executeQuery(GETNIFLOCAL_P1+nombreLocal+GETNIFLOCAL_P2);
 			String registro="";
-				
-			 while (rs.next()) {
-				 registro=rs.getString("nif");			
-			 } 
-			 return registro;
+			while (rs.next()) { registro=rs.getString("nif"); } 
+			return registro;
 		} catch (Exception e) {
-			System.out.println("Error en obtencion del NIF del Local");
+			System.out.println("Error en creacion de la Incluye");
 			return null;
-		}
+		}	
 	}
 	
 	public String[] nombreLocal() {
 		String [] registro = new String[3];
 		int i=0;
 		try {
-			//ConexionMySQL.Conexion();
-			this.Conexion();
-	
+			Conexion();
 			st = con.createStatement();
 			rs = st.executeQuery(GETNOMBRELOCAL);
-	
 			while (rs.next()) {
 				registro[i] = rs.getString("nombre");	
 				i++;
 			} 
 			return registro;
 		} catch (Exception e) {
-			System.out.println("Error en obtencion del Nombre del Local");
+			System.out.println("Error en creacion de la Incluye");
 			return null;
 		}	
 	}
 	
 	public String NTransaccionTicketGeneral() {
 		try {
-			ConexionMySQL.Conexion();
-			//Conexion();
+			Conexion();
 			st = con.createStatement();
-			rs = st.executeQuery(GETNTRANSACCION);
-	
+			rs = st.executeQuery(GETNUMTRANSACION);
 			String registro="";
 			while (rs.next()) {
 				registro=rs.getString("num_trans");			
@@ -111,31 +66,28 @@ public class ConexionMySQL_Local {
 			int registroEntero = Integer.parseInt (registro);
 			registroEntero= registroEntero + 1;
 			String registroString= ""+registroEntero;
-	 
 			return registroString;
 		} catch (Exception e) {
-			System.out.println("Error en obtencion del Numero de Transacción");
+			System.out.println("Error en coger el Nif");
 			return null;
 		}	
 	}
 	
-	public Local obtenerLocal(String dni1) {
+	public Local obtenerLocal(String dni) {
 		Local local1 = new Local();
-			
 		try {
-			ConexionMySQL_Local.Conexion();
-			//Conexion();
-			dni = dni1;			
-			st = ConexionMySQL_Local.con.createStatement(); 
-			rs = st.executeQuery(GETLOCAL); 
-			
+			Conexion();
+			st = con.createStatement(); 
+			rs = st.executeQuery(GETLOCAL_P1+dni+GETLOCAL_P2); 
 			while (rs.next()) {
 				local1 = new Local(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));			
 			}
-		} catch (Exception e) {
-			System.out.println("Error en obtener el Local");
-		}	
+		} catch (Exception e) {	System.out.println("Error en obtener el Local"); }	
 		return local1;
 	}
  
+	public static void Conexion() throws SQLException {
+		con = ConexionMySQL.getConexion();	
+		st = con.createStatement();
+	}
 }

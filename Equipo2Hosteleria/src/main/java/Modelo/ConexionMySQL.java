@@ -15,13 +15,14 @@ public class ConexionMySQL {
 	private static ResultSet rs=null;
 	private static Statement st=null;
 	
+	private static String url = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
+	private static String usr = "root";
+	private static String psw = "elorrieta";
+	
 	public static Connection getConexion() {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:33060/equipo2hosteleria_dam";
-			String usr = "root";
-			String psw = "elorrieta";
 			
 			con = DriverManager.getConnection(url, usr, psw);
 			
@@ -406,16 +407,9 @@ public class ConexionMySQL {
 			
 			String sql = "SELECT nif, L.nombre, nombre_propietario, tipo, direccion FROM local L join Usuario U on L.nif = U.nif_local where dni='"+dni+"';";
 			
-			pst = con.prepareStatement(sql); 
-				 
-			pst.setString(1,local1.getNIF());
-			pst.setString(2,local1.getNombre());
-			pst.setString(3,local1.getNombrePropietario());
-			pst.setString(4,local1.getTipo());
-			pst.setString(5,local1.getDireccion());
-		
-			rs = pst.executeQuery();
-			 
+			st = con.createStatement(); 
+			rs = st.executeQuery(sql); 
+			
 			while (rs.next()) {
 				local1 = new Local(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));			
 			}
@@ -430,4 +424,6 @@ public class ConexionMySQL {
 		con = ConexionMySQL.getConexion();	
 		st = con.createStatement();
 	}
+	
+	
 }

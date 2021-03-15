@@ -63,5 +63,4 @@ public class ConsultasBBDD {
        return conexion;
 	}
 
-	
 }

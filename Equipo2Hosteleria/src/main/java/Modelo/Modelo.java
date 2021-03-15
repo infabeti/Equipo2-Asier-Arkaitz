@@ -63,12 +63,12 @@ public class Modelo {
 	}
 
 	public void setLocal(String dni) {
-		//this.local = getConexionMySQL().obtenerLocal(dni);
-		this.local.setNIF("B95231197");
+		this.local = getConexionMySQL().obtenerLocal(dni);
+		/*this.local.setNIF("B95231197");
 		this.local.setNombre("Los Cafres Hermanos");
 		this.local.setNombrePropietario("Gus Fring");
 		this.local.setTipo("CAFETERIA");
-		this.local.setDireccion("Avenida de Trafico 2");
+		this.local.setDireccion("Avenida de Trafico 2");*/
 	}
 	
 }

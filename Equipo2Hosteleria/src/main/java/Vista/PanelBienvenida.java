@@ -102,8 +102,8 @@ public class PanelBienvenida extends JPanel{
 				//Ajuste temporal para la entrada rapida al programa como un BAR
 				//String dni = textPane_Usuario.getText();
 				//String contrasena = textPane_Contrasea.getText();
-				String dni = "11111111A";
-				String contrasena = "111";
+				String dni = "87654321A";
+				String contrasena = "876";
 		
 				boolean iniciado = controladorPanelBienvenida.accionadoBottonIniciarPanelOperatividad(dni, contrasena);
 

@@ -428,18 +428,19 @@ public class ConexionMySQL {
 	
 	public boolean Conectar(){
 		   
-		   conexion=true;
-	       @SuppressWarnings("unused")
-	       Connection link = null;
+		conexion=true;
+	    @SuppressWarnings("unused")
+	    Connection link = null;
 
-	       try{
-	           Class.forName("com.mysql.cj.jdbc.Driver");
-	           link = DriverManager.getConnection(ConexionMySQL.URL, ConexionMySQL.USER, ConexionMySQL.PASS);
+	    try{
+	    	Class.forName("com.mysql.cj.jdbc.Driver");
+	    	link = DriverManager.getConnection(ConexionMySQL.URL, ConexionMySQL.USER, ConexionMySQL.PASS);
 	           
-	       }catch(Exception ex){
-	    	   conexion=false;
-	           ex.printStackTrace();
-	       }
-	       return conexion;
-		}
+	    }catch(Exception ex){
+	    	conexion=false;
+	    	ex.printStackTrace();
+	    }
+	    return conexion;
+	}
+
 }

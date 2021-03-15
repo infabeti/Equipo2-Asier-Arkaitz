@@ -4,6 +4,8 @@ public class Modelo {
 
 	private ConsultasBBDD consultasBBDD;
 	private ConexionMySQL conexionMySQL;
+	private ConexionMySQL_Usuarios conexionMySQL_Usuarios;
+	private ConexionMySQL_Local conexionMySQL_Local;
 	private CarroCompra carroCompra;
 	private Cuenta cuenta;
 	private Pago pago;
@@ -12,6 +14,8 @@ public class Modelo {
 	public Modelo() {
 		consultasBBDD = new ConsultasBBDD();
 		conexionMySQL = new ConexionMySQL();
+		conexionMySQL_Usuarios = new ConexionMySQL_Usuarios();
+		conexionMySQL_Local = new ConexionMySQL_Local();
 		carroCompra = new CarroCompra();
 		cuenta = new Cuenta();
 		pago = new Pago();
@@ -32,6 +36,22 @@ public class Modelo {
 
 	public void setConexionMySQL(ConexionMySQL conexionMySQL) {
 		this.conexionMySQL = conexionMySQL;
+	}
+
+	public ConexionMySQL_Usuarios getConexionMySQL_Usuarios() {
+		return conexionMySQL_Usuarios;
+	}
+
+	public void setConexionMySQL_Usuarios(ConexionMySQL_Usuarios conexionMySQL_Usuarios) {
+		this.conexionMySQL_Usuarios = conexionMySQL_Usuarios;
+	}
+
+	public ConexionMySQL_Local getConexionMySQL_Local() {
+		return conexionMySQL_Local;
+	}
+
+	public void setConexionMySQL_Local(ConexionMySQL_Local conexionMySQL_Local) {
+		this.conexionMySQL_Local = conexionMySQL_Local;
 	}
 	
 	public CarroCompra getCarroCompra() {
@@ -63,7 +83,7 @@ public class Modelo {
 	}
 
 	public void setLocal(String dni) {
-		this.local = getConexionMySQL().obtenerLocal(dni);
+		this.local = getConexionMySQL_Local().obtenerLocal(dni);
 	}
 	
 }

@@ -34,9 +34,9 @@ public class ControladorPanelRegistro {
 		return this.modelo.getCuenta().crearUsuario(dni, contrasena, nombre, apellidos, nif_local);
 	}	
 	public String MostrarNifLocal(String nombreLocal) {
-		return this.modelo.getConexionMySQL().nifLocal(nombreLocal);
+		return this.modelo.getConexionMySQL_Local().nifLocal(nombreLocal);
 	}
 	public String[] MostrarNombreLocal() {
-		return this.modelo.getConexionMySQL().nombreLocal();
+		return this.modelo.getConexionMySQL_Local().nombreLocal();
 	}
 }

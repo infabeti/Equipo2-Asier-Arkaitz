@@ -10,6 +10,10 @@ public class ConexionMySQL_Pedido {
 	private static PreparedStatement ps = null;
 	private static PreparedStatement pst=null;
 	private static ResultSet rs=null;
+	private static final String SETENTREGA = "INSERT INTO pedido(num_trans, tipo, domicilio) VAlUES(?,?,?)";
+	private static final String GETENTREGA = "select*from pedido where num_trans = ? and tipo = ? and domicilio = ?";
+	private static final String SETRECOGIDA = "INSERT INTO pedido(num_trans, tipo) VAlUES(?,?)";
+	private static final String GETRECOGIDA = "select*from pedido where num_trans = ? and tipo = ?";
 	
 	public Pedido registrarPedidoConDomicilio(Pedido pedi) {
 		 
@@ -17,7 +21,7 @@ public class ConexionMySQL_Pedido {
 				 
 		try {
 			ConexionMySQL.Conexion();
-			ps = con.prepareStatement("INSERT INTO pedido(num_trans, tipo, domicilio) VAlUES(?,?,?)");
+			ps = con.prepareStatement(SETENTREGA);
 				 
 			ps.setInt(1,pedi.getNTransaccion());
 			ps.setString(2,pedi.getTipoPedido());
@@ -25,9 +29,7 @@ public class ConexionMySQL_Pedido {
 			
 			ps.executeUpdate();
 
-			String sql = "select*from pedido where num_trans = ? and tipo = ? and domicilio = ?";
-					
-			pst = con.prepareStatement(sql); 
+			pst = con.prepareStatement(GETENTREGA); 
 				 
 			pst.setInt(1,pedi.getNTransaccion());
 			pst.setString(2,pedi.getTipoPedido());
@@ -52,16 +54,14 @@ public class ConexionMySQL_Pedido {
 					 
 		try {
 			ConexionMySQL.Conexion();
-			ps = con.prepareStatement("INSERT INTO pedido(num_trans, tipo) VAlUES(?,?)");
+			ps = con.prepareStatement(SETRECOGIDA);
 				 
 			ps.setInt(1,pedi.getNTransaccion());
 			ps.setString(2,pedi.getTipoPedido());
 		
 			ps.executeUpdate();
 
-			String sql = "select*from pedido where num_trans = ? and tipo = ?";
-					
-			pst = con.prepareStatement(sql); 
+			pst = con.prepareStatement(GETRECOGIDA); 
 				 
 			pst.setInt(1,pedi.getNTransaccion());
 			pst.setString(2,pedi.getTipoPedido());

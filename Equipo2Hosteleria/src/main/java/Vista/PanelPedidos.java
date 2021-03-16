@@ -53,7 +53,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private static String ListaCompraTotal="";
 	private LocalDate date = LocalDate.now();
 	private String fecha = date.toString();
-	
+	private String tipo;
+	String Direccion=null;
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
@@ -217,10 +218,14 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			lblDireccin.setEnabled(false);
 			textField_Direccion.setEnabled(false);
 			btnPagar.setEnabled(true);
+			tipo="RECOGIDA";
+			Direccion=null;
 		}else if (rdbtnEntregaADomicilio.isSelected()) {
 			lblDireccin.setEnabled(true);
 			textField_Direccion.setEnabled(true);
 			btnPagar.setEnabled(true);
+			tipo="ENTREGA";
+			Direccion=textField_Direccion.getText();
 		}
 	}
 	
@@ -276,26 +281,17 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				if(ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
-				}else if (rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("")) {
+				}else if (rdbtnRecogerEnEstablecimiento.isSelected() || rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "ENTREGA", textField_Direccion.getText(), controladorPanelPedidos.obtenerListaCompra());
+					if (tipo=="ENTREGA") Direccion=textField_Direccion.getText();
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), tipo, Direccion, controladorPanelPedidos.obtenerListaCompra());
 					
 					if (funciona == true) {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
 					}								
-				}else if (rdbtnRecogerEnEstablecimiento.isSelected()) {
-					System.out.println("Ejecutando evento Boton Pasar A Caja");
-					ControlarCaja=0;
-					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), "RECOGIDA", null, controladorPanelPedidos.obtenerListaCompra());
-					
-					if (funciona == true) {
-						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
-					}else {
-						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
-					}
 				}else {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
 				}

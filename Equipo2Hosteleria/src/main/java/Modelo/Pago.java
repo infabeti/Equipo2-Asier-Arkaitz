@@ -41,14 +41,22 @@ public class Pago {
 	public boolean crearIdentificacion(String nif, String nombre, String apellidos) {
 		conexionMySQL_IdentIncluye = new ConexionMySQL_IdentIncluye();
 		identificacion1 = new Identificacion(nif, nombre, apellidos);
-		Identificacion ide = null;
-		if(conexionMySQL_IdentIncluye.comprobarIdentificacion(identificacion1)==null) ide = conexionMySQL_IdentIncluye.registrarIdentificacion(identificacion1);
 		
+		Identificacion ide1 = conexionMySQL_IdentIncluye.comprobarIdentificacion(identificacion1); 
+		if (ide1 != null) {
+			funciona=true;
+			return funciona;
+		}else {
+			funciona=false;			
+		}
+			
+		Identificacion ide = conexionMySQL_IdentIncluye.registrarIdentificacion(identificacion1);
 		if (ide != null) {
 			funciona=true;			
 		}else {
 			funciona=false;
 		}
+							
 		return funciona;
 	}
 

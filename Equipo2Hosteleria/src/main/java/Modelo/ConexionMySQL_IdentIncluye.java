@@ -19,19 +19,19 @@ public class ConexionMySQL_IdentIncluye {
 	private final String SETINCLUYE = "INSERT INTO Incluye(nombre_producto, num_trans, cantidad, precio) VAlUES(?,?,?,?)";
 	private final String GETINCLUYE = "select*from Incluye where nombre_producto = ? and num_trans = ? and cantidad = ? and precio = ?";
 	
-	public Identificacion comprobarIdentificacion(Identificacion ide) {
+	public Identificacion comprobarIdentificacion(Identificacion ide1) {
 		Identificacion Identificacion1=null;
 		try {
 			Conexion();
 			pst = con.prepareStatement(GETIDENTIFICACION); 
-			pst.setString(1,ide.getNif());
-			pst.setString(2,ide.getNombre());
-			pst.setString(3,ide.getApellidos());
+			pst.setString(1,ide1.getNif());
+			pst.setString(2,ide1.getNombre());
+			pst.setString(3,ide1.getApellidos());
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				Identificacion1 = new Identificacion(rs.getString(1), rs.getString(2), rs.getString(3));			
 			}
-			System.out.println("Se ha comprobado la Identificacion correctamente");
+			System.out.println("Se ha comprobado la Identificacion");
 		}catch (Exception e) {
 			System.out.println("No existe esa identificacion");
 		}

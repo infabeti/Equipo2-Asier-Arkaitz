@@ -23,6 +23,10 @@ public class Usuario {
 		this.setDni(dni);
 		this.setContrasena(contrasena);
 	}
+	
+	public Usuario(String dni) {
+		this.setDni(dni);
+	}
 
 	public String getDni() {
 		return dni;

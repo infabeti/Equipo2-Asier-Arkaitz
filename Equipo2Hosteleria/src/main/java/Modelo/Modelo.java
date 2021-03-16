@@ -93,7 +93,7 @@ public class Modelo {
 	public Local getLocal() { return local; }
 
 	public void setLocal(String dni) {
-		this.local = getConexionMySQL_Local().obtenerLocal(dni);
+		this.local = getCuenta().obtenerLocal(dni);
 	}
 	
 }

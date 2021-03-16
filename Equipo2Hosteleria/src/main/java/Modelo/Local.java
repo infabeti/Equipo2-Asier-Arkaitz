@@ -19,6 +19,10 @@ public class Local {
 		this.tipo = Tipo;
 		this.direccion = Direccion;
 	}
+	
+	public Local(String Nombre) {
+		this.nombre = Nombre;
+	}
 
 	//get y set
 	//get

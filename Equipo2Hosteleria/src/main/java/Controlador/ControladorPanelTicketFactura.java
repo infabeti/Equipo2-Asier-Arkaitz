@@ -76,7 +76,8 @@ public class ControladorPanelTicketFactura {
 	}
 	
 	public String NTransaccionTicketGeneral() {
-		if(this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral()==null) {return "1";} else return this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral();
+		if(this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral()==null) {return "1";
+		} else return this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral();
 	}
 	
 	public String obtenerNombreLocal() {

@@ -62,9 +62,12 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	private static int ControlarCaja=0;
 	private static String ListaCompraTotal="";
-
 	private LocalDate date = LocalDate.now();
 	private String fecha = date.toString();
+	private int tipo=0;
+	private String nif=null;
+	private String nombre=null;
+	private String apellido=null;
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		setBackground(new Color(102, 153, 255));
@@ -257,6 +260,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			textField_NIF.setEnabled(false);
 			textField_Nombre.setEnabled(false);
 			textField_Apellidos.setEnabled(false);
+			tipo=0;
+			nif=null;
+			nombre=null;
+			apellido=null;
 		}
 		if (rdbtnFactura.isSelected()) {
 			lblNif.setEnabled(true);
@@ -265,6 +272,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			textField_NIF.setEnabled(true);
 			textField_Nombre.setEnabled(true);
 			textField_Apellidos.setEnabled(true);
+			tipo=1;
+			nif=textField_NIF.getText();
+			nombre=textField_Nombre.getText();
+			apellido=textField_Apellidos.getText();
 		}
 	}
 	
@@ -321,23 +332,18 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			public void actionPerformed(ActionEvent arg0) {
 				if (ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
-				}else if (rdbtnTicket.isSelected()) {
+				}else if (rdbtnTicket.isSelected() || rdbtnFactura.isSelected() && textField_NIF.getText().length() == 9 && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pagar");
 					ControlarCaja=0;
-					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), 0, null, null, null, controladorPanelTicketFactura.obtenerListaCompra());
-
+					if (tipo==1) {
+						nif=textField_NIF.getText();
+						nombre=textField_Nombre.getText();
+						apellido=textField_Apellidos.getText();
+					}
+					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), tipo, nif, nombre, apellido, controladorPanelTicketFactura.obtenerListaCompra());
+					
 					if (funciona == true) {
 						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
-					}else {
-						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
-						ControlarCaja=1;
-					}
-				}else if (rdbtnFactura.isSelected() && !textField_NIF.getText().equals("") && textField_NIF.getText().length() == 9 && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
-					System.out.println("Ejecutando evento Boton Pagar");
-					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), 1, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText(), controladorPanelTicketFactura.obtenerListaCompra());
-
-					if (funciona == true) {
-						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();		
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
 						ControlarCaja=1;

@@ -296,7 +296,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				}else {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
 				}
-				
 			}
 		};
 	}

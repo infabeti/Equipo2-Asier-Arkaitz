@@ -291,6 +291,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
 					}else {
 						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+						ControlarCaja=1;
 					}								
 				}else {
 					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");

@@ -25,7 +25,7 @@ public class PagoTest {
 	@Test
 	public void testCrearIdentificacion() {
 		boolean resultadoBoolean = pago.crearIdentificacion("12345678P", "Jose", "Augusto");
-		org.junit.Assert.assertEquals(false, resultadoBoolean);
+		org.junit.Assert.assertEquals(true, resultadoBoolean);
 	}
 	
 	@Test

@@ -57,7 +57,7 @@ apellidos varchar(40) not null);
 
 CREATE TABLE factura 
 (num_trans int primary key,
-nif char(9) unique not null,
+nif char(9) not null,
 CONSTRAINT fk_num_trans_factura FOREIGN KEY (num_trans) references ticket(num_trans) ,
 CONSTRAINT fk_nif_factura FOREIGN KEY (nif) references identificacion(nif) );
 

@@ -346,11 +346,11 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					if (funciona == true) {
 						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
 					}else {
-						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion.");
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion, compruebe que los campos se han introducido adecuadamente.");
 						ControlarCaja=1;
 					}
 				}else {
-					JOptionPane.showMessageDialog(null, "Rellene los campos pertinentes.");
+					JOptionPane.showMessageDialog(null, "Rellene los campos pertinentes adecuademente.");
 				}
 			}
 		};

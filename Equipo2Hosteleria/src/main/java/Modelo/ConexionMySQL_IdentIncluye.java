@@ -17,7 +17,6 @@ public class ConexionMySQL_IdentIncluye {
 	private final String SETIDENTIFICACION = "INSERT INTO identificacion(nif, nombre, apellidos) VAlUES(?,?,?)";
 	private final String GETIDENTIFICACION = "select*from identificacion where nif = ? and nombre = ? and apellidos=?";
 	private final String SETINCLUYE = "INSERT INTO Incluye(nombre_producto, num_trans, cantidad, precio) VAlUES(?,?,?,?)";
-	private final String GETINCLUYE = "select*from Incluye where nombre_producto = ? and num_trans = ? and cantidad = ? and precio = ?";
 	
 	public Identificacion comprobarIdentificacion(Identificacion ide1) {
 		Identificacion Identificacion1=null;
@@ -28,6 +27,7 @@ public class ConexionMySQL_IdentIncluye {
 			pst.setString(2,ide1.getNombre());
 			pst.setString(3,ide1.getApellidos());
 			rs = pst.executeQuery();
+			
 			while (rs.next()) {
 				Identificacion1 = new Identificacion(rs.getString(1), rs.getString(2), rs.getString(3));			
 			}
@@ -46,15 +46,11 @@ public class ConexionMySQL_IdentIncluye {
 			ps.setString(1,ide.getNif());
 			ps.setString(2,ide.getNombre());
 			ps.setString(3,ide.getApellidos());
-			ps.executeUpdate();
-			pst = con.prepareStatement(GETIDENTIFICACION); 
-			pst.setString(1,ide.getNif());
-			pst.setString(2,ide.getNombre());
-			pst.setString(3,ide.getApellidos());
-			rs = pst.executeQuery();
-			while (rs.next()) {
-				Identificacion1 = new Identificacion(rs.getString(1), rs.getString(2), rs.getString(3));			
-			}
+			
+			 if( ps.executeUpdate()==0) { Identificacion1 = null;} else
+
+				 Identificacion1 = new Identificacion(ide.getNif(),ide.getNombre(),ide.getApellidos());
+
 			System.out.println("Se ha creado la Identificacion correctamente");
 		}catch (Exception e) {
 			System.out.println("Error en creacion de la Identificacion");
@@ -71,16 +67,11 @@ public class ConexionMySQL_IdentIncluye {
 			 ps.setInt(2,inc.getNtransaccion());
 			 ps.setInt(3,inc.getCantidad());
 			 ps.setDouble(4,inc.getPrecio());
-			 ps.executeUpdate();
-			 pst = con.prepareStatement(GETINCLUYE);
-			 pst.setString(1,inc.getNombreProducto());
-			 pst.setInt(2,inc.getNtransaccion());
-			 pst.setInt(3,inc.getCantidad());
-			 pst.setDouble(4,inc.getPrecio());
-			 rs = pst.executeQuery();
-			 while (rs.next()) {
-				 incluye1 = new Incluye(rs.getString(1), rs.getInt(2),rs.getInt(3),rs.getDouble(4));
-			 }
+			 
+			 if( ps.executeUpdate()==0) { incluye1 = null;} else
+
+				 incluye1 = new Incluye(inc.getNombreProducto(), inc.getNtransaccion(),inc.getCantidad(),inc.getPrecio());
+			 
 			 System.out.println("Se ha creado la Incluye correctamente");
 		 } catch (Exception e) { System.out.println("Error en creacion de la Incluye");	 }
 		 return incluye1;

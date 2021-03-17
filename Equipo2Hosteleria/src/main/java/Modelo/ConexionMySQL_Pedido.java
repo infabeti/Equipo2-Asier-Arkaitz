@@ -4,20 +4,16 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class ConexionMySQL_Pedido {
 	
 	private static Connection con=null;
 	private static PreparedStatement ps = null;
-	private static PreparedStatement pst=null;
-	private static ResultSet rs=null;
 	@SuppressWarnings("unused")
 	private static Statement st=null;
 	private static final String SETENTREGA = "INSERT INTO pedido(num_trans, tipo, domicilio) VAlUES(?,?,?)";
-	private static final String GETENTREGA = "select*from pedido where num_trans = ? and tipo = ? and domicilio = ?";
 	private static final String SETRECOGIDA = "INSERT INTO pedido(num_trans, tipo) VAlUES(?,?)";
-	private static final String GETRECOGIDA = "select*from pedido where num_trans = ? and tipo = ?";
+
 	
 	public Pedido registrarPedidoConDomicilio(Pedido pedi) {
 		Pedido pedido1=null;
@@ -29,15 +25,10 @@ public class ConexionMySQL_Pedido {
 			ps.setString(2,pedi.getTipoPedido());
 			ps.setString(3,pedi.getDomicilio());
 			
-			ps.executeUpdate();
-			pst = con.prepareStatement(GETENTREGA); 
-				 
-			pst.setInt(1,pedi.getNTransaccion());
-			pst.setString(2,pedi.getTipoPedido());
-			pst.setString(3,pedi.getDomicilio());
+			 if( ps.executeUpdate()==0) { pedido1 = null;} else
 
-			rs = pst.executeQuery();
-			while (rs.next()) {	pedido1 = new Pedido(rs.getInt(1), rs.getString(2), rs.getString(3)); }
+				 pedido1 = new Pedido(pedi.getNTransaccion(), pedi.getTipoPedido(),pedi.getDomicilio());
+		
 			System.out.println("Se ha creado el pedido correctamente");
 		} catch (Exception e) {	System.out.println("Error en creacion del Pedido");	}
 		return pedido1;
@@ -51,15 +42,11 @@ public class ConexionMySQL_Pedido {
 				 
 			ps.setInt(1,pedi.getNTransaccion());
 			ps.setString(2,pedi.getTipoPedido());
-		
-			ps.executeUpdate();
-			pst = con.prepareStatement(GETRECOGIDA); 
-				 
-			pst.setInt(1,pedi.getNTransaccion());
-			pst.setString(2,pedi.getTipoPedido());
 			
-			rs = pst.executeQuery();
-			while (rs.next()) {	pedido1 = new Pedido(rs.getInt(1), rs.getString(2)); }
+			 if( ps.executeUpdate()==0) { pedido1 = null;} else
+
+				 pedido1 = new Pedido(pedi.getNTransaccion(), pedi.getTipoPedido());
+			 
 			System.out.println("Se ha creado el pedido correctamente");
 		}catch (Exception e) {
 			System.out.println("Error en creacion del Pedido");

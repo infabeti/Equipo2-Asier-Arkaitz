@@ -47,7 +47,7 @@ public class ConexionMySQL_IdentIncluye {
 			ps.setString(2,ide.getNombre());
 			ps.setString(3,ide.getApellidos());
 			
-			 if( ps.executeUpdate()==0) { Identificacion1 = null;} else
+			 if(ps.executeUpdate()==0) { Identificacion1 = null;} else
 
 				 Identificacion1 = new Identificacion(ide.getNif(),ide.getNombre(),ide.getApellidos());
 

@@ -104,11 +104,11 @@ CONSTRAINT pk_tiene PRIMARY KEY (codigo_plato, nombre_producto),
 CONSTRAINT fk_codigo_plato_composicion FOREIGN KEY (codigo_plato) references plato(codigo),
 CONSTRAINT fk_nombre_producto_composicion FOREIGN KEY (nombre_producto) references producto(nombre) );
 
-insert into producto values ("Garbanzos","COMIDA","2021/01/20",5,5, null);
-insert into producto values ("Paella","COMIDA","2021/01/31",5,5, null);
-insert into producto values ("Bacalao","COMIDA","2021/02/02",5,5, null);
-insert into producto values ("Hamburguesa","COMIDA","2021/01/30",5,5,null);
-insert into producto values ("Cerveza","BEBIDA","2021/02/01",5,5,null);
+insert into producto values ("Garbanzos","COMIDA","2021/01/20",4,2, null);
+insert into producto values ("Paella","COMIDA","2021/01/31",7,4, null);
+insert into producto values ("Bacalao","COMIDA","2021/02/02",5,4, null);
+insert into producto values ("Hamburguesa","COMIDA","2021/01/30",4,3,null);
+insert into producto values ("Cerveza","BEBIDA","2021/02/01",2,1,null);
 
 insert into local values ("B95970901","Freddy Fazbears Pizza","William Afton","RESTAURANTE","Calle El Mundo de las Pizzas 4");
 insert into local values ("B95231197","Los Cafres Hermanos","Gus Fring","CAFETERIA","Avenida de Trafico 2");

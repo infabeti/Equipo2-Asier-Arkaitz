@@ -1,15 +1,37 @@
 package Modelo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class ConsultasBBDD {
+
+	private static Connection con=null;
+	private static ResultSet rs=null;
+	private static Statement st=null;
+	private static PreparedStatement ps = null;
+	private static int i = 0;
+	private final String GETPRODUCTO = "SELECT nombre, tipo, fecha_caducidad, precio_venta, precio_venta, alergeno FROM producto";
 
     private static Producto arrayProducto[]=new Producto[5];
     
     public Producto[] getListaProductos() {
-		arrayProducto[0] = new Producto("Garbanzos","Comida","30-01-2021",5,5);
-		arrayProducto[1] = new Producto("Paella","Comida","31-01-2021",5,5);
-		arrayProducto[2] = new Producto("Bacalao","Comida","02-02-2021",5,5);
-		arrayProducto[3] = new Producto("Hamburguesa","Comida","30-01-2021",5,5);
-		arrayProducto[4] = new Producto("Cerveza","Bebida","01-02-2021",5,5);
+    	
+    	try {
+			con = ConexionMySQL.getConexion();	
+			
+			ps = con.prepareStatement(GETPRODUCTO);	
+			rs = ps.executeQuery();
+			
+			while (rs.next()) { 			
+				arrayProducto[i] = new Producto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getString(6)); 
+				i++; }	
+				
+		} catch (Exception e) {
+		//	System.out.println("No se ha podido coger el producto");
+		}   	
 		return arrayProducto;
 	}
     
@@ -36,5 +58,10 @@ public class ConsultasBBDD {
 			}
 		}
 		return precio;
+	}
+    
+	public static void Conexion() throws SQLException {
+		con = ConexionMySQL.getConexion();	
+		st = con.createStatement();
 	}
 }

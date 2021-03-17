@@ -7,14 +7,16 @@ public class Producto {
 	protected String fechaCaducidad;
 	protected double precioCompra;
 	protected double precioVenta;
+	protected String alergeno;
 			
 	//Constructor con parametros
-	public Producto(String Nombre, String Tipo, String FechaCaducidad, double PrecioCompra, double PrecioVenta) {
+	public Producto(String Nombre, String Tipo, String FechaCaducidad, double PrecioCompra, double PrecioVenta, String Alergeno) {
 		this.nombre = Nombre;
 		this.tipo = Tipo;
 		this.fechaCaducidad = FechaCaducidad;
 		this.precioCompra = PrecioCompra;
 		this.precioVenta = PrecioVenta;
+		this.alergeno = Alergeno;
 	}
 	
 	//get y set
@@ -39,6 +41,10 @@ public class Producto {
 		return this.precioVenta;
 	}
 	
+	public String getAlergeno() {
+		return this.alergeno;
+	}
+	
 	//set
 	public void setNombre(String Nombre) {
 		this.nombre = Nombre;
@@ -58,6 +64,10 @@ public class Producto {
 	
 	public void setPrecioVenta(double PrecioVenta) {
 		this.precioVenta = PrecioVenta;
+	}
+	
+	public void setAlergeno(String Alergeno) {
+		this.nombre = Alergeno;
 	}
 	
 }

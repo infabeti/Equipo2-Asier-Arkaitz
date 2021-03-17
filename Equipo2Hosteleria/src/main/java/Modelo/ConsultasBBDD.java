@@ -10,15 +10,16 @@ public class ConsultasBBDD {
 
 	private static Connection con=null;
 	private static ResultSet rs=null;
+	@SuppressWarnings("unused")
 	private static Statement st=null;
 	private static PreparedStatement ps = null;
 	private static int i = 0;
-	private final String GETPRODUCTO = "SELECT nombre, tipo, fecha_caducidad, precio_venta, precio_venta, alergeno FROM producto";
+	//private final String GETPRODUCTO = "SELECT nombre, tipo, fecha_caducidad, precio_venta, precio_venta, alergeno FROM producto";
+	private final String GETPRODUCTO = "SELECT nombre, tipo, fecha_caducidad, precio_venta, precio_venta, alergeno FROM tiene WHERE nif_local = ?";
 
     private static Producto arrayProducto[]=new Producto[5];
     
-    public Producto[] getListaProductos() {
-    	
+	public Producto[] getListaProductos() {
     	try {
 			con = ConexionMySQL.getConexion();	
 			

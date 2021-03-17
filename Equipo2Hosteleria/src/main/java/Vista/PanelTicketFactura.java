@@ -336,9 +336,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 					System.out.println("Ejecutando evento Boton Pagar");
 					ControlarCaja=0;
 					if (tipo==1) {
-						nif=textField_NIF.getText();
-						nombre=textField_Nombre.getText();
-						apellido=textField_Apellidos.getText();
+						nif=textField_NIF.getText().toUpperCase();
+						nombre=textField_Nombre.getText().toUpperCase();
+						apellido=textField_Apellidos.getText().toUpperCase();
+												
 					}
 					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), tipo, nif, nombre, apellido, controladorPanelTicketFactura.obtenerListaCompra());
 					

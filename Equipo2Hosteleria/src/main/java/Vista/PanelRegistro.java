@@ -146,7 +146,7 @@ public class PanelRegistro extends JPanel{
 				System.out.println("Ejecutando evento Boton Registrarse");
 				
 				if (textDni.getText().equals("") || textDni.getText().length() != 9 || textContrasena1.getText().equals("") || textNombre.getText().equals("") || textApellidos.getText().equals("") || textField_NIFLocal.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"Rellene todos los campos");
+					JOptionPane.showMessageDialog(null,"Rellene todos los campos adecuadamente");
 				}else if (!textContrasena2.getText().equals(textContrasena1.getText())) {
 					JOptionPane.showMessageDialog(null,"Repita la contraseña correctamente");
 				}else {

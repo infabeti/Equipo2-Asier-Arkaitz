@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
@@ -20,7 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.time.LocalDate;
 
@@ -60,13 +60,14 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	private ControladorPanelTicketFactura controladorPanelTicketFactura;
 	
-	public static int ControlarCaja=0;
-	public static String ListaCompraTotal="";
-	private int factura=0;
-
-	static String LocalP="Freddy Fazbear's Pizza";
-	LocalDate date = LocalDate.now();
-	String fecha = date.toString();
+	private static int ControlarCaja=0;
+	private static String ListaCompraTotal="";
+	private LocalDate date = LocalDate.now();
+	private String fecha = date.toString();
+	private int tipo=0;
+	private String nif=null;
+	private String nombre=null;
+	private String apellido=null;
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		setBackground(new Color(102, 153, 255));
@@ -155,14 +156,14 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		textField_NTransaccion.setEditable(false);
 		textField_NTransaccion.setBounds(28, 89, 173, 20);
 		add(textField_NTransaccion);
-		textField_NTransaccion.setText(""+ controladorPanelTicketFactura.mostrarNumeroTransaccion());
+		textField_NTransaccion.setText(""+controladorPanelTicketFactura.NTransaccionTicketGeneral());
 		
 		textField_Local = new JTextField();
 		textField_Local.setHorizontalAlignment(SwingConstants.TRAILING);
 		textField_Local.setEditable(false);
 		textField_Local.setBounds(70, 150, 131, 20);
 		add(textField_Local);
-		textField_Local.setText(LocalP);
+		textField_Local.setText(""+controladorPanelTicketFactura.obtenerNombreLocal());
 		
 		
 		lblProductos = new JLabel("Productos:");
@@ -252,7 +253,6 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	}
 	
 	public void stateChanged(ChangeEvent e){
-        
 		if (rdbtnTicket.isSelected()) {
 			lblNif.setEnabled(false);
 			lblNombre.setEnabled(false);
@@ -260,7 +260,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			textField_NIF.setEnabled(false);
 			textField_Nombre.setEnabled(false);
 			textField_Apellidos.setEnabled(false);
-			factura=0;
+			tipo=0;
+			nif=null;
+			nombre=null;
+			apellido=null;
 		}
 		if (rdbtnFactura.isSelected()) {
 			lblNif.setEnabled(true);
@@ -269,7 +272,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			textField_NIF.setEnabled(true);
 			textField_Nombre.setEnabled(true);
 			textField_Apellidos.setEnabled(true);
-			factura=1;
+			tipo=1;
+			nif=textField_NIF.getText();
+			nombre=textField_Nombre.getText();
+			apellido=textField_Apellidos.getText();
 		}
 	}
 	
@@ -291,18 +297,14 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	
 	private void borrarListaCompra(){
 		controladorPanelTicketFactura.accionadoBottonBorrarListaPanelTicketFactura();
-		
 		ControlarCaja=0;
-		
 		DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
 		int rowCount = modeloTabla.getRowCount();
 		for (int i = rowCount - 1; i >= 0; i--) {
 			modeloTabla.removeRow(i);
 		}
-		
 		ListaCompraTotal = ""+controladorPanelTicketFactura.obtenerTotalCarro();
 		textField_Total.setText(""+ListaCompraTotal);
-		
 	}
 	
 	private ActionListener listenerBotonVolver(ControladorPanelTicketFactura controladorPanelTicketFactura) {
@@ -328,20 +330,27 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ActionListener listenerBotonPagar(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(ControlarCaja==1) {
-					if (rdbtnTicket.isSelected() && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("")) {
-						System.out.println("Ejecutando evento Boton Pagar");
-						ControlarCaja=0;
-						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, null, null, null);	
-					}else if (rdbtnFactura.isSelected() && !textField_Fecha.getText().equals("") && !textField_Local.getText().equals("") && !textField_Total.getText().equals("") && !textField_NIF.getText().equals("") && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
-						System.out.println("Ejecutando evento Boton Pagar");
-						ControlarCaja=0;
-						controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(factura, textField_NIF.getText(), textField_Nombre.getText(), textField_Apellidos.getText());	
+				if (ControlarCaja==0) {
+					JOptionPane.showMessageDialog(null, "Añade productos.");
+				}else if (rdbtnTicket.isSelected() || rdbtnFactura.isSelected() && textField_NIF.getText().length() == 9 && !textField_Nombre.getText().equals("") && !textField_Apellidos.getText().equals("")) {
+					System.out.println("Ejecutando evento Boton Pagar");
+					ControlarCaja=0;
+					if (tipo==1) {
+						nif=textField_NIF.getText().toUpperCase();
+						nombre=textField_Nombre.getText().toUpperCase();
+						apellido=textField_Apellidos.getText().toUpperCase();
+												
+					}
+					boolean funciona = controladorPanelTicketFactura.accionadoBottonPagarPanelTicketFactura(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), tipo, nif, nombre, apellido, controladorPanelTicketFactura.obtenerListaCompra());
+					
+					if (funciona == true) {
+						controladorPanelTicketFactura.transaccionFinalizadaPanelTicketFactura();			
 					}else {
-						JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion, compruebe que los campos se han introducido adecuadamente.");
+						ControlarCaja=1;
 					}
 				}else {
-					JOptionPane.showMessageDialog(null, "Añade productos.");
+					JOptionPane.showMessageDialog(null, "Rellene los campos pertinentes adecuademente.");
 				}
 			}
 		};

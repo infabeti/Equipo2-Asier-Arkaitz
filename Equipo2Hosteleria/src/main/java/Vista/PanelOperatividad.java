@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import Controlador.ControladorPanelOperatividad;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -42,6 +43,7 @@ public class PanelOperatividad extends JPanel {
 		add(btnDesconectarse);
 		
 		btnPedidos = new JButton("Pedidos");
+		btnPedidos.setEnabled(false);
 		btnPedidos.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnPedidos.setBounds(78, 104, 192, 43);
 		add(btnPedidos);
@@ -52,11 +54,13 @@ public class PanelOperatividad extends JPanel {
 		add(btnAprovisionamiento);
 		
 		btnComandas = new JButton("Comandas");
+		btnComandas.setEnabled(false);
 		btnComandas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnComandas.setBounds(348, 104, 192, 43);
 		add(btnComandas);
 		
 		btnTicketfactura = new JButton("Ticket / Factura");
+		btnTicketfactura.setEnabled(false);
 		btnTicketfactura.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnTicketfactura.setBounds(78, 189, 192, 43);
 		add(btnTicketfactura);
@@ -71,6 +75,21 @@ public class PanelOperatividad extends JPanel {
 		this.btnComandas.addActionListener(listenerBotonComandas(this.controladorPanelOperatividad));
 		this.btnAprovisionamiento.addActionListener(listenerBotonAprovisionamiento(this.controladorPanelOperatividad));
 		this.btnTicketfactura.addActionListener(listenerBotonTicketfactura(this.controladorPanelOperatividad));
+		this.obtenerTipoLocal();
+	}
+	
+	private void obtenerTipoLocal(){
+		String tipo = this.controladorPanelOperatividad.obtenerTipoLocal();
+		if (tipo.equals("BAR")) {
+			this.btnTicketfactura.setEnabled(true);
+		} else if (tipo.equals("CAFETERIA")) {
+			this.btnTicketfactura.setEnabled(true);
+			this.btnPedidos.setEnabled(true);
+		} else if (tipo.equals("RESTAURANTE")) {
+			this.btnTicketfactura.setEnabled(true);
+			this.btnPedidos.setEnabled(true);
+			this.btnComandas.setEnabled(true);
+		} 
 	}
 	
 	private ActionListener listenerBotonDesconectarse(ControladorPanelOperatividad controladorPanelOperatividad) {

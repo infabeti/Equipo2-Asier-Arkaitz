@@ -48,15 +48,20 @@ public class ControladorPanelPedidos {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonPasarACajaPanelPedidos(String tipo, String domicilio) {
-		this.modelo.setPedido(tipo, domicilio);
+	public boolean accionadoBottonPasarACajaPanelPedidos(int NTransaccion, String fecha, String tipoPedido, String domicilio, Object lista[][]) {
+		this.modelo.getPago().crearTicket(NTransaccion, fecha, this.modelo.getLocal().getNIF(), "PEDIDO");
+		this.modelo.getPago().crearIncluye(NTransaccion, lista);
+		return this.modelo.getPago().crearPedido(NTransaccion, tipoPedido, domicilio);
+	}
+	
+	public void transaccionFinalizadaPanelPedidos() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
-		this.modelo.getConsultasBBDD().sumarNTransaccion();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
-	public int mostrarNumeroTransaccion() {
-		return this.modelo.getConsultasBBDD().getNTransaccion();
+	public String NTransaccionTicketGeneral() {
+		if(this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral()==null) {return "1";
+		} else return this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {
@@ -66,5 +71,9 @@ public class ControladorPanelPedidos {
 	
 	public void accionadoBottonBorrarListaPanelPedidos() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
+	}
+	
+	public String obtenerNombreLocal() {
+		return this.modelo.getLocal().getNombre();
 	}
 }

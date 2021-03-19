@@ -8,8 +8,7 @@ public class ProductoEscogido {
 	protected double precioTotal;
 			
 	//Constructor con parametros
-	public ProductoEscogido() {
-	}
+	public ProductoEscogido() {}
 
 	public String getNombre() {
 		return nombre;

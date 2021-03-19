@@ -31,8 +31,8 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 
 	private JButton btnVolver;
 	private JButton btnDesconectarse;
-	private JButton btnPasarACaja;
 	private JButton btnAadirAlCarro;
+	private JButton btnPagar;
 	private JButton btnBorrarLista;
 	private JComboBox comboBox_Productos;
 	private JComboBox comboBox_Cantidad;
@@ -43,17 +43,18 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JTextField textField_Direccion;
 	private JTextField textField_Fecha;
 	private JTextField textField_Local;
+	private JTextField textField_NTransaccion;
 	private JTextPane textPane_Total;
 	private JScrollPane scrollPane;
 	private JTable table;
 	private ControladorPanelPedidos controladorPanelPedidos;
 	
-	static String LocalP="Freddy Fazbear's Pizza";
-	public static int ControlarCaja=0;
-	public static String ListaCompraTotal="";
+	private static int ControlarCaja=0;
+	private static String ListaCompraTotal="";
+	private LocalDate date = LocalDate.now();
+	private String fecha = date.toString();
 	private String tipo;
-	LocalDate date = LocalDate.now();
-	String fecha = date.toString();
+	String Direccion=null;
 	
 	public PanelPedidos(ControladorPanelPedidos controladorPanelPedidos)
 	{
@@ -93,7 +94,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		add(lblCantidad);
 		
 		grupoBotones = new ButtonGroup();
-		
+
 		rdbtnRecogerEnEstablecimiento = new JRadioButton("Recoger en establecimiento");
 		rdbtnRecogerEnEstablecimiento.setBounds(38, 155, 189, 23);
 		rdbtnRecogerEnEstablecimiento.addChangeListener(this);
@@ -136,14 +137,9 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		btnDesconectarse.setBounds(149, 396, 146, 23);
 		add(btnDesconectarse);
 		
-		btnPasarACaja = new JButton("Pagar");
-		btnPasarACaja.setEnabled(false);
-		btnPasarACaja.setBounds(325, 396, 89, 23);
-		add(btnPasarACaja);
-		
-		JTextField textField_NTransaccion = new JTextField();
+		textField_NTransaccion = new JTextField();
 		textField_NTransaccion.setHorizontalAlignment(SwingConstants.TRAILING);
-		textField_NTransaccion.setText(""+ controladorPanelPedidos.mostrarNumeroTransaccion());
+		textField_NTransaccion.setText(""+controladorPanelPedidos.NTransaccionTicketGeneral());
 		textField_NTransaccion.setEditable(false);
 		textField_NTransaccion.setBounds(420, 136, 173, 20);
 		add(textField_NTransaccion);
@@ -170,13 +166,17 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		textField_Local = new JTextField();
 		textField_Local.setHorizontalAlignment(SwingConstants.TRAILING);
 		textField_Local.setEditable(false);
-		textField_Local.setText(LocalP);
+		textField_Local.setText(""+controladorPanelPedidos.obtenerNombreLocal());
 		textField_Local.setBounds(462, 198, 131, 20);
 		add(textField_Local);
 		
 		btnBorrarLista = new JButton("Borrar lista");
 		btnBorrarLista.setBounds(444, 396, 146, 23);
 		add(btnBorrarLista);
+		
+		btnPagar = new JButton("Pagar");
+		btnPagar.setBounds(327, 396, 89, 23);
+		add(btnPagar);
 		
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setBounds(490, 234, 45, 20);
@@ -207,7 +207,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private void initializeEvents() {
 		this.btnVolver.addActionListener(listenerBotonVolver(this.controladorPanelPedidos));
 		this.btnDesconectarse.addActionListener(listenerBotonDesconectarse(this.controladorPanelPedidos));
-		this.btnPasarACaja.addActionListener(listenerBotonPasarACaja(this.controladorPanelPedidos));
+		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
 		this.borrarListaCompra();
@@ -217,13 +217,15 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		if (rdbtnRecogerEnEstablecimiento.isSelected()) {
 			lblDireccin.setEnabled(false);
 			textField_Direccion.setEnabled(false);
-			btnPasarACaja.setEnabled(true);
+			btnPagar.setEnabled(true);
 			tipo="RECOGIDA";
+			Direccion=null;
 		}else if (rdbtnEntregaADomicilio.isSelected()) {
 			lblDireccin.setEnabled(true);
 			textField_Direccion.setEnabled(true);
-			btnPasarACaja.setEnabled(true);
+			btnPagar.setEnabled(true);
 			tipo="ENTREGA";
+			Direccion=textField_Direccion.getText();
 		}
 	}
 	
@@ -234,8 +236,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 			modeloTabla.removeRow(i);
 		}
 		Object lista[][] = controladorPanelPedidos.obtenerListaCompra();
-		for(int i = 0;i<lista.length;i++)
-		{
+		for(int i = 0;i<lista.length;i++) {
 			Object temp[] = { lista[i][0], lista[i][1], lista[i][2], lista[i][3] };
 			modeloTabla.addRow(temp);
 		}
@@ -275,22 +276,25 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		};
 	}
 	
-	private ActionListener listenerBotonPasarACaja(ControladorPanelPedidos controladorPanelPedidos) {
+	private ActionListener listenerBotonPagar(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String domicilio=textField_Direccion.getText();
 				if(ControlarCaja==0) {
 					JOptionPane.showMessageDialog(null, "Añade productos.");
-				}else if (rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("") && !textField_Fecha.getText().equals("")) {
+				}else if (rdbtnRecogerEnEstablecimiento.isSelected() || rdbtnEntregaADomicilio.isSelected() && !textField_Direccion.getText().equals("")) {
 					System.out.println("Ejecutando evento Boton Pasar A Caja");
 					ControlarCaja=0;
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(tipo, domicilio);
-				}else if (rdbtnRecogerEnEstablecimiento.isSelected() && !textField_Fecha.getText().equals("")) {
-					System.out.println("Ejecutando evento Boton Pasar A Caja");
-					ControlarCaja=0;
-					controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(tipo, null);
+					if (tipo=="ENTREGA") Direccion=textField_Direccion.getText();
+					boolean funciona = controladorPanelPedidos.accionadoBottonPasarACajaPanelPedidos(Integer.parseInt(textField_NTransaccion.getText()), textField_Fecha.getText(), tipo, Direccion, controladorPanelPedidos.obtenerListaCompra());
+					
+					if (funciona == true) {
+						controladorPanelPedidos.transaccionFinalizadaPanelPedidos();			
+					}else {
+						JOptionPane.showMessageDialog(null,"Fallo al procesar la operacion, compruebe que los campos se han introducido adecuadamente.");
+						ControlarCaja=1;
+					}								
 				}else {
-					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes.");
+					JOptionPane.showMessageDialog(null,"Rellene todos los campos pertinentes adecuadamente.");
 				}
 			}
 		};

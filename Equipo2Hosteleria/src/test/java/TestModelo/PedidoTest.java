@@ -8,45 +8,38 @@ import Modelo.Pedido;
 
 public class PedidoTest {
 
-	private Pedido pe1 = new Pedido(5, "26-06-2000", "12354678P", "ENTREGA", "South Park");
+	private Pedido pe1 = new Pedido(5, "ENTREGA", "South Park");
 	private Pedido pe2 = new Pedido();
+	private Pedido pe3 = new Pedido(5, "RECOGIDA");
 	
 	@Test
-	public void testCreatePedido() {
-		assertEquals(pe1.getNTransaccion(), 5);
-		assertEquals(pe1.getFecha(), "26-06-2000");
-		assertEquals(pe1.getNif_local(), "12354678P");
-		assertEquals(pe1.getTipo(), "ENTREGA");
-		assertEquals(pe1.getDomicilio(), "South Park");
+	public void testCreatePedido1() {
+		assertEquals(5, pe1.getNTransaccion());
+		assertEquals("ENTREGA", pe1.getTipoPedido());
+		assertEquals("South Park", pe1.getDomicilio());
+	}
+
+	@Test
+	public void testCreatePedido2() {
+		assertEquals(5, pe3.getNTransaccion());
+		assertEquals("RECOGIDA", pe3.getTipoPedido());
 	}
 	
 	@Test
 	public void testSetNTransaccion() {
 		pe2.setNTransaccion(6);
-		assertEquals(pe2.getNTransaccion(), 6);
+		assertEquals(6, pe2.getNTransaccion());
 	}
 	
 	@Test
-	public void testSetFecha() {
-		pe2.setFecha("02-10-2019");
-		assertEquals(pe2.getFecha(), "02-10-2019");
-	}
-	
-	@Test
-	public void testSetNif_local() {
-		pe2.setNif_local("12312312C");
-		assertEquals(pe2.getNif_local(), "12312312C");
-	}
-	
-	@Test
-	public void testSetTipo() {
+	public void testSetTipoPedido() {
 		pe2.setTipo("RECOGIDA");
-		assertEquals(pe2.getTipo(), "RECOGIDA");
+		assertEquals("RECOGIDA", pe2.getTipo());
 	}
 	
 	@Test
 	public void testSetDomicilio() {
 		pe2.setDomicilio("Irk");
-		assertEquals(pe2.getDomicilio(), "Irk");
+		assertEquals("Irk", pe2.getDomicilio());
 	}
 }

@@ -48,19 +48,22 @@ public class ControladorPanelTicketFactura {
 		this.controlador.navegarPanelBienvenida();
 	}
 	
-	public void accionadoBottonPagarPanelTicketFactura(int factura, String nif, String nombre, String apellidos) {
+	public boolean accionadoBottonPagarPanelTicketFactura(int NTransaccion, String fecha, int factura, String nif, String nombre, String apellidos, Object lista[][]) {
+		boolean funciona = false;
 		if(factura==0) {
-			this.modelo.setTicket();	
+			funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, this.modelo.getLocal().getNIF(), "TICKET");
 		}else if(factura==1) {
-			this.modelo.setFactura(nif, nombre, apellidos);	
+			funciona = this.modelo.getPago().crearIdentificacion(nif, nombre, apellidos);
+			if (funciona == true) funciona = this.modelo.getPago().crearTicket(NTransaccion, fecha, this.modelo.getLocal().getNIF(), "FACTURA");
+			if (funciona == true) funciona = this.modelo.getPago().crearFactura(NTransaccion, nif);
 		}
-		this.modelo.getCarroCompra().borrarCarroCompra();
-		this.modelo.getConsultasBBDD().sumarNTransaccion();
-		this.controlador.navegarPanelOperatividad();
+		this.modelo.getPago().crearIncluye(NTransaccion, lista);
+		return funciona;
 	}
 	
-	public int mostrarNumeroTransaccion() {
-		return this.modelo.getConsultasBBDD().getNTransaccion();
+	public void transaccionFinalizadaPanelTicketFactura() {
+		this.modelo.getCarroCompra().borrarCarroCompra();
+		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonAadirAlCarroPanelTicketFactura(String nombre, int cantidad) {
@@ -70,5 +73,14 @@ public class ControladorPanelTicketFactura {
 	
 	public void accionadoBottonBorrarListaPanelTicketFactura() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
+	}
+	
+	public String NTransaccionTicketGeneral() {
+		if(this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral()==null) {return "1";
+		} else return this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral();
+	}
+	
+	public String obtenerNombreLocal() {
+		return this.modelo.getLocal().getNombre();
 	}
 }

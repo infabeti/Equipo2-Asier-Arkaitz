@@ -28,7 +28,6 @@ public class CarroCompra {
 					arrayProdEsc[i].setCantidad(cantidad);
 					arrayProdEsc[i].setPrecioVenta(precio);
 					arrayProdEsc[i].setPrecioTotal(precio*cantidad);
-					break;
 				}
 			}
 		}

@@ -7,17 +7,22 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelBienvenida;
-
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.JTextPane;
 import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
 public class PanelBienvenida extends JPanel{
 
-	private JButton btnOperatividad;
+	private JButton btnIniciarSesion;
+	private JButton btnRegistrarse;
 	private JLabel lblBienvenida;
+	private JLabel lblUsuario;
+	private JLabel lblContrasea;
+	private JTextPane textPane_Usuario;
+	private JTextPane textPane_Contrasea;
 	private JProgressBar progressBar;
 	private ControladorPanelBienvenida controladorPanelBienvenida;
 	
@@ -32,9 +37,35 @@ public class PanelBienvenida extends JPanel{
 		lblBienvenida.setBounds(40, 35, 539, 32);
 		add(lblBienvenida);
 		
-		btnOperatividad = new JButton("Operatividad");
-		btnOperatividad.setBounds(214, 208, 192, 43);
-		add(btnOperatividad);
+		btnIniciarSesion = new JButton("Iniciar Sesion");
+		btnIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnIniciarSesion.setBounds(183, 276, 126, 32);
+		add(btnIniciarSesion);
+		
+		textPane_Usuario = new JTextPane();
+		textPane_Usuario.setBounds(215, 131, 189, 22);
+		add(textPane_Usuario);
+		
+		lblUsuario = new JLabel("Usuario");
+		lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblUsuario.setBounds(231, 97, 157, 23);
+		add(lblUsuario);
+		
+		lblContrasea = new JLabel("Contrase\u00F1a");
+		lblContrasea.setHorizontalAlignment(SwingConstants.CENTER);
+		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblContrasea.setBounds(231, 190, 157, 23);
+		add(lblContrasea);
+		
+		textPane_Contrasea = new JTextPane();
+		textPane_Contrasea.setBounds(215, 224, 189, 22);
+		add(textPane_Contrasea);
+		
+		btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRegistrarse.setBounds(309, 276, 126, 32);
+		add(btnRegistrarse);
 		
 		JLabel lblConexion = new JLabel("Estado de la conexi\u00F3n con MySQL:");
 		lblConexion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -53,28 +84,47 @@ public class PanelBienvenida extends JPanel{
 	}
 	
 	private void initializeEvents() {
-		this.btnOperatividad.addActionListener(listenerBotonOperatividad(this.controladorPanelBienvenida));
+		this.btnIniciarSesion.addActionListener(listenerBotonOperatividad(this.controladorPanelBienvenida));
+		this.btnRegistrarse.addActionListener(listenerBotonRegistrarse(this.controladorPanelBienvenida));
 		this.establecerConexion();
 	}
 	
 	private ActionListener listenerBotonOperatividad(ControladorPanelBienvenida controladorPanelBienvenida) {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Ejecutando evento Boton Operatividad");
-				controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
+
+				String dni = textPane_Usuario.getText();
+				String contrasena = textPane_Contrasea.getText();	
+				boolean iniciado = controladorPanelBienvenida.accionadoBottonIniciarPanelOperatividad(dni, contrasena);
+
+				if (iniciado == true) {
+					controladorPanelBienvenida.obtenerLocal(dni);
+					controladorPanelBienvenida.accionadoBottonMostrarPanelOperatividad();
+				}else {
+					JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos.");
+				}
 			}
 		};
 	}
 	
-	public void establecerConexion() {
+	private ActionListener listenerBotonRegistrarse(ControladorPanelBienvenida controladorPanelBienvenida) {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Ejecutando evento Boton Registrarse");
+				controladorPanelBienvenida.accionadoBottonMostrarPanelRegistro();
+			}
+		};
+	}
+	
+	private void establecerConexion() {
 		System.out.println("Ejecutando evento Boton Prueba Conexion");
 		boolean conexion = controladorPanelBienvenida.establecerConexion();
-			if(conexion==true) {
-				progressBar.setValue(1);
-			}else {
-				JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
-				progressBar.setValue(0);
-				System.exit(0);
-			}
+		if(conexion==true) {
+			progressBar.setValue(1);
+		}else {
+			JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos");
+			progressBar.setValue(0);
+			System.exit(0);
+		}
 	}
 }

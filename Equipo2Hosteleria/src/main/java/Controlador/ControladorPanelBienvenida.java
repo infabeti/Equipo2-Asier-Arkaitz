@@ -6,7 +6,6 @@ import Vista.Vista;
 
 public class ControladorPanelBienvenida {
 
-	@SuppressWarnings("unused")
 	private Modelo modelo;
 	private Vista vista;
 	private Controlador controlador;
@@ -27,7 +26,20 @@ public class ControladorPanelBienvenida {
 		this.controlador.navegarPanelOperatividad();
 	}
 	
-	public boolean establecerConexion() {
-		return this.modelo.getConsultasBBDD().Conectar();
+	public void accionadoBottonMostrarPanelRegistro() {
+		this.controlador.navegarPanelRegistro();
 	}
+	
+	public boolean establecerConexion() {
+		return this.modelo.getConexionMySQL().Conectar();
+	}
+	
+	public boolean accionadoBottonIniciarPanelOperatividad(String dni, String contrasena) {
+		return this.modelo.getCuenta().iniciarUsuario(dni, contrasena);
+	}
+	
+	public void obtenerLocal(String dni) {
+		this.modelo.setLocal(dni);
+	}
+	
 }

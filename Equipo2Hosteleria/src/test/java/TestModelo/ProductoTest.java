@@ -7,7 +7,7 @@ import org.junit.Test;
 import Modelo.Producto;
 
 public class ProductoTest {
-
+	
 	private Producto p1 = new Producto("Garbanzos","Comida","30-01-2021",5,5,"GLUTEN");
 	
 	@Test

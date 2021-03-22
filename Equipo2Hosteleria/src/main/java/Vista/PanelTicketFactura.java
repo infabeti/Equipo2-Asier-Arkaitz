@@ -68,6 +68,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private String nif=null;
 	private String nombre=null;
 	private String apellido=null;
+	private JTextField textField;
+	private JLabel lblPrecio;
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		setBackground(new Color(102, 153, 255));
@@ -99,7 +101,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		add(lblCantidad);
 		
 		comboBox_Productos = new JComboBox();
-		comboBox_Productos.setBounds(419, 117, 173, 22);
+		comboBox_Productos.setBounds(419, 82, 173, 22);
 		add(comboBox_Productos);
 		
 		String arrayNombresProducto[] = controladorPanelTicketFactura.obtenerNombresProductos();
@@ -111,7 +113,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		
 		lblProductos_1 = new JLabel("Productos:");
 		lblProductos_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblProductos_1.setBounds(419, 84, 170, 22);
+		lblProductos_1.setBounds(419, 49, 172, 22);
 		add(lblProductos_1);
 		
 		lblTicketFactura = new JLabel("Ticket o Factura");
@@ -239,6 +241,17 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 			}
 		));
 		scrollPane.setViewportView(table);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBounds(532, 117, 60, 22);
+		add(textField);
+		
+		lblPrecio = new JLabel("Precio:");
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPrecio.setBounds(419, 117, 69, 22);
+		add(lblPrecio);
 		
 		initializeEvents();
 	}

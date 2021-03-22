@@ -44,6 +44,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JTextField textField_Fecha;
 	private JTextField textField_Local;
 	private JTextField textField_NTransaccion;
+	private JTextField textField_Precio;
 	private JTextPane textPane_Total;
 	private JScrollPane scrollPane;
 	private JTable table;
@@ -90,7 +91,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
 		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCantidad.setBounds(243, 80, 157, 23);
+		lblCantidad.setBounds(232, 111, 78, 23);
 		add(lblCantidad);
 		
 		grupoBotones = new ButtonGroup();
@@ -200,6 +201,17 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		table.setModel(new DefaultTableModel(new Object[][] {},
 		new String[] {	"Producto", "Cantidad", "Precio", "Total"	}));
 		scrollPane.setViewportView(table);
+		
+		textField_Precio = new JTextField();
+		textField_Precio.setEditable(false);
+		textField_Precio.setBounds(340, 80, 60, 23);
+		add(textField_Precio);
+		textField_Precio.setColumns(10);
+		
+		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPrecio.setBounds(232, 80, 69, 23);
+		add(lblPrecio);
 		
 		initializeEvents();
 	}

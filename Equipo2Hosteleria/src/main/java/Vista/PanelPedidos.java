@@ -80,13 +80,13 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		comboBox_Productos = new JComboBox();
 		comboBox_Productos.setBounds(38, 111, 173, 23);
 		add(comboBox_Productos);
-		
+		/*
 		String arrayNombresProducto[] = controladorPanelPedidos.obtenerNombresProductos();
 		for(int i = 0;i<arrayNombresProducto.length;i++)
 		{
 			comboBox_Productos.addItem(arrayNombresProducto[i]);
 		}
-		
+		*/
 		JLabel lblProductos = new JLabel("Productos:");
 		lblProductos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblProductos.setBounds(38, 80, 173, 23);
@@ -120,12 +120,12 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		comboBox_Cantidad = new JComboBox();
 		comboBox_Cantidad.setBounds(340, 111, 60, 23);
 		add(comboBox_Cantidad);
-		
+
 		int numbers_to_add_max = 99;
 		for (int i = 1; i <= numbers_to_add_max; i++) {
 			comboBox_Cantidad.addItem(new Integer(i));
 		}
-		
+
 		btnAadirAlCarro = new JButton("A\u00F1adir al carro");
 		btnAadirAlCarro.setBounds(447, 80, 146, 23);
 		add(btnAadirAlCarro);
@@ -206,7 +206,6 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		scrollPane.setViewportView(table);
 		
 		textField_Precio = new JTextField();
-		textField_Precio.setText("0.0");
 		textField_Precio.setEditable(false);
 		textField_Precio.setBounds(340, 80, 60, 23);
 		add(textField_Precio);

@@ -2,6 +2,8 @@ package Vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -9,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.ControladorPanelPedidos;
+import Controlador.ControladorPanelRegistro;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -203,6 +206,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		scrollPane.setViewportView(table);
 		
 		textField_Precio = new JTextField();
+		textField_Precio.setText("0.0");
 		textField_Precio.setEditable(false);
 		textField_Precio.setBounds(340, 80, 60, 23);
 		add(textField_Precio);
@@ -222,6 +226,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
+		this.comboBox_Productos.addItemListener(listenerLocal(this.controladorPanelPedidos));
 		this.borrarListaCompra();
 	}
 	
@@ -330,6 +335,15 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos(nomProducto, cantidad);
 				ControlarCaja=1;
 				generarListaCompra();
+			}
+		};
+	}
+	
+	private ItemListener listenerLocal(ControladorPanelPedidos controladorPanelPedidos) {
+		return new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				String nomProducto=comboBox_Productos.getSelectedItem().toString();	
+				textField_Precio.setText(""+controladorPanelPedidos.obtenerPrecioVentaProductos(nomProducto));
 			}
 		};
 	}

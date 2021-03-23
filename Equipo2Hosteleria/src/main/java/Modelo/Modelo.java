@@ -95,5 +95,4 @@ public class Modelo {
 	public void setLocal(String dni) {
 		this.local = getCuenta().obtenerLocal(dni);
 	}
-	
 }

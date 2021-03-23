@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import Modelo.Modelo;
 
 public class ConsultasBBDD {
 
@@ -14,15 +15,16 @@ public class ConsultasBBDD {
 	private static Statement st=null;
 	private static PreparedStatement ps = null;
 	private static int i = 0;
-	private final String GETPRODUCTO = "SELECT nombre, tipo, fecha_caducidad, precio_venta, precio_compra, alergeno, cantidad FROM tiene T join producto P on T.nombre_producto = P.nombre WHERE nif_local = 'B78107158';";
+	private final String GETPRODUCTO = "SELECT nombre, tipo, fecha_caducidad, precio_venta, precio_compra, alergeno, cantidad FROM tiene T join producto P on T.nombre_producto = P.nombre join local L on L.nif = T.nif_local WHERE L.nombre = ?";
 
-    private static Producto arrayProducto[]=new Producto[3];
+    private static Producto arrayProducto[]=new Producto[4];
     
-	public Producto[] getListaProductos() {
+	public Producto[] getListaProductos(String localNombre) {
     	try {
 			con = ConexionMySQL.getConexion();	
+			ps = con.prepareStatement(GETPRODUCTO);
 			
-			ps = con.prepareStatement(GETPRODUCTO);	
+			ps.setString(1, localNombre);
 			rs = ps.executeQuery();
 			
 			while (rs.next()) { 			
@@ -35,8 +37,8 @@ public class ConsultasBBDD {
 		return arrayProducto;
 	}
     
-    public String[] nombresProductos() {
-    	Producto[] arrayProductos=getListaProductos();
+    public String[] nombresProductos(String localNombre) {
+    	Producto[] arrayProductos=getListaProductos(localNombre);
     	String[] arrayNombresProducto = new String[arrayProductos.length];
 		
 		for(int i = 0;i<arrayProductos.length;i++)
@@ -46,8 +48,8 @@ public class ConsultasBBDD {
 		return arrayNombresProducto;
 	}
     
-    public double precioVentaProductos(String nombre) {
-    	Producto[] arrayProductos=getListaProductos();
+    public double precioVentaProductos(String nombre, String localNombre) {
+    	Producto[] arrayProductos=getListaProductos(localNombre);
     	double precio=0;
 		
 		for(int i = 0;i<arrayProductos.length;i++)

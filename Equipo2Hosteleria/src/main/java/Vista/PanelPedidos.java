@@ -208,7 +208,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		textField_Precio.setEditable(false);
 		textField_Precio.setBounds(340, 80, 60, 23);
 		add(textField_Precio);
-		textField_Precio.setColumns(10);
+		textField_Precio.setText(""+controladorPanelPedidos.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString()));
 		
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -224,7 +224,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
-		this.comboBox_Productos.addItemListener(listenerLocal(this.controladorPanelPedidos));
+		this.comboBox_Productos.addItemListener(listenerProducto(this.controladorPanelPedidos));
 		this.borrarListaCompra();
 	}
 	
@@ -337,11 +337,10 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		};
 	}
 	
-	private ItemListener listenerLocal(ControladorPanelPedidos controladorPanelPedidos) {
+	private ItemListener listenerProducto(ControladorPanelPedidos controladorPanelPedidos) {
 		return new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				String nomProducto=comboBox_Productos.getSelectedItem().toString();	
-				textField_Precio.setText(""+controladorPanelPedidos.obtenerPrecioVentaProductos(nomProducto));
+				textField_Precio.setText(""+controladorPanelPedidos.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString()));
 			}
 		};
 	}

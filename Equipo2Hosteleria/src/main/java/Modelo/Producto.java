@@ -73,7 +73,7 @@ public class Producto {
 	}
 	
 	public void setAlergeno(String Alergeno) {
-		this.nombre = Alergeno;
+		this.alergeno = Alergeno;
 	}
 
 	public void setCantidad(int cantidad) {

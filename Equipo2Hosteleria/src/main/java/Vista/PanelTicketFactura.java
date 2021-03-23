@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -68,7 +70,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private String nif=null;
 	private String nombre=null;
 	private String apellido=null;
-	private JTextField textField;
+	private JTextField textField_Precio;
 	private JLabel lblPrecio;
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
@@ -242,11 +244,11 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		));
 		scrollPane.setViewportView(table);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(532, 117, 60, 22);
-		add(textField);
+		textField_Precio = new JTextField();
+		textField_Precio.setEditable(false);
+		textField_Precio.setBounds(532, 117, 60, 22);
+		add(textField_Precio);
+		textField_Precio.setText(""+controladorPanelTicketFactura.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString()));
 		
 		lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -262,6 +264,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelTicketFactura));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelTicketFactura));
+		this.comboBox_Productos.addItemListener(listenerProducto(this.controladorPanelTicketFactura));
 		this.borrarListaCompra();
 	}
 	
@@ -391,6 +394,14 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 				ControlarCaja=1;
 				
 				generarListaCompra();
+			}
+		};
+	}
+	
+	private ItemListener listenerProducto(ControladorPanelTicketFactura controladorPanelTicketFactura) {
+		return new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				textField_Precio.setText(""+controladorPanelTicketFactura.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString()));
 			}
 		};
 	}

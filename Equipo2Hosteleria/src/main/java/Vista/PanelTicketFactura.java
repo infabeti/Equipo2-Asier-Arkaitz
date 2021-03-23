@@ -106,7 +106,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		comboBox_Productos.setBounds(419, 82, 173, 22);
 		add(comboBox_Productos);
 		
-		String arrayNombresProducto[] = controladorPanelTicketFactura.obtenerNombresProductos();
+		String arrayNombresProducto[] = controladorPanelTicketFactura.obtenerNombresProductos(controladorPanelTicketFactura.obtenerNombreLocal());
 		
 		for(int i = 0;i<arrayNombresProducto.length;i++)
 		{
@@ -248,7 +248,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		textField_Precio.setEditable(false);
 		textField_Precio.setBounds(532, 117, 60, 22);
 		add(textField_Precio);
-		textField_Precio.setText(""+controladorPanelTicketFactura.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString()));
+		textField_Precio.setText(""+controladorPanelTicketFactura.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString(), controladorPanelTicketFactura.obtenerNombreLocal()));
 		
 		lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -389,7 +389,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
 				String nomProducto = (comboBox_Productos.getSelectedItem().toString());
 				
-				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura(nomProducto, cantidad);
+				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura(nomProducto, cantidad, controladorPanelTicketFactura.obtenerNombreLocal());
 				
 				ControlarCaja=1;
 				
@@ -401,7 +401,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private ItemListener listenerProducto(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		return new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				textField_Precio.setText(""+controladorPanelTicketFactura.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString()));
+				textField_Precio.setText(""+controladorPanelTicketFactura.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString(), controladorPanelTicketFactura.obtenerNombreLocal()));
 			}
 		};
 	}

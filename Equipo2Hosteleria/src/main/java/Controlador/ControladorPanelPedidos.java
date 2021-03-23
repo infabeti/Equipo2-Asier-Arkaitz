@@ -22,12 +22,12 @@ public class ControladorPanelPedidos {
 		this.vista.mostrarPanel(this.panelPedidos);
 	}
 	
-	public String[] obtenerNombresProductos() {
-		return this.modelo.getConsultasBBDD().nombresProductos();
+	public String[] obtenerNombresProductos(String local) {
+		return this.modelo.getConsultasBBDD().nombresProductos(local);
 	}
 	
-	public double obtenerPrecioVentaProductos(String nombre) {
-		return this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
+	public double obtenerPrecioVentaProductos(String nombre, String local) {
+		return this.modelo.getConsultasBBDD().precioVentaProductos(nombre, local);
 	}
 	
 	public Object[][] obtenerListaCompra() {
@@ -64,8 +64,8 @@ public class ControladorPanelPedidos {
 		} else return this.modelo.getConexionMySQL_Local().NTransaccionTicketGeneral();
 	}
 	
-	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad) {
-		double precio=this.modelo.getConsultasBBDD().precioVentaProductos(nombre);
+	public void accionadoBottonAadirAlCarroPanelPedidos(String nombre, int cantidad, String local) {
+		double precio=this.modelo.getConsultasBBDD().precioVentaProductos(nombre, local);
 		this.modelo.getCarroCompra().anadirProducto(nombre, precio, cantidad);
 	}
 	

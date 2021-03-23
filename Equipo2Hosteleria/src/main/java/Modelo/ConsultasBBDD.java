@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import Modelo.Modelo;
 
 public class ConsultasBBDD {
 
@@ -17,7 +16,7 @@ public class ConsultasBBDD {
 	private static int i = 0;
 	private final String GETPRODUCTO = "SELECT nombre, tipo, fecha_caducidad, precio_venta, precio_compra, alergeno, cantidad FROM tiene T join producto P on T.nombre_producto = P.nombre join local L on L.nif = T.nif_local WHERE L.nombre = ?";
 
-    private static Producto arrayProducto[]=new Producto[4];
+    private static Producto arrayProducto[]=new Producto[2];
     
 	public Producto[] getListaProductos(String localNombre) {
     	try {

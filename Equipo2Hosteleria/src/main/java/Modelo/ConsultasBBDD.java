@@ -17,9 +17,9 @@ public class ConsultasBBDD {
 	private static int i = 0;
 	private final String GETPRODUCTO = "SELECT nombre_producto, P.tipo, fecha_caducidad, precio_venta, precio_compra, alergeno, cantidad FROM tiene T join producto P on T.nombre_producto = P.nombre join local L on L.nif = T.nif_local WHERE L.nombre = ?";
 
-    private Producto arrayProducto[]=new Producto[0];
+    private Producto[] arrayProducto = new Producto[0];
     
-	public Producto[] getListaProductos(String localNombre) {
+    public void getListaProductos(String localNombre) {
     	try {
 			con = ConexionMySQL.getConexion();	
 			ps = con.prepareStatement(GETPRODUCTO);
@@ -29,13 +29,12 @@ public class ConsultasBBDD {
 			
 			while (rs.next()) {
 				aumentarArray();
-				arrayProducto[i] = new Producto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getInt(7)); 
+				this.arrayProducto[i] = new Producto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getInt(7)); 
 				i++; }
 				
 		} catch (Exception e) {
 		//	System.out.println("No se ha podido coger el producto");
-		}   	
-		return arrayProducto;
+		}
 	}
 	
 	public void reiniciarArray() {
@@ -59,24 +58,24 @@ public class ConsultasBBDD {
 	}
     
     public String[] nombresProductos(String localNombre) {
-    	Producto[] arrayProductos=getListaProductos(localNombre);
-    	String[] arrayNombresProducto = new String[arrayProductos.length];
+    	this.getListaProductos(localNombre);
+    	String[] arrayNombresProducto = new String[arrayProducto.length];
 		
-		for(int i = 0;i<arrayProductos.length;i++)
+		for(int i = 0;i<arrayProducto.length;i++)
 		{
-			arrayNombresProducto[i]=arrayProductos[i].getNombre();
+			arrayNombresProducto[i]=arrayProducto[i].getNombre();
 		}
 		return arrayNombresProducto;
 	}
     
     public double precioVentaProductos(String nombre, String localNombre) {
-    	Producto[] arrayProductos=getListaProductos(localNombre);
+    	this.getListaProductos(localNombre);
     	double precio=0;
 		
-		for(int i = 0;i<arrayProductos.length;i++)
+		for(int i = 0;i<arrayProducto.length;i++)
 		{
-			if(nombre.equals(arrayProductos[i].getNombre())) {
-				precio=arrayProductos[i].getPrecioVenta();
+			if(nombre.equals(arrayProducto[i].getNombre())) {
+				precio=arrayProducto[i].getPrecioVenta();
 				break;
 			}
 		}

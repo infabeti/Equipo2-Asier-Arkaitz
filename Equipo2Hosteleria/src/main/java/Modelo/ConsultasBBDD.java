@@ -17,9 +17,12 @@ public class ConsultasBBDD {
 	private static int i = 0;
 	private final String GETPRODUCTO = "SELECT nombre_producto, P.tipo, fecha_caducidad, precio_venta, precio_compra, alergeno, cantidad FROM tiene T join producto P on T.nombre_producto = P.nombre join local L on L.nif = T.nif_local WHERE L.nombre = ?";
 
-    private Producto[] arrayProducto = new Producto[0];
+    //private Producto[] arrayProducto = new Producto[4];
+	private Producto[] arrayProducto = new Producto[0];
     
     public void getListaProductos(String localNombre) {
+    	i = 0;
+    	reiniciarArray();
     	try {
 			con = ConexionMySQL.getConexion();	
 			ps = con.prepareStatement(GETPRODUCTO);
@@ -37,21 +40,21 @@ public class ConsultasBBDD {
 		}
 	}
 	
-	public void reiniciarArray() {
-		Producto[] arrayTemp = new Producto[0];
-		this.arrayProducto = Arrays.copyOf(arrayTemp ,0);
-	}
-	
-	public void aumentarArray() {
-		Producto[] arrayTemp = new Producto[this.arrayProducto.length+1];
-		for (int i = 0; i<this.arrayProducto.length;i++) {
-			arrayTemp[i] = new Producto();
-			arrayTemp[i].setNombre(this.arrayProducto[i].getNombre());
-			arrayTemp[i].setTipo(this.arrayProducto[i].getTipo());
-			arrayTemp[i].setFechaCaducidad(this.arrayProducto[i].getFechaCaducidad());
-			arrayTemp[i].setPrecioCompra(this.arrayProducto[i].getPrecioCompra());
-			arrayTemp[i].setPrecioVenta(this.arrayProducto[i].getPrecioVenta());
-			arrayTemp[i].setAlergeno(this.arrayProducto[i].getAlergeno());
+    public void reiniciarArray() {
+    	Producto[] arrayLimpiador = new Producto[0];
+    	this.arrayProducto = Arrays.copyOf(arrayLimpiador ,0);
+    }
+
+    public void aumentarArray() {
+    	Producto[] arrayTemp = new Producto[this.arrayProducto.length+1];
+    	for (int i = 0; i<this.arrayProducto.length;i++) {
+    		arrayTemp[i] = new Producto();
+    		arrayTemp[i].setNombre(this.arrayProducto[i].getNombre());
+    		arrayTemp[i].setTipo(this.arrayProducto[i].getTipo());
+    		arrayTemp[i].setFechaCaducidad(this.arrayProducto[i].getFechaCaducidad());
+    		arrayTemp[i].setPrecioCompra(this.arrayProducto[i].getPrecioCompra());
+    		arrayTemp[i].setPrecioVenta(this.arrayProducto[i].getPrecioVenta());
+    		arrayTemp[i].setAlergeno(this.arrayProducto[i].getAlergeno());
 			arrayTemp[i].setCantidad(this.arrayProducto[i].getCantidad());
 		}
 		this.arrayProducto = Arrays.copyOf(arrayTemp ,this.arrayProducto.length+1);
@@ -59,11 +62,11 @@ public class ConsultasBBDD {
     
     public String[] nombresProductos(String localNombre) {
     	this.getListaProductos(localNombre);
-    	String[] arrayNombresProducto = new String[arrayProducto.length];
+    	String[] arrayNombresProducto = new String[this.arrayProducto.length];
 		
-		for(int i = 0;i<arrayProducto.length;i++)
+		for(int i = 0;i<this.arrayProducto.length;i++)
 		{
-			arrayNombresProducto[i]=arrayProducto[i].getNombre();
+			arrayNombresProducto[i]=this.arrayProducto[i].getNombre();
 		}
 		return arrayNombresProducto;
 	}
@@ -72,10 +75,10 @@ public class ConsultasBBDD {
     	this.getListaProductos(localNombre);
     	double precio=0;
 		
-		for(int i = 0;i<arrayProducto.length;i++)
+		for(int i = 0;i<this.arrayProducto.length;i++)
 		{
-			if(nombre.equals(arrayProducto[i].getNombre())) {
-				precio=arrayProducto[i].getPrecioVenta();
+			if(nombre.equals(this.arrayProducto[i].getNombre())) {
+				precio=this.arrayProducto[i].getPrecioVenta();
 				break;
 			}
 		}

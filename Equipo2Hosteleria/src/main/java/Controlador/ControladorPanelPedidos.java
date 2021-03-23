@@ -40,13 +40,11 @@ public class ControladorPanelPedidos {
 	
 	public void accionadoBottonVolverPanelPedidos() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
-		this.modelo.getConsultasBBDD().reiniciarArray();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelPedidos() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
-		this.modelo.getConsultasBBDD().reiniciarArray();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
@@ -58,7 +56,6 @@ public class ControladorPanelPedidos {
 	
 	public void transaccionFinalizadaPanelPedidos() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
-		this.modelo.getConsultasBBDD().reiniciarArray();
 		this.controlador.navegarPanelOperatividad();
 	}
 	

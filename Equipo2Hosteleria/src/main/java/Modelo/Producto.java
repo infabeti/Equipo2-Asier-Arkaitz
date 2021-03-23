@@ -9,6 +9,8 @@ public class Producto {
 	protected double precioVenta;
 	protected String alergeno;
 	private int cantidad;
+	
+	public Producto() {};
 			
 	//Constructor con parametros
 	public Producto(String Nombre, String Tipo, String FechaCaducidad, double PrecioCompra, double PrecioVenta, String Alergeno, int Cantidad) {

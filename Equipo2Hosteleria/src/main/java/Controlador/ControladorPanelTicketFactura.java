@@ -40,11 +40,13 @@ public class ControladorPanelTicketFactura {
 	
 	public void accionadoBottonVolverPanelTicketFactura() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
+		this.modelo.getConsultasBBDD().reiniciarArray();
 		this.controlador.navegarPanelOperatividad();
 	}
 	
 	public void accionadoBottonDesconectarsePanelTicketFactura() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
+		this.modelo.getConsultasBBDD().reiniciarArray();
 		this.controlador.navegarPanelBienvenida();
 	}
 	
@@ -63,6 +65,7 @@ public class ControladorPanelTicketFactura {
 	
 	public void transaccionFinalizadaPanelTicketFactura() {
 		this.modelo.getCarroCompra().borrarCarroCompra();
+		this.modelo.getConsultasBBDD().reiniciarArray();
 		this.controlador.navegarPanelOperatividad();
 	}
 	

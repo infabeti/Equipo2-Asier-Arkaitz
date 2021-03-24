@@ -15,7 +15,7 @@ public class ConsultasBBDD {
 	private static Statement st=null;
 	private static PreparedStatement ps = null;
 	private static int i = 0;
-	private final String GETPRODUCTO = "SELECT nombre_producto, P.tipo, fecha_caducidad, precio_venta, precio_compra, alergeno, cantidad FROM tiene T join producto P on T.nombre_producto = P.nombre join local L on L.nif = T.nif_local WHERE L.nombre = ?";
+	private final String GETPRODUCTO = "SELECT nombre_producto, P.tipo, fecha_caducidad, precio_compra, precio_venta, alergeno, cantidad FROM tiene T join producto P on T.nombre_producto = P.nombre join local L on L.nif = T.nif_local WHERE L.nombre = ?";
 
     //private Producto[] arrayProducto = new Producto[4];
 	private Producto[] arrayProducto = new Producto[0];

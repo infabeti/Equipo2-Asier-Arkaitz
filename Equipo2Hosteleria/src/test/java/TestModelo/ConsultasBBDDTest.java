@@ -12,18 +12,18 @@ public class ConsultasBBDDTest {
 	private double resultadoEsperadoDouble;
 	private String[] resultadoArrayString;
 	private String[] resultadoEsperadoArrayString;
-	private String arrayNombresProducto[]= {"Garbanzos","Paella","Bacalao","Hamburguesa","Cerveza"};
+	private String arrayNombresProducto[]= {"Cerveza","Refresco","Tabaco"};
 	
 	@Test
 	public void testNombresProductos() {
 		resultadoEsperadoArrayString = arrayNombresProducto;
-		resultadoArrayString = consultasBBDD.nombresProductos();
+		resultadoArrayString = consultasBBDD.nombresProductos("Taberna de Moe");
 		assertArrayEquals(resultadoEsperadoArrayString, resultadoArrayString);
 	}
 	@Test
 	public void testGetPrecioVentaProductos() {
-		resultadoEsperadoDouble = 5;
-		resultadoDouble = consultasBBDD.precioVentaProductos("Hamburguesa");
-		org.junit.Assert.assertEquals(resultadoEsperadoDouble, resultadoDouble, 1);
+		resultadoEsperadoDouble = 3;
+		resultadoDouble = consultasBBDD.precioVentaProductos("Cerveza", "Taberna de Moe");
+		org.junit.Assert.assertEquals(resultadoEsperadoDouble, resultadoDouble, 0);
 	}
 }

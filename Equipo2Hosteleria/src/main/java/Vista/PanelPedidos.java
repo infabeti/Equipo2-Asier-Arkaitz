@@ -2,6 +2,8 @@ package Vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -44,6 +46,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 	private JTextField textField_Fecha;
 	private JTextField textField_Local;
 	private JTextField textField_NTransaccion;
+	private JTextField textField_Precio;
 	private JTextPane textPane_Total;
 	private JScrollPane scrollPane;
 	private JTable table;
@@ -77,7 +80,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		comboBox_Productos.setBounds(38, 111, 173, 23);
 		add(comboBox_Productos);
 		
-		String arrayNombresProducto[] = controladorPanelPedidos.obtenerNombresProductos();
+		String arrayNombresProducto[] = controladorPanelPedidos.obtenerNombresProductos(controladorPanelPedidos.obtenerNombreLocal());
 		for(int i = 0;i<arrayNombresProducto.length;i++)
 		{
 			comboBox_Productos.addItem(arrayNombresProducto[i]);
@@ -90,7 +93,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
 		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCantidad.setBounds(243, 80, 157, 23);
+		lblCantidad.setBounds(232, 111, 78, 23);
 		add(lblCantidad);
 		
 		grupoBotones = new ButtonGroup();
@@ -116,12 +119,12 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		comboBox_Cantidad = new JComboBox();
 		comboBox_Cantidad.setBounds(340, 111, 60, 23);
 		add(comboBox_Cantidad);
-		
+
 		int numbers_to_add_max = 99;
 		for (int i = 1; i <= numbers_to_add_max; i++) {
 			comboBox_Cantidad.addItem(new Integer(i));
 		}
-		
+
 		btnAadirAlCarro = new JButton("A\u00F1adir al carro");
 		btnAadirAlCarro.setBounds(447, 80, 146, 23);
 		add(btnAadirAlCarro);
@@ -201,6 +204,17 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		new String[] {	"Producto", "Cantidad", "Precio", "Total"	}));
 		scrollPane.setViewportView(table);
 		
+		textField_Precio = new JTextField();
+		textField_Precio.setEditable(false);
+		textField_Precio.setBounds(340, 80, 60, 23);
+		add(textField_Precio);
+		textField_Precio.setText(""+controladorPanelPedidos.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString(), controladorPanelPedidos.obtenerNombreLocal()));
+		
+		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPrecio.setBounds(232, 80, 69, 23);
+		add(lblPrecio);
+		
 		initializeEvents();
 	}
 	
@@ -210,6 +224,7 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelPedidos));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelPedidos));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelPedidos));
+		this.comboBox_Productos.addItemListener(listenerProducto(this.controladorPanelPedidos));
 		this.borrarListaCompra();
 	}
 	
@@ -315,9 +330,17 @@ public class PanelPedidos extends JPanel implements ChangeListener {
 				System.out.println("Ejecutando evento Boton Añadir Al Carro");
 				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
 				String nomProducto = (comboBox_Productos.getSelectedItem().toString());
-				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos(nomProducto, cantidad);
+				controladorPanelPedidos.accionadoBottonAadirAlCarroPanelPedidos(nomProducto, cantidad, controladorPanelPedidos.obtenerNombreLocal());
 				ControlarCaja=1;
 				generarListaCompra();
+			}
+		};
+	}
+	
+	private ItemListener listenerProducto(ControladorPanelPedidos controladorPanelPedidos) {
+		return new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				textField_Precio.setText(""+controladorPanelPedidos.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString(), controladorPanelPedidos.obtenerNombreLocal()));
 			}
 		};
 	}

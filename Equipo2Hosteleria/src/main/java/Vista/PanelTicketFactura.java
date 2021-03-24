@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -68,6 +70,8 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 	private String nif=null;
 	private String nombre=null;
 	private String apellido=null;
+	private JTextField textField_Precio;
+	private JLabel lblPrecio;
 	
 	public PanelTicketFactura(ControladorPanelTicketFactura controladorPanelTicketFactura) {
 		setBackground(new Color(102, 153, 255));
@@ -99,10 +103,10 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		add(lblCantidad);
 		
 		comboBox_Productos = new JComboBox();
-		comboBox_Productos.setBounds(419, 117, 173, 22);
+		comboBox_Productos.setBounds(419, 82, 173, 22);
 		add(comboBox_Productos);
 		
-		String arrayNombresProducto[] = controladorPanelTicketFactura.obtenerNombresProductos();
+		String arrayNombresProducto[] = controladorPanelTicketFactura.obtenerNombresProductos(controladorPanelTicketFactura.obtenerNombreLocal());
 		
 		for(int i = 0;i<arrayNombresProducto.length;i++)
 		{
@@ -111,7 +115,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		
 		lblProductos_1 = new JLabel("Productos:");
 		lblProductos_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblProductos_1.setBounds(419, 84, 170, 22);
+		lblProductos_1.setBounds(419, 49, 172, 22);
 		add(lblProductos_1);
 		
 		lblTicketFactura = new JLabel("Ticket o Factura");
@@ -240,6 +244,17 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		));
 		scrollPane.setViewportView(table);
 		
+		textField_Precio = new JTextField();
+		textField_Precio.setEditable(false);
+		textField_Precio.setBounds(532, 117, 60, 22);
+		add(textField_Precio);
+		textField_Precio.setText(""+controladorPanelTicketFactura.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString(), controladorPanelTicketFactura.obtenerNombreLocal()));
+		
+		lblPrecio = new JLabel("Precio:");
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPrecio.setBounds(419, 117, 69, 22);
+		add(lblPrecio);
+		
 		initializeEvents();
 	}
 	
@@ -249,6 +264,7 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 		this.btnPagar.addActionListener(listenerBotonPagar(this.controladorPanelTicketFactura));
 		this.btnAadirAlCarro.addActionListener(listenerBotonAadirAlCarro(this.controladorPanelTicketFactura));
 		this.btnBorrarLista.addActionListener(listenerBotonBorrarLista(this.controladorPanelTicketFactura));
+		this.comboBox_Productos.addItemListener(listenerProducto(this.controladorPanelTicketFactura));
 		this.borrarListaCompra();
 	}
 	
@@ -373,11 +389,19 @@ public class PanelTicketFactura extends JPanel implements ChangeListener {
 				int cantidad = Integer.parseInt(comboBox_Cantidad.getSelectedItem().toString());
 				String nomProducto = (comboBox_Productos.getSelectedItem().toString());
 				
-				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura(nomProducto, cantidad);
+				controladorPanelTicketFactura.accionadoBottonAadirAlCarroPanelTicketFactura(nomProducto, cantidad, controladorPanelTicketFactura.obtenerNombreLocal());
 				
 				ControlarCaja=1;
 				
 				generarListaCompra();
+			}
+		};
+	}
+	
+	private ItemListener listenerProducto(ControladorPanelTicketFactura controladorPanelTicketFactura) {
+		return new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				textField_Precio.setText(""+controladorPanelTicketFactura.obtenerPrecioVentaProductos(comboBox_Productos.getSelectedItem().toString(), controladorPanelTicketFactura.obtenerNombreLocal()));
 			}
 		};
 	}
